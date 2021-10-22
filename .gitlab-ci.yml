@@ -1,0 +1,18 @@
+develop:
+  stage: build
+  script:
+    - sudo chown -R deployer:www-data /var/www/milc-api
+    - cd /var/www/milc-api
+    - git reset --hard
+    - git pull origin develop
+    - composer install -n
+    - php artisan migrate --no-interaction
+    - php artisan cache:clear
+    - php artisan config:clear
+    - php artisan route:clear
+    - sudo chown www-data:www-data -R storage
+    - sudo chown www-data:www-data -R vendor
+    - php artisan storage:link
+  only:
+    refs:
+      - develop
