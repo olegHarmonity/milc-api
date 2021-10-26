@@ -24,10 +24,10 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('job_title');
             $table->string('country');
-            $table->string('city');
-            $table->string('address');
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
             $table->string('password');
-            $table->string('postal_code');
+            $table->string('postal_code')->nullable();
             $table->integer('organisation_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();

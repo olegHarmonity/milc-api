@@ -3,7 +3,6 @@
 namespace Tests\Feature\User;
 
 use Illuminate\Http\UploadedFile;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\ApiTestCase;
 
 class UserTest extends ApiTestCase
@@ -37,7 +36,7 @@ class UserTest extends ApiTestCase
                 'registration_number' => '783823292',
                 'phone_number' => '782378239329832',
                 'telephone_number' => '3178372',
-                'organisation_role' => 'Buyer',
+                'organisation_role' => 'buyer',
                 'description' => 'organisation',
                 'website_link' => 'www.website.com',
                 'social_links' => [["network" => "facebook","value" => "www.facebook.com/organisation"],["network" => "twitter","value" => "www.twitter.com/organisation"]],

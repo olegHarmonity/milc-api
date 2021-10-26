@@ -3,7 +3,7 @@
 namespace App\Http\Resources\User;
 
 use App\Http\Resources\ImageResource;
-use App\Http\Resources\OrganisationResource;
+use App\Http\Resources\Organisation\OrganisationResource;
 use App\Models\Image;
 use App\Models\Organisation;
 use Illuminate\Http\Resources\Json\JsonResource;

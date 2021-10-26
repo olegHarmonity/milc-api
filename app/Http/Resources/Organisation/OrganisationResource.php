@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Organisation;
 
+use App\Http\Resources\ImageResource;
 use App\Models\Image;
 use App\Models\Organisation;
 use App\Models\OrganisationType;
