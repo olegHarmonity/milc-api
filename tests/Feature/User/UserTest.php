@@ -48,7 +48,6 @@ class UserTest extends ApiTestCase
 
         $response = $this->post('/api/register', $data);
 
-        dump(json_decode($response->getContent()));
         $response->assertStatus(201);
     }
 }
