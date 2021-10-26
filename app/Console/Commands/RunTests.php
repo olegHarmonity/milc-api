@@ -60,9 +60,9 @@ class RunTests extends Command
         $this->call('config:cache');
         $this->call('route:cache');
 
-        $this->info("\nRunning tests...\n");
+        //$this->info("\nRunning tests...\n");
 
-        $this->call('test');
+        //$this->call('test');
 
         return 0;
     }
