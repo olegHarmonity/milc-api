@@ -3,7 +3,6 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LVR\CountryCode\Two;
 
 class RegisterUserRequest extends FormRequest
 {
@@ -29,12 +28,7 @@ class RegisterUserRequest extends FormRequest
                 'min:2',
                 'max:50'
             ],
-            'phone_number' => [
-                'required',
-            ],
-            'telephone_number' => [
-                'required',
-            ],
+            'phone_number',
             'job_title' => [
                 'required',
             ],
@@ -58,7 +52,30 @@ class RegisterUserRequest extends FormRequest
             ],
             'password_confirmation' => [
                 'required',
-            ]
+            ],
+            'organisation.organisation_name' => [
+                'required',
+            ],
+            'organisation.organisation_type_id' => [
+                'required',
+            ],
+            'organisation.registration_number' => [
+                'required',
+            ],
+            'organisation.phone_number',
+            'organisation.telephone_number',
+            'organisation.organisation_role' => [
+                'required',
+            ],
+            'organisation.description' => [
+                'required',
+            ],
+            'organisation.website_link' => [
+                'required',
+            ],
+            'social_links',
+            'website_link',
+            'logo_id'
         ];
     }
 }

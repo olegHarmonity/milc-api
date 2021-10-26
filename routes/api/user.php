@@ -9,4 +9,3 @@ Route::get('/me', [UserController::class, 'me'])
 
 Route::post('/register', [UserController::class, 'register'])
     ->name('register');
-

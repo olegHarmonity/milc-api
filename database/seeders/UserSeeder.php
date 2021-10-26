@@ -10,20 +10,19 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-
-        User::factory()
-            ->create([
-                'email' => 'admin@milc.com',
-                'role' => UserRoles::$ROLE_ADMIN,
-            ]);
-
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 4; $i++) {
             User::factory()
                 ->create([
                     'email' => 'company_admin'.$i.'@milc.com',
                     'role' => UserRoles::$ROLE_COMPANY_ADMIN,
                 ]);
         }
+
+        User::factory()
+            ->create([
+                'email' => 'admin@milc.com',
+                'role' => UserRoles::$ROLE_ADMIN,
+            ]);
 
         for ($i = 1; $i <= 10; $i++) {
             User::factory()
