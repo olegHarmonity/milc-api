@@ -28,7 +28,7 @@ class CreateOrganisationsTable extends Migration
             $table->dateTime('date_activated')->nullable();
             $table->string('status')->default(CompanyStatuses::$PENDING);
             $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('organisation_type_id')->unsigned();
+            $table->integer('organisation_type_id')->unsigned()->nullable();
             $table->integer('logo_id')->unsigned()->nullable();
         });
     }

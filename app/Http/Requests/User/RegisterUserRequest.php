@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Util\CompanyRoles;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterUserRequest extends FormRequest
@@ -34,17 +35,12 @@ class RegisterUserRequest extends FormRequest
             ],
             'country' => [
                 'required',
-                //new Two()
+                'min:2',
+                'max:2'
             ],
-            'city' => [
-                'required',
-            ],
-            'address' => [
-                'required',
-            ],
-            'postal_code' => [
-                'required',
-            ],
+            'city',
+            'address',
+            'postal_code',
             'password' => [
                 'required',
                 'confirmed',
@@ -56,9 +52,7 @@ class RegisterUserRequest extends FormRequest
             'organisation.organisation_name' => [
                 'required',
             ],
-            'organisation.organisation_type_id' => [
-                'required',
-            ],
+            'organisation.organisation_type_id',
             'organisation.registration_number' => [
                 'required',
             ],
@@ -66,6 +60,7 @@ class RegisterUserRequest extends FormRequest
             'organisation.telephone_number',
             'organisation.organisation_role' => [
                 'required',
+                'in:' . CompanyRoles::getRolesForValidation()
             ],
             'organisation.description' => [
                 'required',

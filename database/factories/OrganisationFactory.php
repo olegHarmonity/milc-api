@@ -28,7 +28,7 @@ class OrganisationFactory extends Factory
             'registration_number' => $this->faker->randomNumber(7),
             'phone_number' => $this->faker->phoneNumber(),
             'telephone_number' => $this->faker->phoneNumber(),
-            'organisation_role' => 'Buyer',
+            'organisation_role' => 'buyer',
             'description' => Str::random(10),
             'website_link' => $this->faker->url(),
             'social_links' => json_encode([$this->faker->url(),$this->faker->url()]),

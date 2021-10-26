@@ -54,6 +54,12 @@ class RunTests extends Command
 
         $this->call('db:seed');
 
+        $this->info("\nClearing cache...\n");
+
+        $this->call('cache:clear');
+        $this->call('config:cache');
+        $this->call('route:cache');
+
         $this->info("\nRunning tests...\n");
 
         $this->call('test');

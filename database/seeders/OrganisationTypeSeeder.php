@@ -15,21 +15,25 @@ class OrganisationTypeSeeder extends Seeder
     public function run()
     {
         OrganisationType::factory()
+            ->count(1)
             ->create([
                 'name' => 'Distributor'
             ]);
 
         OrganisationType::factory()
+            ->count(1)
             ->create([
                 'name' => 'Production Company'
             ]);
 
         OrganisationType::factory()
+            ->count(1)
             ->create([
                 'name' => 'Sales Agent'
             ]);
 
         OrganisationType::factory()
+            ->count(1)
             ->create([
                 'name' => 'Other'
             ]);
