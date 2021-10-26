@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\FormattedTimestamps;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,13 +24,14 @@ class User extends Authenticatable implements JWTSubject
         'first_name',
         'last_name',
         'phone_number',
-        'telephone_number',
         'job_title',
         'country',
         'city',
         'address',
         'postal_code',
         'password',
+        'organisation_id',
+        'role',
     ];
 
     /**
@@ -38,9 +40,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password',
         'remember_token',
-        'role',
     ];
 
     /**
@@ -49,7 +49,9 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime:Y-m-d H:i',
+        'created_at' => 'datetime:Y-m-d H:i',
+        'updated_at' => 'datetime:Y-m-d H:i'
     ];
 
     public function getJWTIdentifier()
