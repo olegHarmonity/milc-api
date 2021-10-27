@@ -23,8 +23,8 @@ class CreateOrganisationsTable extends Migration
             $table->string('telephone_number')->nullable();
             $table->string('organisation_role');
             $table->string('description');
-            $table->string('website_link');
-            $table->json('social_links');
+            $table->string('website_link')->nullable();
+            $table->json('social_links')->nullable();
             $table->dateTime('date_activated')->nullable();
             $table->string('status')->default(CompanyStatuses::$PENDING);
             $table->integer('user_id')->unsigned()->nullable();
