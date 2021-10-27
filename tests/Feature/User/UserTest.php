@@ -3,6 +3,7 @@
 namespace Tests\Feature\User;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\ApiTestCase;
 
 class UserTest extends ApiTestCase
@@ -17,10 +18,19 @@ class UserTest extends ApiTestCase
            // ->assertJson(fn(AssertableJson $json) => $json->where('email', 'company_admin1@milc.com')->etc());
     }
 
+    public function test_email_exists()
+    {
+        $response = $this->get('/api/email-exists?email=admin3@milc.com');
+
+        $response
+            ->assertStatus(200);
+    }
+
     public function test_register()
     {
+        $email = 'email'.rand(1,1000).'@test.com';
         $data = [
-            'email' => 'email'.rand(1,1000).'@test.com',
+            'email' => $email,
             'first_name' => 'name',
             'last_name' => 'last name',
             'phone_number' => '782378239329832',
@@ -48,5 +58,16 @@ class UserTest extends ApiTestCase
         $response = $this->post('/api/register', $data);
 
         $response->assertStatus(201);
+
+        $data = [
+            'email' => $email,
+            'password' => 'password'
+        ];
+
+        $response = $this->post('/api/auth/login', $data);
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn(AssertableJson $json) => $json->has('access_token')->etc());
+
     }
 }
