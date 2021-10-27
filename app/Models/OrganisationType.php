@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\FormattedTimestamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OrganisationType extends Model
 {
-    use HasFactory;
+    use HasFactory, FormattedTimestamps;
 
     protected $fillable = [
         'name',
@@ -15,10 +16,5 @@ class OrganisationType extends Model
 
     protected $hidden = [
         'slug',
-    ];
-
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i',
-        'updated_at' => 'datetime:Y-m-d H:i'
     ];
 }
