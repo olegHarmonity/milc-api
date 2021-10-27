@@ -39,8 +39,8 @@ class UserTest extends ApiTestCase
             'city' => 'city',
             'address' => 'address',
             'postal_code' => '323232',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => 'password77777',
+            'password_confirmation' => 'password77777',
             'organisation' => [
                 'organisation_name' => 'organisation',
                 'registration_number' => '783823292',
@@ -61,7 +61,7 @@ class UserTest extends ApiTestCase
 
         $data = [
             'email' => $email,
-            'password' => 'password'
+            'password' => 'password77777'
         ];
 
         $response = $this->post('/api/auth/login', $data);

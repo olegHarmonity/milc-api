@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\FormattedTimestamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Organisation extends Model
 {
-    use HasFactory;
+    use HasFactory, FormattedTimestamps;
 
     protected $fillable = [
         'organisation_name',
@@ -29,8 +30,6 @@ class Organisation extends Model
 
     protected $casts = [
         'social_links' => 'array',
-        'created_at' => 'datetime:Y-m-d H:i',
-        'updated_at' => 'datetime:Y-m-d H:i'
     ];
 
     public function logo()

@@ -8,7 +8,6 @@ use App\Http\Requests\User\EmailExistsRequest;
 use App\Http\Requests\User\RegisterUserRequest;
 use App\Http\Resources\User\EmailExistsResource;
 use App\Http\Resources\User\RegisterResource;
-use App\Http\Resources\User\UserResource;
 use App\Models\Organisation;
 use App\Models\User;
 use App\Util\UserRoles;
@@ -67,9 +66,6 @@ class UserController extends Controller
             $organisation = Organisation::create($organisationRequest);
             $userRequest['organisation_id'] = $organisation->id;
             $userRequest['role'] = UserRoles::$ROLE_COMPANY_ADMIN;
-
-            $password = Hash::make('password');
-            $userRequest['password'] = $password;
 
             $user = User::create($userRequest);
             $organisation->user_id = $user->id;
