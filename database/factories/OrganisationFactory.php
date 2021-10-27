@@ -31,7 +31,10 @@ class OrganisationFactory extends Factory
             'organisation_role' => 'buyer',
             'description' => Str::random(10),
             'website_link' => $this->faker->url(),
-            'social_links' => json_encode([$this->faker->url(),$this->faker->url()]),
+            'social_links' => [
+                ["network" => "facebook", "value" => $this->faker->url()],
+                ["network" => "twitter", "value" => $this->faker->url()]
+            ],
             'date_activated' => $this->faker->dateTime(),
             'status' => CompanyStatuses::$ACCEPTED,
             'user_id' => 1,
