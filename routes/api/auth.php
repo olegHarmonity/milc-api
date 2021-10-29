@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([

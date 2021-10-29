@@ -15,16 +15,18 @@ class OrganisationResource extends JsonResource
         $this->makeVisible(['status']);
 
         $organisation = parent::toArray($request);
-        $organisation = $organisation[0];
+        if (isset($organisation[0])) {
+            $organisation = $organisation[0];
+        }
 
-        if(isset($organisation['logo_id'])){
-            $image = Image::where('id',$organisation['logo_id'])->get();
+        if (isset($organisation['logo_id'])) {
+            $image = Image::where('id', $organisation['logo_id'])->get();
             $organisation['logo'] = new ImageResource($image);
             unset($organisation['logo_id']);
         }
 
-        if(isset($organisation['organisation_type_id'])){
-            $orgType = OrganisationType::where('id',$organisation['organisation_type_id'])->get();
+        if (isset($organisation['organisation_type_id'])) {
+            $orgType = OrganisationType::where('id', $organisation['organisation_type_id'])->get();
             $organisation['organisation_type'] = new OrganisationTypeResource($orgType);
             unset($organisation['organisation_type_id']);
         }

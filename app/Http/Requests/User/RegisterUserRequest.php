@@ -69,9 +69,17 @@ class RegisterUserRequest extends FormRequest
             'organisation.website_link' => [
                 'required',
             ],
-            'social_links',
-            'website_link',
-            'logo_id'
+            'organisation.country' => [
+                'required',
+                'min:2',
+                'max:2'
+            ],
+            'organisation.city',
+            'organisation.address',
+            'organisation.postal_code',
+            'organisation.social_links',
+            'organisation.website_link',
+            'organisation.logo_id'
         ];
     }
 }

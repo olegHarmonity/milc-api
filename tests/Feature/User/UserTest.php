@@ -12,10 +12,9 @@ class UserTest extends ApiTestCase
     {
         $this->loginCompanyAdmin();
         $response = $this->get('/api/me');
-
         $response
             ->assertStatus(200);
-           // ->assertJson(fn(AssertableJson $json) => $json->where('email', 'company_admin1@milc.com')->etc());
+        // ->assertJson(fn(AssertableJson $json) => $json->where('email', 'company_admin1@milc.com')->etc());
     }
 
     public function test_email_exists()
@@ -26,9 +25,37 @@ class UserTest extends ApiTestCase
             ->assertStatus(200);
     }
 
+    /*public function test_forgot_password()
+    {
+        $data = [
+            'email' => 'admin3@milc.com'
+        ];
+        $response = $this->post('/api/forgot-password', $data);
+
+        dump(($response));
+        dump(json_decode($response->getContent()));
+        $response
+            ->assertStatus(200);
+    }
+
+    public function test_reset_password()
+    {
+        $data = [
+            'token' => '434c8cea0eb8bc1376c798e5f6af03983ccece733e669f553bd4ee6493238d01',
+            'email' => 'admin3@milc.com',
+            'password' => 'pass123456',
+            'password_confirmation' => 'pass123456'
+        ];
+
+        $response = $this->post('/api/reset-password', $data);
+
+        $response
+            ->assertStatus(200);
+    }*/
+
     public function test_register()
     {
-        $email = 'email'.rand(1,1000).'@test.com';
+        $email = 'email' . rand(1, 1000) . '@test.com';
         $data = [
             'email' => $email,
             'first_name' => 'name',
@@ -49,7 +76,8 @@ class UserTest extends ApiTestCase
                 'organisation_role' => 'buyer',
                 'description' => 'organisation',
                 'website_link' => 'www.website.com',
-                'social_links' => [["network" => "facebook","value" => "www.facebook.com/organisation"],["network" => "twitter","value" => "www.twitter.com/organisation"]],
+                'country' => 'DE',
+                'social_links' => [["network" => "facebook", "value" => "www.facebook.com/organisation"], ["network" => "twitter", "value" => "www.twitter.com/organisation"]],
                 'organisation_type_id' => 1,
                 'logo' => new UploadedFile(resource_path('test-files/image.png'), 'image.png', null, null, true),
             ]
@@ -70,4 +98,47 @@ class UserTest extends ApiTestCase
             ->assertJson(fn(AssertableJson $json) => $json->has('access_token')->etc());
 
     }
+
+    public function test_update_user()
+    {
+        $this->loginAdmin();
+
+        $data = [
+            'first_name' => 'changed name',
+            'last_name' => 'changedlast name',
+        ];
+
+        $response = $this->put('/api/users/2', $data);
+
+        $response->assertStatus(200);
+    }
+
+    public function test_update_organisation()
+    {
+        $this->loginAdmin();
+
+        $data = [
+            'organisation_name' => 'changed name',
+        ];
+
+        $response = $this->put('/api/organisations/1', $data);
+
+        $response->assertStatus(200);
+    }
+
+    public function test_change_password()
+    {
+        $this->loginAdmin();
+
+        $data = [
+            'old_password' => 'password',
+            'new_password' => 'zuwegcbzw782',
+            'password_confirmation' => 'zuwegcbzw782',
+        ];
+
+        $response = $this->post('/api/change-password', $data);
+
+        $response->assertStatus(200);
+    }
+
 }

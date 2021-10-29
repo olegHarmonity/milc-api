@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Util\UserRoles;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+         'App\Models\User' => 'App\Policies\UserPolicy',
     ];
 
     /**
@@ -25,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('admin', function ($user) {
+            return $user->role == UserRoles::$ROLE_ADMIN;
+        });
+
+        Gate::define('organisation_admin', function ($user) {
+            return $user->role ==  UserRoles::$ROLE_COMPANY_ADMIN;
+        });
     }
 }
