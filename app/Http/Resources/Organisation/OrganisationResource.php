@@ -28,7 +28,6 @@ class OrganisationResource extends JsonResource
         if (isset($organisation['organisation_type_id'])) {
             $orgType = OrganisationType::where('id', $organisation['organisation_type_id'])->get();
             $organisation['organisation_type'] = new OrganisationTypeResource($orgType);
-            unset($organisation['organisation_type_id']);
         }
 
         return $organisation;

@@ -17,7 +17,6 @@ class RegisterResource extends JsonResource
         if(isset($user['organisation_id'])){
             $organisation = Organisation::where('id',$user['organisation_id'])->get();
             $user['organisation'] = new OrganisationResource($organisation);
-            unset($user['organisation_id']);
         }
 
         return $user;
