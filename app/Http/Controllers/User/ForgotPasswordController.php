@@ -11,18 +11,13 @@ use Symfony\Component\Mime\Message;
 
 class ForgotPasswordController extends Controller
 {
-    public function forgot(Request $request) {
+    public function forgot(Request $request)
+    {
         $status = 200;
         $credentials = request()->validate(['email' => 'required|email']);
         try {
             $response = Password::sendResetLink($credentials);
-            switch ($response) {
-                case Password::RESET_LINK_SENT:
-                    return response()->json(array("status" => 200, "message" => trans($response), "data" => array()),$status);
-                case Password::INVALID_USER:
-                    $status = 400;
-                    return response()->json(array("status" => $status, "message" => trans($response), "data" => array()),$status);
-            }
+            return response()->json(array("status" => 200, "message" => trans($response), "data" => array()), $status);
         } catch (\Swift_TransportException $ex) {
             $status = 400;
             $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
@@ -34,7 +29,8 @@ class ForgotPasswordController extends Controller
         return response()->json($arr, $status);
     }
 
-    public function reset() {
+    public function reset()
+    {
         $credentials = request()->validate([
             'email' => 'required|email',
             'token' => 'required|string',
