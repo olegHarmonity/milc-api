@@ -39,7 +39,11 @@ class OrganisationFactory extends Factory
             'status' => CompanyStatuses::$ACCEPTED,
             'user_id' => 1,
             'organisation_type_id' => 1,
-            'logo_id' => 1
+            'logo_id' => 1,
+            'country' => $this->faker->countryCode(),
+            'city' => $this->faker->city(),
+            'address' => $this->faker->address(),
+            'postal_code' => $this->faker->postcode(),
         ];
     }
 }

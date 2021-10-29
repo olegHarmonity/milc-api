@@ -30,6 +30,10 @@ class CreateOrganisationsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('organisation_type_id')->unsigned()->nullable();
             $table->integer('logo_id')->unsigned()->nullable();
+            $table->string('country');
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->string('postal_code')->nullable();
         });
     }
 

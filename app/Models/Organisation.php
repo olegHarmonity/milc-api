@@ -20,7 +20,11 @@ class Organisation extends Model
         'website_link',
         'social_links',
         'organisation_type_id',
-        'logo_id'
+        'logo_id',
+        'country',
+        'city',
+        'address',
+        'postal_code',
     ];
 
     protected $hidden = [
