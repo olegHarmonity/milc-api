@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/reset-password/{email}')
+Route::get('auth/reset-password/{email}')
     ->name('password.reset');
 
 

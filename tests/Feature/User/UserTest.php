@@ -25,10 +25,10 @@ class UserTest extends ApiTestCase
             ->assertStatus(200);
     }
 
-    /*public function test_forgot_password()
+    public function test_forgot_password()
     {
         $data = [
-            'email' => 'admweein@milc.com'
+            'email' => 'admin@milc.com'
         ];
         $response = $this->post('/api/forgot-password', $data);
 
@@ -36,7 +36,7 @@ class UserTest extends ApiTestCase
             ->assertStatus(200);
     }
 
-    public function test_reset_password()
+    /*public function test_reset_password()
     {
         $data = [
             'token' => '434c8cea0eb8bc1376c798e5f6af03983ccece733e669f553bd4ee6493238d01',
