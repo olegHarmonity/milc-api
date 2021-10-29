@@ -28,12 +28,10 @@ class UserTest extends ApiTestCase
     /*public function test_forgot_password()
     {
         $data = [
-            'email' => 'admin3@milc.com'
+            'email' => 'admin@milc.com'
         ];
         $response = $this->post('/api/forgot-password', $data);
 
-        dump(($response));
-        dump(json_decode($response->getContent()));
         $response
             ->assertStatus(200);
     }
