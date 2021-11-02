@@ -2,14 +2,18 @@
 
 namespace App\Http\Requests\Organisation;
 
+use App\Models\Organisation;
+use App\Models\User;
 use App\Util\CompanyRoles;
 use Illuminate\Foundation\Http\FormRequest;
+use \Gate;
 
 class UpdateOrganisationRequest extends FormRequest
 {
     public function authorize()
     {
-        return true;
+        $organisation = Organisation::find($this->route('organisation'));
+        return Gate::authorize('update', $organisation);
     }
 
     public function rules()

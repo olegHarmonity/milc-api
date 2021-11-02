@@ -14,7 +14,7 @@ Route::get('/email-exists', [UserController::class, 'emailExists'])
 Route::post('/register', [UserController::class, 'register'])
     ->name('register');
 
-Route::put('/users/{id}', [UserController::class, 'update'])
+Route::put('/users/{user}', [UserController::class, 'update'])
     ->name('update');
 
 Route::post('/forgot-password', [ForgotPasswordController::class, 'forgot']);

@@ -111,6 +111,18 @@ class UserTest extends ApiTestCase
         $response->assertStatus(200);
     }
 
+    public function test_update_user_unauthorized()
+    {
+        $data = [
+            'first_name' => 'changed name',
+            'last_name' => 'changedlast name',
+        ];
+
+        $response = $this->put('/api/users/2', $data);
+
+        $response->assertStatus(403);
+    }
+
     public function test_update_organisation()
     {
         $this->loginAdmin();

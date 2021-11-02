@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Models\User;
 use App\Util\CompanyRoles;
 use Illuminate\Foundation\Http\FormRequest;
 

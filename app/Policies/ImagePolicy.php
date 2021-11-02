@@ -4,7 +4,10 @@ namespace App\Policies;
 
 use App\Models\Image;
 use App\Models\User;
+use App\Util\AuthorizationResponses;
+use App\Util\UserRoles;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ImagePolicy
 {
@@ -18,7 +21,7 @@ class ImagePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +33,7 @@ class ImagePolicy
      */
     public function view(User $user, Image $image)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +44,7 @@ class ImagePolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +56,7 @@ class ImagePolicy
      */
     public function update(User $user, Image $image)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +68,13 @@ class ImagePolicy
      */
     public function delete(User $user, Image $image)
     {
-        //
+        if (!$user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        return $user->role === UserRoles::$ROLE_ADMIN
+            ? true
+            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
     /**
@@ -77,7 +86,13 @@ class ImagePolicy
      */
     public function restore(User $user, Image $image)
     {
-        //
+        if (!$user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        return $user->role === UserRoles::$ROLE_ADMIN
+            ? true
+            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
     /**
@@ -89,6 +104,12 @@ class ImagePolicy
      */
     public function forceDelete(User $user, Image $image)
     {
-        //
+        if (!$user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        return $user->role === UserRoles::$ROLE_ADMIN
+            ? true
+            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 }

@@ -45,4 +45,19 @@ class Organisation extends Model
     {
         return $this->belongsTo(OrganisationType::class);
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function hasUser(User $user)
+    {
+        foreach ($this->users() as $linkedUser) {
+            if ($linkedUser->id === $user->id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

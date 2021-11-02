@@ -20,13 +20,15 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use \Gate;
 use Throwable;
+use \Gate;
 
 class UserController extends Controller
 {
     public function me()
     {
+        Gate::authorize('me', auth()->user());
+
         return (new RegisterResource(auth()->user()))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
@@ -90,12 +92,8 @@ class UserController extends Controller
     }
 
 
-
     public function update(UpdateUserRequest $request, int $id)
     {
-        //abort_if(Gate::denies('admin'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        //abort_if(Gate::denies('organisation_admin'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $user = User::find($id);
 
         $user->update($request->all());
@@ -107,9 +105,11 @@ class UserController extends Controller
 
     public function change_password(Request $request)
     {
+        Gate::authorize('update', auth()->user());
+
         $status = 200;
         $input = $request->all();
-        $userid = Auth::guard('api')->user()->id;
+        $userid = auth()->user()->id;
         $rules = array(
             'old_password' => 'required',
             'new_password' => 'required|min:6',

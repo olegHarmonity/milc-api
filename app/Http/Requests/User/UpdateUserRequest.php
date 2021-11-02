@@ -2,15 +2,18 @@
 
 namespace App\Http\Requests\User;
 
+use App\Models\User;
 use App\Util\CompanyRoles;
 use Illuminate\Foundation\Http\FormRequest;
+use \Gate;
 
 class UpdateUserRequest extends FormRequest
 {
 
     public function authorize()
     {
-        return true;
+        $user = User::find($this->route('user'));
+        return Gate::authorize('update', $user);
     }
 
     public function rules()
