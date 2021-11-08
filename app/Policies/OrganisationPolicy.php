@@ -13,12 +13,6 @@ class OrganisationPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function viewAny(User $user)
     {
         if (!$user) {
@@ -30,13 +24,6 @@ class OrganisationPolicy
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param \App\Models\User $user
-     * @param \App\Models\Organisation $organisation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function view(User $user, Organisation $organisation)
     {
         if (!$user) {
@@ -48,24 +35,11 @@ class OrganisationPolicy
                 : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function create(User $user)
     {
         return true;
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param \App\Models\User $user
-     * @param \App\Models\Organisation $organisation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function update(User $user, Organisation $organisation)
     {
         if (!$user) {
@@ -78,13 +52,6 @@ class OrganisationPolicy
                 : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param \App\Models\User $user
-     * @param \App\Models\Organisation $organisation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function delete(User $user, Organisation $organisation)
     {
         if (!$user) {
@@ -96,13 +63,6 @@ class OrganisationPolicy
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param \App\Models\User $user
-     * @param \App\Models\Organisation $organisation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function restore(User $user, Organisation $organisation)
     {
         if (!$user) {
@@ -114,13 +74,6 @@ class OrganisationPolicy
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param \App\Models\User $user
-     * @param \App\Models\Organisation $organisation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function forceDelete(User $user, Organisation $organisation)
     {
         if (!$user) {
