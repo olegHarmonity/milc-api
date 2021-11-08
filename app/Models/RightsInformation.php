@@ -10,6 +10,10 @@ class RightsInformation extends Model
 {
     use HasFactory, FormattedTimestamps;
 
+    protected $hidden = [
+        'pivot',
+    ];
+
     protected $fillable = [
         'available_from_date',
         'expiry_date',

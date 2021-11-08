@@ -13,7 +13,6 @@ class ProductFactory extends Factory
     {
         return [
             'organisation_id' => $this->faker->numberBetween(1, 5),
-            'genre_id' => $this->faker->numberBetween(1, 10),
             'production_info_id' => $this->faker->numberBetween(1, 5),
             'marketing_assets_id' => $this->faker->numberBetween(1, 5),
             'movie_id' => $this->faker->numberBetween(1, 5),
@@ -29,7 +28,12 @@ class ProductFactory extends Factory
                 $this->faker->word(),
                 $this->faker->word(),
             ],
-            'languages' => [
+            'original_language' => $this->faker->languageCode(),
+            'dubbing_languages' => [
+                $this->faker->languageCode(),
+                $this->faker->languageCode(),
+            ],
+            'subtitle_languages' => [
                 $this->faker->languageCode(),
                 $this->faker->languageCode(),
                 $this->faker->languageCode(),
@@ -41,8 +45,6 @@ class ProductFactory extends Factory
                 "linkedin" => $this->faker->url(),
             ],
             'allow_requests' => $this->faker->boolean(),
-
-
         ];
     }
 }

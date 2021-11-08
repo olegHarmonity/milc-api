@@ -10,6 +10,10 @@ class MovieRight extends Model
 {
     use HasFactory, FormattedTimestamps;
 
+    protected $hidden = [
+        'pivot',
+    ];
+
     protected $fillable = [
         'name',
     ];

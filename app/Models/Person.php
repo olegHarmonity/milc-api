@@ -11,6 +11,10 @@ class Person extends Model
 
     use HasFactory, FormattedTimestamps;
 
+    protected $hidden = [
+        'pivot',
+    ];
+
     protected $fillable = [
         'first_name',
         'last_name',

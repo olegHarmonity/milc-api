@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Audio;
 use App\Models\File;
 use App\Models\MovieFormat;
+use App\Models\MovieGenre;
 use App\Models\Product;
 use App\Models\RightsInformation;
 use App\Models\Video;
@@ -23,8 +24,16 @@ class ProductSeeder extends Seeder
         $promotionalVideos = Video::all();
         $rightsInformation = RightsInformation::all();
         $availableFormats = MovieFormat::all();
+        $genres = MovieGenre::all();
 
-        Product::all()->each(function ($products) use ($dubFiles, $subtitles, $promotionalVideos, $rightsInformation, $availableFormats) {
+        Product::all()->each(function ($products) use (
+            $dubFiles,
+            $subtitles,
+            $promotionalVideos,
+            $rightsInformation,
+            $availableFormats,
+            $genres
+        ) {
             $products->dub_files()->attach(
                 $dubFiles->random(rand(1, 3))->pluck('id')->toArray()
             );
@@ -43,6 +52,10 @@ class ProductSeeder extends Seeder
 
             $products->available_formats()->attach(
                 $availableFormats->random(rand(1, 3))->pluck('id')->toArray()
+            );
+
+            $products->genres()->attach(
+                $genres->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
     }

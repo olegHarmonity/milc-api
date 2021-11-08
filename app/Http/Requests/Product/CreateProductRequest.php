@@ -24,12 +24,12 @@ class CreateProductRequest extends FormRequest
                 'required',
             ],
             'synopsis',
-            'genre_id' => [
-                'required'
-            ],
+            'genres',
             'available_formats',
             'keywords',
-            'languages',
+            'original_language',
+            'dubbing_languages',
+            'subtitle_languages',
             'links',
             'allow_requests' => [
                 'required',

@@ -20,10 +20,12 @@ class Product extends Model
         'content_type',
         'runtime',
         'synopsis',
-        'genre_id',
+        'genres',
         'available_formats',
         'keywords',
-        'languages',
+        'original_language',
+        'dubbing_languages',
+        'subtitle_languages',
         'links',
         'allow_requests',
         'production_info',
@@ -38,7 +40,8 @@ class Product extends Model
 
     protected $casts = [
         'keywords' => 'array',
-        'languages' => 'array',
+        'dubbing_languages' => 'array',
+        'subtitle_languages' => 'array',
         'links' => 'array',
     ];
 
@@ -47,9 +50,9 @@ class Product extends Model
         return $this->belongsToMany(MovieFormat::class, 'product_available_formats');
     }
 
-    public function genre()
+    public function genres()
     {
-        return $this->belongsTo(MovieGenre::class);
+        return $this->belongsToMany(MovieGenre::class, 'product_genres');
     }
 
     public function production_info()

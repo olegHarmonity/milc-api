@@ -15,11 +15,16 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         $product = parent::toArray($request);
-
         $productFromDb = Product::findOrFail($product['id']);
+
         $availableFormats = $productFromDb->available_formats()->get();
         foreach ($availableFormats as $availableFormat){
-            $product['available_formats'][] = new Resource($availableFormat);
+            $product['available_formats'][] = new Resource($availableFormat);;
+        }
+
+        $genres = $productFromDb->genres()->get();
+        foreach ($genres as $genre){
+            $product['genres'][] = new Resource($genre);
         }
 
         $rightsInformation = $productFromDb->rights_information()->get();
@@ -38,7 +43,7 @@ class ProductResource extends JsonResource
         }
 
         if(isset($product['genre_id'])){
-            $genre = MovieGenre::where('id',$product['genre_id'])->get();
+            $genre = MovieGenre::where('id',$product['genre_id'])->first();
             $product['genre'] = new Resource($genre);
         }
 
@@ -81,22 +86,22 @@ class ProductResource extends JsonResource
         }
 
         if(isset($product['marketing_assets_id'])){
-            $genre = MarketingAssets::where('id',$product['marketing_assets_id'])->get();
-            $product['marketing_assets'] = new Resource($genre);
+            $marketinAssets = MarketingAssets::where('id',$product['marketing_assets_id'])->first();
+            $product['marketing_assets'] = new Resource($marketinAssets);
         }
 
         if(isset($product['movie_id'])){
-            $genre = Video::where('id',$product['movie_id'])->get();
+            $genre = Video::where('id',$product['movie_id'])->first();
             $product['movie'] = new Resource($genre);
         }
 
         if(isset($product['screener_id'])){
-            $genre = Video::where('id',$product['screener_id'])->get();
+            $genre = Video::where('id',$product['screener_id'])->first();
             $product['screener'] = new Resource($genre);
         }
 
         if(isset($product['trailer_id'])){
-            $genre = Video::where('id',$product['trailer_id'])->get();
+            $genre = Video::where('id',$product['trailer_id'])->first();
             $product['trailer'] = new Resource($genre);
         }
 

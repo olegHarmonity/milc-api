@@ -58,10 +58,12 @@ class ProductTest extends ApiTestCase
             'content_type' => "Type of content",
             'runtime' => 127,
             'synopsis' => "A movie begins, has some story developments, and then ends.",
-            'genre_id' => 3,
+            'genres' => [2, 4],
             'available_formats' => [1, 2],
             'keywords' => ["key", "word"],
-            'languages' => ["English", "Russian"],
+            'original_language' => "en",
+            'dubbing_languages' => ["English", "Russian"],
+            'subtitle_languages' => ["English", "Russian"],
             'links' => ["link1" => "kli", "link2" => "kl22i"],
             'allow_requests' => 1,
             'production_info' => [
@@ -132,6 +134,7 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/products', $data);
+        dump(json_decode($response->getContent()));
         $response->assertStatus(201);
     }
 }

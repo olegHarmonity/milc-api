@@ -13,7 +13,6 @@ class CreateProductsTable extends Migration
             $table->timestamps();
 
             $table->integer('organisation_id')->unsigned();
-            $table->integer('genre_id')->unsigned();
             $table->integer('production_info_id')->unsigned()->nullable();
             $table->integer('marketing_assets_id')->unsigned()->nullable();
             $table->integer('movie_id')->unsigned()->nullable();
@@ -26,7 +25,9 @@ class CreateProductsTable extends Migration
             $table->integer('runtime')->unsigned();
             $table->text('synopsis');
             $table->text('keywords');
-            $table->text('languages');
+            $table->string('original_language');
+            $table->text('dubbing_languages');
+            $table->text('subtitle_languages');
             $table->text('links');
             $table->boolean('allow_requests');
         });

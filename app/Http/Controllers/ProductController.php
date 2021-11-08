@@ -46,9 +46,15 @@ class ProductController extends Controller
             DB::beginTransaction();
             $arrayRequest = $request->all();
 
+            $availableFormatsRequest = $genresRequest = [];
             if(isset($arrayRequest['available_formats'])) {
                 $availableFormatsRequest = $arrayRequest['available_formats'];
                 unset($arrayRequest['available_formats']);
+            }
+
+            if(isset($arrayRequest['genres'])) {
+                $genresRequest = $arrayRequest['genres'];
+                unset($arrayRequest['genres']);
             }
 
             $productionInfoRequest = $arrayRequest['production_info'];
@@ -139,6 +145,10 @@ class ProductController extends Controller
 
             foreach ($availableFormatsRequest as $availableFormatId) {
                 $product->available_formats()->attach($availableFormatId);
+            }
+
+            foreach ($genresRequest as $genreId) {
+                $product->genres()->attach($genreId);
             }
 
             foreach ($rightsInformationArray as $rightsInformation) {

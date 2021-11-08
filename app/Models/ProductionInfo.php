@@ -10,6 +10,10 @@ class ProductionInfo extends Model
 {
     use HasFactory, FormattedTimestamps;
 
+    protected $hidden = [
+        'pivot',
+    ];
+
     protected $fillable = [
         'release_year',
         'production_year',
@@ -25,8 +29,8 @@ class ProductionInfo extends Model
     ];
 
     protected $casts = [
-        'release_year' => 'datetime:Y-m-d',
-        'production_year' => 'datetime:Y-m-d',
+        'release_year' => 'datetime:Y',
+        'production_year' => 'datetime:Y',
         'awards' => 'array',
         'festivals' => 'array',
         'box_office' => 'array',
