@@ -20,13 +20,8 @@ class OrganisationController extends Controller
         return new OrganisationResource(Organisation::find($id));
     }
 
-
-
     public function update(UpdateOrganisationRequest $request, int $id)
     {
-        //abort_if(Gate::denies('admin'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        //abort_if(Gate::denies('organisation_admin'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $organisation = Organisation::find($id);
 
         $organisation->update($request->all());
