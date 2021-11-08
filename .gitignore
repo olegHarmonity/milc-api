@@ -14,4 +14,11 @@ yarn-error.log
 /.idea
 /.vscode
 !/storage/app/public/images/image.png
+!/storage/app/public/images/.gitkeep
+!/storage/app/public/videos/video.mp4
+!/storage/app/public/videos/.gitkeep
+!/storage/app/public/audios/audio.mp3
+!/storage/app/public/audios/.gitkeep
+!/storage/app/public/files/file.srt
+!/storage/app/public/files/.gitkeep
 

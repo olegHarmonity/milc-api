@@ -20,8 +20,6 @@ class OrganisationController extends Controller
         return new OrganisationResource(Organisation::find($id));
     }
 
-
-
     public function update(UpdateOrganisationRequest $request, int $id)
     {
         $organisation = Organisation::find($id);

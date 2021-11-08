@@ -9,18 +9,8 @@ use Illuminate\Support\Str;
 
 class OrganisationFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Organisation::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         return [
@@ -32,8 +22,10 @@ class OrganisationFactory extends Factory
             'description' => Str::random(10),
             'website_link' => $this->faker->url(),
             'social_links' => [
-                ["network" => "facebook", "value" => $this->faker->url()],
-                ["network" => "twitter", "value" => $this->faker->url()]
+                "facebook" => $this->faker->url(),
+                "twitter" => $this->faker->url(),
+                "linkedin" => $this->faker->url(),
+                "telegram" => $this->faker->url(),
             ],
             'date_activated' => $this->faker->dateTime(),
             'status' => CompanyStatuses::$ACCEPTED,
