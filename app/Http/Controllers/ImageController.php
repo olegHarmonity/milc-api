@@ -14,6 +14,6 @@ class ImageController extends Controller
 
     public function show(int $id)
     {
-        return new ImageResource(Image::find($id));
+        return new ImageResource(Image::findOrFail($id));
     }
 }

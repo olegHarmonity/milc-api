@@ -12,7 +12,7 @@ class UpdateUserRequest extends FormRequest
 
     public function authorize()
     {
-        $user = User::find($this->route('user'));
+        $user = User::findOrFail($this->route('user'));
         return Gate::authorize('update', $user);
     }
 

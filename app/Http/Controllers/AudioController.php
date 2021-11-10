@@ -15,6 +15,6 @@ class AudioController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(Audio::find($id));
+        return new Resource(Audio::findOrFail($id));
     }
 }

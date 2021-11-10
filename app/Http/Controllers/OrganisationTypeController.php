@@ -17,6 +17,6 @@ class OrganisationTypeController extends Controller
 
     public function show(int $id)
     {
-        return new OrganisationTypeResource(OrganisationType::find($id));
+        return new OrganisationTypeResource(OrganisationType::findOrFail($id));
     }
 }

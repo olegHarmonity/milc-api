@@ -145,6 +145,50 @@ class ProductTest extends ApiTestCase
     }
 
 
+    public function test_create_empty_product()
+    {
+        $this->loginCompanyAdmin();
+
+        $data = [
+            'allow_requests' => 1,
+            'title' => "Test",
+            'alternative_title' => "test",
+            'content_type_id' => 1,
+            'runtime' => 120,
+            'links' => [],
+            'production_info' => [
+                'box_office' => [],
+                'production_status' => "released",
+                'directors' => [],
+                'producers' => [],
+                'awards' => [""],
+                'writers' => [],
+                'cast' => [],
+                'festivals' => [""],
+                'release_year' => '2021-01-01',
+                'production_year' => '2021-01-01',
+                'country_of_origin' => "US",
+            ],
+            'marketing_assets' => [
+                'copyright_information' => "test",
+                'links' => [""],
+            ],
+            'rights_information' => [],
+            'original_language' => "en",
+            'genres' => [1, 2],
+            'available_formats' => [1, 2],
+
+            'synopsis' => "test",
+            'keywords' => ["test"],
+            'dubbing_languages' => [],
+            'subtitle_languages' => [],
+        ];
+
+        $response = $this->post('/api/products', $data);
+        $response->assertStatus(201);
+    }
+
+
 
     public function test_update_product()
     {

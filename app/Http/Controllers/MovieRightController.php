@@ -18,7 +18,7 @@ class MovieRightController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(MovieRight::find($id));
+        return new Resource(MovieRight::findOrFail($id));
     }
 
     public function update(UpdateMovieRightRequest $request, MovieRight $movieRight)

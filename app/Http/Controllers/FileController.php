@@ -16,6 +16,6 @@ class FileController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(File::find($id));
+        return new Resource(File::findOrFail($id));
     }
 }

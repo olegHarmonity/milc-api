@@ -16,6 +16,6 @@ class VideoController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(Video::find($id));
+        return new Resource(Video::findOrFail($id));
     }
 }

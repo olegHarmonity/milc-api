@@ -18,7 +18,7 @@ class PersonController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(Person::find($id));
+        return new Resource(Person::findOrFail($id));
     }
 
     public function update(UpdatePersonRequest $request, Person $person)

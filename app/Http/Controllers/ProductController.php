@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function show(int $id)
     {
-        return new ProductResource(Product::find($id));
+        return new ProductResource(Product::findOrFail($id));
     }
 
     public function store(CreateProductRequest $request)

@@ -18,7 +18,7 @@ class MovieFormatController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(MovieFormat::find($id));
+        return new Resource(MovieFormat::findOrFail($id));
     }
 
     public function update(UpdateMovieFormatRequest $request, MovieFormat $movieFormat)

@@ -18,7 +18,7 @@ class MovieContentTypeController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(MovieContentType::find($id));
+        return new Resource(MovieContentType::findOrFail($id));
     }
 
     public function update(UpdateMovieContentTypeRequest $request, MovieContentType $movieContentType)

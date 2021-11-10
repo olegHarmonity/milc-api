@@ -17,7 +17,7 @@ class OrganisationController extends Controller
 
     public function show(int $id)
     {
-        return new OrganisationResource(Organisation::find($id));
+        return new OrganisationResource(Organisation::findOrFail($id));
     }
 
     public function update(UpdateOrganisationRequest $request, Organisation $organisation)

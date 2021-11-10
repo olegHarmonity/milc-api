@@ -19,7 +19,7 @@ class MovieGenreController extends Controller
 
     public function show(int $id)
     {
-        return new Resource(MovieGenre::find($id));
+        return new Resource(MovieGenre::findOrFail($id));
     }
 
     public function update(UpdateMovieGenreRequest $request, MovieGenre $movieGenre)
