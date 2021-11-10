@@ -16,7 +16,17 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::factory()
-            ->count(5)
+            ->create([
+                'organisation_id' => 1,
+                'production_info_id' => 1,
+                'marketing_assets_id' => 1,
+                'movie_id' => 1,
+                'screener_id' => 1,
+                'trailer_id' => 1,
+            ]);
+
+        Product::factory()
+            ->count(4)
             ->create();
 
         $dubFiles = Audio::all();
@@ -26,7 +36,23 @@ class ProductSeeder extends Seeder
         $availableFormats = MovieFormat::all();
         $genres = MovieGenre::all();
 
-        Product::all()->each(function ($products) use (
+        $firstProduct = Product::where('id', 1)->firstOrFail();
+
+        $firstProduct->dub_files()->attach([1]);
+
+        $firstProduct->subtitles()->attach([1]);
+
+        $firstProduct->promotional_videos()->attach([1]);
+
+        $firstProduct->rights_information()->attach([1]);
+
+        $firstProduct->available_formats()->attach([1]);
+
+        $firstProduct->genres()->attach([1]);
+
+        $firstProduct->save();
+
+        Product::where('id', '!=', 1)->each(function ($products) use (
             $dubFiles,
             $subtitles,
             $promotionalVideos,

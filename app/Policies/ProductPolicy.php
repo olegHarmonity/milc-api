@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Image;
+use App\Models\Product;
 use App\Models\User;
 use App\Util\AuthorizationResponses;
 use App\Util\CompanyRoles;
@@ -10,7 +10,7 @@ use App\Util\UserRoles;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class ImagePolicy
+class ProductPolicy
 {
     use HandlesAuthorization;
 
@@ -19,7 +19,7 @@ class ImagePolicy
         return true;
     }
 
-    public function view(User $user, Image $image)
+    public function view(User $user, Product $product)
     {
         return true;
     }
@@ -38,17 +38,10 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return true;
     }
 
-    public function update(User $user, Image $image)
-    {
-        return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-    }
-
-    public function delete(User $user, Image $image)
+    public function update(User $user, Product $product)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
@@ -62,30 +55,48 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        if ($user->organisation()->first()->id !== $product->organisation()->first()->id) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        return true;
     }
 
-    public function restore(User $user, Image $image)
+    public function delete(User $user, Product $product)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        if (!$user->organisation()) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        if (!$user->is_from_seller_organisation()) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        if ($user->organisation()->first()->id !== $product->organisation()->id) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        if ($user->role !== UserRoles::$ROLE_ADMIN) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        return true;
     }
 
-    public function forceDelete(User $user, Image $image)
+    public function restore(User $user, Product $product)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        if ($user->role !== UserRoles::$ROLE_ADMIN) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
+        return true;
     }
 }

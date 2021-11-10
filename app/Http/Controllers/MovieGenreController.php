@@ -8,6 +8,7 @@ use App\Http\Resources\Resource;
 use App\Models\MovieGenre;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use \Gate;
 
 class MovieGenreController extends Controller
 {
@@ -21,9 +22,9 @@ class MovieGenreController extends Controller
         return new Resource(MovieGenre::find($id));
     }
 
-    public function update(UpdateMovieGenreRequest $request, int $id)
+    public function update(UpdateMovieGenreRequest $request, MovieGenre $movieGenre)
     {
-        $movieGenre = MovieGenre::find($id);
+        Gate::authorize('update', $movieGenre);
 
         $movieGenre->update($request->all());
 
@@ -34,6 +35,8 @@ class MovieGenreController extends Controller
 
     public function store(UpdateMovieGenreRequest $request)
     {
+        Gate::authorize('create', MovieGenre::class);
+
         $movieGenre = MovieGenre::create($request->all());
 
         return (new Resource($movieGenre))

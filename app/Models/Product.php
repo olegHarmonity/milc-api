@@ -14,10 +14,9 @@ class Product extends Model
         'organisation_id',
         'production_info_id',
         'marketing_assets_id',
-        'rights_information_id',
+        'content_type_id',
         'title',
         'alternative_title',
-        'content_type',
         'runtime',
         'synopsis',
         'genres',
@@ -53,6 +52,11 @@ class Product extends Model
     public function genres()
     {
         return $this->belongsToMany(MovieGenre::class, 'product_genres');
+    }
+
+    public function content_type()
+    {
+        return $this->belongsTo(MovieContentType::class );
     }
 
     public function production_info()

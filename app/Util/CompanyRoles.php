@@ -16,4 +16,12 @@ class CompanyRoles
             self::$BOTH
         ]);
     }
+
+    public static function getSellerRolesArray()
+    {
+        return [
+            self::$SELLER,
+            self::$BOTH
+        ];
+    }
 }

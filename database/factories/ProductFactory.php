@@ -15,12 +15,12 @@ class ProductFactory extends Factory
             'organisation_id' => $this->faker->numberBetween(1, 5),
             'production_info_id' => $this->faker->numberBetween(1, 5),
             'marketing_assets_id' => $this->faker->numberBetween(1, 5),
+            'content_type_id' => $this->faker->numberBetween(1, 5),
             'movie_id' => $this->faker->numberBetween(1, 5),
             'screener_id' => $this->faker->numberBetween(1, 5),
             'trailer_id' => $this->faker->numberBetween(1, 5),
             'title' => $this->faker->word() . " " . $this->faker->jobTitle() . " " . $this->faker->word(),
             'alternative_title' => $this->faker->jobTitle() . " " . $this->faker->word() . " " . $this->faker->word(),
-            'content_type' => $this->faker->text(12),
             'runtime' => $this->faker->numberBetween(120, 240),
             'synopsis' => $this->faker->text(200),
             'keywords' => [

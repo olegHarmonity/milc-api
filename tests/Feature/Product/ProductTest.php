@@ -34,6 +34,13 @@ class ProductTest extends ApiTestCase
             ->assertStatus(200);
     }
 
+    public function test_get_movie_content_types()
+    {
+        $response = $this->get('/api/movie-content-types');
+        $response
+            ->assertStatus(200);
+    }
+
     public function test_get_products()
     {
         $response = $this->get('/api/products');
@@ -55,7 +62,7 @@ class ProductTest extends ApiTestCase
         $data = [
             'title' => "Movie title",
             'alternative_title' => "Alternative movie title",
-            'content_type' => "Type of content",
+            'content_type_id' => 1,
             'runtime' => 127,
             'synopsis' => "A movie begins, has some story developments, and then ends.",
             'genres' => [2, 4],
@@ -134,7 +141,102 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/products', $data);
-        dump(json_decode($response->getContent()));
         $response->assertStatus(201);
+    }
+
+
+
+    public function test_update_product()
+    {
+        $this->loginCompanyAdmin();
+
+        $data = [
+            'title' => "Movie title",
+            'alternative_title' => "Alternative movie title",
+            'content_type_id' => 2,
+            'runtime' => 127,
+            'synopsis' => "A movie begins, has some story developments, and then ends.",
+            'genres' => [2, 4],
+            'available_formats' => [1, 2],
+            'keywords' => ["key", "word"],
+            'original_language' => "en",
+            'dubbing_languages' => ["English", "Russian"],
+            'subtitle_languages' => ["English", "Russian"],
+            'links' => ["link1" => "kli", "link2" => "kl22i"],
+            'allow_requests' => 1,
+            'production_info' => [
+                'id' => 1,
+                'release_year' => '2017-01-01',
+                'production_year' => '2016-01-01',
+                'production_status' => "released",
+                'country_of_origin' => "RO",
+                'directors' => [
+                    [
+                        'id' => 1,
+                        "first_name" => "first name1",
+                        "last_name" => "last_name1"
+                    ],
+                    [
+                        "first_name" => "first name2",
+                        "last_name" => "last_name2"
+                    ],],
+                'producers' => [
+                    [
+                        'id' => 1,
+                        "first_name" => "first name4",
+                        "last_name" => "last_name4"
+                    ],
+                    [
+                        "first_name" => "first name5",
+                        "last_name" => "last_name5"
+                    ]],
+                'writers' => [
+                    [
+                        'id' => 1,
+                        "first_name" => "first name6",
+                        "last_name" => "last_name6"
+                    ],],
+                'cast' => [
+                    [
+                        'id' => 1,
+                        "first_name" => "first name7",
+                        "last_name" => "last_name7"
+                    ],
+                    [
+                        "first_name" => "first name8",
+                        "last_name" => "last_name8"
+                    ],],
+                'awards' => ["award 1", "award 2"],
+                'festivals' => ["festival 1", "festival 2"],
+                'box_office' => ["1213 EUR", "23787 EUR"],
+            ],
+            'marketing_assets' => [
+                'id' => 1,
+                'copyright_information' => "jdfjfdkkjf",
+                'links' => ["link 1", "link 2"],
+            ],
+            'rights_information' => [
+                [
+                    'id' => 1,
+                    'available_from_date' => '2017-02-02',
+                    'expiry_date' => '2030-02-02',
+                    'available_rights' => [1, 2],
+                    'holdbacks' => "nothing's gonna hold us back!",
+                    'territories' => ["terr 1", "terr 2"],
+                ],
+                [
+                    'available_from_date' => '2018-02-02',
+                    'expiry_date' => '2035-02-02',
+                    'available_rights' => [1, 2],
+                    'holdbacks' => "nothing's gonna hold us back!2",
+                    'territories' => ["terr 12", "terr 22"],
+                ],
+            ],
+        ];
+
+        $response = $this->put('/api/products/1', $data);
+        //dump(($response));
+        //dump(json_decode($response->getContent()));
+        $response->assertStatus(200);
     }
 }
