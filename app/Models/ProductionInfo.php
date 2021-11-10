@@ -29,8 +29,8 @@ class ProductionInfo extends Model
     ];
 
     protected $casts = [
-        'release_year' => 'datetime:Y',
-        'production_year' => 'datetime:Y',
+        'release_year' => 'datetime:Y-m-d',
+        'production_year' => 'datetime:Y-m-d',
         'awards' => 'array',
         'festivals' => 'array',
         'box_office' => 'array',
