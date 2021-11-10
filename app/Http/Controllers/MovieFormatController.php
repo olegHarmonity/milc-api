@@ -7,6 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieFormat;
 use Symfony\Component\HttpFoundation\Response;
+use \Gate;
 
 class MovieFormatController extends Controller
 {
@@ -20,9 +21,9 @@ class MovieFormatController extends Controller
         return new Resource(MovieFormat::find($id));
     }
 
-    public function update(UpdateMovieFormatRequest $request, int $id)
+    public function update(UpdateMovieFormatRequest $request, MovieFormat $movieFormat)
     {
-        $movieFormat = MovieFormat::find($id);
+        Gate::authorize('update', $movieFormat);
 
         $movieFormat->update($request->all());
 
@@ -33,6 +34,8 @@ class MovieFormatController extends Controller
 
     public function store(UpdateMovieFormatRequest $request)
     {
+        Gate::authorize('create', MovieFormat::class);
+
         $movieFormat = MovieFormat::create($request->all());
 
         return (new Resource($movieFormat))

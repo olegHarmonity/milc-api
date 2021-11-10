@@ -7,6 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\Person;
 use Symfony\Component\HttpFoundation\Response;
+use \Gate;
 
 class PersonController extends Controller
 {
@@ -20,9 +21,9 @@ class PersonController extends Controller
         return new Resource(Person::find($id));
     }
 
-    public function update(UpdatePersonRequest $request, int $id)
+    public function update(UpdatePersonRequest $request, Person $person)
     {
-        $person = Person::find($id);
+        Gate::authorize('update', $person);
 
         $person->update($request->all());
 
@@ -33,6 +34,8 @@ class PersonController extends Controller
 
     public function store(UpdatePersonRequest $request)
     {
+        Gate::authorize('create', Person::class);
+
         $person = Person::create($request->all());
 
         return (new Resource($person))

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Notifications\ResetPasswordNotification;
 use App\Traits\FormattedTimestamps;
+use App\Util\CompanyRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -77,5 +78,11 @@ class User extends Authenticatable implements JWTSubject
     public function organisation()
     {
         return $this->belongsTo(Organisation::class);
+    }
+
+    public function is_from_seller_organisation()
+    {
+        dump($this->organisation()->first()->organisation_role);
+        return in_array($this->organisation()->first()->organisation_role, CompanyRoles::getSellerRolesArray());
     }
 }

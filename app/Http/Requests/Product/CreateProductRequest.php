@@ -55,9 +55,33 @@ class CreateProductRequest extends FormRequest
             ],
             'production_info.country_of_origin',
             'production_info.directors',
+            'production_info.directors.*.first_name'=> [
+                'required',
+            ],
+            'production_info.directors.*.last_name'=> [
+                'required',
+            ],
             'production_info.producers',
+            'production_info.producers.*.first_name'=> [
+                'required',
+            ],
+            'production_info.producers.*.last_name'=> [
+                'required',
+            ],
             'production_info.writers',
+            'production_info.writers.*.first_name'=> [
+                'required',
+            ],
+            'production_info.writers.*.last_name'=> [
+                'required',
+            ],
             'production_info.cast',
+            'production_info.cast.*.first_name'=> [
+                'required',
+            ],
+            'production_info.cast.*.last_name'=> [
+                'required',
+            ],
             'production_info.awards',
             'production_info.festivals',
             'production_info.box_office',
@@ -67,16 +91,15 @@ class CreateProductRequest extends FormRequest
             'marketing_assets.copyright_information',
             'marketing_assets.links',
             'rights_information',
-/*
-            'rights_information.available_from_date' => [
+            'rights_information.*.available_from_date'=> [
                 'required',
             ],
-            'rights_information.expiry_date' => [
+            'rights_information.*.expiry_date'=> [
                 'required',
             ],
-            'rights_information.available_rights',
-            'rights_information.holdbacks',
-            'rights_information.territories',*/
+            'rights_information.*.available_rights',
+            'rights_information.*.holdbacks',
+            'rights_information.*.territories',
         ];
     }
 }

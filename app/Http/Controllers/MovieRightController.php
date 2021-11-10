@@ -7,6 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieRight;
 use Symfony\Component\HttpFoundation\Response;
+use \Gate;
 
 class MovieRightController extends Controller
 {
@@ -20,9 +21,9 @@ class MovieRightController extends Controller
         return new Resource(MovieRight::find($id));
     }
 
-    public function update(UpdateMovieRightRequest $request, int $id)
+    public function update(UpdateMovieRightRequest $request, MovieRight $movieRight)
     {
-        $movieRight = MovieRight::find($id);
+        Gate::authorize('update', $movieRight);
 
         $movieRight->update($request->all());
 
@@ -33,6 +34,8 @@ class MovieRightController extends Controller
 
     public function store(UpdateMovieRightRequest $request)
     {
+        Gate::authorize('create', MovieRight::class);
+
         $movieRight = MovieRight::create($request->all());
 
         return (new Resource($movieRight))

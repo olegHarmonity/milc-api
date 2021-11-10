@@ -7,6 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieContentType;
 use Symfony\Component\HttpFoundation\Response;
+use \Gate;
 
 class MovieContentTypeController extends Controller
 {
@@ -20,19 +21,21 @@ class MovieContentTypeController extends Controller
         return new Resource(MovieContentType::find($id));
     }
 
-    public function update(UpdateMovieContentTypeRequest $request, int $id)
+    public function update(UpdateMovieContentTypeRequest $request, MovieContentType $movieContentType)
     {
-        $organisation = MovieContentType::find($id);
+        Gate::authorize('update', $movieContentType);
 
-        $organisation->update($request->all());
+        $movieContentType->update($request->all());
 
-        return (new Resource($organisation))
+        return (new Resource($movieContentType))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
     }
 
     public function store(UpdateMovieContentTypeRequest $request)
     {
+        Gate::authorize('create', MovieContentType::class);
+
         $movieFormat = MovieContentType::create($request->all());
 
         return (new Resource($movieFormat))

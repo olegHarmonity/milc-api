@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
+use \Gate;
 
 class ProductController extends Controller
 {
@@ -27,6 +28,8 @@ class ProductController extends Controller
 
     public function store(CreateProductRequest $request)
     {
+        Gate::authorize('create', Product::class);
+
         try {
             $user = auth()->user();
             $organisation = $user->organisation()->first();
@@ -45,6 +48,8 @@ class ProductController extends Controller
 
     public function update(CreateProductRequest $request, Product $product)
     {
+        Gate::authorize('update', $product);
+
         try {
             $product = ProductUpdateDataTransformer::transformData($request->all(), $product);
 
