@@ -4,6 +4,7 @@ namespace App\Http\Resources\Product;
 
 use App\Http\Resources\Resource;
 use App\Models\MarketingAssets;
+use App\Models\MovieContentType;
 use App\Models\MovieGenre;
 use App\Models\Product;
 use App\Models\ProductionInfo;
@@ -42,9 +43,9 @@ class ProductResource extends JsonResource
             $product['rights_information'][] = $rightsInformationResource;
         }
 
-        if(isset($product['genre_id'])){
-            $genre = MovieGenre::where('id',$product['genre_id'])->first();
-            $product['genre'] = new Resource($genre);
+        if(isset($product['content_type_id'])){
+            $contentType = MovieContentType::where('id',$product['content_type_id'])->first();
+            $product['content_type'] = new Resource($contentType);
         }
 
         if(isset($product['production_info_id'])){

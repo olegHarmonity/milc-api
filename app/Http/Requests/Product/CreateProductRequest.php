@@ -19,7 +19,7 @@ class CreateProductRequest extends FormRequest
                 'required'
             ],
             'alternative_title',
-            'content_type',
+            'content_type_id',
             'runtime' => [
                 'required',
             ],

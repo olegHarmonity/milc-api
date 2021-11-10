@@ -22,11 +22,11 @@ class MovieFormatController extends Controller
 
     public function update(UpdateMovieFormatRequest $request, int $id)
     {
-        $organisation = MovieFormat::find($id);
+        $movieFormat = MovieFormat::find($id);
 
-        $organisation->update($request->all());
+        $movieFormat->update($request->all());
 
-        return (new Resource($organisation))
+        return (new Resource($movieFormat))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
     }

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\OrganisationType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +20,7 @@ class DatabaseSeeder extends Seeder
             MovieFormatSeeder::class,
             MovieGenreSeeder::class,
             MovieRightSeeder::class,
+            MovieContentTypeSeeder::class,
             ProductionInfoSeeder::class,
             RightsInformationSeeder::class,
             MarketingAssetsSeeder::class,
