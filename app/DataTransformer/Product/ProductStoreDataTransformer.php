@@ -28,6 +28,24 @@ class ProductStoreDataTransformer
             unset($arrayRequest['genres']);
         }
 
+        $dubFilesRequest = [];
+        if (isset($arrayRequest['dub_files'])) {
+            $dubFilesRequest = $arrayRequest['dub_files'];
+            unset($arrayRequest['dub_files']);
+        }
+
+        $subtitlesRequest = [];
+        if (isset($arrayRequest['subtitles'])) {
+            $subtitlesRequest = $arrayRequest['subtitles'];
+            unset($arrayRequest['subtitles']);
+        }
+
+        $promotionalVideosRequest = [];
+        if (isset($arrayRequest['promotional_videos'])) {
+            $promotionalVideosRequest = $arrayRequest['promotional_videos'];
+            unset($arrayRequest['promotional_videos']);
+        }
+
         $productionInfoRequest = $arrayRequest['production_info'];
 
         if (isset($productionInfoRequest['directors'])) {
@@ -51,6 +69,12 @@ class ProductStoreDataTransformer
 
         $marketingAssetsRequest = $arrayRequest['marketing_assets'];
         unset($arrayRequest['marketing_assets']);
+
+        $productionImagesRequest = [];
+        if (isset($marketingAssetsRequest['production_images'])) {
+            $productionImagesRequest = $marketingAssetsRequest['production_images'];
+            unset($marketingAssetsRequest['production_images']);
+        }
 
         $rightsInformationRequest = $arrayRequest['rights_information'];
         unset($arrayRequest['rights_information']);
@@ -89,6 +113,11 @@ class ProductStoreDataTransformer
         }
 
         $marketingAssets = MarketingAssets::create($marketingAssetsRequest);
+
+        foreach ($productionImagesRequest as $productionImageId) {
+            $marketingAssets->production_images()->attach($productionImageId);
+        }
+
         $productRequest['marketing_assets_id'] = $marketingAssets->id;
 
         $rightsInformationArray = [];
@@ -120,6 +149,18 @@ class ProductStoreDataTransformer
 
         foreach ($genresRequest as $genreId) {
             $product->genres()->attach($genreId);
+        }
+
+        foreach ($dubFilesRequest as $dubFileId) {
+            $product->dub_files()->attach($dubFileId);
+        }
+
+        foreach ($subtitlesRequest as $subtitlesId) {
+            $product->subtitles()->attach($subtitlesId);
+        }
+
+        foreach ($promotionalVideosRequest as $promotionalVideosId) {
+            $product->promotional_videos()->attach($promotionalVideosId);
         }
 
         foreach ($rightsInformationArray as $rightsInformation) {

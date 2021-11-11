@@ -25,6 +25,24 @@ class ProductUpdateDataTransformer
             unset($arrayRequest['genres']);
         }
 
+        $dubFilesRequest = [];
+        if (isset($arrayRequest['dub_files'])) {
+            $dubFilesRequest = $arrayRequest['dub_files'];
+            unset($arrayRequest['dub_files']);
+        }
+
+        $subtitlesRequest = [];
+        if (isset($arrayRequest['subtitles'])) {
+            $subtitlesRequest = $arrayRequest['subtitles'];
+            unset($arrayRequest['subtitles']);
+        }
+
+        $promotionalVideosRequest = [];
+        if (isset($arrayRequest['promotional_videos'])) {
+            $promotionalVideosRequest = $arrayRequest['promotional_videos'];
+            unset($arrayRequest['promotional_videos']);
+        }
+
         $productionInfoRequest = $arrayRequest['production_info'];
 
         if (isset($productionInfoRequest['directors'])) {
@@ -48,6 +66,12 @@ class ProductUpdateDataTransformer
 
         $marketingAssetsRequest = $arrayRequest['marketing_assets'];
         unset($arrayRequest['marketing_assets']);
+
+        $productionImagesRequest = [];
+        if (isset($marketingAssetsRequest['production_images'])) {
+            $productionImagesRequest = $marketingAssetsRequest['production_images'];
+            unset($marketingAssetsRequest['production_images']);
+        }
 
         $rightsInformationRequest = $arrayRequest['rights_information'];
         unset($arrayRequest['rights_information']);
@@ -111,7 +135,13 @@ class ProductUpdateDataTransformer
             }
         }
 
-        $marketingAssets = $product->marketing_assets()->first();
+        $marketingAssets = $product->marketing_assets;
+
+        $marketingAssets->production_images()->detach();
+        foreach ($productionImagesRequest as $productionImageId) {
+            $marketingAssets->production_images()->attach($productionImageId);
+        }
+
         $marketingAssets->update($marketingAssetsRequest);
 
         $productRequest['marketing_assets_id'] = $marketingAssets->id;
@@ -160,6 +190,21 @@ class ProductUpdateDataTransformer
         $product->genres()->detach();
         foreach ($genresRequest as $genreId) {
             $product->genres()->attach($genreId);
+        }
+
+        $product->dub_files()->detach();
+        foreach ($dubFilesRequest as $dubFileId) {
+            $product->dub_files()->attach($dubFileId);
+        }
+
+        $product->subtitles()->detach();
+        foreach ($subtitlesRequest as $subtitlesId) {
+            $product->subtitles()->attach($subtitlesId);
+        }
+
+        $product->promotional_videos()->detach();
+        foreach ($promotionalVideosRequest as $promotionalVideosId) {
+            $product->promotional_videos()->attach($promotionalVideosId);
         }
 
         $product->rights_information()->detach();
