@@ -11,7 +11,7 @@ class MarketingAssets extends Model
     use HasFactory, FormattedTimestamps;
 
     protected $fillable = [
-        'key_artwork',
+        'key_artwork_id',
         'production_images',
         'copyright_information',
         'links',

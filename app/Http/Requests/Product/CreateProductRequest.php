@@ -34,9 +34,9 @@ class CreateProductRequest extends FormRequest
             'allow_requests' => [
                 'required',
             ],
-            'movie',
-            'screener',
-            'trailer',
+            'movie_id',
+            'screener_id',
+            'trailer_id',
             'dub_files',
             'subtitles',
             'promotional_videos',
@@ -86,7 +86,7 @@ class CreateProductRequest extends FormRequest
             'production_info.festivals',
             'production_info.box_office',
 
-            'marketing_assets.key_artwork',
+            'marketing_assets.key_artwork_id',
             'marketing_assets.production_images',
             'marketing_assets.copyright_information',
             'marketing_assets.links',
