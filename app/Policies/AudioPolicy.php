@@ -30,6 +30,10 @@ class AudioPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
+            return true;
+        }
+
         if (!$user->organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
@@ -38,9 +42,7 @@ class AudioPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
     public function update(User $user, Audio $audio)
@@ -54,6 +56,10 @@ class AudioPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
+            return true;
+        }
+
         if (!$user->organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
@@ -62,9 +68,7 @@ class AudioPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
     public function restore(User $user, Audio $audio)

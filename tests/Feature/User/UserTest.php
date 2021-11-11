@@ -12,6 +12,7 @@ class UserTest extends ApiTestCase
     {
         $this->loginCompanyAdmin();
         $response = $this->get('/api/me');
+
         $response
             ->assertStatus(200);
         // ->assertJson(fn(AssertableJson $json) => $json->where('email', 'company_admin1@milc.com')->etc());

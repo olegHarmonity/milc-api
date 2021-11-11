@@ -9,6 +9,10 @@ class ImageResource extends JsonResource
     public function toArray($request)
     {
         $image = parent::toArray($request);
-        return $image[0];
+        if (isset($image[0])) {
+            return $image[0];
+        }
+
+        return  $image;
     }
 }

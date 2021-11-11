@@ -2,44 +2,73 @@
 
 namespace App\Helper;
 
+use App\Models\Audio;
+use App\Models\File;
 use App\Models\Image;
+use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class FileUploader
 {
-    public static function uploadImage($request)
+    public static function uploadFile($request, $fileType, $field = null)
     {
-        $imageFile = $request->file('organisation.logo');
+        $fileTypes = ["file", "video", "image", "audio"];
 
-        $extensions = ['jpeg', 'png', 'jpg', 'gif', 'svg'];
-        self::validateFiles($request, $imageFile, $extensions, 'organisation.logo');
+        if (!in_array($fileType, $fileTypes)) {
+            throw new BadRequestHttpException("Attached file must be one of fthe ollowing types: " . implode(",", $fileTypes), null, 400);
+        }
 
-        $uploadFolder = 'images';
+        if ($field === null) {
+            $field = $fileType;
+        }
 
-        $image_uploaded_path = $imageFile->store($uploadFolder, 'public');
+        $file = $request->file($field);
+
+        self::validateFiles($request, $file, $fileType, $field);
+
+        $uploadFolder = $fileType . 's';
+
+        $image_uploaded_path = $file->store($uploadFolder, 'public');
 
         $image_array = array(
-            "image_name" => basename($image_uploaded_path),
-            "image_url" => Storage::disk('public')->url($image_uploaded_path),
-            "mime" => $imageFile->getClientMimeType()
+            $fileType . "_name" => basename($image_uploaded_path),
+            $fileType . "_url" => Storage::disk('public')->url($image_uploaded_path),
+            "mime" => $file->getClientMimeType()
         );
 
-        return Image::create($image_array);
+        switch ($fileType) {
+            case 'image':
+                return Image::create($image_array);
+            case 'audio':
+                return Audio::create($image_array);
+            case 'video':
+                return Video::create($image_array);
+            case 'file':
+                return File::create($image_array);
+        }
     }
 
-    private static function validateFiles($request, $file, $extensions, $type)
+    private static function validateFiles($request, $file, $type, $field)
     {
+
+        $extensions = [
+            'image' => ['jpeg', 'png', 'jpg', 'gif', 'svg'],
+            'video' => ['mp4'],
+            'audio' => ['mpga', 'mp3', 'wav', 'audio/mpeg', 'audio/mpeg4-generic', 'audio/mp3', 'audio/mpga',],
+            'file' => ['srt', 'txt'],
+        ];
+
         $validator = Validator::make($request->all(), [
-            $type => "required"
+            $field => "required"
         ]);
 
         if ($validator->fails()) {
             throw new BadRequestHttpException($validator->messages(), null, 400);
         }
 
-        if (!in_array($file->getClientOriginalExtension(), $extensions)) {
+        if (!in_array($file->getClientOriginalExtension(), $extensions[$type])) {
             throw new BadRequestHttpException($validator->messages(), null, 400);
         }
     }
