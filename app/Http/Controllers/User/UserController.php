@@ -67,7 +67,7 @@ class UserController extends Controller
             $userRequest = $arrayRequest;
 
             if ($request->file('organisation.logo')) {
-                $image = FileUploader::uploadImage($request);
+                $image = FileUploader::uploadFile($request, 'image','organisation.logo');
                 $organisationRequest['logo_id'] = $image->id;
             }
 

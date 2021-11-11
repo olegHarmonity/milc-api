@@ -9,6 +9,7 @@ use App\Util\CompanyRoles;
 use App\Util\UserRoles;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
+use phpDocumentor\Reflection\Types\True_;
 
 class ImagePolicy
 {
@@ -30,6 +31,10 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
+            return true;
+        }
+
         if (!$user->organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
@@ -38,9 +43,7 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return  Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
     public function update(User $user, Image $image)
@@ -54,6 +57,10 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
+            return true;
+        }
+
         if (!$user->organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
@@ -62,9 +69,7 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
     public function restore(User $user, Image $image)
