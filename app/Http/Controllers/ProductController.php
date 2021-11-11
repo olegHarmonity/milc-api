@@ -7,6 +7,7 @@ use App\DataTransformer\Product\ProductUpdateDataTransformer;
 use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Product\ProductResource;
+use App\Http\Resources\Product\ProductResourceV2;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,36 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return new CollectionResource(Product::all());
+        $products = Product::query()->with('content_type', 'genres', 'available_formats')->get();
+
+        return ProductResourceV2::collection($products);
     }
 
-    public function show(int $id)
+    public function show(Product $product)
     {
-        return new ProductResource(Product::findOrFail($id));
+        $product->load(
+            'available_formats',
+            'genres',
+            'dub_files',
+            'subtitles',
+            'promotional_videos',
+            'rights_information',
+            'rights_information.available_rights',
+            'content_type',
+            'production_info',
+            'production_info.directors',
+            'production_info.producers',
+            'production_info.writers',
+            'production_info.cast',
+            'marketing_assets',
+            'marketing_assets.key_artwork',
+            'marketing_assets.production_images',
+            'movie',
+            'screener',
+            'trailer'
+        );
+
+        return new ProductResourceV2($product);
     }
 
     public function store(CreateProductRequest $request)
@@ -39,7 +64,6 @@ class ProductController extends Controller
             return (new ProductResource($product))
                 ->response()
                 ->setStatusCode(Response::HTTP_CREATED);
-
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
@@ -56,7 +80,6 @@ class ProductController extends Controller
             return (new ProductResource($product))
                 ->response()
                 ->setStatusCode(Response::HTTP_OK);
-
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
