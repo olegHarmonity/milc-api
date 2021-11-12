@@ -12,14 +12,14 @@ class RightsInformationFactory extends Factory
     public function definition()
     {
         return [
-            'product_id' => $this->faker->numberBetween(1,5),
+            'product_id' => $this->faker->numberBetween(1, 5),
             'available_from_date' => $this->faker->date(),
             'expiry_date' => $this->faker->date(),
             'holdbacks' => $this->faker->text(20),
             'territories' => [
-                "Worldwide" => [$this->faker->country(), $this->faker->country(),$this->faker->country()],
-                "By region" => [$this->faker->country(), $this->faker->country(),$this->faker->country()],
-                "By territory" => [$this->faker->country(), $this->faker->country(),$this->faker->country()],
+                "worldwide" => [$this->faker->country(), $this->faker->country(), $this->faker->country()],
+                "region" => [$this->faker->country(), $this->faker->country(), $this->faker->country()],
+                "territory" => [$this->faker->country(), $this->faker->country(), $this->faker->country()],
             ],
         ];
     }
