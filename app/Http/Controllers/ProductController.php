@@ -77,4 +77,16 @@ class ProductController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
     }
+
+    public function destroy(Product $product)
+    {
+        // TODO: Add gate
+        // TODO: Delete also all relations and all associated files of the product (in observer?)
+
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product deleted!'
+        ]);
+    }
 }
