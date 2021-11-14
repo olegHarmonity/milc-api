@@ -14,11 +14,12 @@ Route::get('/email-exists', [UserController::class, 'emailExists'])
 Route::post('/register', [UserController::class, 'register'])
     ->name('register');
 
-Route::put('/users/{user}', [UserController::class, 'update'])
-    ->name('update');
-
 Route::post('/forgot-password', [ForgotPasswordController::class, 'forgot']);
 
 Route::post('/reset-password',  [ForgotPasswordController::class, 'reset']);
 
 Route::post('/change-password',  [UserController::class, 'change_password']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::apiResource('users', UserController::class)->middleware('auth');
+});
