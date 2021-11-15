@@ -152,7 +152,7 @@ class UserController extends Controller
 
         if (!$this->user()->isAdmin()) {
             $users->where('organisation_id', $this->user()->organisation_id);
-            $users->select(['id', 'first_name', 'last_name', 'email', 'status']);
+            $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status']);
         }
 
         $users = $users->paginate($request->input('per_page'));
@@ -174,7 +174,10 @@ class UserController extends Controller
         $user = User::create($data);
         $user->refresh();
 
-        return UserResource::make($user);
+        return response()->json([
+            'data' => UserResource::make($user),
+            'message' => 'User created!'
+        ]);
     }
 
     public function destroy(User $user)
