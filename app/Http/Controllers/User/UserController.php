@@ -155,6 +155,12 @@ class UserController extends Controller
             $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status']);
         }
 
+        if ($s = $request->input('search')) {
+            $users->where('first_name', 'like', "%$s%");
+            $users->orWhere('last_name', 'like', "%$s%");
+            $users->orWhere(DB::raw('CONCAT(first_name, " ", last_name)'), 'like', "%$s%");
+        }
+
         $users = $users->paginate($request->input('per_page'));
 
         return $users;
