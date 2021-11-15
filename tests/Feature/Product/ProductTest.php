@@ -22,9 +22,10 @@ class ProductTest extends ApiTestCase
 
     public function test_get_persons()
     {
-        $response = $this->get('/api/persons');
+        $response = $this->get('/api/persons?search[full_name]=name6');
         $response
             ->assertStatus(200);
+        
     }
 
     public function test_get_movie_rights()

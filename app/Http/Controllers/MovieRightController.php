@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\SearchFormatter;
 use App\Http\Requests\Product\UpdateMovieRightRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieRight;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
 
 class MovieRightController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return new CollectionResource(MovieRight::all());
+        return new CollectionResource(SearchFormatter::getSearchResults($request, MovieRight::class));
     }
 
     public function show(int $id)

@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\SearchFormatter;
 use App\Http\Requests\Product\UpdateMovieGenreRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieGenre;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
 
 class MovieGenreController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return new CollectionResource(MovieGenre::all());
+        return new CollectionResource(SearchFormatter::getSearchResults($request, MovieGenre::class));
     }
 
     public function show(int $id)

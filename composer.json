@@ -10,6 +10,7 @@
         "guzzlehttp/guzzle": "^7.4",
         "laravel-validation-rules/country-codes": "^3.0",
         "laravel/framework": "^8.65",
+        "laravel/helpers": "^1.4",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "tymon/jwt-auth": "^1.0.",

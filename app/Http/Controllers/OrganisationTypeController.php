@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\SearchFormatter;
 use App\Http\Resources\Organisation\OrganisationTypeCollectionResource;
 use App\Http\Resources\Organisation\OrganisationTypeResource;
 use App\Models\Image;
@@ -10,9 +11,9 @@ use Illuminate\Http\Request;
 
 class OrganisationTypeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return new  OrganisationTypeCollectionResource(OrganisationType::all());
+        return new OrganisationTypeCollectionResource(SearchFormatter::getSearchResults($request, OrganisationType::class));
     }
 
     public function show(int $id)

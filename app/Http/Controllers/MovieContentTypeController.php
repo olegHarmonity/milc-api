@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\SearchFormatter;
 use App\Http\Requests\Product\UpdateMovieContentTypeRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieContentType;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Request;
 
 class MovieContentTypeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return new CollectionResource(MovieContentType::all());
+        return new CollectionResource(SearchFormatter::getSearchResults($request, MovieContentType::class));
     }
 
     public function show(int $id)

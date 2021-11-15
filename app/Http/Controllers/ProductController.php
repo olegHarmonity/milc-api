@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\DataTransformer\Product\ProductStoreDataTransformer;
 use App\DataTransformer\Product\ProductUpdateDataTransformer;
+use App\Helper\SearchFormatter;
 use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
@@ -16,9 +18,9 @@ use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return new CollectionResource(Product::all());
+        return new CollectionResource(SearchFormatter::getSearchResults($request, Product::class));
     }
 
     public function show(int $id)
