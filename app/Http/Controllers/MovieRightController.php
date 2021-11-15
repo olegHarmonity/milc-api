@@ -7,7 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieRight;
 use Symfony\Component\HttpFoundation\Response;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class MovieRightController extends Controller
 {

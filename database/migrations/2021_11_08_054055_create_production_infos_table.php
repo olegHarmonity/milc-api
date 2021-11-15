@@ -11,7 +11,8 @@ class CreateProductionInfosTable extends Migration
         Schema::create('production_infos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('product_id')->unsigned()->nullable();
+            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            
             $table->date('release_year')->nullable();
             $table->date('production_year')->nullable();
             $table->string('production_status')->nullable();
@@ -19,6 +20,10 @@ class CreateProductionInfosTable extends Migration
             $table->text('awards')->nullable();
             $table->text('festivals')->nullable();
             $table->text('box_office')->nullable();
+        });
+        
+        Schema::table('products', function(Blueprint $table) {
+            $table->foreignId('production_info_id')->nullable()->constrained('production_infos')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -16,6 +16,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId( 'organisation_id' )->nullable()->constrained('organisations');
+            
             $table->string('role')->default(UserRoles::$ROLE_USER);
             $table->string('first_name');
             $table->string('last_name');
@@ -28,7 +30,6 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('password');
-            $table->integer('organisation_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

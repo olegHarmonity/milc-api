@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {

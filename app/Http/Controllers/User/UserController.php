@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -76,8 +76,6 @@ class UserController extends Controller
             $userRequest['role'] = UserRoles::$ROLE_COMPANY_ADMIN;
 
             $user = User::create($userRequest);
-            $organisation->user_id = $user->id;
-            $organisation->save();
 
             DB::commit();
 

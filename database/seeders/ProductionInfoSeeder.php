@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Person;
+use App\Models\Product;
 use App\Models\ProductionInfo;
 use Illuminate\Database\Seeder;
 
@@ -10,13 +11,9 @@ class ProductionInfoSeeder extends Seeder
 {
     public function run()
     {
+      
         ProductionInfo::factory()
-            ->create([
-                'product_id' => 1,
-            ]);
-
-        ProductionInfo::factory()
-            ->count(4)
+            ->count(5)
             ->create();
 
         $persons = Person::all();

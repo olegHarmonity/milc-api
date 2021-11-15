@@ -11,8 +11,8 @@ class CreateMarketingAssetsProductionImagesTable extends Migration
         Schema::create('marketing_assets_production_images', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('marketing_assets_id')->unsigned();
-            $table->integer('image_id')->unsigned();
+            $table->foreignId('marketing_assets_id')->unsigned()->nullable()->references('id')->on('marketing_assets');
+            $table->foreignId('image_id')->unsigned()->unsigned()->nullable()->references('id')->on('images');
         });
     }
 

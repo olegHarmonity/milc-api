@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\MarketingAssets;
 use App\Models\Product;
+use App\Models\ProductionInfo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -10,11 +12,15 @@ class ProductFactory extends Factory
     protected $model = Product::class;
 
     public function definition()
-    {
+    { 
+        $productionInfo = ProductionInfo::factory()->create()->id;
+        
+        $marketingAssets = MarketingAssets::factory()->create()->id;
+        
         return [
             'organisation_id' => $this->faker->numberBetween(1, 5),
-            'production_info_id' => $this->faker->numberBetween(1, 5),
-            'marketing_assets_id' => $this->faker->numberBetween(1, 5),
+            'production_info_id' => $productionInfo,
+            'marketing_assets_id' => $marketingAssets,
             'content_type_id' => $this->faker->numberBetween(1, 5),
             'movie_id' => $this->faker->numberBetween(1, 5),
             'screener_id' => $this->faker->numberBetween(1, 5),

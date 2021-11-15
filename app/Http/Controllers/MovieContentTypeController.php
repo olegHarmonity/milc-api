@@ -7,7 +7,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\MovieContentType;
 use Symfony\Component\HttpFoundation\Response;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class MovieContentTypeController extends Controller
 {

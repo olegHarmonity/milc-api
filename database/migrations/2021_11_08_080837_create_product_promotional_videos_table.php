@@ -11,8 +11,8 @@ class CreateProductPromotionalVideosTable extends Migration
         Schema::create('product_promotional_videos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('product_id')->unsigned();
-            $table->integer('video_id')->unsigned();
+            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            $table->foreignId('video_id')->nullable()->references('id')->on('videos');
         });
     }
 

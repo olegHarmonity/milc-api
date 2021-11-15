@@ -8,7 +8,7 @@ use App\Http\Resources\Resource;
 use App\Models\MovieGenre;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class MovieGenreController extends Controller
 {

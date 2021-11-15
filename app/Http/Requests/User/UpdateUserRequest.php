@@ -5,7 +5,7 @@ namespace App\Http\Requests\User;
 use App\Models\User;
 use App\Util\CompanyRoles;
 use Illuminate\Foundation\Http\FormRequest;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class UpdateUserRequest extends FormRequest
 {

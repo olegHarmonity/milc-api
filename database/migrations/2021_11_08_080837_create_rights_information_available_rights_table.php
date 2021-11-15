@@ -8,11 +8,11 @@ class CreateRightsInformationAvailableRightsTable extends Migration
 {
     public function up()
     {
-        Schema::create('rights_information_available_rights', function (Blueprint $table) {
+        Schema::create('rights_info_available_rights', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('rights_information_id')->unsigned();
-            $table->integer('movie_right_id')->unsigned();
+            $table->foreignId('rights_information_id')->nullable()->references('id')->on('rights_information');
+            $table->foreignId('movie_right_id')->nullable()->references('id')->on('movie_rights');
         });
     }
 
@@ -23,6 +23,6 @@ class CreateRightsInformationAvailableRightsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rights_information_available_rights');
+        Schema::dropIfExists('rights_info_available_rights');
     }
 }

@@ -17,6 +17,9 @@ class CreateOrganisationsTable extends Migration
         Schema::create('organisations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('logo_id')->nullable()->references('id')->on('images');
+            $table->foreignId('organisation_type_id')->nullable()->references('id')->on('organisation_types');
+            
             $table->string('organisation_name');
             $table->string('registration_number');
             $table->string('phone_number')->nullable();
@@ -27,9 +30,6 @@ class CreateOrganisationsTable extends Migration
             $table->json('social_links')->nullable();
             $table->dateTime('date_activated')->nullable();
             $table->string('status')->default(CompanyStatuses::$PENDING);
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('organisation_type_id')->unsigned()->nullable();
-            $table->integer('logo_id')->unsigned()->nullable();
             $table->string('country');
             $table->string('city')->nullable();
             $table->string('address')->nullable();

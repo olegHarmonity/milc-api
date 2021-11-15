@@ -9,7 +9,7 @@ use App\Http\Resources\Resource;
 use App\Models\Image;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class ImageController extends Controller
 {

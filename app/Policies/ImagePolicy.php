@@ -5,11 +5,9 @@ namespace App\Policies;
 use App\Models\Image;
 use App\Models\User;
 use App\Util\AuthorizationResponses;
-use App\Util\CompanyRoles;
 use App\Util\UserRoles;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
-use phpDocumentor\Reflection\Types\True_;
 
 class ImagePolicy
 {
