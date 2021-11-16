@@ -35,6 +35,6 @@ class RightsInformation extends Model
 
     public function available_rights()
     {
-        return $this->belongsToMany(MovieRight::class, 'rights_information_available_rights');
+        return $this->belongsToMany(MovieRight::class, 'rights_info_available_rights');
     }
 }

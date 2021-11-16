@@ -6,7 +6,7 @@ use App\Models\Organisation;
 use App\Models\User;
 use App\Util\CompanyRoles;
 use Illuminate\Foundation\Http\FormRequest;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 
 class UpdateOrganisationRequest extends FormRequest
 {

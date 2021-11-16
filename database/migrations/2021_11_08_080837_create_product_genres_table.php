@@ -11,8 +11,8 @@ class CreateProductGenresTable extends Migration
         Schema::create('product_genres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('product_id')->unsigned();
-            $table->integer('movie_genre_id')->unsigned();
+            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            $table->foreignId('movie_genre_id')->nullable()->references('id')->on('movie_genres');
         });
     }
 

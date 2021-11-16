@@ -11,8 +11,8 @@ class CreateProductionInfoCastTable extends Migration
         Schema::create('production_info_cast', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('production_info_id')->unsigned();
-            $table->integer('person_id')->unsigned();
+            $table->foreignId('production_info_id')->nullable()->references('id')->on('production_infos');
+            $table->foreignId('person_id')->nullable()->references('id')->on('people');
         });
     }
 

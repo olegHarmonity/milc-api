@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory, FormattedTimestamps;
-
+    
+    protected $hidden = [
+        'pivot',
+    ];
+    
     protected $fillable = [
         'image_name',
         'image_url',

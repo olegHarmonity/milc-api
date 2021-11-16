@@ -12,13 +12,11 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->integer('organisation_id')->unsigned();
-            $table->integer('production_info_id')->unsigned()->nullable();
-            $table->integer('marketing_assets_id')->unsigned()->nullable();
-            $table->integer('content_type_id')->unsigned()->nullable();
-            $table->integer('movie_id')->unsigned()->nullable();
-            $table->integer('screener_id')->unsigned()->nullable();
-            $table->integer('trailer_id')->unsigned()->nullable();
+            $table->foreignId('organisation_id')->unsigned()->references('id')->on('organisations');
+            $table->foreignId('content_type_id')->unsigned()->nullable()->references('id')->on('movie_content_types');
+            $table->foreignId('movie_id')->unsigned()->nullable()->references('id')->on('videos');
+            $table->foreignId('screener_id')->unsigned()->nullable()->references('id')->on('videos');
+            $table->foreignId('trailer_id')->unsigned()->nullable()->references('id')->on('videos');
 
             $table->string('title');
             $table->string('alternative_title');

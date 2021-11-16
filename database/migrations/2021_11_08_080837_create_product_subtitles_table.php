@@ -11,8 +11,8 @@ class CreateProductSubtitlesTable extends Migration
         Schema::create('product_subtitles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('product_id')->unsigned();
-            $table->integer('file_id')->unsigned();
+            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            $table->foreignId('file_id')->nullable()->references('id')->on('files');
         });
     }
 

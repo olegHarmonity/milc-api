@@ -11,7 +11,8 @@ class CreateRightsInformationTable extends Migration
         Schema::create('rights_information', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('product_id')->unsigned()->nullable();
+            $table->foreignId('product_id')->unsigned()->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
+            
             $table->date('available_from_date');
             $table->date('expiry_date');
             $table->text('holdbacks')->nullable();

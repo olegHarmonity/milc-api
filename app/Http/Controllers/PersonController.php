@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Product\UpdatePersonRequest;
@@ -7,13 +6,16 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\Person;
 use Symfony\Component\HttpFoundation\Response;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+use App\Helper\SearchFormatter;
 
 class PersonController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
-        return new CollectionResource(Person::all());
+        return new CollectionResource(SearchFormatter::getPaginatedSearchResults($request, Person::class));
     }
 
     public function show(int $id)
@@ -27,9 +29,7 @@ class PersonController extends Controller
 
         $person->update($request->all());
 
-        return (new Resource($person))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return (new Resource($person))->response()->setStatusCode(Response::HTTP_OK);
     }
 
     public function store(UpdatePersonRequest $request)
@@ -38,8 +38,6 @@ class PersonController extends Controller
 
         $person = Person::create($request->all());
 
-        return (new Resource($person))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return (new Resource($person))->response()->setStatusCode(Response::HTTP_OK);
     }
 }

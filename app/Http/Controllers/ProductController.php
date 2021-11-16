@@ -4,22 +4,25 @@ namespace App\Http\Controllers;
 
 use App\DataTransformer\Product\ProductStoreDataTransformer;
 use App\DataTransformer\Product\ProductUpdateDataTransformer;
+use App\Helper\SearchFormatter;
 use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
-use \Gate;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::query()->with(
+        $products = SearchFormatter::getSearchQuery($request, Product::class);
+        
+        $products = $products->with(
             'content_type:id,name',
             'genres:id,name',
             'available_formats:id,name',
@@ -27,14 +30,13 @@ class ProductController extends Controller
             'marketing_assets.key_artwork:id,image_name,image_url'
         );
 
-        if ($oid = $request->input('organisation_id')) {
-            $products->where('organisation_id', $oid);
-        }
-
-        $products = $products->get([
+        $products = $products->select([
             'id', 'title', 'synopsis', 'runtime', 'content_type_id', 'marketing_assets_id'
         ]);
-
+        
+        
+        $products = $products->paginate($request->input('per_page'));
+        
         return CollectionResource::make($products);
     }
 

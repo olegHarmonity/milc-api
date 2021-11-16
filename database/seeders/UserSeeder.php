@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
                 ->create([
                     'email' => 'company_admin'.$i.'@milc.com',
                     'role' => UserRoles::$ROLE_COMPANY_ADMIN,
+                    'organisation_id' => $i,
                 ]);
         }
 
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
                 ->create([
                     'email' => 'user'.$i.'@milc.com',
                     'role' => UserRoles::$ROLE_USER,
+                    'organisation_id' => rand(1,5),
                 ]);
         }
 

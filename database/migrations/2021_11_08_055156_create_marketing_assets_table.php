@@ -11,10 +11,15 @@ class CreateMarketingAssetsTable extends Migration
         Schema::create('marketing_assets', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('product_id')->unsigned()->nullable()->nullable();
-            $table->integer('key_artwork_id')->unsigned()->nullable();
+            $table->foreignId('product_id')->unsigned()->nullable()->references('id')->on('products');
+            $table->foreignId('key_artwork_id')->unsigned()->nullable()->references('id')->on('images');
+            
             $table->text('copyright_information');
             $table->text('links')->nullable();
+        });
+            
+        Schema::table('products', function(Blueprint $table) {
+            $table->foreignId('marketing_assets_id')->unsigned()->nullable()->references('id')->on('marketing_assets');
         });
     }
 

@@ -16,6 +16,11 @@ class File extends Model
         'mime',
     ];
 
+    
+    protected $hidden = [
+        'pivot',
+    ];
+    
     public function product()
     {
         return $this->belongsTo(Product::class);

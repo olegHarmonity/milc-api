@@ -15,6 +15,10 @@ class Video extends Model
         'video_url',
         'mime',
     ];
+    
+    protected $hidden = [
+        'pivot',
+    ];
 
     public function product()
     {

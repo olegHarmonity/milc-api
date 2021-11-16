@@ -8,7 +8,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
 use App\Models\Video;
 use Illuminate\Http\Request;
-use \Gate;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 

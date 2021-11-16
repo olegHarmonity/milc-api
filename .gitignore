@@ -21,4 +21,6 @@ yarn-error.log
 !/storage/app/public/audios/.gitkeep
 !/storage/app/public/files/file.srt
 !/storage/app/public/files/.gitkeep
-
+.buildpath
+.project
+.settings/*

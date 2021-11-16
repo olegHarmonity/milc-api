@@ -16,7 +16,6 @@ class ProductionInfoFactory extends Factory
         $statusKey = array_rand($productionStatuses);
 
         return [
-            'product_id' => $this->faker->numberBetween(1, 5),
             'release_year' => $this->faker->date(),
             'production_year' => $this->faker->date(),
             'production_status' => $productionStatuses[$statusKey],
