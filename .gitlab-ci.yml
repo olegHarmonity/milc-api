@@ -6,7 +6,6 @@ develop:
     - git reset --hard
     - git pull origin develop
     - composer install -n
-    - php artisan migrate --no-interaction
     - php artisan cache:clear
     - php artisan config:clear
     - php artisan route:cache
