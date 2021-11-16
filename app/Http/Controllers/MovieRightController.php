@@ -15,7 +15,7 @@ class MovieRightController extends Controller
 {
     public function index(Request $request)
     {
-        return new CollectionResource(SearchFormatter::getSearchResults($request, MovieRight::class));
+        return new CollectionResource(SearchFormatter::getPaginatedSearchResults($request, MovieRight::class));
     }
 
     public function show(int $id)
@@ -43,5 +43,14 @@ class MovieRightController extends Controller
         return (new Resource($movieRight))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
+    }
+    
+    public function destroy(MovieRight $movieRight)
+    {
+        Gate::authorize('delete', $movieRight);
+        
+        $movieRight->delete();
+        
+        return response("Successfully deleted!", Response::HTTP_NO_CONTENT);
     }
 }

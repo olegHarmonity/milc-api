@@ -13,7 +13,7 @@ class OrganisationTypeController extends Controller
 {
     public function index(Request $request)
     {
-        return new OrganisationTypeCollectionResource(SearchFormatter::getSearchResults($request, OrganisationType::class));
+        return new OrganisationTypeCollectionResource(SearchFormatter::getPaginatedSearchResults($request, OrganisationType::class));
     }
 
     public function show(int $id)

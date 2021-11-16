@@ -18,7 +18,7 @@ class MovieGenrePolicy
         return true;
     }
 
-    public function view(User $user, MovieGenrePolicy $movieGenrePolicy)
+    public function view(User $user, MovieGenre $movieGenre)
     {
         return true;
     }
@@ -34,7 +34,7 @@ class MovieGenrePolicy
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    public function update(User $user, MovieGenrePolicy $movieGenrePolicy)
+    public function update(User $user, MovieGenre $movieGenre)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
@@ -45,7 +45,7 @@ class MovieGenrePolicy
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    public function delete(User $user, MovieGenrePolicy $movieGenrePolicy)
+    public function delete(User $user, MovieGenre $movieGenre)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
@@ -56,7 +56,7 @@ class MovieGenrePolicy
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    public function restore(User $user, MovieGenrePolicy $movieGenrePolicy)
+    public function restore(User $user, MovieGenre $movieGenre)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
@@ -67,7 +67,7 @@ class MovieGenrePolicy
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
-    public function forceDelete(User $user, MovieGenrePolicy $movieGenrePolicy)
+    public function forceDelete(User $user, MovieGenre $movieGenre)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);

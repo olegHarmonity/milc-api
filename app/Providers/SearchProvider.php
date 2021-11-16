@@ -9,14 +9,8 @@ class SearchProvider extends ServiceProvider
 {
     public function register()
     {
-        //
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
     public function boot()
     {
         Builder::macro('search', function ($attributes, string $searchTerm) {

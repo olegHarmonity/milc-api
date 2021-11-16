@@ -15,7 +15,7 @@ class PersonController extends Controller
 
     public function index(Request $request)
     {
-        return new CollectionResource(SearchFormatter::getSearchResults($request, Person::class));
+        return new CollectionResource(SearchFormatter::getPaginatedSearchResults($request, Person::class));
     }
 
     public function show(int $id)

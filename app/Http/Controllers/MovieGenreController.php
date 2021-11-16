@@ -15,7 +15,7 @@ class MovieGenreController extends Controller
 {
     public function index(Request $request)
     {
-        return new CollectionResource(SearchFormatter::getSearchResults($request, MovieGenre::class));
+        return new CollectionResource(SearchFormatter::getPaginatedSearchResults($request, MovieGenre::class));
     }
 
     public function show(int $id)
@@ -43,5 +43,14 @@ class MovieGenreController extends Controller
         return (new Resource($movieGenre))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
+    }
+    
+    public function destroy(MovieGenre $movieGenre)
+    {
+        Gate::authorize('delete', $movieGenre);
+        
+        $movieGenre->delete();
+        
+        return response("Successfully deleted!", Response::HTTP_NO_CONTENT);
     }
 }

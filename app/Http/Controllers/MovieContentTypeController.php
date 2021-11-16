@@ -15,7 +15,7 @@ class MovieContentTypeController extends Controller
 {
     public function index(Request $request)
     {
-        return new CollectionResource(SearchFormatter::getSearchResults($request, MovieContentType::class));
+        return new CollectionResource(SearchFormatter::getPaginatedSearchResults($request, MovieContentType::class));
     }
 
     public function show(int $id)
@@ -43,5 +43,15 @@ class MovieContentTypeController extends Controller
         return (new Resource($movieFormat))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
+    }
+    
+    
+    public function destroy(MovieContentType $movieContentType)
+    {
+        Gate::authorize('delete', $movieContentType);
+        
+        $movieContentType->delete();
+        
+        return response("Successfully deleted!", Response::HTTP_NO_CONTENT);
     }
 }

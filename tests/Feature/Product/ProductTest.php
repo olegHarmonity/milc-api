@@ -39,7 +39,7 @@ class ProductTest extends ApiTestCase
     {
         $this->loginAdmin();
         
-        $data = [ 'name' => "new genre"];
+        $data = ['name' => "new genre"];
         
         $response = $this->post('/api/movie-genres', $data);
 
@@ -47,6 +47,14 @@ class ProductTest extends ApiTestCase
         ->assertStatus(200);
     }
     
+    public function test_delete_movie_genres()
+    {
+        $this->loginAdmin();
+        $response = $this->delete('/api/movie-genres/11');
+      
+        $response
+        ->assertStatus(204);
+    }
 
     public function test_get_movie_content_types()
     {
@@ -58,6 +66,7 @@ class ProductTest extends ApiTestCase
     public function test_get_products()
     {
         $response = $this->get('/api/products');
+        
         $response
             ->assertStatus(200);
     }

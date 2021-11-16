@@ -20,9 +20,9 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        return new CollectionResource(SearchFormatter::getSearchResults($request, Product::class));
+        $products = SearchFormatter::getSearchQuery($request, Product::class);
         
-        /*$products = Product::query()->with(
+        $products = $products->with(
             'content_type:id,name',
             'genres:id,name',
             'available_formats:id,name',
@@ -30,15 +30,14 @@ class ProductController extends Controller
             'marketing_assets.key_artwork:id,image_name,image_url'
         );
 
-        if ($oid = $request->input('organisation_id')) {
-            $products->where('organisation_id', $oid);
-        }
-
-        $products = $products->get([
+        $products = $products->select([
             'id', 'title', 'synopsis', 'runtime', 'content_type_id', 'marketing_assets_id'
         ]);
-
-        return CollectionResource::make($products);*/
+        
+        
+        $products = $products->paginate($request->input('per_page'));
+        
+        return CollectionResource::make($products);
     }
 
     public function show(int $id)

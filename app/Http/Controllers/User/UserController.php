@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Helper\FileUploader;
+use App\Helper\SearchFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\EmailExistsRequest;
 use App\Http\Requests\User\RegisterUserRequest;
@@ -146,17 +147,11 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::query();
-
+        $users = SearchFormatter::getSearchQuery($request, User::class);
+        
         if (!$this->user()->isAdmin()) {
             $users->where('organisation_id', $this->user()->organisation_id);
             $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status']);
-        }
-
-        if ($s = $request->input('search')) {
-            $users->where('first_name', 'like', "%$s%");
-            $users->orWhere('last_name', 'like', "%$s%");
-            $users->orWhere(DB::raw('CONCAT(first_name, " ", last_name)'), 'like', "%$s%");
         }
 
         $users = $users->paginate($request->input('per_page'));
