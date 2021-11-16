@@ -13,6 +13,7 @@ develop:
     - sudo chown www-data:www-data -R storage
     - sudo chown www-data:www-data -R vendor
     - php artisan storage:link
+    - php artisan refresh:data
   only:
     refs:
       - develop
