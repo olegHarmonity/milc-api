@@ -12,11 +12,10 @@ class MarketingAssetsFactory extends Factory
     public function definition()
     {
         return [
-            'key_artwork_id' => rand(1,10),
+            'key_artwork_id' => rand(1, 10),
             'copyright_information' => $this->faker->text(20),
             'links' => [
-                "promotional link 1" => $this->faker->url(),
-                "promotional link 2" => $this->faker->url(),
+                $this->faker->url(), $this->faker->url(),
             ],
         ];
     }

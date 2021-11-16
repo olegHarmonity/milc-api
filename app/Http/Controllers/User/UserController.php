@@ -6,22 +6,24 @@ use App\Helper\FileUploader;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\EmailExistsRequest;
 use App\Http\Requests\User\RegisterUserRequest;
+use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Resources\CollectionResource;
 use App\Http\Resources\User\EmailExistsResource;
 use App\Http\Resources\User\RegisterResource;
 use App\Http\Resources\User\UserResource;
 use App\Models\Organisation;
 use App\Models\User;
 use App\Util\UserRoles;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
-use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -48,7 +50,7 @@ class UserController extends Controller
 
         $user = User::firstWhere('email', '=', $email);
 
-        if($user instanceof User){
+        if ($user instanceof User) {
             $response['email_exists'] = true;
         }
 
@@ -67,7 +69,7 @@ class UserController extends Controller
             $userRequest = $arrayRequest;
 
             if ($request->file('organisation.logo')) {
-                $image = FileUploader::uploadFile($request, 'image','organisation.logo');
+                $image = FileUploader::uploadFile($request, 'image', 'organisation.logo');
                 $organisationRequest['logo_id'] = $image->id;
             }
 
@@ -82,7 +84,6 @@ class UserController extends Controller
             return (new RegisterResource($user))
                 ->response()
                 ->setStatusCode(Response::HTTP_CREATED);
-
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
@@ -90,15 +91,16 @@ class UserController extends Controller
     }
 
 
-    public function update(UpdateUserRequest $request, int $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::findOrFail($id);
+        Gate::authorize('update', $user);
 
-        $user->update($request->all());
+        $user->update($request->validated());
 
-        return (new UserResource($user))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return response()->json([
+            'data' => UserResource::make($user),
+            'message' => 'User updated!'
+        ]);
     }
 
     public function change_password(Request $request)
@@ -140,5 +142,56 @@ class UserController extends Controller
             }
         }
         return response()->json($arr, $status);
+    }
+
+    public function index(Request $request)
+    {
+        $users = User::query();
+
+        if (!$this->user()->isAdmin()) {
+            $users->where('organisation_id', $this->user()->organisation_id);
+            $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status']);
+        }
+
+        if ($s = $request->input('search')) {
+            $users->where('first_name', 'like', "%$s%");
+            $users->orWhere('last_name', 'like', "%$s%");
+            $users->orWhere(DB::raw('CONCAT(first_name, " ", last_name)'), 'like', "%$s%");
+        }
+
+        $users = $users->paginate($request->input('per_page'));
+
+        return $users;
+    }
+
+    public function store(StoreUserRequest $request)
+    {
+        $data = $request->validated();
+
+        if ($this->user()->isAdmin()) {
+            $data['organisation_id'] = $request->input('organisation_id');
+        } else {
+            $data['organisation_id'] = $this->user()->organisation_id;
+        }
+
+        /** @var \App\Models\User */
+        $user = User::create($data);
+        $user->refresh();
+
+        return response()->json([
+            'data' => UserResource::make($user),
+            'message' => 'User created!'
+        ]);
+    }
+
+    public function destroy(User $user)
+    {
+        Gate::authorize('delete', $user);
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User deleted!'
+        ]);
     }
 }

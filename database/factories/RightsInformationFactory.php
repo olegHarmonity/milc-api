@@ -16,9 +16,9 @@ class RightsInformationFactory extends Factory
             'expiry_date' => $this->faker->date(),
             'holdbacks' => $this->faker->text(20),
             'territories' => [
-                "Worldwide" => [$this->faker->country(), $this->faker->country(),$this->faker->country()],
-                "By region" => [$this->faker->country(), $this->faker->country(),$this->faker->country()],
-                "By territory" => [$this->faker->country(), $this->faker->country(),$this->faker->country()],
+                "worldwide" => [$this->faker->country(), $this->faker->country(), $this->faker->country()],
+                "region" => [$this->faker->country(), $this->faker->country(), $this->faker->country()],
+                "territory" => [$this->faker->country(), $this->faker->country(), $this->faker->country()],
             ],
         ];
     }

@@ -38,8 +38,8 @@ class UserPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
         return ($user->id === $model->id) or ($user->role === UserRoles::$ROLE_ADMIN)
-                ? true
-                : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+            ? true
+            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
     public function create(User $user)
@@ -49,24 +49,26 @@ class UserPolicy
 
     public function update(User $user, User $model)
     {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        return ($user->id === $model->id) or ($user->role === UserRoles::$ROLE_ADMIN)
-                ? true
-                : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return $user->id === $model->id ||
+            $user->isAdmin() ||
+            ($user->isCompanyAdmin() && $user->organisation_id === $model->organisation_id);
     }
 
     public function delete(User $user, User $model)
     {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        if ($user->isAdmin()) {
+            return true;
         }
 
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        if (!$user->isCompanyAdmin()) {
+            return false;
+        }
+
+        if ($user->id == $model->id) {
+            return false;
+        }
+
+        return $user->organisation_id == $model->organisation_id;
     }
 
     public function restore(User $user, User $model)

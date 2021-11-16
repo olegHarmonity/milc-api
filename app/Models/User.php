@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Notifications\ResetPasswordNotification;
 use App\Traits\FormattedTimestamps;
 use App\Util\CompanyRoles;
+use App\Util\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,6 +33,7 @@ class User extends Authenticatable implements JWTSubject
         'address',
         'postal_code',
         'password',
+        'status',
         'organisation_id',
         'role',
     ];
@@ -83,5 +85,16 @@ class User extends Authenticatable implements JWTSubject
     public function is_from_seller_organisation()
     {
         return in_array($this->organisation->organisation_role, CompanyRoles::getSellerRolesArray());
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role == UserRoles::$ROLE_ADMIN;
+    }
+
+    public function isCompanyAdmin(bool $orAdmin = false): bool
+    {
+        $result = $this->role == UserRoles::$ROLE_COMPANY_ADMIN;
+        return $orAdmin ? ($result || $this->isAdmin()) : $result;
     }
 }

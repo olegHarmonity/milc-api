@@ -3,7 +3,7 @@
 namespace App\Http\Requests\User;
 
 use App\Models\User;
-use App\Util\CompanyRoles;
+use App\Util\UserStatuses;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
@@ -12,35 +12,45 @@ class UpdateUserRequest extends FormRequest
 
     public function authorize()
     {
-        $user = User::findOrFail($this->route('user'));
-        return Gate::authorize('update', $user);
+        return true;
     }
 
     public function rules()
     {
         return [
             'email' => [
-                'email',
-                'unique:users'
+                'email', 'unique:users,email,' . $this->user->id
             ],
             'first_name' => [
-                'min:2',
-                'max:50'
+                'string', 'min:2', 'max:50'
             ],
             'last_name' => [
-                'min:2',
-                'max:50'
+                'string', 'min:2', 'max:50'
             ],
-            'phone_number',
+            'phone_number' => [
+                'string'
+            ],
+            'password' => [
+                'string', 'confirmed', 'min:8'
+            ],
             'job_title' => [
+                'string'
             ],
             'country' => [
-                'min:2',
-                'max:2'
+                'string', 'min:2', 'max:2'
             ],
-            'city',
-            'address',
-            'postal_code',
+            'city' => [
+                'string'
+            ],
+            'address' => [
+                'string'
+            ],
+            'postal_code' => [
+                'string'
+            ],
+            'status' => [
+                'string', 'in:' . UserStatuses::getUserStatuses(true)
+            ]
         ];
     }
 }
