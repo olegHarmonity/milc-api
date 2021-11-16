@@ -1,6 +1,7 @@
 <?php
 namespace App\Helper;
 
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
 
 class SearchFormatter
@@ -32,9 +33,12 @@ class SearchFormatter
             $searchTerm = '';
             $attributes = [];
             foreach ($search as $attribute => $term) {
+                if(empty($term)){
+                    continue;
+                }
+                
                 if ($attribute === 'full_name') {
-                    $attributes[] = 'first_name';
-                    $attributes[] = 'last_name';
+                    $attributes[] = DB::raw("CONCAT(`first_name`, ' ', `last_name`)");
                     $searchTerm = $term;
                     continue;
                 }

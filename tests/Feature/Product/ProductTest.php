@@ -20,14 +20,6 @@ class ProductTest extends ApiTestCase
             ->assertStatus(200);
     }
 
-    public function test_get_persons()
-    {
-        $response = $this->get('/api/persons?search[full_name]=name6');
-        $response
-            ->assertStatus(200);
-        
-    }
-
     public function test_get_movie_rights()
     {
         $response = $this->get('/api/movie-rights');
@@ -73,7 +65,15 @@ class ProductTest extends ApiTestCase
     
     public function test_get_products_by_genre()
     {
-        $response = $this->get('/api/products?search[genres.name]=Action');
+        $response = $this->get('/api/products?search[genres.name]=Action&search[title]=');
+        $response->assertStatus(200);
+    }
+    
+    
+    
+    public function test_get_products_by_organisation()
+    {
+        $response = $this->get('/api/products?search[organisation_id]=1');
         $response->assertStatus(200);
     }
 
@@ -330,5 +330,15 @@ class ProductTest extends ApiTestCase
         //dump(($response));
         //dump(json_decode($response->getContent()));
         $response->assertStatus(200);
+    }
+    
+    
+    
+    public function test_get_persons()
+    {
+        $response = $this->get('/api/persons?search[full_name]=first name1 last_name1');
+        $response
+        ->assertStatus(200);
+        
     }
 }
