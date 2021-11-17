@@ -6,6 +6,7 @@ use App\DataTransformer\Product\ProductStoreDataTransformer;
 use App\DataTransformer\Product\ProductUpdateDataTransformer;
 use App\Helper\SearchFormatter;
 use App\Http\Requests\Product\CreateProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
@@ -66,7 +67,7 @@ class ProductController extends Controller
         }
     }
 
-    public function update(CreateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         Gate::authorize('update', $product);
 

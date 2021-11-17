@@ -482,11 +482,45 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->put('/api/products/1', $data);
-        // dump(($response));
+         //dump(($response));
         // dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
 
+    
+    
+    public function test_update_product_media()
+    {
+        $this->loginCompanyAdmin();
+        
+        $data = [
+            'movie_id' => 1,
+            'screener_id' => 1,
+            'trailer_id' => 1,
+            'dub_files' => [
+                1,
+                2
+            ],
+            'subtitles' => [
+                1,
+                2
+            ],
+            'marketing_assets' => [
+                'id' => 1,
+                'production_images' => [
+                    3
+                ],
+                'key_artwork_id' => 1
+            ]
+        ];
+        
+        $response = $this->put('/api/products/1', $data);
+         //dump(($response));
+        // dump(json_decode($response->getContent()));
+        $response->assertStatus(200);
+    }
+    
+    
     public function test_get_persons()
     {
         $response = $this->get('/api/persons?search[full_name]=name name');

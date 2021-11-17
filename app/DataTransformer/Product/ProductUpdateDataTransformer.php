@@ -1,5 +1,4 @@
 <?php
-
 namespace App\DataTransformer\Product;
 
 use App\Models\Person;
@@ -43,7 +42,11 @@ class ProductUpdateDataTransformer
             unset($arrayRequest['promotional_videos']);
         }
 
-        $productionInfoRequest = $arrayRequest['production_info'];
+        $productionInfoRequest = [];
+
+        if (isset($arrayRequest['production_info'])) {
+            $productionInfoRequest = $arrayRequest['production_info'];
+        }
 
         if (isset($productionInfoRequest['directors'])) {
             $directorsRequest = $productionInfoRequest['directors'];
@@ -64,8 +67,12 @@ class ProductUpdateDataTransformer
 
         unset($arrayRequest['production_info']);
 
-        $marketingAssetsRequest = $arrayRequest['marketing_assets'];
-        unset($arrayRequest['marketing_assets']);
+        $marketingAssetsRequest = [];
+
+        if (isset($arrayRequest['marketing_assets'])) {
+            $marketingAssetsRequest = $arrayRequest['marketing_assets'];
+            unset($arrayRequest['marketing_assets']);
+        }
 
         $productionImagesRequest = [];
         if (isset($marketingAssetsRequest['production_images'])) {
@@ -73,8 +80,12 @@ class ProductUpdateDataTransformer
             unset($marketingAssetsRequest['production_images']);
         }
 
-        $rightsInformationRequest = $arrayRequest['rights_information'];
-        unset($arrayRequest['rights_information']);
+        $rightsInformationRequest = [];
+
+        if (isset($arrayRequest['rights_information'])) {
+            $rightsInformationRequest = $arrayRequest['rights_information'];
+            unset($arrayRequest['rights_information']);
+        }
 
         $productRequest = $arrayRequest;
 
