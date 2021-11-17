@@ -1,5 +1,6 @@
 <?php
 
+use App\Util\ProductStatuses;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -28,6 +29,7 @@ class CreateProductsTable extends Migration
             $table->text('subtitle_languages');
             $table->text('links');
             $table->boolean('allow_requests');
+            $table->string('status')->default(ProductStatuses::$ACTIVE);
         });
     }
 

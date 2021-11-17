@@ -35,6 +35,7 @@ class Product extends Model
         'dub_files',
         'subtitles',
         'promotional_videos',
+        'status'
     ];
 
     protected $casts = [
