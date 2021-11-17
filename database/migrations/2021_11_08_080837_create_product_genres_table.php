@@ -11,7 +11,7 @@ class CreateProductGenresTable extends Migration
         Schema::create('product_genres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('product_id')->nullable()->references('id')->on('products')->onDelete('cascade');
+            $table->foreignId('product_id')->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('movie_genre_id')->nullable()->references('id')->on('movie_genres');
         });
     }

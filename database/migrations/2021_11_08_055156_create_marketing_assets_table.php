@@ -11,7 +11,7 @@ class CreateMarketingAssetsTable extends Migration
         Schema::create('marketing_assets', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('product_id')->unsigned()->nullable()->references('id')->on('products');
+            $table->foreignId('product_id')->unsigned()->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('key_artwork_id')->unsigned()->nullable()->references('id')->on('images');
             
             $table->text('copyright_information');
@@ -19,7 +19,7 @@ class CreateMarketingAssetsTable extends Migration
         });
             
         Schema::table('products', function(Blueprint $table) {
-            $table->foreignId('marketing_assets_id')->unsigned()->nullable()->references('id')->on('marketing_assets');
+            $table->foreignId('marketing_assets_id')->unsigned()->nullable()->references('id')->on('marketing_assets')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -11,7 +11,7 @@ class CreateRightsInformationAvailableRightsTable extends Migration
         Schema::create('rights_info_available_rights', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('rights_information_id')->nullable()->references('id')->on('rights_information')->onDelete('cascade');
+            $table->foreignId('rights_information_id')->nullable()->references('id')->on('rights_information')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('movie_right_id')->nullable()->references('id')->on('movie_rights');
         });
     }

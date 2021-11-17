@@ -55,7 +55,7 @@ class ProductPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if ($user->organisation()->first()->id !== $product->organisation()->first()->id) {
+        if ($user->organisation->id !== $product->organisation->id) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
@@ -76,7 +76,7 @@ class ProductPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if ($user->organisation()->first()->id !== $product->organisation()->id) {
+        if ($user->organisation->id !== $product->organisation->id) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 

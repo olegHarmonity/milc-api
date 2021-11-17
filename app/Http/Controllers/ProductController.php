@@ -83,9 +83,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        // TODO: Add gate
-        // TODO: Delete also all relations and all associated files of the product (in observer?)
-
+        Gate::authorize('delete', $product);
+        
         $product->delete();
 
         return response()->json([

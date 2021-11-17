@@ -74,15 +74,7 @@ class ProductTest extends ApiTestCase
 
         $response->assertStatus(200);
     }
-    
-    public function test_delete_product()
-    {
-        $this->loginAdmin();
-        
-        $response = $this->delete('/api/products/3');
-        $response->assertStatus(200);
-    }
-   
+ 
     public function test_get_products_by_genre_id()
     {
         $response = $this->get('/api/products?exact_search[genres.movie_genre_id]=1');
@@ -487,6 +479,14 @@ class ProductTest extends ApiTestCase
     public function test_get_persons()
     {
         $response = $this->get('/api/persons?search[full_name]=name name');
+        $response->assertStatus(200);
+    }
+    
+    public function test_delete_product()
+    {
+        $this->loginAdmin();
+        
+        $response = $this->delete('/api/products/1');
         $response->assertStatus(200);
     }
 }

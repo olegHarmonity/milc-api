@@ -11,7 +11,7 @@ class CreateProductionInfoProducersTable extends Migration
         Schema::create('production_info_producers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('production_info_id')->nullable()->references('id')->on('production_infos')->onDelete('cascade');
+            $table->foreignId('production_info_id')->nullable()->references('id')->on('production_infos')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('person_id')->nullable()->references('id')->on('people');
         });
     }

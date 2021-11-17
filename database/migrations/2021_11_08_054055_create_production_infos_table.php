@@ -11,7 +11,7 @@ class CreateProductionInfosTable extends Migration
         Schema::create('production_infos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            $table->foreignId('product_id')->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             
             $table->date('release_year')->nullable();
             $table->date('production_year')->nullable();
