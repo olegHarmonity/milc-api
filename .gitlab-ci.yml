@@ -6,12 +6,12 @@ develop:
     - git reset --hard
     - git pull origin develop
     - composer install -n
+    - php artisan migrate --no-interaction
     - php artisan cache:clear
     - php artisan config:clear
     - php artisan route:cache
     - sudo chown www-data:www-data -R storage
     - sudo chown www-data:www-data -R vendor
-    - php artisan storage:link
     - php artisan storage:link
   only:
     refs:
