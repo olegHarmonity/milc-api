@@ -74,8 +74,15 @@ class ProductTest extends ApiTestCase
 
         $response->assertStatus(200);
     }
-
-    public function test_get_products_by_genre()
+    
+    
+    public function test_get_products_by_genre_id()
+    {
+        $response = $this->get('/api/products?exact_search[genres.movie_genre_id]=1');
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_products_by_genre_name()
     {
         $response = $this->get('/api/products?search[genres.name]=Action&search[title]=');
         $response->assertStatus(200);

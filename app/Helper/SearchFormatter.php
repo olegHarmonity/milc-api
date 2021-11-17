@@ -18,8 +18,14 @@ class SearchFormatter
     {
         $search = $request->get('search');
 
+        $exactSearch = $request->get('exact_search');
+
         if ($search) {
             return self::getSearchQuery($request, $model)->get();
+        }
+
+        if ($exactSearch) {
+            return self::getExactSearchQuery($request, $model)->get();
         }
 
         return $model::all();
@@ -33,10 +39,10 @@ class SearchFormatter
             $searchTerm = '';
             $attributes = [];
             foreach ($search as $attribute => $term) {
-                if(empty($term)){
+                if (empty($term)) {
                     continue;
                 }
-                
+
                 if ($attribute === 'full_name') {
                     $attributes[] = DB::raw("CONCAT(`first_name`, ' ', `last_name`)");
                     $searchTerm = $term;
@@ -48,6 +54,40 @@ class SearchFormatter
             }
 
             return $model::search($attributes, $searchTerm);
+        }
+
+        $exactSearch = $request->get('exact_search');
+
+        if ($exactSearch) {
+            return self::getExactSearchQuery($request, $model);
+        }
+
+        return $model::query();
+    }
+
+    public static function getExactSearchQuery(Request $request, $model)
+    {
+        $search = $request->get('exact_search');
+
+        if ($search) {
+            $searchTerm = '';
+            $attributes = [];
+            foreach ($search as $attribute => $term) {
+                if (empty($term)) {
+                    continue;
+                }
+
+                if ($attribute === 'full_name') {
+                    $attributes[] = DB::raw("CONCAT(`first_name`, ' ', `last_name`)");
+                    $searchTerm = $term;
+                    continue;
+                }
+
+                $attributes[] = $attribute;
+                $searchTerm = $term;
+            }
+
+            return $model::exactSearch($attributes, $searchTerm);
         }
 
         return $model::query();
