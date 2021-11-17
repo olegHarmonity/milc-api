@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\Product\UpdateProductStatusRequest;
 
 class ProductController extends Controller
 {
@@ -75,6 +76,23 @@ class ProductController extends Controller
             return (new ProductResource($product))
                 ->response()
                 ->setStatusCode(Response::HTTP_OK);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+    
+    public function updateStatus(UpdateProductStatusRequest $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        Gate::authorize('updateStatus', $product);
+        
+        try {
+            $product->update($request->all());
+            
+            return (new ProductResource($product))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());

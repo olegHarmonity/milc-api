@@ -19,9 +19,7 @@ class MovieGenreController extends Controller
     {
         $movieGenres = SearchFormatter::getSearchQuery($request, MovieGenre::class);
         
-        $movieGenres = $this->getMovieGenreResponseData($movieGenres);
-        
-        $movieGenres = $movieGenres->paginate($request->input('per_page'));
+        $movieGenres = $this->getMovieGenreResponseData($movieGenres)->get();
         
         return new CollectionResource($movieGenres);
     }

@@ -23,7 +23,7 @@ class ProductTest extends ApiTestCase
 
     public function test_get_movie_genres()
     {
-        $response = $this->get('/api/movie-genres?page=1');
+        $response = $this->get('/api/movie-genres');
 
         $response->assertStatus(200);
     }
@@ -58,7 +58,6 @@ class ProductTest extends ApiTestCase
     {
         $this->loginAdmin();
         $response = $this->delete('/api/movie-genres/11');
-
         $response->assertStatus(204);
     }
 
@@ -98,7 +97,19 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/products/1');
         $response->assertStatus(200);
     }
-
+    
+    
+    public function test_update_product_status()
+    {
+        $this->loginAdmin();
+        $data = [
+            'status' => 'inactive'
+        ];
+        
+        $response = $this->put('/api/products/change-status/1', $data);
+        $response->assertStatus(200);
+    }
+    
     public function test_create_product()
     {
         $this->loginCompanyAdmin();

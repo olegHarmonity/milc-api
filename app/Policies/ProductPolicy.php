@@ -86,6 +86,19 @@ class ProductPolicy
 
         return true;
     }
+    
+    public function updateStatus(User $user, Product $product)
+    {
+        if (!$user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->role !== UserRoles::$ROLE_ADMIN) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        return true;
+    }
 
     public function restore(User $user, Product $product)
     {
