@@ -55,7 +55,7 @@ class FileUploader
 
         $extensions = [
             'image' => ['jpeg', 'png', 'jpg', 'gif', 'svg'],
-            'video' => ['mp4'],
+            'video' => ['mp4', 'avi'],
             'audio' => ['mpga', 'mp3', 'wav', 'audio/mpeg', 'audio/mpeg4-generic', 'audio/mp3', 'audio/mpga',],
             'file' => ['srt', 'txt'],
         ];
