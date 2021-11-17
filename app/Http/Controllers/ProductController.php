@@ -32,7 +32,7 @@ class ProductController extends Controller
         );
 
         $products = $products->select([
-            'id', 'title', 'synopsis', 'runtime', 'content_type_id', 'marketing_assets_id', 'created_at', 'organisation_id', 
+            'id', 'title', 'synopsis', 'runtime', 'content_type_id', 'marketing_assets_id', 'created_at', 'organisation_id', 'status', 
         ]);
         
         

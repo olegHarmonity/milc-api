@@ -76,6 +76,17 @@ class ProductTest extends ApiTestCase
     }
     
     
+    
+   /* public function test_delete_product()
+    {
+        $this->loginAdmin();
+        
+        $response = $this->delete('/api/products/3');
+        dump($response);
+        $response->assertStatus(200);
+    }
+    */
+    
     public function test_get_products_by_genre_id()
     {
         $response = $this->get('/api/products?exact_search[genres.movie_genre_id]=1');
