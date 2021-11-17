@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Policies;
 
 use App\Models\Product;
 use App\Models\User;
 use App\Util\AuthorizationResponses;
-use App\Util\CompanyRoles;
 use App\Util\UserRoles;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -26,15 +24,15 @@ class ProductPolicy
 
     public function create(User $user)
     {
-        if (!$user) {
+        if (! $user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if (!$user->organisation()) {
+        if (! $user->organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if (!$user->is_from_seller_organisation()) {
+        if (! $user->is_from_seller_organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
@@ -43,15 +41,15 @@ class ProductPolicy
 
     public function update(User $user, Product $product)
     {
-        if (!$user) {
+        if (! $user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if (!$user->organisation()) {
+        if (! $user->organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if (!$user->is_from_seller_organisation()) {
+        if (! $user->is_from_seller_organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
@@ -64,15 +62,19 @@ class ProductPolicy
 
     public function delete(User $user, Product $product)
     {
-        if (!$user) {
+        if (! $user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
+            return true;
+        }
+
+        if (! $user->organisation) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if (!$user->organisation()) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        if (!$user->is_from_seller_organisation()) {
+        if (! $user->is_from_seller_organisation()) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
@@ -80,29 +82,25 @@ class ProductPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
+        return true;
+    }
+
+    public function updateStatus(User $user, Product $product)
+    {
+        if (! $user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+
         if ($user->role !== UserRoles::$ROLE_ADMIN) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return true;
-    }
-    
-    public function updateStatus(User $user, Product $product)
-    {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-        
-        if ($user->role !== UserRoles::$ROLE_ADMIN) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-        
         return true;
     }
 
     public function restore(User $user, Product $product)
     {
-        if (!$user) {
+        if (! $user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 

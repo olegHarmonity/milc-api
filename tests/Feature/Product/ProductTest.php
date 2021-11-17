@@ -495,7 +495,7 @@ class ProductTest extends ApiTestCase
     
     public function test_delete_product()
     {
-        $this->loginAdmin();
+        $this->loginCompanyAdmin();
         
         $response = $this->delete('/api/products/1');
         $response->assertStatus(200);
