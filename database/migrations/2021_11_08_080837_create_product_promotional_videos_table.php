@@ -11,7 +11,7 @@ class CreateProductPromotionalVideosTable extends Migration
         Schema::create('product_promotional_videos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            $table->foreignId('product_id')->nullable()->references('id')->on('products')->onDelete('cascade');
             $table->foreignId('video_id')->nullable()->references('id')->on('videos');
         });
     }

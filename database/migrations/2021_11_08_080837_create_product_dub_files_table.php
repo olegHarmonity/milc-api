@@ -11,7 +11,7 @@ class CreateProductDubFilesTable extends Migration
         Schema::create('product_dub_files', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            $table->foreignId('product_id')->nullable()->references('id')->on('products')->onDelete('cascade');
             $table->foreignId('audio_id')->nullable()->references('id')->on('videos');
         });
     }
