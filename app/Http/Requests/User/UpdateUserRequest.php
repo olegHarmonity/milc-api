@@ -50,7 +50,8 @@ class UpdateUserRequest extends FormRequest
             ],
             'status' => [
                 'string', 'in:' . UserStatuses::getUserStatuses(true)
-            ]
+            ],
+            'image_id'
         ];
     }
 }

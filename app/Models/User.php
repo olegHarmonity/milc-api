@@ -36,6 +36,7 @@ class User extends Authenticatable implements JWTSubject
         'status',
         'organisation_id',
         'role',
+        'image_id',
     ];
 
     /**
@@ -75,6 +76,11 @@ class User extends Authenticatable implements JWTSubject
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+    
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 
     public function organisation()

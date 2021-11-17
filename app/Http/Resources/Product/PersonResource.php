@@ -10,6 +10,7 @@ class PersonResource extends JsonResource
     public function toArray($request)
     {
         $person = parent::toArray($request);
+        
         if (isset($person[0])) {
             $person = $person[0];
         }

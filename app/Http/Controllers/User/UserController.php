@@ -95,8 +95,15 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         Gate::authorize('update', $user);
+        
+        $data = $request->validated();
+        
+        if ($request->file('image')) {
+            $image = FileUploader::uploadFile($request, 'image', 'image');
+            $data['image_id'] = $image->id;
+        }
 
-        $user->update($request->validated());
+        $user->update($data);
 
         return response()->json([
             'data' => UserResource::make($user),
@@ -149,14 +156,22 @@ class UserController extends Controller
     {
         $users = SearchFormatter::getSearchQuery($request, User::class);
         
+        $users = $users->with('image:id,image_name,image_url,mime,created_at,updated_at');
+        
+        
         if (!$this->user()->isAdmin()) {
             $users->where('organisation_id', $this->user()->organisation_id);
-            $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status']);
+            $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status', 'image_id']);
+        }else{
+            
+            $users = $users->select([
+                '*','image_id'
+            ]);
         }
 
         $users = $users->paginate($request->input('per_page'));
 
-        return $users;
+        return new CollectionResource($users);
     }
 
     public function store(StoreUserRequest $request)
@@ -167,6 +182,11 @@ class UserController extends Controller
             $data['organisation_id'] = $request->input('organisation_id');
         } else {
             $data['organisation_id'] = $this->user()->organisation_id;
+        }
+        
+        if ($request->file('image')) {
+            $image = FileUploader::uploadFile($request, 'image', 'image');
+            $data['image_id'] = $image->id;
         }
 
         /** @var \App\Models\User */

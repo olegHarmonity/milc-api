@@ -7,11 +7,31 @@ use Tests\ApiTestCase;
 
 class UserTest extends ApiTestCase
 {
-
+    public function test_update_user_company_admin()
+    {
+        $this->loginCompanyAdmin();
+        
+        $data = [
+            'image' => new UploadedFile(resource_path('test-files/image.png'), 'image.png', null, null, true)
+        ];
+        
+        $response = $this->put('/api/users/1', $data);
+        
+        $response->assertStatus(200);
+    }
+    
     public function test_get_users()
     {
         $this->loginAdmin();
-        $response = $this->get('/api/users');        
+        $response = $this->get('/api/users');  
+        
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_users_company_admin()
+    {
+        $this->loginCompanyAdmin();
+        $response = $this->get('/api/users');
         
         $response->assertStatus(200);
     }
@@ -123,7 +143,21 @@ class UserTest extends ApiTestCase
         $response = $this->put('/api/users/2', $data);
 
         $response->assertStatus(200);
+    }    
+    
+    public function test_update_user_with_image()
+    {
+        $this->loginAdmin();
+        
+        $data = [
+            'image' => new UploadedFile(resource_path('test-files/image.png'), 'image.png', null, null, true)
+        ];
+        
+        $response = $this->put('/api/users/2', $data);
+        
+        $response->assertStatus(200);
     }
+    
 
     public function test_update_user_unauthorized()
     {

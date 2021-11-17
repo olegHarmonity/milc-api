@@ -18,6 +18,11 @@ class RegisterResource extends JsonResource
             $organisation = Organisation::where('id',$user['organisation_id'])->get();
             $user['organisation'] = new OrganisationResource($organisation);
         }
+        
+        if (isset($user['image_id'])) {
+            $image = Image::where('id', $user['image_id'])->get();
+            $user['image'] = new ImageResource($image);
+        }
 
         return $user;
     }
