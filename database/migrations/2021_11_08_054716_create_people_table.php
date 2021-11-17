@@ -18,6 +18,7 @@ class CreatePeopleTable extends Migration
             $table->timestamps();
             $table->string('first_name');
             $table->string('last_name');
+            $table->foreignId('image_id')->unsigned()->nullable()->references('id')->on('images');
         });
     }
 

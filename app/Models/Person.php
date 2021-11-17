@@ -18,5 +18,12 @@ class Person extends Model
     protected $fillable = [
         'first_name',
         'last_name',
+        'image_id',
     ];
+    
+    
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
+    }
 }

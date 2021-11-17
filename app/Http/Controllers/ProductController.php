@@ -27,11 +27,12 @@ class ProductController extends Controller
             'genres:id,name',
             'available_formats:id,name',
             'marketing_assets:id,key_artwork_id',
-            'marketing_assets.key_artwork:id,image_name,image_url'
+            'marketing_assets.key_artwork:id,image_name,image_url',
+            'organisation:id,organisation_name',
         );
 
         $products = $products->select([
-            'id', 'title', 'synopsis', 'runtime', 'content_type_id', 'marketing_assets_id'
+            'id', 'title', 'synopsis', 'runtime', 'content_type_id', 'marketing_assets_id', 'created_at', 'organisation_id', 
         ]);
         
         

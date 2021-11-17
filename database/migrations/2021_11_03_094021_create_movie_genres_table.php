@@ -17,6 +17,7 @@ class CreateMovieGenresTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->unique();
+            $table->foreignId('image_id')->unsigned()->nullable()->references('id')->on('images');
         });
     }
 
