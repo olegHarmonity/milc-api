@@ -7,6 +7,18 @@ use Tests\ApiTestCase;
 
 class FilesTest extends ApiTestCase
 {
+    
+    public function test_post_image_company_admin()
+    {
+        $this->loginCompanyAdmin();
+        $data = [
+            'image' => new UploadedFile(resource_path('test-files/image.png'), 'image.png', null, null, true),
+        ];
+        
+        $response = $this->post('/api/images', $data);
+        $response->assertStatus(201);
+    }
+    
     public function test_post_image()
     {
         $this->loginAdmin();

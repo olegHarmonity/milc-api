@@ -41,7 +41,7 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return  Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return  true;
     }
 
     public function update(User $user, Image $image)
@@ -67,7 +67,7 @@ class ImagePolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return true;
     }
 
     public function restore(User $user, Image $image)
