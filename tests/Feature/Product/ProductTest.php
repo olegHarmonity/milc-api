@@ -70,7 +70,13 @@ class ProductTest extends ApiTestCase
     public function test_get_products()
     {
         $response = $this->get('/api/products');
-
+        
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_products_by_date()
+    {
+        $response = $this->get('/api/products?date[created_at]=2021-11-11&end_date[created_at]=2021-11-18');
         $response->assertStatus(200);
     }
  

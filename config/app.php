@@ -178,7 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         App\Providers\SearchProvider::class,
-        App\Providers\ExactSearchProvider::class,    
+        App\Providers\ExactSearchProvider::class,
+        App\Providers\DateFilterProvider::class,  
 
     ],
 

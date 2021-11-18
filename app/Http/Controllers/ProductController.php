@@ -22,7 +22,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = SearchFormatter::getSearchQuery($request, Product::class);
+        $products = SearchFormatter::getSearchQueries($request, Product::class);
         
         $products = $products->with(
             'content_type:id,name',
