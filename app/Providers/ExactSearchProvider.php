@@ -14,20 +14,23 @@ class ExactSearchProvider extends ServiceProvider
 
     public function boot()
     {
-        Builder::macro('exactSearch', function ($attributes, string $searchTerm) {
-            $this->where(function (Builder $query) use ($attributes, $searchTerm) {
+        Builder::macro('exactSearch', function ($attributes, array $searchTerms) {
+            
+        
+            $this->where(function (Builder $query) use ($attributes, $searchTerms) {
                 foreach (array_wrap($attributes) as $attribute) {
-                    $query->when(str_contains($attribute, '.'), function (Builder $query) use ($attribute, $searchTerm) {
+                    $query->when(str_contains($attribute, '.'), function (Builder $query) use ($attribute, $searchTerms) {
                         [
                         $relationName,
                         $relationAttribute
                         ] = explode('.', $attribute);
                         
-                        $query->orWhereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerm) {
-                            $query->where($relationAttribute, 'LIKE', "{$searchTerm}");
+                        $query->orWhereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerms) {
+                            dump($searchTerms);
+                            $query->whereIn($relationAttribute, $searchTerms);
                         });
-                    }, function (Builder $query) use ($attribute, $searchTerm) {
-                        $query->orWhere($attribute, 'LIKE', "{$searchTerm}");
+                    }, function (Builder $query) use ($attribute, $searchTerms) {
+                        $query->whereIn($attribute, $searchTerms);
                     });
                 }
             });

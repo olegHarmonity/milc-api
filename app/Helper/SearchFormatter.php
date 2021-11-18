@@ -1,6 +1,7 @@
 <?php
 namespace App\Helper;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,7 +20,7 @@ class SearchFormatter
         $search = $request->get('search');
 
         $exactSearch = $request->get('exact_search');
-        
+
         $startDateSearch = $request->get('start_date');
         $endDateSearch = $request->get('end_date');
         $dateSearch = $request->get('date');
@@ -31,36 +32,36 @@ class SearchFormatter
         if ($exactSearch) {
             return self::getExactSearchQuery($request, $model)->get();
         }
-        
+
         if ($startDateSearch or $endDateSearch or $dateSearch) {
             return self::getDateSearchQuery($request, $model)->get();
         }
 
         return $model::all();
     }
-    
+
     public static function getSearchQueries(Request $request, $model)
     {
         $search = $request->get('search');
-        
+
         $exactSearch = $request->get('exact_search');
-        
+
         $startDateSearch = $request->get('start_date');
         $endDateSearch = $request->get('end_date');
         $dateSearch = $request->get('date');
-        
+
         if ($search) {
             return self::getSearchQuery($request, $model);
         }
-        
+
         if ($exactSearch) {
             return self::getExactSearchQuery($request, $model);
         }
-        
+
         if ($startDateSearch or $endDateSearch or $dateSearch) {
             return self::getDateSearchQuery($request, $model);
         }
-        
+
         return $model::query();
     }
 
@@ -103,7 +104,7 @@ class SearchFormatter
         $search = $request->get('exact_search');
 
         if ($search) {
-            $searchTerm = '';
+            $searchTerms = [];
             $attributes = [];
             foreach ($search as $attribute => $term) {
                 if (empty($term)) {
@@ -112,70 +113,77 @@ class SearchFormatter
 
                 if ($attribute === 'full_name') {
                     $attributes[] = DB::raw("CONCAT(`first_name`, ' ', `last_name`)");
-                    $searchTerm = $term;
+                    
+                    if (is_array($term)) {
+                        $searchTerms = $term;
+                    } else {
+                        $searchTerms[] = $term;
+                    }
                     continue;
                 }
 
                 $attributes[] = $attribute;
-                $searchTerm = $term;
+
+                if (is_array($term)) {
+                    $searchTerms = $term;
+                } else {
+                    $searchTerms[] = $term;
+                }
             }
 
-            return $model::exactSearch($attributes, $searchTerm);
+            return $model::exactSearch($attributes, $searchTerms);
         }
 
         return $model::query();
     }
-    
-    public static function getDateSearchQuery(Request $request, $model) {
-        
+
+    public static function getDateSearchQuery(Request $request, $model)
+    {
         $startDateSearch = $request->get('start_date');
         $endDateSearch = $request->get('end_date');
         $dateSearch = $request->get('date');
-        
-        
+
         $startDate = '';
         $endDate = '';
         $searchAttribute = '';
-        
-        if($dateSearch){
-            
+
+        if ($dateSearch) {
+
             foreach ($dateSearch as $attribute => $term) {
                 if (empty($term)) {
                     continue;
                 }
-                
+
                 $searchAttribute = $attribute;
                 $startDate = $term;
                 $endDate = $term;
             }
-            
         }
-        
-        if($startDateSearch){
-            
+
+        if ($startDateSearch) {
+
             foreach ($startDateSearch as $attribute => $term) {
                 if (empty($term)) {
                     continue;
                 }
-                
+
                 $searchAttribute = $attribute;
                 $startDate = $term;
             }
         }
-        
-        if($endDateSearch){
-            
+
+        if ($endDateSearch) {
+
             foreach ($endDateSearch as $attribute => $term) {
                 if (empty($term)) {
                     continue;
                 }
-                
+
                 $searchAttribute = $attribute;
                 $endDate = $term;
             }
         }
-        
-        
+
         return $model::dateFilter($searchAttribute, $startDate, $endDate);
     }
 }

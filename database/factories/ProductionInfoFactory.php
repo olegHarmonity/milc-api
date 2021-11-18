@@ -16,7 +16,7 @@ class ProductionInfoFactory extends Factory
         $statusKey = array_rand($productionStatuses);
 
         return [
-            'release_year' => $this->faker->date(),
+            'release_year' => new \DateTime(rand(2018,2021).'-01-01'),
             'production_year' => $this->faker->date(),
             'production_status' => $productionStatuses[$statusKey],
             'country_of_origin' => $this->faker->countryCode(),
