@@ -5,6 +5,7 @@ namespace App\Http\Requests\Organisation;
 use App\Models\Organisation;
 use App\Models\User;
 use App\Util\CompanyRoles;
+use App\Util\CompanyStatuses;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
@@ -20,20 +21,19 @@ class UpdateOrganisationRequest extends FormRequest
     public function rules()
     {
         return [
-            'organisation_name' => [
-            ],
+            'organisation_name' => [],
             'organisation_type_id',
-            'registration_number' => [
-            ],
+            'registration_number' => [],
             'phone_number',
             'telephone_number',
             'organisation_role' => [
                 'in:' . CompanyRoles::getRolesForValidation()
             ],
-            'description' => [
+            'status' => [
+                'in:' . CompanyStatuses::getStatuses(true)
             ],
-            'website_link' => [
-            ],
+            'description' => [],
+            'website_link' => [],
             'country' => [
                 'min:2',
                 'max:2'

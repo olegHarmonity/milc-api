@@ -7,14 +7,18 @@ use App\Http\Requests\Organisation\UpdateOrganisationRequest;
 use App\Http\Resources\Organisation\OrganisationCollectionResource;
 use App\Http\Resources\Organisation\OrganisationResource;
 use App\Models\Organisation;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class OrganisationController extends Controller
 {
     public function index(Request $request)
     {
-        return new OrganisationCollectionResource(SearchFormatter::getPaginatedSearchResults($request, Organisation::class));
+        $organisations = SearchFormatter::getSearchQuery($request, Organisation::class);
+        $organisations = $organisations->with('organisation_type:id,name');
+        $organisations = $organisations->paginate($request->input('per_page'));
+
+        return new OrganisationCollectionResource($organisations);
     }
 
     public function show(int $id)

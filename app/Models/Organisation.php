@@ -16,6 +16,7 @@ class Organisation extends Model
         'phone_number',
         'telephone_number',
         'organisation_role',
+        'status',
         'description',
         'website_link',
         'social_links',
@@ -28,7 +29,6 @@ class Organisation extends Model
     ];
 
     protected $hidden = [
-        'status',
         'date_activated',
     ];
 
@@ -50,7 +50,7 @@ class Organisation extends Model
     {
         return $this->hasMany(User::class);
     }
-    
+
     public function products()
     {
         return $this->hasMany(Product::class);
