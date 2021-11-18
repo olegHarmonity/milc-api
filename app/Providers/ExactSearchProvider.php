@@ -26,7 +26,6 @@ class ExactSearchProvider extends ServiceProvider
                         ] = explode('.', $attribute);
                         
                         $query->orWhereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerms) {
-                            dump($searchTerms);
                             $query->whereIn($relationAttribute, $searchTerms);
                         });
                     }, function (Builder $query) use ($attribute, $searchTerms) {
