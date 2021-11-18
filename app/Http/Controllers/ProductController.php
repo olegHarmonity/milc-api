@@ -11,7 +11,7 @@ use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = SearchFormatter::getSearchQueries($request, Product::class);
-        
+
         $products = $products->with(
             'content_type:id,name',
             'genres:id,name',
@@ -31,15 +31,27 @@ class ProductController extends Controller
             'marketing_assets:id,key_artwork_id',
             'marketing_assets.key_artwork:id,image_name,image_url',
             'organisation:id,organisation_name',
+            'production_info:id,production_year,release_year'
         );
 
         $products = $products->select([
-            'id', 'title', 'synopsis', 'runtime', 'content_type_id', 'marketing_assets_id', 'created_at', 'organisation_id', 'status', 'keywords'
+            'id',
+            'title',
+            'synopsis',
+            'runtime',
+            'original_language',
+            'content_type_id',
+            'marketing_assets_id',
+            'production_info_id',
+            'created_at',
+            'organisation_id',
+            'status',
+            'keywords',
         ]);
-        
-        
+
+
         $products = $products->paginate($request->input('per_page'));
-        
+
         return CollectionResource::make($products);
     }
 
@@ -53,7 +65,7 @@ class ProductController extends Controller
         Gate::authorize('create', Product::class);
 
         try {
-            $user = auth()->user();
+            $user = $this->user();
             $organisation = $user->organisation()->first();
 
             $product = ProductStoreDataTransformer::transformData($request->all(), $organisation);
@@ -82,18 +94,18 @@ class ProductController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
     }
-    
+
     public function updateStatus(UpdateProductStatusRequest $request, $id)
     {
         $product = Product::findOrFail($id);
         Gate::authorize('updateStatus', $product);
-        
+
         try {
             $product->update($request->all());
-            
+
             return (new ProductResource($product))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+                ->response()
+                ->setStatusCode(Response::HTTP_OK);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
@@ -103,7 +115,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         Gate::authorize('delete', $product);
-        
+
         $product->delete();
 
         return response()->json([
