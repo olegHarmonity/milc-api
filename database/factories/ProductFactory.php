@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Image;
 use App\Models\MarketingAssets;
 use App\Models\Product;
 use App\Models\ProductionInfo;
@@ -15,12 +16,18 @@ class ProductFactory extends Factory
     { 
         $productionInfo = ProductionInfo::factory()->create()->id;
         
-        $marketingAssets = MarketingAssets::factory()->create()->id;
+        $marketingAssets = MarketingAssets::factory()->create();
+        
+        $images = Image::all();
+        
+            $marketingAssets->production_images()->attach(
+                $images->random(rand(1, 3))->pluck('id')->toArray()
+                );
         
         return [
             'organisation_id' => $this->faker->numberBetween(1, 5),
             'production_info_id' => $productionInfo,
-            'marketing_assets_id' => $marketingAssets,
+            'marketing_assets_id' => $marketingAssets->id,
             'content_type_id' => $this->faker->numberBetween(1, 5),
             'movie_id' => $this->faker->numberBetween(1, 5),
             'screener_id' => $this->faker->numberBetween(1, 5),

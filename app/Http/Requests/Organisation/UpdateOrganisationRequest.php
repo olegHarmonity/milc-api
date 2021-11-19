@@ -2,48 +2,52 @@
 
 namespace App\Http\Requests\Organisation;
 
-use App\Models\Organisation;
-use App\Models\User;
 use App\Util\CompanyRoles;
-use App\Util\CompanyStatuses;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Gate;
 
 class UpdateOrganisationRequest extends FormRequest
 {
     public function authorize()
     {
         return true;
-        //$organisation = Organisation::find($this->route('organisation'));
-        //return Gate::authorize('update', $organisation);
     }
 
     public function rules()
     {
         return [
-            'organisation_name' => [],
-            'organisation_type_id',
-            'registration_number' => [],
-            'phone_number',
-            'telephone_number',
+            'organisation_name' => [
+                'sometimes',
+                'required',
+            ],
+            'organisation_type_id' => [
+                'sometimes',
+                'required',
+            ],
+            'registration_number' => [
+                'sometimes',
+                'required',
+            ],
+            'phone_number' => [
+                'sometimes',
+            ],
+            'telephone_number' => 'sometimes',
             'organisation_role' => [
+                'sometimes',
                 'in:' . CompanyRoles::getRolesForValidation()
             ],
-            'status' => [
-                'in:' . CompanyStatuses::getStatuses(true)
-            ],
-            'description' => [],
-            'website_link' => [],
+            'description' => 'sometimes',
+            'website_link' => 'sometimes',
             'country' => [
+                'sometimes',
                 'min:2',
                 'max:2'
             ],
-            'city',
-            'address',
-            'postal_code',
-            'social_links',
-            'website_link',
-            'logo_id'
+            'city' => 'sometimes',
+            'address' => 'sometimes',
+            'postal_code' => 'sometimes',
+            'social_links' => 'sometimes',
+            'website_link' => 'sometimes',
+            'logo_id' => 'sometimes'
         ];
     }
 }

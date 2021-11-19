@@ -105,7 +105,7 @@ class ProductResource extends JsonResource
             $marketingAssets = MarketingAssets::where('id', $product['marketing_assets_id'])->first();
             $marketingAssetsResource = new Resource($marketingAssets);
 
-            $productionImages = $marketingAssets->production_images()->get();
+            $productionImages = $marketingAssets->production_images;
             foreach ($productionImages as $productionImage) {
                 $marketingAssetsResource['production_images'][$productionImage->id] = new Resource($productionImage);
             }

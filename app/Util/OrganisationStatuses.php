@@ -2,7 +2,7 @@
 
 namespace App\Util;
 
-class CompanyStatuses
+class OrganisationStatuses
 {
     public static $PENDING = 'pending';
     public static $ACCEPTED = 'accepted';
