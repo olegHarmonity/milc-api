@@ -14,8 +14,13 @@ class DateFilterProvider extends ServiceProvider
 
     public function boot()
     {
-        Builder::macro('dateFilter', function ($attribute, $fromDate, $toDate) {
-            $this->where(function (Builder $query) use ($attribute, $fromDate, $toDate) {
+        Builder::macro('dateFilter', function ($attribute, $fromDate, $toDate, Builder $query = null) {
+            
+            if(!$query){
+                $query = $this;
+            }
+            
+            $query->where(function (Builder $query) use ($attribute, $fromDate, $toDate) {
                 $query->when(str_contains($attribute, '.'), function (Builder $query) use ($attribute, $fromDate, $toDate) {
                     [
                         $relationName,
@@ -36,7 +41,7 @@ class DateFilterProvider extends ServiceProvider
                 });
             });
             
-            return $this;
+                return $query;
         });
     }
 }
