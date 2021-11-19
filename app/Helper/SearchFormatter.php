@@ -115,9 +115,9 @@ class SearchFormatter
                     $attributes[] = DB::raw("CONCAT(`first_name`, ' ', `last_name`)");
                     
                     if (is_array($term)) {
-                        $searchTerms = $term;
-                    } else {
                         $searchTerms[] = $term;
+                    } else {
+                        $searchTerms[] = [$term];
                     }
                     continue;
                 }
@@ -125,9 +125,9 @@ class SearchFormatter
                 $attributes[] = $attribute;
 
                 if (is_array($term)) {
-                    $searchTerms = $term;
-                } else {
                     $searchTerms[] = $term;
+                } else {
+                    $searchTerms[] = [$term];
                 }
             }
 

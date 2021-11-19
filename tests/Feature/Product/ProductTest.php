@@ -91,7 +91,8 @@ class ProductTest extends ApiTestCase
     
     public function test_get_products_by_multiple_filters_2()
     {
-        $response = $this->get('/api/products?exact_search[production_info.production_status][0]=released&exact_search[production_info.production_status][1]=unreleased&exact_search[content_type_id]=3');
+        $response = $this->get('/api/products?exact_search[production_info.production_status][0]=released&exact_search[production_info.production_status][1]=unreleased&exact_search[genres.movie_genre_id]=3');
+   
         $response->assertStatus(200);
     }
     
