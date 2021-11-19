@@ -27,7 +27,7 @@ class ExactSearchProvider extends ServiceProvider
                         $query->whereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerms, $key) {
                             $query->whereIn($relationAttribute, $searchTerms[$key]);
                         });
-                    }, function (Builder $query) use ($attribute, $searchTerms) {
+                    }, function (Builder $query) use ($attribute, $searchTerms, $key) {
                         $query->whereIn($attribute, $searchTerms[$key]);
                     });
                 }
