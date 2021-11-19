@@ -64,6 +64,19 @@ class OrganisationPolicy
 
         return true;
     }
+    
+    public function updateStatus(User $user, Organisation $organisation)
+    {
+        if (! $user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->role !== UserRoles::$ROLE_ADMIN) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        return true;
+    }
 
     public function delete(User $user, Organisation $organisation)
     {

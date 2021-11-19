@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Organisation;
-use App\Util\CompanyStatuses;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Util\OrganisationStatuses;
 
 class OrganisationFactory extends Factory
 {
@@ -28,7 +28,7 @@ class OrganisationFactory extends Factory
                 "telegram" => $this->faker->url(),
             ],
             'date_activated' => $this->faker->dateTime(),
-            'status' => CompanyStatuses::$ACCEPTED,
+            'status' => OrganisationStatuses::$ACCEPTED,
             'organisation_type_id' => rand(1,4),
             'logo_id' => 1,
             'country' => $this->faker->countryCode(),

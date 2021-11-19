@@ -58,7 +58,6 @@ class UserTest extends ApiTestCase
             'email' => 'admin@milc.com'
         ];
         $response = $this->post('/api/forgot-password', $data);
-
         $response->assertStatus(200);
     }
 

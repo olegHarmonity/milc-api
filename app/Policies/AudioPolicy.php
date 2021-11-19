@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\Audio;
 use App\Models\User;
 use App\Util\AuthorizationResponses;
-use App\Util\CompanyRoles;
 use App\Util\UserRoles;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;

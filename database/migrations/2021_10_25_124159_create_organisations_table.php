@@ -1,9 +1,9 @@
 <?php
 
-use App\Util\CompanyStatuses;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Util\OrganisationStatuses;
 
 class CreateOrganisationsTable extends Migration
 {
@@ -29,7 +29,7 @@ class CreateOrganisationsTable extends Migration
             $table->string('website_link')->nullable();
             $table->json('social_links')->nullable();
             $table->dateTime('date_activated')->nullable();
-            $table->string('status')->default(CompanyStatuses::$PENDING);
+            $table->string('status')->default(OrganisationStatuses::$PENDING);
             $table->string('country');
             $table->string('city')->nullable();
             $table->string('address')->nullable();

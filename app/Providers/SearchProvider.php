@@ -12,8 +12,13 @@ class SearchProvider extends ServiceProvider
 
     public function boot()
     {
-        Builder::macro('search', function ($attributes, string $searchTerm) {
-            $this->where(function (Builder $query) use ($attributes, $searchTerm) {
+        Builder::macro('search', function ($attributes, string $searchTerm, Builder $query = null) {
+
+            if (! $query) {
+                $query = $this;
+            }
+
+            $query->where(function (Builder $query) use ($attributes, $searchTerm) {
                 foreach (array_wrap($attributes) as $attribute) {
                     $query->when(str_contains($attribute, '.'), function (Builder $query) use ($attribute, $searchTerm) {
                         [
@@ -30,7 +35,7 @@ class SearchProvider extends ServiceProvider
                 }
             });
 
-            return $this;
+            return $query;
         });
     }
 }

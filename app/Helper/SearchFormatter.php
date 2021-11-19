@@ -2,6 +2,7 @@
 namespace App\Helper;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,27 +18,9 @@ class SearchFormatter
 
     public static function getSearchResults(Request $request, $model)
     {
-        $search = $request->get('search');
+       
 
-        $exactSearch = $request->get('exact_search');
-
-        $startDateSearch = $request->get('start_date');
-        $endDateSearch = $request->get('end_date');
-        $dateSearch = $request->get('date');
-
-        if ($search) {
-            return self::getSearchQuery($request, $model)->get();
-        }
-
-        if ($exactSearch) {
-            return self::getExactSearchQuery($request, $model)->get();
-        }
-
-        if ($startDateSearch or $endDateSearch or $dateSearch) {
-            return self::getDateSearchQuery($request, $model)->get();
-        }
-
-        return $model::all();
+        return self::getSearchQueries($request, $model)->get();
     }
 
     public static function getSearchQueries(Request $request, $model)
@@ -50,22 +33,29 @@ class SearchFormatter
         $endDateSearch = $request->get('end_date');
         $dateSearch = $request->get('date');
 
+        $query = null;
+        
         if ($search) {
-            return self::getSearchQuery($request, $model);
+            $query = self::getSearchQuery($request, $model, $query);
         }
 
         if ($exactSearch) {
-            return self::getExactSearchQuery($request, $model);
+            $query = self::getExactSearchQuery($request, $model, $query);
         }
 
         if ($startDateSearch or $endDateSearch or $dateSearch) {
-            return self::getDateSearchQuery($request, $model);
+          
+            $query = self::getDateSearchQuery($request, $model, $query);
+        }
+        
+        if($query){
+            return $query;
         }
 
         return $model::query();
     }
 
-    public static function getSearchQuery(Request $request, $model)
+    public static function getSearchQuery(Request $request, $model, Builder $existinQuery = null)
     {
         $search = $request->get('search');
 
@@ -87,19 +77,13 @@ class SearchFormatter
                 $searchTerm = $term;
             }
 
-            return $model::search($attributes, $searchTerm);
-        }
-
-        $exactSearch = $request->get('exact_search');
-
-        if ($exactSearch) {
-            return self::getExactSearchQuery($request, $model);
+            return $model::search($attributes, $searchTerm, $existinQuery);
         }
 
         return $model::query();
     }
 
-    public static function getExactSearchQuery(Request $request, $model)
+    public static function getExactSearchQuery(Request $request, $model, Builder $existinQuery = null)
     {
         $search = $request->get('exact_search');
 
@@ -131,7 +115,7 @@ class SearchFormatter
                 }
             }
 
-            return $model::exactSearch($attributes, $searchTerms);
+            return $model::exactSearch($attributes, $searchTerms, $existinQuery);
         }
 
         return $model::query();

@@ -14,9 +14,13 @@ class ExactSearchProvider extends ServiceProvider
 
     public function boot()
     {
-        Builder::macro('exactSearch', function ($attributes, array $searchTerms) {
+        Builder::macro('exactSearch', function ($attributes, array $searchTerms, Builder $query = null) {
             
-            $this->where(function (Builder $query) use ($attributes, $searchTerms) {
+            if(!$query){
+                $query = $this;
+            }
+            
+            $query->where(function (Builder $query) use ($attributes, $searchTerms) {
                 foreach (array_wrap($attributes) as $key => $attribute) {
                     $query->when(str_contains($attribute, '.'), function (Builder $query) use ($attribute, $searchTerms, $key) {
                         [
@@ -33,7 +37,7 @@ class ExactSearchProvider extends ServiceProvider
                 }
             });
                 
-                return $this;
+            return $query;
         });
     }
 }

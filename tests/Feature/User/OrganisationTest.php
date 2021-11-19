@@ -31,9 +31,33 @@ class OrganisationTest extends ApiTestCase
         $data = [
             'organisation_name' => 'changed name',
         ];
-
         $response = $this->put('/api/organisations/1', $data);
 
+        $response->assertStatus(200);
+    }
+    
+    public function test_update_organisation_status()
+    {
+        $this->loginAdmin();
+        
+        $data = [
+            'status' => 'declined'
+        ];
+        
+        $response = $this->put('/api/organisations/change-status/1', $data);
+        $response->assertStatus(200);
+    }
+    
+    public function test_send_email()
+    {
+        $this->loginAdmin();
+        
+        $data = [
+            'emails' => ["email1@email.com", "email2@email.com"],
+            'message' => "email message"
+        ];
+        
+        $response = $this->post('/api/send-email', $data);
         $response->assertStatus(200);
     }
 
