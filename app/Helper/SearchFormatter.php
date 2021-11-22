@@ -18,8 +18,6 @@ class SearchFormatter
 
     public static function getSearchResults(Request $request, $model)
     {
-       
-
         return self::getSearchQueries($request, $model)->get();
     }
 

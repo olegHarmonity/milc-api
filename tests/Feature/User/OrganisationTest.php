@@ -10,7 +10,6 @@ class OrganisationTest extends ApiTestCase
     public function test_get_org_types()
     {
         $response = $this->get('/api/organisation-types');
-
         $response
             ->assertStatus(200);
     }
