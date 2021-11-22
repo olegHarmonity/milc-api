@@ -79,6 +79,9 @@ class UserController extends Controller
             $userRequest['role'] = UserRoles::$ROLE_COMPANY_ADMIN;
 
             $user = User::create($userRequest);
+            
+            $organisation->organisation_owner_id = $user->id;
+            $organisation->save();
 
             DB::commit();
 

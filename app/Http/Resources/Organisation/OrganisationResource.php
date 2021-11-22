@@ -6,7 +6,9 @@ use App\Http\Resources\ImageResource;
 use App\Models\Image;
 use App\Models\Organisation;
 use App\Models\OrganisationType;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\User\UserResource;
 
 class OrganisationResource extends JsonResource
 {
@@ -30,6 +32,11 @@ class OrganisationResource extends JsonResource
             $organisation['organisation_type'] = new OrganisationTypeResource($orgType);
         }
 
+        if(isset($organisation['organisation_owner_id'])){
+            $owner = User::where('id',$organisation['organisation_owner_id'])->get();
+            $organisation['organisation_owner'] = new UserResource($owner);
+        }
+        
         return $organisation;
     }
 }

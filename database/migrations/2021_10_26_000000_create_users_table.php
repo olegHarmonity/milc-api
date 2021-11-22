@@ -36,6 +36,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+            
+            
+        Schema::table('organisations', function(Blueprint $table) {
+            $table->foreignId('organisation_owner_id')->unsigned()->nullable()->references('id')->on('users')->onDelete('set null');
+        });
     }
 
     /**

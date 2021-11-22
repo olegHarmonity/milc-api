@@ -41,6 +41,11 @@ class Organisation extends Model
     {
         return $this->belongsTo(Image::class);
     }
+    
+    public function organisation_owner()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function organisation_type()
     {
