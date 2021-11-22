@@ -23,7 +23,6 @@ class OrganisationTest extends ApiTestCase
             ->assertStatus(200);
     }
 
-
     public function test_update_organisation()
     {
         $this->loginAdmin();

@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
+use App\Util\OrganisationStatuses;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrganisationAcceptedEmail;
+use App\Mail\OrganisationDeclinedEmail;
 
 class OrganisationController extends Controller
 {
@@ -48,8 +52,22 @@ class OrganisationController extends Controller
         Gate::authorize('updateStatus', $organisation);
         
         try {
-            $organisation->update($request->validated());
-   
+            $statusRequest = $request->validated();
+            
+            $organisation->update($statusRequest);
+            
+            if($statusRequest['status'] === OrganisationStatuses::$ACCEPTED){
+                foreach($organisation->users as $user){
+                    Mail::to($user->email)->send(new OrganisationAcceptedEmail());
+                }
+            }
+            
+            if($statusRequest['status'] === OrganisationStatuses::$DECLINED){
+                foreach($organisation->users as $user){
+                    Mail::to($user->email)->send(new OrganisationDeclinedEmail());
+                }
+            }
+            
             return (new OrganisationResource($organisation))
             ->response()
             ->setStatusCode(Response::HTTP_OK);

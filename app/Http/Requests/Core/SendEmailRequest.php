@@ -13,6 +13,9 @@ class SendEmailRequest extends FormRequest
     public function rules()
     {
         return [
+            'subject' => [
+                'sometimes'
+            ],
             'emails' => [
                 'required'
             ],
