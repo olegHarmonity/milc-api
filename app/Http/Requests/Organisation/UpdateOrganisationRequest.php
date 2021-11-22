@@ -19,6 +19,12 @@ class UpdateOrganisationRequest extends FormRequest
                 'sometimes',
                 'required',
             ],
+            'email' => [
+                'sometimes',
+                'required',
+                'email',
+                'unique:organisations'
+            ],
             'organisation_type_id' => [
                 'sometimes',
                 'required',

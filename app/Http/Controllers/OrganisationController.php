@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Helper\SearchFormatter;
@@ -21,6 +20,7 @@ use App\Mail\OrganisationDeclinedEmail;
 
 class OrganisationController extends Controller
 {
+
     public function index(Request $request)
     {
         $organisations = SearchFormatter::getSearchQuery($request, Organisation::class);
@@ -38,39 +38,29 @@ class OrganisationController extends Controller
     public function update(UpdateOrganisationRequest $request, Organisation $organisation)
     {
         $organisation->update($request->validated());
-      
 
-        return (new OrganisationResource($organisation))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return (new OrganisationResource($organisation))->response()->setStatusCode(Response::HTTP_OK);
     }
-    
-    
+
     public function updateStatus(UpdateOrganisationStatusRequest $request, $id)
     {
         $organisation = Organisation::findOrFail($id);
         Gate::authorize('updateStatus', $organisation);
-        
+
         try {
             $statusRequest = $request->validated();
-            
+
             $organisation->update($statusRequest);
-            
-            if($statusRequest['status'] === OrganisationStatuses::$ACCEPTED){
-                foreach($organisation->users as $user){
-                    Mail::to($user->email)->send(new OrganisationAcceptedEmail());
-                }
+
+            if ($statusRequest['status'] === OrganisationStatuses::$ACCEPTED) {
+                Mail::to($organisation->email)->send(new OrganisationAcceptedEmail());
             }
-            
-            if($statusRequest['status'] === OrganisationStatuses::$DECLINED){
-                foreach($organisation->users as $user){
-                    Mail::to($user->email)->send(new OrganisationDeclinedEmail());
-                }
+
+            if ($statusRequest['status'] === OrganisationStatuses::$DECLINED) {
+                Mail::to($organisation->email)->send(new OrganisationDeclinedEmail());
             }
-            
-            return (new OrganisationResource($organisation))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+
+            return (new OrganisationResource($organisation))->response()->setStatusCode(Response::HTTP_OK);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());

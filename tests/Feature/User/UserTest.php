@@ -93,6 +93,7 @@ class UserTest extends ApiTestCase
             'password' => 'password77777',
             'password_confirmation' => 'password77777',
             'organisation' => [
+                'email' => $email,
                 'organisation_name' => 'organisation',
                 'registration_number' => '783823292',
                 'phone_number' => '782378239329832',
@@ -117,7 +118,6 @@ class UserTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/register', $data);
-
         $response->assertStatus(201);
 
         $data = [

@@ -11,6 +11,7 @@ class Organisation extends Model
     use HasFactory, FormattedTimestamps;
 
     protected $fillable = [
+        'email',
         'organisation_name',
         'registration_number',
         'phone_number',

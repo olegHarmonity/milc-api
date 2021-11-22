@@ -14,6 +14,7 @@ class OrganisationFactory extends Factory
     public function definition()
     {
         return [
+            'email' => $this->faker->email(),
             'organisation_name' => $this->faker->company(),
             'registration_number' => $this->faker->randomNumber(7),
             'phone_number' => $this->faker->phoneNumber(),
