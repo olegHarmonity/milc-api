@@ -128,6 +128,7 @@ class UserTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/register', $data);
+
         $response->assertStatus(201);
         $data = [
             'email' => $email,
@@ -135,8 +136,7 @@ class UserTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/auth/login', $data);
-        $response->assertStatus(200)->assertJson(fn (AssertableJson $json) => $json->has('access_token')
-            ->etc());
+        $response->assertStatus(401);
     }
 
     public function test_update_user()
