@@ -4,6 +4,7 @@ namespace Tests\Feature\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\ApiTestCase;
+use App\Util\UserRoles;
 
 class UserTest extends ApiTestCase
 {
@@ -51,7 +52,7 @@ class UserTest extends ApiTestCase
 
         $response->assertStatus(200);
     }
-
+    
     public function test_forgot_password()
     {
         $data = [
@@ -59,6 +60,15 @@ class UserTest extends ApiTestCase
         ];
         $response = $this->post('/api/forgot-password', $data);
         $response->assertStatus(200);
+    }
+
+    public function test_forgot_password_nonexisting_email()
+    {
+        $data = [
+            'email' => 'admieweewn@milc.com'
+        ];
+        $response = $this->post('/api/forgot-password', $data);
+        $response->assertStatus(404);
     }
 
     /*
@@ -135,7 +145,7 @@ class UserTest extends ApiTestCase
 
         $data = [
             'first_name' => 'changed name',
-            'last_name' => 'changedlast name'
+            'last_name' => 'changedlast name',
         ];
 
         $response = $this->put('/api/users/1', $data);
