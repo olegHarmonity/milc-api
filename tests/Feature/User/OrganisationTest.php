@@ -4,6 +4,7 @@ namespace Tests\Feature\User;
 
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\ApiTestCase;
+use Illuminate\Http\UploadedFile;
 
 class OrganisationTest extends ApiTestCase
 {
@@ -28,6 +29,7 @@ class OrganisationTest extends ApiTestCase
 
         $data = [
             'organisation_name' => 'changed name',
+            'logo' => new UploadedFile(resource_path('test-files/image.png'), 'image.png', null, null, true)
         ];
         $response = $this->put('/api/organisations/1', $data);
 
