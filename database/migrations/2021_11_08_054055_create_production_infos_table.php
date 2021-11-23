@@ -13,8 +13,8 @@ class CreateProductionInfosTable extends Migration
             $table->timestamps();
             $table->foreignId('product_id')->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             
-            $table->date('release_year')->nullable();
-            $table->date('production_year')->nullable();
+            $table->integer('release_year')->nullable();
+            $table->integer('production_year')->nullable();
             $table->string('production_status')->nullable();
             $table->string('country_of_origin')->nullable();
             $table->text('awards')->nullable();

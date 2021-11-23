@@ -84,7 +84,7 @@ class ProductTest extends ApiTestCase
     
     public function test_get_products_by_multiple_filters()
     {
-        $response = $this->get('/api/products?exact_search[production_info.release_year][0]=2021-01-01&exact_search[production_info.release_year][1]=2020-01-01&exact_search[production_info.release_year][2]=2019-01-01');
+        $response = $this->get('/api/products?exact_search[production_info.release_year][0]=2021&exact_search[production_info.release_year][1]=2020&exact_search[production_info.release_year][2]=2019');
         $response->assertStatus(200);
     }
  
@@ -184,8 +184,8 @@ class ProductTest extends ApiTestCase
             ],
             'allow_requests' => 1,
             'production_info' => [
-                'release_year' => '2017-01-01',
-                'production_year' => '2016-01-01',
+                'release_year' => 2017,
+                'production_year' => 2016,
                 'production_status' => "released",
                 'country_of_origin' => "RO",
                 'directors' => [
@@ -321,8 +321,8 @@ class ProductTest extends ApiTestCase
                 'festivals' => [
                     ""
                 ],
-                'release_year' => '2021-01-01',
-                'production_year' => '2021-01-01',
+                'release_year' => 2021,
+                'production_year' => 2021,
                 'country_of_origin' => "US"
             ],
             'marketing_assets' => [
@@ -403,8 +403,8 @@ class ProductTest extends ApiTestCase
             'allow_requests' => 1,
             'production_info' => [
                 'id' => 1,
-                'release_year' => '2017-01-01',
-                'production_year' => '2016-01-01',
+                'release_year' => 2017,
+                'production_year' => 2016,
                 'production_status' => "released",
                 'country_of_origin' => "RO",
                 'directors' => [
