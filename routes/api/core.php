@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\AudioController;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\VideoController;
+use App\Http\Controllers\Media\AudioController;
+use App\Http\Controllers\Media\FileController;
+use App\Http\Controllers\Media\ImageController;
+use App\Http\Controllers\Media\VideoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmailController;
+use App\Http\Controllers\Core\EmailController;
 
 
 Route::post('/send-email', [

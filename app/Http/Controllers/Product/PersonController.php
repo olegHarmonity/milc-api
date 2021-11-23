@@ -1,6 +1,7 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\UpdatePersonRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Product\PersonResource;
@@ -16,7 +17,7 @@ class PersonController extends Controller
 
     public function index(Request $request)
     {
-        $persons = SearchFormatter::getSearchQuery($request, Person::class);
+        $persons = SearchFormatter::getSearchQueries($request, Person::class);
         
         $persons = $this->getPersonResponseData($persons);
         

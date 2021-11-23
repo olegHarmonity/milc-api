@@ -1,6 +1,7 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Core;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Core\SendEmailRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
@@ -27,7 +28,7 @@ class EmailController extends Controller
         }
 
         return response()->json([
-            "status" => Response::HTTP_CREATED,
+            "status" => Response::HTTP_OK,
             "message" => "Email has been successfully sent!"
         ]);
     }

@@ -92,14 +92,13 @@ class ProductTest extends ApiTestCase
     public function test_get_products_by_multiple_filters_2()
     {
         $response = $this->get('/api/products?exact_search[production_info.production_status][0]=released&exact_search[production_info.production_status][1]=unreleased&exact_search[genres.movie_genre_id]=3');
-   
         $response->assertStatus(200);
     }
     
     
     public function test_get_products_by_genre_id()
     {
-        $response = $this->get('/api/products?exact_search[genres.movie_genre_id]=1');
+        $response = $this->get('/api/products?page=1&per_page=10&exact_search[genres.movie_genre_id]=2&start_date[created_at]=2017-09-03&end_date[created_at]=2022-07-08');
         $response->assertStatus(200);
     }
     

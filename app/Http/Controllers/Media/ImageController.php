@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Media;
 
 use App\Helper\FileUploader;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Core\CreateImageRequest;
 use App\Http\Resources\ImageResource;
 use App\Http\Resources\Resource;

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Organisation;
 
 use App\Helper\SearchFormatter;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Organisation\OrganisationTypeCollectionResource;
 use App\Http\Resources\Organisation\OrganisationTypeResource;
 use App\Models\Image;

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -15,5 +14,14 @@ class Controller extends BaseController
     protected function user(): ?User
     {
         return auth()->user();
+    }
+
+    protected function returnResponse($data, $status, $message = '')
+    {
+        return response()->json([
+            'data' => $data,
+            'message' => $message,
+            'status' => $status
+        ]);
     }
 }

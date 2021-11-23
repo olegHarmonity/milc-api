@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
 use App\Helper\SearchFormatter;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\UpdateMovieContentTypeRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;

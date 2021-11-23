@@ -53,7 +53,7 @@ class SearchFormatter
         return $model::query();
     }
 
-    public static function getSearchQuery(Request $request, $model, Builder $existinQuery = null)
+    private static function getSearchQuery(Request $request, $model, Builder $existinQuery = null)
     {
         $search = $request->get('search');
 
@@ -119,7 +119,7 @@ class SearchFormatter
         return $model::query();
     }
 
-    public static function getDateSearchQuery(Request $request, $model)
+    public static function getDateSearchQuery(Request $request, $model, Builder $existinQuery = null)
     {
         $startDateSearch = $request->get('start_date');
         $endDateSearch = $request->get('end_date');
@@ -166,6 +166,6 @@ class SearchFormatter
             }
         }
 
-        return $model::dateFilter($searchAttribute, $startDate, $endDate);
+        return $model::dateFilter($searchAttribute, $startDate, $endDate, $existinQuery);
     }
 }

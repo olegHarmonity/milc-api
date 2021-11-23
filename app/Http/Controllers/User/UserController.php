@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            $arrayRequest = $request->all();
+            $arrayRequest = $request->validated();
             $organisationRequest = $arrayRequest['organisation'];
             unset($arrayRequest['organisation']);
             $userRequest = $arrayRequest;
@@ -73,7 +73,7 @@ class UserController extends Controller
                 $image = FileUploader::uploadFile($request, 'image', 'organisation.logo');
                 $organisationRequest['logo_id'] = $image->id;
             }
-
+            
             $organisation = Organisation::create($organisationRequest);
             $userRequest['organisation_id'] = $organisation->id;
             $userRequest['role'] = UserRoles::$ROLE_COMPANY_ADMIN;
@@ -157,7 +157,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = SearchFormatter::getSearchQuery($request, User::class);
+        $users = SearchFormatter::getSearchQueries($request, User::class);
         
         $users = $users->with('image:id,image_name,image_url,mime,created_at,updated_at');
         

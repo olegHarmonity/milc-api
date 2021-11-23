@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
 use App\Helper\FileUploader;
 use App\Helper\SearchFormatter;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\UpdateMovieGenreRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
@@ -17,7 +18,7 @@ class MovieGenreController extends Controller
 {
     public function index(Request $request)
     {
-        $movieGenres = SearchFormatter::getSearchQuery($request, MovieGenre::class);
+        $movieGenres = SearchFormatter::getSearchQueries($request, MovieGenre::class);
         
         $movieGenres = $this->getMovieGenreResponseData($movieGenres)->get();
         

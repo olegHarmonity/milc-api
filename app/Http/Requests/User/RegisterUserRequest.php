@@ -54,10 +54,12 @@ class RegisterUserRequest extends FormRequest
             'organisation.organisation_name' => [
                 'required',
             ],
-            'organisation.organisation_type_id',
-            'organisation.registration_number' => [
+            'organisation.email' => [
                 'required',
+                'email'
             ],
+            'organisation.organisation_type_id',
+            'organisation.registration_number',
             'organisation.phone_number',
             'organisation.telephone_number',
             'organisation.organisation_role' => [

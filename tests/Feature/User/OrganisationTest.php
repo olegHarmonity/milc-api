@@ -34,6 +34,12 @@ class OrganisationTest extends ApiTestCase
         $response->assertStatus(200);
     }
     
+    public function test_get_organisations_by_status()
+    {
+        $response = $this->get('/api/organisations?exact_search[status]=declined');
+        $response->assertStatus(200);
+    }
+    
     public function test_update_organisation_status()
     {
         $this->loginAdmin();
