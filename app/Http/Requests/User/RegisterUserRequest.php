@@ -23,66 +23,98 @@ class RegisterUserRequest extends FormRequest
             ],
             'first_name' => [
                 'required',
+                'string',
                 'min:2',
                 'max:50'
             ],
             'last_name' => [
                 'required',
+                'string',
                 'min:2',
                 'max:50'
             ],
-            'phone_number',
+            'phone_number' => [
+                'required',
+                'string'
+            ],
             'job_title' => [
                 'required',
+                'string'
             ],
             'country' => [
                 'required',
+                'string',
                 'min:2',
                 'max:2'
             ],
-            'city',
-            'address',
-            'postal_code',
+            'city' => [
+                'string'
+            ],
+            'address' => [
+                'string'
+            ],
+            'postal_code' => [
+                'string'
+            ],
             'password' => [
                 'required',
                 'confirmed',
                 'min:8',
             ],
-            'password_confirmation' => [
-                'required',
-            ],
             'organisation.organisation_name' => [
                 'required',
+                'string'
             ],
             'organisation.email' => [
                 'required',
                 'email'
             ],
-            'organisation.organisation_type_id',
-            'organisation.registration_number',
-            'organisation.phone_number',
-            'organisation.telephone_number',
+            'organisation.organisation_type_id' => [
+                'integer',
+                'exists:organisation_types,id'
+            ],
+            'organisation.registration_number' => [
+                'string'
+            ],
+            'organisation.phone_number' => [
+                'string'
+            ],
+            'organisation.telephone_number' => [
+                'string'
+            ],
             'organisation.organisation_role' => [
                 'required',
                 'in:' . CompanyRoles::getRolesForValidation()
             ],
             'organisation.description' => [
                 'required',
+                'string'
             ],
             'organisation.website_link' => [
                 'required',
+                'string'
             ],
             'organisation.country' => [
                 'required',
+                'string',
                 'min:2',
                 'max:2'
             ],
-            'organisation.city',
-            'organisation.address',
-            'organisation.postal_code',
-            'organisation.social_links',
-            'organisation.website_link',
-            'organisation.logo_id'
+            'organisation.city' => [
+                'string'
+            ],
+            'organisation.address' => [
+                'string'
+            ],
+            'organisation.postal_code' => [
+                'string'
+            ],
+            'organisation.social_links' => [
+                'array'
+            ],
+            'organisation.website_link' => [
+                'string'
+            ],
         ];
     }
 }
