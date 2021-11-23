@@ -7,6 +7,7 @@ use App\Helper\SearchFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\EmailExistsRequest;
 use App\Http\Requests\User\RegisterUserRequest;
+use App\Http\Requests\User\SaveProductRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\CollectionResource;
@@ -14,6 +15,7 @@ use App\Http\Resources\User\EmailExistsResource;
 use App\Http\Resources\User\RegisterResource;
 use App\Http\Resources\User\UserResource;
 use App\Models\Organisation;
+use App\Models\Product;
 use App\Models\User;
 use App\Util\UserRoles;
 use Illuminate\Http\Request;
@@ -218,6 +220,41 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'User deleted!'
+        ]);
+    }
+    
+    public function getSavedProducts()
+    {
+        $savedProducts = $this->user()->saved_products;
+        
+        return CollectionResource::make($savedProducts);
+    }
+    
+    public function saveProduct(SaveProductRequest $request)
+    {
+        $data = $request->validated();
+        
+        $product = Product::findOrFail($data['product_id']);
+        $user = $this->user();
+        
+        $user->saved_products()->attach($product->id);
+        $user->save();
+        
+        return response()->json([
+            'message' => 'Product succesfully saved!'
+        ]);
+    }
+    
+    public function deleteSavedProduct(Request $request, $productId)
+    {
+        $product = Product::findOrFail($productId);
+        $user = $this->user();
+        
+        $user->saved_products()->detach($product->id);
+        $user->save();
+        
+        return response()->json([
+            'message' => 'Product succesfully removed!'
         ]);
     }
 }

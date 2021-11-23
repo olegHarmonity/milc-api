@@ -20,6 +20,12 @@ Route::post('/reset-password',  [ForgotPasswordController::class, 'reset']);
 
 Route::post('/change-password',  [UserController::class, 'change_password']);
 
+Route::get('/users/saved-products',  [UserController::class, 'getSavedProducts']);
+
+Route::post('/users/save-product',  [UserController::class, 'saveProduct']);
+
+Route::delete('/users/delete-saved-product/{productId}',  [UserController::class, 'deleteSavedProduct']);
+
 Route::middleware(['auth'])->group(function () {
     Route::apiResource('users', UserController::class)->middleware('auth');
 });
