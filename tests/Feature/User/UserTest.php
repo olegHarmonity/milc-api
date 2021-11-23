@@ -140,7 +140,6 @@ class UserTest extends ApiTestCase
 
         $response = $this->put('/api/users/1', $data);
 
-        dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }    
     

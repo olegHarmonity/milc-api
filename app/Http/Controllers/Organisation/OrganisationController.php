@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Organisation;
 
+use App\Helper\FileUploader;
 use App\Helper\SearchFormatter;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use App\Http\Controllers\Controller;
@@ -38,7 +39,14 @@ class OrganisationController extends Controller
 
     public function update(UpdateOrganisationRequest $request, Organisation $organisation)
     {
-        $organisation->update($request->validated());
+        $data = $request->validated();
+        
+        if ($request->file('logo')) {
+            $image = FileUploader::uploadFile($request, 'image', 'logo');
+            $data['logo_id'] = $image->id;
+        }
+        
+        $organisation->update($data);
 
         return (new OrganisationResource($organisation))->response()->setStatusCode(Response::HTTP_OK);
     }

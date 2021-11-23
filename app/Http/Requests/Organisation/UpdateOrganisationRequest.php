@@ -53,7 +53,8 @@ class UpdateOrganisationRequest extends FormRequest
             'postal_code' => 'sometimes',
             'social_links' => 'sometimes',
             'website_link' => 'sometimes',
-            'logo_id' => 'sometimes'
+            'logo_id' => 'sometimes',
+            'logo' => 'sometimes'
         ];
     }
 }
