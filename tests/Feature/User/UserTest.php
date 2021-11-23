@@ -8,6 +8,39 @@ use App\Util\UserRoles;
 
 class UserTest extends ApiTestCase
 {
+    
+    public function test_save_product()
+    {
+        $this->loginUser();
+        
+        $data = [
+            'product_id' => 2
+        ];
+        
+        $response = $this->post('/api/users/save-product', $data);
+        
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_saved_products()
+    {
+        $this->loginUser();
+        
+        $response = $this->get('/api/users/saved-products');
+        
+        $response->assertStatus(200);
+    }
+    
+    
+    public function test_delete_saved_product()
+    {
+        $this->loginUser();
+        
+        $response = $this->delete('/api/users/delete-saved-product/2');
+
+        $response->assertStatus(200);
+    }
+    
     public function test_update_user_company_admin()
     {
         $this->loginCompanyAdmin();

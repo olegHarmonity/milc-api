@@ -44,7 +44,7 @@ class Product extends Model
         'subtitle_languages' => 'array',
         'links' => 'array',
     ];
-
+    
     public function available_formats()
     {
         return $this->belongsToMany(MovieFormat::class, 'product_available_formats');

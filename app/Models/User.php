@@ -88,7 +88,12 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(Organisation::class);
     }
-
+    
+    public function saved_products()
+    {
+        return $this->belongsToMany(Product::class, 'saved_products');
+    }
+    
     public function is_from_seller_organisation()
     {
         return in_array($this->organisation->organisation_role, CompanyRoles::getSellerRolesArray());

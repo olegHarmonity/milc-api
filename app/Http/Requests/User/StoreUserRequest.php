@@ -36,7 +36,7 @@ class StoreUserRequest extends FormRequest
             'organisation_id' => [
                 'sometimes', 'integer', 'exists:organisations,id'
             ],
-            'image_id'
+            'image_id' => []
         ];
     }
 }

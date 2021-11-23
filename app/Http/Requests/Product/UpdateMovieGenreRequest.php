@@ -19,7 +19,7 @@ class UpdateMovieGenreRequest extends FormRequest
                 'min:2',
                 'max:50'
             ],
-            'image_id'
+            'image_id => []'
         ];
     }
 }
