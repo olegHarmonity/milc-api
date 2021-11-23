@@ -26,7 +26,7 @@ class VerifyAccountEmail extends Mailable
 
         return $this->markdown('mail.verify')
             ->subject($this->subject)
-            ->with(['verificationUrl',$verificationUrl ]);
+            ->with(['verificationUrl' => $verificationUrl ]);
     }
 }
 
