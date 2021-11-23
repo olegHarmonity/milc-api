@@ -1,8 +1,9 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Organisation;
 
 use App\Helper\SearchFormatter;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Organisation\UpdateOrganisationRequest;
 use App\Http\Requests\Organisation\UpdateOrganisationStatusRequest;
 use App\Http\Resources\Organisation\OrganisationCollectionResource;
@@ -23,7 +24,7 @@ class OrganisationController extends Controller
 
     public function index(Request $request)
     {
-        $organisations = SearchFormatter::getSearchQuery($request, Organisation::class);
+        $organisations = SearchFormatter::getSearchQueries($request, Organisation::class);
         $organisations = $organisations->with('organisation_type:id,name');
         $organisations = $organisations->paginate($request->input('per_page'));
 

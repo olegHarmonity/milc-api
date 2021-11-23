@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\OrganisationController;
-use App\Http\Controllers\OrganisationTypeController;
+use App\Http\Controllers\Organisation\OrganisationController;
+use App\Http\Controllers\Organisation\OrganisationTypeController;
 use Illuminate\Support\Facades\Route;
 
 

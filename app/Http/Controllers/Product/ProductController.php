@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
 use App\DataTransformer\Product\ProductStoreDataTransformer;
 use App\DataTransformer\Product\ProductUpdateDataTransformer;
 use App\Helper\SearchFormatter;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\CollectionResource;

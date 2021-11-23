@@ -113,13 +113,12 @@ class UserTest extends ApiTestCase
                     ]
                 ],
                 'organisation_type_id' => 1,
-                'logo' => new UploadedFile(resource_path('test-files/image.png'), 'image.png', null, null, true)
+                'logo' => new UploadedFile(resource_path('test-files/image_png.PNG'), 'image_png.PNG', null, null, true)
             ]
         ];
 
         $response = $this->post('/api/register', $data);
         $response->assertStatus(201);
-
         $data = [
             'email' => $email,
             'password' => 'password77777'
@@ -132,15 +131,16 @@ class UserTest extends ApiTestCase
 
     public function test_update_user()
     {
-        $this->loginAdmin();
+        $this->loginCompanyAdmin();
 
         $data = [
             'first_name' => 'changed name',
             'last_name' => 'changedlast name'
         ];
 
-        $response = $this->put('/api/users/2', $data);
+        $response = $this->put('/api/users/1', $data);
 
+        dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }    
     

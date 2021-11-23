@@ -22,7 +22,7 @@ class CreateOrganisationsTable extends Migration
             
             $table->string('organisation_name');
             $table->string('email');
-            $table->string('registration_number');
+            $table->string('registration_number')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('telephone_number')->nullable();
             $table->string('organisation_role');

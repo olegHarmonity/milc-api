@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class ExactSearchProvider extends ServiceProvider
 {
@@ -20,19 +21,32 @@ class ExactSearchProvider extends ServiceProvider
                 $query = $this;
             }
             
+           
+            
             $query->where(function (Builder $query) use ($attributes, $searchTerms) {
+                
                 foreach (array_wrap($attributes) as $key => $attribute) {
-                    $query->when(str_contains($attribute, '.'), function (Builder $query) use ($attribute, $searchTerms, $key) {
+                    
+                    $searchTermsInput = [];
+                    if(is_array($searchTerms[$key])){
+                        foreach($searchTerms[$key] as $searchItem){
+                            $searchTermsInput[] = strtoupper($searchItem);
+                        }
+                    }else{
+                        $searchTermsInput[] = strtoupper($searchTerms[$key]);
+                    }
+                    
+                    $query->when(str_contains($attribute, '.'), function (Builder $query) use ($attribute, $searchTermsInput, $key) {
                         [
                         $relationName,
                         $relationAttribute
                         ] = explode('.', $attribute);
                         
-                        $query->whereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerms, $key) {
-                            $query->whereIn($relationAttribute, $searchTerms[$key]);
+                        $query->whereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTermsInput, $key) {
+                            $query->whereIn(DB::raw('upper('.$relationAttribute.')'), $searchTermsInput);
                         });
-                    }, function (Builder $query) use ($attribute, $searchTerms, $key) {
-                        $query->whereIn($attribute, $searchTerms[$key]);
+                    }, function (Builder $query) use ($attribute, $searchTermsInput, $key) {
+                        $query->whereIn(DB::raw('upper('.$attribute.')'), $searchTermsInput);
                     });
                 }
             });

@@ -1,10 +1,10 @@
 <?php
-use App\Http\Controllers\MovieContentTypeController;
-use App\Http\Controllers\MovieFormatController;
-use App\Http\Controllers\MovieGenreController;
-use App\Http\Controllers\MovieRightController;
-use App\Http\Controllers\PersonController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Product\MovieContentTypeController;
+use App\Http\Controllers\Product\MovieFormatController;
+use App\Http\Controllers\Product\MovieGenreController;
+use App\Http\Controllers\Product\MovieRightController;
+use App\Http\Controllers\Product\PersonController;
+use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::put('/products/change-status/{id}', [

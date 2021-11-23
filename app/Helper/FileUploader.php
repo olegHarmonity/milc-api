@@ -17,7 +17,7 @@ class FileUploader
         $fileTypes = ["file", "video", "image", "audio"];
 
         if (!in_array($fileType, $fileTypes)) {
-            throw new BadRequestHttpException("Attached file must be one of fthe ollowing types: " . implode(",", $fileTypes), null, 400);
+            throw new BadRequestHttpException("Attached file must be one of the following types: " . implode(",", $fileTypes), null, 400);
         }
 
         if ($field === null) {
@@ -65,11 +65,11 @@ class FileUploader
         ]);
 
         if ($validator->fails()) {
-            throw new BadRequestHttpException($validator->messages(), null, 400);
+            throw new BadRequestHttpException("An error occured during file upload. Please try again.", null, 400);
         }
 
-        if (!in_array($file->getClientOriginalExtension(), $extensions[$type])) {
-            throw new BadRequestHttpException($validator->messages(), null, 400);
+        if (!in_array(strtolower($file->getClientOriginalExtension()), $extensions[$type])) {
+            throw new BadRequestHttpException("File extension is not supported. Supported extensions: ".implode(',',$extensions[$type]), null, 400);
         }
     }
 }
