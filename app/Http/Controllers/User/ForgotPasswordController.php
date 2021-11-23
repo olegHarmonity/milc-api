@@ -17,7 +17,6 @@ class ForgotPasswordController extends Controller
         ]);
         try {
             $response = Password::sendResetLink($credentials);
-            dump($response);
             if ($response === 'passwords.sent') {
                 return response()->json(array(
                     "status" => 200,
