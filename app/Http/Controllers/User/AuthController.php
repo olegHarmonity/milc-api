@@ -25,7 +25,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        $credentials['is_verified'] = 1;
+        // $credentials['is_verified'] = 1;
 
         try {
             if (! $token = auth()->attempt($credentials)) {
