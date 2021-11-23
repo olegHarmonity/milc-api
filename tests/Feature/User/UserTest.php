@@ -46,7 +46,7 @@ class UserTest extends ApiTestCase
         
         $response = $this->get('/api/auth/verify-email/blabla');
         
-        $response->assertStatus(200);
+        $response->assertStatus(400);
     }
     
     

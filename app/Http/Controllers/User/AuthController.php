@@ -85,8 +85,8 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => false,
-            'error' => "Verification code is invalid."
-        ]);
+            'error' => "Verification code is invalid.",
+        ])->setStatusCode(400);
     }
 
     protected function respondWithToken($token)
