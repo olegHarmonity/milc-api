@@ -18,7 +18,6 @@ class UserTest extends ApiTestCase
         ];
         
         $response = $this->post('/api/users/save-product', $data);
-        
         $response->assertStatus(200);
     }
     
@@ -40,6 +39,16 @@ class UserTest extends ApiTestCase
 
         $response->assertStatus(200);
     }
+    
+    public function test_get_verify_email()
+    {
+        $this->loginUser();
+        
+        $response = $this->get('/api/auth/verify-email/blabla');
+        
+        $response->assertStatus(200);
+    }
+    
     
     public function test_update_user_company_admin()
     {

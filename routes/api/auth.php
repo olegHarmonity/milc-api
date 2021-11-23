@@ -16,4 +16,8 @@ Route::group([
 
     Route::post('/refresh', [AuthController::class, 'refresh'])
         ->name('refresh');
+    
+    Route::get('/verify-email/{verification_code}', [AuthController::class, 'verifyUser'])
+    ->name('verify_user');
+        
 });

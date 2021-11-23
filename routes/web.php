@@ -21,7 +21,3 @@ Route::get('/', function () {
 Route::get('auth/reset-password/{email}')
     ->name('password.reset');
 
-Route::get('verify-email/{verification_code}', [AuthController::class, 'verifyUser'])
-     ->name('verify_user');
-
-
