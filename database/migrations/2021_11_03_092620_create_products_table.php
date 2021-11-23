@@ -20,15 +20,15 @@ class CreateProductsTable extends Migration
             $table->foreignId('trailer_id')->unsigned()->nullable()->references('id')->on('videos');
 
             $table->string('title');
-            $table->string('alternative_title');
-            $table->integer('runtime')->unsigned();
-            $table->text('synopsis');
-            $table->text('keywords');
-            $table->string('original_language');
-            $table->text('dubbing_languages');
-            $table->text('subtitle_languages');
-            $table->text('links');
-            $table->boolean('allow_requests');
+            $table->string('alternative_title')->nullable();
+            $table->integer('runtime')->unsigned()->nullable();
+            $table->text('synopsis')->nullable();
+            $table->text('keywords')->nullable();
+            $table->string('original_language')->nullable();
+            $table->text('dubbing_languages')->nullable();
+            $table->text('subtitle_languages')->nullable();
+            $table->text('links')->nullable();
+            $table->boolean('allow_requests')->default(false);
             $table->string('status')->default(ProductStatuses::$ACTIVE);
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('auth/reset-password/{email}')
     ->name('password.reset');
+
+Route::get('verify-email/{verification_code}', [AuthController::class, 'verifyUser'])
+     ->name('verify_user');
 
 

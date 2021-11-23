@@ -21,10 +21,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
+use App\Mail\VerifyAccountEmail;
 
 class UserController extends Controller
 {
@@ -82,6 +84,12 @@ class UserController extends Controller
             
             $organisation->organisation_owner_id = $user->id;
             $organisation->save();
+            
+            $verificationCode = str_random(30);
+            DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verificationCode]);
+            
+            Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode));
+            
 
             DB::commit();
 

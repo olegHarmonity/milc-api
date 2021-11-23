@@ -14,7 +14,7 @@ class CreateMarketingAssetsTable extends Migration
             $table->foreignId('product_id')->unsigned()->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('key_artwork_id')->unsigned()->nullable()->references('id')->on('images');
             
-            $table->text('copyright_information');
+            $table->text('copyright_information')->nullable();
             $table->text('links')->nullable();
         });
             
