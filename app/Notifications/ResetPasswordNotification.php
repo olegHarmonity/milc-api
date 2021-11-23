@@ -10,7 +10,7 @@ class ResetPasswordNotification extends ResetPassword
 
     public function __construct($token)
     {
-        $this->webAppUrl = config('app.web_url');;
+        $this->webAppUrl = config('app.web_url');
         parent::__construct($token);
     }
 

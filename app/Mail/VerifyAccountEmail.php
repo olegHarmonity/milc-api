@@ -21,12 +21,12 @@ class VerifyAccountEmail extends Mailable
     
     public function build()
     {
+        $webAppUrl = rtrim(config('app.web_url'), '/');
+        $verificationUrl = $webAppUrl.'/auth/verify-email/'.$this->verificationCode;
+
         return $this->markdown('mail.verify')
             ->subject($this->subject)
-            ->with([
-            'verificationCode',
-                $this->verificationCode
-        ]);
+            ->with(['verificationUrl',$verificationUrl ]);
     }
 }
 
