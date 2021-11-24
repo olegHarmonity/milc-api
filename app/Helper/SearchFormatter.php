@@ -9,19 +9,19 @@ use Symfony\Component\HttpFoundation\Request;
 class SearchFormatter
 {
 
-    public static function getPaginatedSearchResults(Request $request, $model)
+    public static function getPaginatedSearchResults(Request $request, $model, Builder $query = null)
     {
-        $searchQuery = self::getSearchQuery($request, $model);
+        $searchQuery = self::getSearchQueries($request, $model, $query);
 
         return $searchQuery->paginate($request->input('per_page'));
     }
 
-    public static function getSearchResults(Request $request, $model)
+    public static function getSearchResults(Request $request, $model, Builder $query = null)
     {
-        return self::getSearchQueries($request, $model)->get();
+        return self::getSearchQueries($request, $model, $query)->get();
     }
 
-    public static function getSearchQueries(Request $request, $model)
+    public static function getSearchQueries(Request $request, $model, Builder $query = null)
     {
         $search = $request->get('search');
 
@@ -31,8 +31,6 @@ class SearchFormatter
         $endDateSearch = $request->get('end_date');
         $dateSearch = $request->get('date');
 
-        $query = null;
-        
         if ($search) {
             $query = self::getSearchQuery($request, $model, $query);
         }

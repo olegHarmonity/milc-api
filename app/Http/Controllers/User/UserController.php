@@ -223,11 +223,36 @@ class UserController extends Controller
         ]);
     }
     
-    public function getSavedProducts()
+    public function getSavedProducts(Request $request)
     {
-        $savedProducts = $this->user()->saved_products;
+        $products = SearchFormatter::getSearchQueries($request, Product::class, $this->user()->saved_products()->getQuery());
         
-        return CollectionResource::make($savedProducts);
+        
+        $products = $products->with(
+            'content_type:id,name',
+            'genres:id,name',
+            'available_formats:id,name',
+            'marketing_assets:id,key_artwork_id',
+            'marketing_assets.key_artwork:id,image_name,image_url',
+            'organisation:id,organisation_name',
+            'production_info:id,production_year,release_year',
+            );
+        
+        $products = $products->select([
+            'saved_products.product_id',
+            'title',
+            'synopsis',
+            'runtime',
+            'original_language',
+            'content_type_id',
+            'marketing_assets_id',
+            'production_info_id',
+            'organisation_id',
+            'status',
+            'keywords',
+        ]);
+        
+        return CollectionResource::make($products->get());
     }
     
     public function saveProduct(SaveProductRequest $request)

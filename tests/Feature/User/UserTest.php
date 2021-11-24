@@ -25,8 +25,7 @@ class UserTest extends ApiTestCase
     {
         $this->loginUser();
         
-        $response = $this->get('/api/users/saved-products');
-        
+        $response = $this->get('/api/users/saved-products?search[title]=a');
         $response->assertStatus(200);
     }
     

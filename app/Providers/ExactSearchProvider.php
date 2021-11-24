@@ -21,8 +21,6 @@ class ExactSearchProvider extends ServiceProvider
                 $query = $this;
             }
             
-           
-            
             $query->where(function (Builder $query) use ($attributes, $searchTerms) {
                 
                 foreach (array_wrap($attributes) as $key => $attribute) {
