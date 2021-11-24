@@ -106,9 +106,9 @@ class AuthController extends Controller
         }
 
         $existingVerification = DB::table('user_verifications')->where('user_id', $user->id)->first();
-
-        if ($existingVerification) {
-            $existingVerification->delete();
+        
+        if(isset($existingVerification->id)){
+            DB::table('user_verifications')->delete($existingVerification->id);
         }
 
         $verificationCode = str_random(30);
