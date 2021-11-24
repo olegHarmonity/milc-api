@@ -77,21 +77,21 @@ class UserController extends Controller
                 $image = FileUploader::uploadFile($request, 'image', 'organisation.logo');
                 $organisationRequest['logo_id'] = $image->id;
             }
-            
+
             $organisation = Organisation::create($organisationRequest);
             $userRequest['organisation_id'] = $organisation->id;
             $userRequest['role'] = UserRoles::$ROLE_COMPANY_ADMIN;
 
             $user = User::create($userRequest);
-            
+
             $organisation->organisation_owner_id = $user->id;
             $organisation->save();
-            
+
             $verificationCode = str_random(30);
-            DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verificationCode]);
-          
+            DB::table('user_verifications')->insert(['user_id' => $user->id, 'token' => $verificationCode]);
+
             Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode));
-            
+
             DB::commit();
 
             return (new RegisterResource($user))
@@ -107,9 +107,9 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         Gate::authorize('update', $user);
-        
+
         $data = $request->validated();
-        
+
         if ($request->file('image')) {
             $image = FileUploader::uploadFile($request, 'image', 'image');
             $data['image_id'] = $image->id;
@@ -167,17 +167,17 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = SearchFormatter::getSearchQueries($request, User::class);
-        
+
         $users = $users->with('image:id,image_name,image_url,mime,created_at,updated_at');
-        
-        
+
+
         if (!$this->user()->isAdmin()) {
             $users->where('organisation_id', $this->user()->organisation_id);
             $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status', 'image_id']);
-        }else{
-            
+        } else {
+
             $users = $users->select([
-                '*','image_id'
+                '*', 'image_id'
             ]);
         }
 
@@ -195,7 +195,7 @@ class UserController extends Controller
         } else {
             $data['organisation_id'] = $this->user()->organisation_id;
         }
-        
+
         if ($request->file('image')) {
             $image = FileUploader::uploadFile($request, 'image', 'image');
             $data['image_id'] = $image->id;
@@ -255,30 +255,30 @@ class UserController extends Controller
         
         return CollectionResource::make($products->get());
     }
-    
+
     public function saveProduct(SaveProductRequest $request)
     {
         $data = $request->validated();
-        
+
         $product = Product::findOrFail($data['product_id']);
         $user = $this->user();
-        
+
         $user->saved_products()->attach($product->id);
         $user->save();
-        
+
         return response()->json([
             'message' => 'Product succesfully saved!'
         ]);
     }
-    
+
     public function deleteSavedProduct(Request $request, $productId)
     {
         $product = Product::findOrFail($productId);
         $user = $this->user();
-        
+
         $user->saved_products()->detach($product->id);
         $user->save();
-        
+
         return response()->json([
             'message' => 'Product succesfully removed!'
         ]);
