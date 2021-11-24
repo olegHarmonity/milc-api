@@ -239,7 +239,7 @@ class UserController extends Controller
             );
         
         $products = $products->select([
-            'saved_products.product_id',
+            'products.id',
             'title',
             'synopsis',
             'runtime',
@@ -247,9 +247,11 @@ class UserController extends Controller
             'content_type_id',
             'marketing_assets_id',
             'production_info_id',
+            'products.created_at',
             'organisation_id',
             'status',
             'keywords',
+            'is_saved'
         ]);
         
         return CollectionResource::make($products->get());

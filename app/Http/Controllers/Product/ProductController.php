@@ -48,6 +48,7 @@ class ProductController extends Controller
             'organisation_id',
             'status',
             'keywords',
+            'is_saved'
         ]);
 
 

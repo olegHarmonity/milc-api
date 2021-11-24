@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\FormattedTimestamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -44,6 +45,21 @@ class Product extends Model
         'subtitle_languages' => 'array',
         'links' => 'array',
     ];
+    
+    protected $appends = ['is_saved'];
+    
+    public function getIsSavedAttribute()
+    {
+        $user = Auth::user();
+        
+        if(!$user){
+            return false;
+        }
+        
+        if($user->saved_products->contains($this->id)){
+            return true;
+        }
+    }
     
     public function available_formats()
     {
