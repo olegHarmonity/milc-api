@@ -4,9 +4,11 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Request;
+use App\Mail\VerifyAccountEmail;
 
 class AuthController extends Controller
 {
@@ -16,7 +18,8 @@ class AuthController extends Controller
         $this->middleware('auth:api', [
             'except' => [
                 'login',
-                'verifyUser'
+                'verifyUser',
+                'resendVerificationEmail'
             ]
         ]);
     }
@@ -85,8 +88,44 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => false,
-            'error' => "Verification code is invalid.",
+            'error' => "Verification code is invalid."
         ])->setStatusCode(400);
+    }
+
+    public function resendVerificationEmail($email)
+    {
+        DB::beginTransaction();
+
+        $user = DB::table('users')->where('email', $email)->first();
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'error' => "Invalid email."
+            ])->setStatusCode(400);
+        }
+
+        $existingVerification = DB::table('user_verifications')->where('user_id', $user->id)->first();
+
+        if ($existingVerification) {
+            $existingVerification->delete();
+        }
+
+        $verificationCode = str_random(30);
+        
+        DB::table('user_verifications')->insert([
+            'user_id' => $user->id,
+            'token' => $verificationCode
+        ]);
+
+        Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode));
+
+        DB::commit();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'You have successfully verified your email address.'
+        ]);
     }
 
     protected function respondWithToken($token)

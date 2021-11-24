@@ -92,7 +92,6 @@ class UserController extends Controller
           
             Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode));
             
-
             DB::commit();
 
             return (new RegisterResource($user))

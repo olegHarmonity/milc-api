@@ -72,7 +72,6 @@ class ProductTest extends ApiTestCase
     public function test_get_products()
     {
         $response = $this->get('/api/products');
-        
         $response->assertStatus(200);
     }
     

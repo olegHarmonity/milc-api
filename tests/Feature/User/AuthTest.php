@@ -59,4 +59,12 @@ class AuthTest extends ApiTestCase
             ->assertStatus(200)
             ->assertJson(fn(AssertableJson $json) => $json->where('message', 'Successfully logged out'));
     }
+    
+    
+    public function test_resend_verification()
+    {
+        $response = $this->get('/api/auth/resend-verification-email/admin@milc.com');
+        $response
+        ->assertStatus(200);
+    }
 }

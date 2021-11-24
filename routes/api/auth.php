@@ -19,5 +19,8 @@ Route::group([
     
     Route::get('/verify-email/{verification_code}', [AuthController::class, 'verifyUser'])
     ->name('verify_user');
+    
+    Route::get('/resend-verification-email/{email}', [AuthController::class, 'resendVerificationEmail'])
+    ->name('redsend_verification_email');
         
 });
