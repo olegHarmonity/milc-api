@@ -124,7 +124,7 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'You have successfully verified your email address.'
+            'message' => 'Verification link has been sent to your email.'
         ]);
     }
 
