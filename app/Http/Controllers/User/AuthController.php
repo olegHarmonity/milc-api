@@ -9,6 +9,8 @@ use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Request;
 use App\Mail\VerifyAccountEmail;
+use App\Models\UserActivity;
+use App\Util\UserActivities;
 
 class AuthController extends Controller
 {
@@ -43,7 +45,11 @@ class AuthController extends Controller
                 'error' => 'Failed to login, please try again.'
             ], 401);
         }
-
+        
+        DB::beginTransaction();
+        DB::table('user_activities')->insert(['user_id' => auth()->user()->id, 'activity' => UserActivities::$LOGIN, 'created_at' => new \DateTime()]);
+        DB::commit();
+        
         return $this->respondWithToken($token);
     }
 

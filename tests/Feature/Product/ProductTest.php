@@ -8,7 +8,6 @@ use phpDocumentor\Reflection\Types\This;
 
 class ProductTest extends ApiTestCase
 {
-
     public function test_post_movie_genres()
     {
         $this->loginAdmin();
@@ -22,7 +21,6 @@ class ProductTest extends ApiTestCase
 
         $response->assertStatus(201);
     }
-    
     
     public function test_get_products_by_category()
     {

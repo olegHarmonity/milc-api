@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\UserActivity;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -92,6 +93,11 @@ class User extends Authenticatable implements JWTSubject
     public function saved_products()
     {
         return $this->belongsToMany(Product::class, 'saved_products');
+    }
+    
+    public function user_activities()
+    {
+        return $this->hasMany(UserActivity::class);
     }
     
     public function is_from_seller_organisation()

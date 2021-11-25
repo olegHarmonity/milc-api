@@ -28,7 +28,7 @@ class ProductPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if (! $user->organisation()) {
+        if (! $user->organisation) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
@@ -45,7 +45,7 @@ class ProductPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
-        if (! $user->organisation()) {
+        if (! $user->organisation) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 
