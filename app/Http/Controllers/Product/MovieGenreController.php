@@ -78,7 +78,8 @@ class MovieGenreController extends Controller
         $person = $person->select([
             'id',
             'name',
-            'image_id'
+            'image_id',
+            'number_of_clicks'
         ]);
         
         return $person;

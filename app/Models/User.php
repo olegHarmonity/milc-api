@@ -96,6 +96,10 @@ class User extends Authenticatable implements JWTSubject
     
     public function is_from_seller_organisation()
     {
+        if(!$this->organisation){
+            return false;
+        }
+        
         return in_array($this->organisation->organisation_role, CompanyRoles::getSellerRolesArray());
     }
 

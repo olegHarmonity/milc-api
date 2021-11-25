@@ -18,6 +18,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\Product\UpdateProductStatusRequest;
+use App\Models\MovieGenre;
 
 class ProductController extends Controller
 {
@@ -55,6 +56,48 @@ class ProductController extends Controller
         $products = $products->paginate($request->input('per_page'));
 
         return CollectionResource::make($products);
+    }
+    
+    public function getProductsByCategory(Request $request, $categoryId)
+    {
+        $productsQuery = Product::whereHas('genres', function($q) use($categoryId) {
+            $q->where('movie_genres.id', $categoryId);
+        });
+        
+        $products = SearchFormatter::getSearchQueries($request, Product::class, $productsQuery);
+        
+        $products = $products->with(
+            'content_type:id,name',
+            'genres:id,name',
+            'available_formats:id,name',
+            'marketing_assets:id,key_artwork_id',
+            'marketing_assets.key_artwork:id,image_name,image_url',
+            'organisation:id,organisation_name',
+            'production_info:id,production_year,release_year',
+            );
+        
+        $products = $products->select([
+            'products.id',
+            'title',
+            'synopsis',
+            'runtime',
+            'original_language',
+            'content_type_id',
+            'marketing_assets_id',
+            'production_info_id',
+            'products.created_at',
+            'organisation_id',
+            'status',
+            'keywords',
+            'is_saved'
+        ]);
+        
+        
+        $movieGenre = MovieGenre::findOrFail($categoryId);
+        $movieGenre->number_of_clicks += 1;
+        $movieGenre->save();
+        
+        return CollectionResource::make($products->get());
     }
 
     public function show(int $id)

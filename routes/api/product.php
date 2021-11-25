@@ -12,9 +12,16 @@ Route::put('/products/change-status/{id}', [
     'updateStatus'
 ])->name('updateStatus');
 
+
+Route::get('/products/by-category/{categoryId}', [
+    ProductController::class,
+    'getProductsByCategory'
+])->name('getProductsByCategory');
+
 Route::apiResource('products', ProductController::class);
 Route::apiResource('movie-rights', MovieRightController::class);
 Route::apiResource('movie-formats', MovieFormatController::class);
+
 Route::apiResource('movie-genres', MovieGenreController::class);
 Route::apiResource('movie-content-types', MovieContentTypeController::class);
 Route::apiResource('persons', PersonController::class);
