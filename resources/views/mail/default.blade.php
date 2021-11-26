@@ -1,13 +1,14 @@
 @component('mail::message')
 {{-- Greeting --}}
-@if (! empty($greeting))
-# {{ $greeting }}
+ 
+@isset($name)
+Hello {{ $name }}! <br/><br/>
 @else
-# @lang('Hello!')
-@endif
+Hello! <br/><br/>
+@endisset
 
 @isset($message)
-{{ $message }}
+{!! $message !!}
 @endisset
 
 {{-- Action Button --}}
@@ -22,7 +23,7 @@
 {{-- Salutation --}}
 
 @lang('Regards'),<br>
-{{ config('app.name') }}
+The MILC Team 
 
 {{-- Subcopy --}}
 @isset($actionText)

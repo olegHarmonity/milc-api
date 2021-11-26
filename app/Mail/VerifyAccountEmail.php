@@ -13,10 +13,13 @@ class VerifyAccountEmail extends Mailable
     public $subject = "Please verify your email for MILC Platform";
 
     public $verificationCode = "";
+    
+    public $name = "";
 
-    public function __construct(string $verificationCode)
+    public function __construct(string $verificationCode, string $name)
     {
         $this->verificationCode = $verificationCode;
+        $this->name = $name;
     }
     
     public function build()
@@ -26,7 +29,7 @@ class VerifyAccountEmail extends Mailable
 
         return $this->markdown('mail.verify')
             ->subject($this->subject)
-            ->with(['verificationUrl' => $verificationUrl ]);
+            ->with(['verificationUrl' => $verificationUrl, 'name' => $this->name ]);
     }
 }
 

@@ -124,7 +124,7 @@ class AuthController extends Controller
             'token' => $verificationCode
         ]);
 
-        Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode));
+        Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode, $user->first_name));
 
         DB::commit();
 

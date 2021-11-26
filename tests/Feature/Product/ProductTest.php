@@ -31,6 +31,7 @@ class ProductTest extends ApiTestCase
     public function test_get_movie_genres()
     {
         $response = $this->get('/api/movie-genres');
+
         $response->assertStatus(200);
     }
 

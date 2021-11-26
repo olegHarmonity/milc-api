@@ -12,6 +12,7 @@ class MovieGenre extends Model
 
     protected $hidden = [
         'pivot',
+        'products'
     ];
 
     protected $fillable = [
@@ -19,9 +20,19 @@ class MovieGenre extends Model
         'image_id',
     ];
     
-    
     public function image()
     {
         return $this->belongsTo(Image::class);
     }
+    
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_genres');
+    }
+    
+    public function getProductCountAttribute() {
+        return count($this->products);
+    }
+    
+    
 }

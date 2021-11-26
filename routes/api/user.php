@@ -55,4 +55,10 @@ Route::middleware([
     Route::apiResource('users', UserController::class)->middleware('auth');
 });
 
+Route::get('/users/user-activities/{userId}', [
+    UserActivityController::class,
+    'getUserActivitiesByUser'
+]);
+    
+
 Route::apiResource('user-activities', UserActivityController::class);

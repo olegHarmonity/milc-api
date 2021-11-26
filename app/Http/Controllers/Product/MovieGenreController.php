@@ -79,7 +79,8 @@ class MovieGenreController extends Controller
             'id',
             'name',
             'image_id',
-            'number_of_clicks'
+            'number_of_clicks',
+            'product_count'
         ]);
         
         return $person;

@@ -40,15 +40,31 @@ class SearchFormatter
         }
 
         if ($startDateSearch or $endDateSearch or $dateSearch) {
-          
+
             $query = self::getDateSearchQuery($request, $model, $query);
         }
-        
-        if($query){
+
+        if ($query) {
             return $query;
         }
 
         return $model::query();
+    }
+
+    public static function requestHasSearchParameters(Request $request)
+    {
+        $search = $request->get('search');
+
+        $exactSearch = $request->get('exact_search');
+
+        $startDateSearch = $request->get('start_date');
+        $endDateSearch = $request->get('end_date');
+        $dateSearch = $request->get('date');
+
+        if ($search or $exactSearch or $startDateSearch or $endDateSearch or $dateSearch) {
+            return true;
+        }
+        return false;
     }
 
     private static function getSearchQuery(Request $request, $model, Builder $existinQuery = null)
@@ -93,11 +109,13 @@ class SearchFormatter
 
                 if ($attribute === 'full_name') {
                     $attributes[] = DB::raw("CONCAT(`first_name`, ' ', `last_name`)");
-                    
+
                     if (is_array($term)) {
                         $searchTerms[] = $term;
                     } else {
-                        $searchTerms[] = [$term];
+                        $searchTerms[] = [
+                            $term
+                        ];
                     }
                     continue;
                 }
@@ -107,7 +125,9 @@ class SearchFormatter
                 if (is_array($term)) {
                     $searchTerms[] = $term;
                 } else {
-                    $searchTerms[] = [$term];
+                    $searchTerms[] = [
+                        $term
+                    ];
                 }
             }
 
