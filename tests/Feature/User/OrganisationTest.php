@@ -62,7 +62,6 @@ class OrganisationTest extends ApiTestCase
             'emails' => ["email1@email.com", "email2@email.com"],
             'message' => "email message"
         ];
-        
         $response = $this->post('/api/send-email', $data);
         $response->assertStatus(200);
     }
