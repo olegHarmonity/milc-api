@@ -19,9 +19,19 @@ class UserActivityPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
         
-        return $user->role === UserRoles::$ROLE_ADMIN
-        ? true
-        : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        if ($user->role === UserRoles::$ROLE_ADMIN ) {
+            return true;
+        }
+        
+        if (!$user->organisation) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->role !== UserRoles::$ROLE_COMPANY_ADMIN) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        return true;
     }
 
     public function view(User $user, UserActivity $userActivity)
@@ -30,8 +40,22 @@ class UserActivityPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
         
-        return $user->role === UserRoles::$ROLE_ADMIN
-        ? true
-        : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        if ($user->role === UserRoles::$ROLE_ADMIN ) {
+            return true;
+        }
+        
+        if (!$user->organisation) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->id !== $userActivity->user->id) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->role !== UserRoles::$ROLE_COMPANY_ADMIN) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        return true;
     }
 }

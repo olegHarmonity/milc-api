@@ -17,9 +17,11 @@ class UserActivityController extends Controller
         Gate::authorize('viewAny', UserActivity::class);
         $movieGenres = SearchFormatter::getSearchQueries($request, UserActivity::class);
 
-        $movieGenres = $this->getUserActivityResponseData($movieGenres)->get();
+        $movieGenres = $this->getUserActivityResponseData($movieGenres);
 
-        return new CollectionResource($movieGenres);
+        $movieGenres = $movieGenres->paginate($request->input('per_page'));
+        
+        return CollectionResource::make($movieGenres);
     }
 
     public function show(UserActivity $userActivity)

@@ -50,7 +50,7 @@ class OrganisationPolicy
             return true;
         }
 
-        if (!$user->organisation()) {
+        if (!$user->organisation) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
 

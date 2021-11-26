@@ -232,7 +232,6 @@ class UserTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/change-password', $data);
-
         $response->assertStatus(200);
     }
     
@@ -241,6 +240,15 @@ class UserTest extends ApiTestCase
         $this->loginAdmin();
         
         $response = $this->get('/api/user-activities');
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_user_activities_company_admin()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/user-activities');
+
         $response->assertStatus(200);
     }
     
