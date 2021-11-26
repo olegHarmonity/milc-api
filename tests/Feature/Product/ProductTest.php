@@ -76,7 +76,7 @@ class ProductTest extends ApiTestCase
 
     public function test_get_products()
     {
-        $response = $this->get('/api/products');
+        $response = $this->get('/api/products?sort[title]=desc');
         $response->assertStatus(200);
     }
     
