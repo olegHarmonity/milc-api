@@ -62,11 +62,11 @@ class OrganisationController extends Controller
             $organisation->update($statusRequest);
 
             if ($statusRequest['status'] === OrganisationStatuses::$ACCEPTED) {
-                Mail::to($organisation->email)->send(new OrganisationAcceptedEmail());
+                Mail::to($organisation->email)->send(new OrganisationAcceptedEmail($organisation->organisation_owner->first_name));
             }
 
             if ($statusRequest['status'] === OrganisationStatuses::$DECLINED) {
-                Mail::to($organisation->email)->send(new OrganisationDeclinedEmail());
+                Mail::to($organisation->email)->send(new OrganisationDeclinedEmail($organisation->organisation_owner->first_name));
             }
 
             return (new OrganisationResource($organisation))->response()->setStatusCode(Response::HTTP_OK);

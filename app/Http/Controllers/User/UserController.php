@@ -90,7 +90,7 @@ class UserController extends Controller
             $verificationCode = str_random(30);
             DB::table('user_verifications')->insert(['user_id' => $user->id, 'token' => $verificationCode]);
 
-            Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode));
+            Mail::to($user->email)->send(new VerifyAccountEmail($verificationCode, $user->first_name));
 
             DB::commit();
 

@@ -8,20 +8,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Resource;
+use App\Models\User;
 
 class UserActivityController extends Controller
 {
-
+    
     public function index(Request $request)
     {
         Gate::authorize('viewAny', UserActivity::class);
-        $movieGenres = SearchFormatter::getSearchQueries($request, UserActivity::class);
+        $userActivities = SearchFormatter::getSearchQueries($request, UserActivity::class);
 
-        $movieGenres = $this->getUserActivityResponseData($movieGenres);
+        $userActivities = $this->getUserActivityResponseData($userActivities);
 
-        $movieGenres = $movieGenres->paginate($request->input('per_page'));
+        $userActivities = $userActivities->paginate($request->input('per_page'));
         
-        return CollectionResource::make($movieGenres);
+        return CollectionResource::make($userActivities);
+    }
+    
+    public function getUserActivitiesByUser(Request $request, $userId)
+    {
+        $user = User::findOrFail($userId);
+        
+        Gate::authorize('viewByUser', $user);
+        
+        $userActivities = SearchFormatter::getSearchQueries($request, UserActivity::class, $user->user_activities()->getQuery());
+        
+        $userActivities = $this->getUserActivityResponseData($userActivities);
+        
+        $userActivities = $userActivities->paginate($request->input('per_page'));
+        
+        return CollectionResource::make($userActivities);
     }
 
     public function show(UserActivity $userActivity)
@@ -33,8 +49,6 @@ class UserActivityController extends Controller
 
     private function getUserActivityResponseData($userActivity)
     {
-        $userActivity = $userActivity->with('user:id,first_name,last_name');
-
         $userActivity = $userActivity->select([
             'id',
             'activity',

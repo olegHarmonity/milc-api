@@ -252,4 +252,13 @@ class UserTest extends ApiTestCase
         $response->assertStatus(200);
     }
     
+    public function test_get_user_activities_company_admin_by_user()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/users/user-activities/1');
+
+        $response->assertStatus(200);
+    }
+    
 }

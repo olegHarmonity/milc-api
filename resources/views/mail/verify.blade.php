@@ -1,17 +1,15 @@
-@component('mail::message') {{-- Greeting --}} @if (! empty($greeting))
-# {{ $greeting }} @else # @lang('Hello!') @endif
+@component('mail::message') 
 
-@isset($verificationCode) Dear Sir/Madam,
+@isset($verificationCode) Hello {{$name}}, <br/><br/>
 <br>
 Thank you for creating an account with MILC Platform. Don't forget to
 complete your registration!
-<br>
+<br><br/>
 Please click on the link below or copy it into the address bar of your
 browser to confirm your email address:
-<br>
+<br><br/>
 
-<a href="{{ $verificationUrl }}">Confirm my email
-	address </a>
+<a href="{{ $verificationUrl }}">Confirm my email address </a>
 
 <br />
 @endisset {{-- Action Button --}} @isset($actionText)
@@ -19,4 +17,4 @@ browser to confirm your email address:
 @component('mail::button', ['url' => $actionUrl]) {{ $actionText }}
 @endcomponent @endisset {{-- Salutation --}} @lang('Regards'),
 <br>
-{{ config('app.name') }} @endcomponent
+The MILC Team @endcomponent

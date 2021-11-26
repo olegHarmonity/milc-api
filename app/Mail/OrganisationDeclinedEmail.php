@@ -14,13 +14,16 @@ class OrganisationDeclinedEmail extends Mailable
     
     public $message = "We are sorry to inform you that your application to register on MILC platform is declined. If you have any further inquiries, please contact our administrators.";
     
+    public $name = '';
+    
+    public function __construct($name){
+        $this->name = $name;
+    }
+    
     public function build()
     {
         return $this->markdown('mail.default')
         ->subject($this->subject)
-        ->with([
-            'message',
-            $this->message
-        ]);
+        ->with(['message' => $this->message, 'name' => $this->name]);
     }
 }

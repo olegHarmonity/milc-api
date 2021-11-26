@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Product;
 
 use App\DataTransformer\Product\ProductStoreDataTransformer;
@@ -22,19 +21,12 @@ use App\Models\MovieGenre;
 
 class ProductController extends Controller
 {
+
     public function index(Request $request)
     {
         $products = SearchFormatter::getSearchQueries($request, Product::class);
 
-        $products = $products->with(
-            'content_type:id,name',
-            'genres:id,name',
-            'available_formats:id,name',
-            'marketing_assets:id,key_artwork_id',
-            'marketing_assets.key_artwork:id,image_name,image_url',
-            'organisation:id,organisation_name',
-            'production_info:id,production_year,release_year'
-        );
+        $products = $products->with('content_type:id,name', 'genres:id,name', 'available_formats:id,name', 'marketing_assets:id,key_artwork_id', 'marketing_assets.key_artwork:id,image_name,image_url', 'organisation:id,organisation_name', 'production_info:id,production_year,release_year');
 
         $products = $products->select([
             'id',
@@ -52,30 +44,21 @@ class ProductController extends Controller
             'is_saved'
         ]);
 
-
         $products = $products->paginate($request->input('per_page'));
 
         return CollectionResource::make($products);
     }
-    
+
     public function getProductsByCategory(Request $request, $categoryId)
     {
-        $productsQuery = Product::whereHas('genres', function($q) use($categoryId) {
+        $productsQuery = Product::whereHas('genres', function ($q) use ($categoryId) {
             $q->where('movie_genres.id', $categoryId);
         });
-        
+
         $products = SearchFormatter::getSearchQueries($request, Product::class, $productsQuery);
-        
-        $products = $products->with(
-            'content_type:id,name',
-            'genres:id,name',
-            'available_formats:id,name',
-            'marketing_assets:id,key_artwork_id',
-            'marketing_assets.key_artwork:id,image_name,image_url',
-            'organisation:id,organisation_name',
-            'production_info:id,production_year,release_year',
-            );
-        
+
+        $products = $products->with('content_type:id,name', 'genres:id,name', 'available_formats:id,name', 'marketing_assets:id,key_artwork_id', 'marketing_assets.key_artwork:id,image_name,image_url', 'organisation:id,organisation_name', 'production_info:id,production_year,release_year');
+
         $products = $products->select([
             'products.id',
             'title',
@@ -91,12 +74,13 @@ class ProductController extends Controller
             'keywords',
             'is_saved'
         ]);
-        
-        
-        $movieGenre = MovieGenre::findOrFail($categoryId);
-        $movieGenre->number_of_clicks += 1;
-        $movieGenre->save();
-        
+
+        if (! SearchFormatter::requestHasSearchParameters($request)) {
+            $movieGenre = MovieGenre::findOrFail($categoryId);
+            $movieGenre->number_of_clicks += 1;
+            $movieGenre->save();
+        }
+
         return CollectionResource::make($products->get());
     }
 
@@ -115,9 +99,7 @@ class ProductController extends Controller
 
             $product = ProductStoreDataTransformer::transformData($request->all(), $organisation);
 
-            return (new ProductResource($product))
-                ->response()
-                ->setStatusCode(Response::HTTP_CREATED);
+            return (new ProductResource($product))->response()->setStatusCode(Response::HTTP_CREATED);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
@@ -131,9 +113,7 @@ class ProductController extends Controller
         try {
             $product = ProductUpdateDataTransformer::transformData($request->all(), $product);
 
-            return (new ProductResource($product))
-                ->response()
-                ->setStatusCode(Response::HTTP_OK);
+            return (new ProductResource($product))->response()->setStatusCode(Response::HTTP_OK);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
@@ -148,9 +128,7 @@ class ProductController extends Controller
         try {
             $product->update($request->all());
 
-            return (new ProductResource($product))
-                ->response()
-                ->setStatusCode(Response::HTTP_OK);
+            return (new ProductResource($product))->response()->setStatusCode(Response::HTTP_OK);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
