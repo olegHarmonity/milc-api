@@ -188,7 +188,11 @@ class UserController extends Controller
     {
         Gate::authorize('view', $user);
 
-        $user->load('organisation');
+        $user->load(
+            'organisation',
+            'organisation.logo:id,image_url',
+            'organisation.organisation_type:id,name'
+        );
         return UserResource::make($user);
     }
 
