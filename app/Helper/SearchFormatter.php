@@ -32,8 +32,9 @@ class SearchFormatter
         $dateSearch = $request->get('date');
         
         $sort = $request->get('sort') ?? ['created_at' => 'DESC'];
+        
         foreach($sort as $parameter => $direction){
-            $query = $model::orderBy($parameter, $direction);
+            $query = $model::sort($parameter, $direction, $query);
         }
 
         if ($search) {

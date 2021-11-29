@@ -179,7 +179,8 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         App\Providers\SearchProvider::class,
         App\Providers\ExactSearchProvider::class,
-        App\Providers\DateFilterProvider::class,  
+        App\Providers\DateFilterProvider::class,
+        App\Providers\SortProvider::class,
 
     ],
 

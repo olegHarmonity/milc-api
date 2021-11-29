@@ -30,8 +30,7 @@ class UserActivityController extends Controller
         $user = User::findOrFail($userId);
         
         Gate::authorize('viewByUser', $user);
-        
-        $userActivities = SearchFormatter::getSearchQueries($request, UserActivity::class, $user->user_activities()->getQuery());
+        $userActivities = SearchFormatter::getSearchQueries($request, UserActivity::class, UserActivity::where('user_id', $userId));
         
         $userActivities = $this->getUserActivityResponseData($userActivities);
         

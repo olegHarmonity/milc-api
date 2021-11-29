@@ -175,10 +175,8 @@ class UserController extends Controller
             $users->where('organisation_id', $this->user()->organisation_id);
             $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status', 'image_id']);
         } else {
-
-            $users = $users->select([
-                '*', 'image_id'
-            ]);
+            $users = $users->with('organisation:id,organisation_name');
+            $users->select(['id', 'first_name', 'last_name', 'email', 'status', 'image_id', 'organisation_id']);
         }
 
         $users = $users->paginate($request->input('per_page'));
