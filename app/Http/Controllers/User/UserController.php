@@ -184,8 +184,18 @@ class UserController extends Controller
         return new CollectionResource($users);
     }
 
+    public function show(User $user)
+    {
+        Gate::authorize('view', $user);
+
+        $user->load('organisation');
+        return UserResource::make($user);
+    }
+
     public function store(StoreUserRequest $request)
     {
+        Gate::authorize('create', User::class);
+
         $data = $request->validated();
 
         if ($this->user()->isAdmin()) {
@@ -219,12 +229,12 @@ class UserController extends Controller
             'message' => 'User deleted!'
         ]);
     }
-    
+
     public function getSavedProducts(Request $request)
     {
         $products = SearchFormatter::getSearchQueries($request, Product::class, $this->user()->saved_products()->getQuery());
-        
-        
+
+
         $products = $products->with(
             'content_type:id,name',
             'genres:id,name',
@@ -233,8 +243,8 @@ class UserController extends Controller
             'marketing_assets.key_artwork:id,image_name,image_url',
             'organisation:id,organisation_name',
             'production_info:id,production_year,release_year',
-            );
-        
+        );
+
         $products = $products->select([
             'products.id',
             'title',
@@ -250,7 +260,7 @@ class UserController extends Controller
             'keywords',
             'is_saved'
         ]);
-        
+
         return CollectionResource::make($products->get());
     }
 

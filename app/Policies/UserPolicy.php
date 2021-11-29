@@ -44,7 +44,7 @@ class UserPolicy
 
     public function create(User $user)
     {
-        return true;
+        return $user->isCompanyAdmin(true);
     }
 
     public function update(User $user, User $model)
@@ -92,33 +92,33 @@ class UserPolicy
             ? true
             : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
-    
+
     public function viewByUser(User $user, User $userActivityUser)
     {
         if (!$user) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
-        
-        if ($user->role === UserRoles::$ROLE_ADMIN ) {
+
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
             return true;
         }
-        
-        if ($user->id === $userActivityUser->id ) {
+
+        if ($user->id === $userActivityUser->id) {
             return true;
         }
-        
+
         if (!$user->organisation) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
-        
+
         if ($user->role !== UserRoles::$ROLE_COMPANY_ADMIN) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
-        
+
         if ($user->company_id !== $userActivityUser->company_id) {
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
-        
+
         return true;
     }
 }
