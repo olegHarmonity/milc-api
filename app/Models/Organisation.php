@@ -35,13 +35,14 @@ class Organisation extends Model
 
     protected $casts = [
         'social_links' => 'array',
+        'organisation_type_id' => 'integer',
     ];
 
     public function logo()
     {
         return $this->belongsTo(Image::class);
     }
-    
+
     public function organisation_owner()
     {
         return $this->belongsTo(User::class);
