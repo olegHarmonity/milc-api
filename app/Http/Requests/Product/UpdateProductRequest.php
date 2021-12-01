@@ -115,6 +115,18 @@ class UpdateProductRequest extends FormRequest
             'rights_information.*.available_rights' => 'sometimes',
             'rights_information.*.holdbacks' => 'sometimes',
             'rights_information.*.territories' => 'sometimes',
+            'rights_information.*.title' => [
+                'sometimes',
+                'required'
+            ],
+            'rights_information.*.short_description' => [
+                'sometimes',
+                'required'
+            ],
+            'rights_information.*.long_description' => [
+                'sometimes',
+                'required'
+            ],
         ];
     }
 }

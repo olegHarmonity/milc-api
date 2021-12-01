@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\ProductionInfo;
 use App\Models\Video;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Money;
+use App\Models\RightsBundle;
 
 class ProductResource extends JsonResource
 {
@@ -18,14 +20,31 @@ class ProductResource extends JsonResource
         $product = parent::toArray($request);
         $productFromDb = Product::findOrFail($product['id']);
 
-        $availableFormats = $productFromDb->available_formats()->get();
-        foreach ($availableFormats as $availableFormat) {
-            $product['available_formats'][] = new Resource($availableFormat);;
+        $bundleRights = $productFromDb->rights_bundles()->get();
+        foreach ($bundleRights as $bundleRight) {
+            $bundleResourceResponse = new Resource($bundleRight);
+            
+            if (isset($bundleResourceResponse['price_id'])) {
+                $price = Money::where('id', $bundleResourceResponse['price_id'])->first();
+                $bundleResourceResponse['price'] = new Resource($price);
+            }
+            
+            $rightsInformations = $bundleRight->rights_information()->get();
+            foreach ($rightsInformations as $rightsInformation) {
+                $bundleResourceResponse['rights_information'][] = new Resource($rightsInformation);
+            }
+            
+            $product['bundle_rights'][] = $bundleResourceResponse;
+        }
+        
+        $rightsInformations = $productFromDb->available_formats()->get();
+        foreach ($rightsInformations as $availableFormat) {
+            $product['available_formats'][] = new Resource($availableFormat);
         }
 
         $genres = $productFromDb->genres()->get();
-        foreach ($genres as $genre) {
-            $product['genres'][] = new Resource($genre);
+        foreach ($genres as $price) {
+            $product['genres'][] = new Resource($price);
         }
 
         $dubFiles = $productFromDb->dub_files()->get();
@@ -116,20 +135,21 @@ class ProductResource extends JsonResource
         }
 
         if (isset($product['movie_id'])) {
-            $genre = Video::where('id', $product['movie_id'])->first();
-            $product['movie'] = new Resource($genre);
+            $price = Video::where('id', $product['movie_id'])->first();
+            $product['movie'] = new Resource($price);
         }
 
         if (isset($product['screener_id'])) {
-            $genre = Video::where('id', $product['screener_id'])->first();
-            $product['screener'] = new Resource($genre);
+            $price = Video::where('id', $product['screener_id'])->first();
+            $product['screener'] = new Resource($price);
         }
 
         if (isset($product['trailer_id'])) {
-            $genre = Video::where('id', $product['trailer_id'])->first();
-            $product['trailer'] = new Resource($genre);
+            $price = Video::where('id', $product['trailer_id'])->first();
+            $product['trailer'] = new Resource($price);
         }
-
+       
+        
         return $product;
     }
 }

@@ -11,6 +11,8 @@ use App\Models\RightsInformation;
 use App\Models\Video;
 use Illuminate\Database\Seeder;
 use Database\Factories\RightsInformationFactory;
+use App\Models\RightsBundle;
+use App\Models\Money;
 
 class ProductSeeder extends Seeder
 {
@@ -33,7 +35,7 @@ class ProductSeeder extends Seeder
         $promotionalVideos = Video::all();
         
         $rightsInformation = RightsInformation::factory()
-            ->create();
+        ->create();
         
         $availableFormats = MovieFormat::all();
         $genres = MovieGenre::all();
@@ -52,6 +54,22 @@ class ProductSeeder extends Seeder
 
         $firstProduct->genres()->attach([1]);
 
+        $firstProduct->save();
+        
+        $price = Money::factory()->create();
+        
+        $price->save();
+        
+        $rightsBundle = new RightsBundle();
+        
+        $rightsBundle->price_id = $price->id;
+
+        $rightsBundle->rights_information()->attach([$rightsInformation->id]);
+        
+        $rightsBundle->save();
+        
+        $firstProduct->rights_bundles()->attach([$rightsBundle->id]);
+        
         $firstProduct->save();
 
         Product::where('id', '!=', 1)->each(function ($products) use (
@@ -89,6 +107,24 @@ class ProductSeeder extends Seeder
             $products->genres()->attach(
                 $genres->random(rand(1, 3))->pluck('id')->toArray()
             );
+            
+            $products->save();
+            
+            $price = Money::factory()->create();
+            
+            $price->save();
+            
+            $rightsBundle = new RightsBundle();
+            
+            $rightsBundle->price_id = $price->id;
+            
+            $rightsBundle->rights_information()->attach([$rightsInformation->id]);
+            
+            $rightsBundle->save();
+            
+            $products->rights_bundles()->attach([$rightsBundle->id]);
+            
+            $products->save();
         });
     }
 }

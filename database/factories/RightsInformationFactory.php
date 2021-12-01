@@ -12,6 +12,9 @@ class RightsInformationFactory extends Factory
     public function definition()
     {
         return [
+            'title' => $this->faker->text(20),
+            'short_description' => $this->faker->text(100),
+            'long_description' => $this->faker->text(500),
             'available_from_date' => $this->faker->date(),
             'expiry_date' => $this->faker->date(),
             'holdbacks' => $this->faker->text(20),

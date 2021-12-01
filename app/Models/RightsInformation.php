@@ -20,6 +20,9 @@ class RightsInformation extends Model
         'available_rights',
         'holdbacks',
         'territories',
+        'title',
+        'short_description',
+        'long_description', 
     ];
 
     protected $casts = [

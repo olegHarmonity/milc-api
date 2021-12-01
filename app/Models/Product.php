@@ -125,4 +125,9 @@ class Product extends Model
     {
         return $this->belongsToMany(RightsInformation::class, 'product_rights_information');
     }
+    
+    public function rights_bundles()
+    {
+        return $this->belongsToMany(RightsBundle::class, 'product_rights_bundle');
+    }
 }
