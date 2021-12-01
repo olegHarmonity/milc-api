@@ -57,7 +57,7 @@ class ProductController extends Controller
 
         $products = SearchFormatter::getSearchQueries($request, Product::class, $productsQuery);
 
-        $products = $products->with('content_type:id,name', 'genres:id,name', 'available_formats:id,name', 'marketing_assets:id,key_artwork_id', 'marketing_assets.key_artwork:id,image_name,image_url', 'organisation:id,organisation_name', 'production_info:id,production_year,release_year');
+        $products = $products->with('content_type:id,name', 'content_type:id,name', 'genres:id,name', 'available_formats:id,name', 'marketing_assets:id,key_artwork_id', 'marketing_assets.key_artwork:id,image_name,image_url', 'organisation:id,organisation_name', 'production_info:id,production_year,release_year');
 
         $products = $products->select([
             'products.id',

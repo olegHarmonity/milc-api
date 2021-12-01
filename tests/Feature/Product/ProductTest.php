@@ -8,6 +8,7 @@ use phpDocumentor\Reflection\Types\This;
 
 class ProductTest extends ApiTestCase
 {
+
     public function test_post_movie_genres()
     {
         $this->loginAdmin();
@@ -21,7 +22,7 @@ class ProductTest extends ApiTestCase
 
         $response->assertStatus(201);
     }
-    
+
     public function test_get_products_by_category()
     {
         $response = $this->get('/api/products/by-category/1');
@@ -79,33 +80,31 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/products?sort[title]=desc');
         $response->assertStatus(200);
     }
-    
+
     public function test_get_products_by_date()
     {
         $response = $this->get('/api/products?date[created_at]=2021-11-11&end_date[created_at]=2021-11-18');
         $response->assertStatus(200);
     }
-    
+
     public function test_get_products_by_multiple_filters()
     {
         $response = $this->get('/api/products?exact_search[production_info.release_year][0]=2021&exact_search[production_info.release_year][1]=2020&exact_search[production_info.release_year][2]=2019');
         $response->assertStatus(200);
     }
- 
-    
+
     public function test_get_products_by_multiple_filters_2()
     {
         $response = $this->get('/api/products?exact_search[production_info.production_status][0]=released&exact_search[production_info.production_status][1]=unreleased&exact_search[genres.movie_genre_id]=3');
         $response->assertStatus(200);
     }
-    
-    
+
     public function test_get_products_by_genre_id()
     {
         $response = $this->get('/api/products?page=1&per_page=10&exact_search[genres.movie_genre_id]=2&start_date[created_at]=2017-09-03&end_date[created_at]=2022-07-08');
         $response->assertStatus(200);
     }
-    
+
     public function test_get_products_by_genre_name()
     {
         $response = $this->get('/api/products?exact_search[genres.name]=Action&search[organisation_id]=1');
@@ -123,19 +122,18 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/products/1');
         $response->assertStatus(200);
     }
-    
-    
+
     public function test_update_product_status()
     {
         $this->loginAdmin();
         $data = [
             'status' => 'inactive'
         ];
-        
+
         $response = $this->put('/api/products/change-status/1', $data);
         $response->assertStatus(200);
     }
-    
+
     public function test_create_product()
     {
         $this->loginCompanyAdmin();
@@ -254,6 +252,9 @@ class ProductTest extends ApiTestCase
             ],
             'rights_information' => [
                 [
+                    'title' => 'title',
+                    'short_description' => 'short_description',
+                    'long_description' => 'long_description', 
                     'available_from_date' => '2017-02-02',
                     'expiry_date' => '2030-02-02',
                     'available_rights' => [
@@ -267,6 +268,9 @@ class ProductTest extends ApiTestCase
                     ]
                 ],
                 [
+                    'title' => 'title',
+                    'short_description' => 'short_description',
+                    'long_description' => 'long_description', 
                     'available_from_date' => '2018-02-02',
                     'expiry_date' => '2035-02-02',
                     'available_rights' => [
@@ -479,6 +483,9 @@ class ProductTest extends ApiTestCase
             'rights_information' => [
                 [
                     'id' => 1,
+                    'title' => 'title',
+                    'short_description' => 'short_description',
+                    'long_description' => 'long_description', 
                     'available_from_date' => '2017-02-02',
                     'expiry_date' => '2030-02-02',
                     'available_rights' => [
@@ -492,6 +499,9 @@ class ProductTest extends ApiTestCase
                     ]
                 ],
                 [
+                    'title' => 'title',
+                    'short_description' => 'short_description',
+                    'long_description' => 'long_description', 
                     'available_from_date' => '2018-02-02',
                     'expiry_date' => '2035-02-02',
                     'available_rights' => [
@@ -508,17 +518,15 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->put('/api/products/1', $data);
-         //dump(($response));
+        // dump(($response));
         // dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
 
-    
-    
     public function test_update_product_media()
     {
         $this->loginCompanyAdmin();
-        
+
         $data = [
             'movie_id' => 1,
             'screener_id' => 1,
@@ -539,24 +547,23 @@ class ProductTest extends ApiTestCase
                 'key_artwork_id' => 1
             ]
         ];
-        
+
         $response = $this->put('/api/products/1', $data);
-         //dump(($response));
+        // dump(($response));
         // dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
-    
-    
+
     public function test_get_persons()
     {
         $response = $this->get('/api/persons?search[full_name]=name name');
         $response->assertStatus(200);
     }
-    
+
     public function test_delete_product()
     {
         $this->loginAdmin();
-        
+
         $response = $this->delete('/api/products/1');
         $response->assertStatus(200);
     }
