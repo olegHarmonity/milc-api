@@ -129,6 +129,7 @@ class ProductUpdateDataTransformer
                 $price->save();
                 
                 $bundleRightRequest['price_id'] = $price->id;
+                $bundleRightRequest['product_id'] = $product->id;
                 
                 if (isset($bundleRightRequest['id'])) {
                     $bundleRight = RightsBundle::findOrFail($bundleRightRequest['id']);

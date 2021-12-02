@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Product\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\RightsBundle;
 use Illuminate\Http\Request;
 

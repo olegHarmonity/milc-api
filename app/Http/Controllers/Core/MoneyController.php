@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Core\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Money;
 use Illuminate\Http\Request;
 
