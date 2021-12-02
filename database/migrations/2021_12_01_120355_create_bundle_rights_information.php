@@ -11,8 +11,8 @@ class CreateBundleRightsInformation extends Migration
         Schema::create('bundle_rights_information', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('rights_information_id')->nullable()->references('id')->on('rights_information')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('rights_bundle_id')->nullable()->references('id')->on('rights_bundles');
+            $table->foreignId('rights_bundle_id')->nullable()->references('id')->on('rights_bundles')->cascadeOnUpdate();
+            $table->foreignId('rights_information_id')->nullable()->references('id')->on('rights_information')->cascadeOnDelete();
         });
     }
 

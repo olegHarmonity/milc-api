@@ -90,16 +90,6 @@ class CreateProductRequest extends FormRequest
             'marketing_assets.production_images' => [],
             'marketing_assets.copyright_information' => [],
             'marketing_assets.links' => [],
-            'rights_information' => [],
-            'rights_information.*.available_from_date'=> [
-                'required',
-            ],
-            'rights_information.*.expiry_date'=> [
-                'required',
-            ],
-            'rights_information.*.available_rights' => [],
-            'rights_information.*.holdbacks' => [],
-            'rights_information.*.territories' => [],
         ];
     }
 }

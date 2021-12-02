@@ -5,6 +5,8 @@ use App\Models\Person;
 use App\Models\Product;
 use App\Models\RightsInformation;
 use Illuminate\Support\Facades\DB;
+use App\Models\RightsBundle;
+use App\Models\Money;
 
 class ProductUpdateDataTransformer
 {
@@ -41,7 +43,14 @@ class ProductUpdateDataTransformer
             $promotionalVideosRequest = $arrayRequest['promotional_videos'];
             unset($arrayRequest['promotional_videos']);
         }
-
+        
+        
+        $rightsBundlesRequest = [];
+        
+        if (isset($arrayRequest['rights_bundles'])) {
+            $rightsBundlesRequest = $arrayRequest['rights_bundles'];
+        }
+        
         $productionInfoRequest = [];
 
         if (isset($arrayRequest['production_info'])) {
@@ -93,6 +102,54 @@ class ProductUpdateDataTransformer
         $productionInfo->update($productionInfoRequest);
 
         $productRequest['production_info_id'] = $productionInfo->id;
+        
+        if (isset($rightsBundlesRequest)) {
+            $product->rights_bundles()->detach();
+            foreach ($rightsBundlesRequest as $bundleRightRequest) {
+                
+                $rightsBundlesRightsInfoRequest = [];
+                if (isset($bundleRightRequest['rights_information'])) {
+                    $rightsBundlesRightsInfoRequest = $bundleRightRequest['rights_information'];
+                    unset($bundleRightRequest['rights_information']);
+                }
+                
+                $priceRequest = [];
+                if (isset($bundleRightRequest['price'])) {
+                    $priceRequest = $bundleRightRequest['price'];
+                    unset($bundleRightRequest['price']);
+                }
+                
+                if (isset($priceRequest['id'])) {
+                    $price = Money::findOrFail($priceRequest['id']);
+                    $price->update($priceRequest);
+                } else {
+                    $price = Money::create($priceRequest);
+                }
+                
+                $price->save();
+                
+                $bundleRightRequest['price_id'] = $price->id;
+                
+                if (isset($bundleRightRequest['id'])) {
+                    $bundleRight = RightsBundle::findOrFail($bundleRightRequest['id']);
+                    $bundleRight->update($bundleRightRequest);
+                } else {
+                    $bundleRight = RightsBundle::create($bundleRightRequest);
+                }
+                
+                $bundleRight->save();
+                
+                $bundleRight->bundle_rights_information()->detach();
+                
+                foreach($rightsBundlesRightsInfoRequest as $rightsBundlesRightInfoRequest){
+                    $bundleRight->bundle_rights_information()->attach($rightsBundlesRightInfoRequest);
+                }
+                
+                $bundleRight->save();
+                
+                $product->rights_bundles()->attach($bundleRight->id);
+            }
+        }
 
         if (isset($directorsRequest)) {
             $productionInfo->directors()->detach();

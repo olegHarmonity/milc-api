@@ -3,6 +3,7 @@ namespace App\Http\Requests\Product;
 
 use App\Util\ProductionStatuses;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Util\AllowedCurrencies;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -126,6 +127,27 @@ class UpdateProductRequest extends FormRequest
             'rights_information.*.long_description' => [
                 'sometimes',
                 'required'
+            ],
+            'rights_bundles' => [
+                'sometimes',
+            ],
+            'rights_bundles.*.price' => [
+                'sometimes',
+                'required'
+            ],
+            'rights_bundles.*.price.value' => [
+                'sometimes',
+                'required'
+            ],
+            'rights_bundles.*.price.currency' => [
+                'sometimes',
+                'required',
+                'in:' . AllowedCurrencies::getCurrencies(true)
+            ],
+            'rights_bundles.*.rights_information' => [
+                'sometimes',
+                'array',
+                'min:1'
             ],
         ];
     }
