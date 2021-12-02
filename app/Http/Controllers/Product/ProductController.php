@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Product;
 
 use App\DataTransformer\Product\ProductStoreDataTransformer;
@@ -75,7 +76,7 @@ class ProductController extends Controller
             'is_saved'
         ]);
 
-        if (! SearchFormatter::requestHasSearchParameters($request)) {
+        if (!SearchFormatter::requestHasSearchParameters($request)) {
             $movieGenre = MovieGenre::findOrFail($categoryId);
             $movieGenre->number_of_clicks += 1;
             $movieGenre->save();
@@ -84,9 +85,11 @@ class ProductController extends Controller
         return CollectionResource::make($products->get());
     }
 
-    public function show(int $id)
+    public function show(Product $product)
     {
-        return new ProductResource(Product::findOrFail($id));
+        $product->load('organisation:id,organisation_name');
+
+        return new ProductResource($product);
     }
 
     public function store(CreateProductRequest $request)
