@@ -11,7 +11,7 @@ class CreateRightsBundlesTable extends Migration
         Schema::create('rights_bundles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('price_id')->unsigned()->references('id')->on('money');
+            $table->foreignId('price_id')->unsigned()->references('id')->on('money')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
     

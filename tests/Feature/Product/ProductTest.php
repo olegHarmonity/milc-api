@@ -120,6 +120,7 @@ class ProductTest extends ApiTestCase
     public function test_get_product()
     {
         $response = $this->get('/api/products/1');
+        // dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
 
@@ -254,7 +255,7 @@ class ProductTest extends ApiTestCase
                 [
                     'title' => 'title',
                     'short_description' => 'short_description',
-                    'long_description' => 'long_description', 
+                    'long_description' => 'long_description',
                     'available_from_date' => '2017-02-02',
                     'expiry_date' => '2030-02-02',
                     'available_rights' => [
@@ -270,7 +271,7 @@ class ProductTest extends ApiTestCase
                 [
                     'title' => 'title',
                     'short_description' => 'short_description',
-                    'long_description' => 'long_description', 
+                    'long_description' => 'long_description',
                     'available_from_date' => '2018-02-02',
                     'expiry_date' => '2035-02-02',
                     'available_rights' => [
@@ -485,7 +486,7 @@ class ProductTest extends ApiTestCase
                     'id' => 1,
                     'title' => 'title',
                     'short_description' => 'short_description',
-                    'long_description' => 'long_description', 
+                    'long_description' => 'long_description',
                     'available_from_date' => '2017-02-02',
                     'expiry_date' => '2030-02-02',
                     'available_rights' => [
@@ -501,7 +502,7 @@ class ProductTest extends ApiTestCase
                 [
                     'title' => 'title',
                     'short_description' => 'short_description',
-                    'long_description' => 'long_description', 
+                    'long_description' => 'long_description',
                     'available_from_date' => '2018-02-02',
                     'expiry_date' => '2035-02-02',
                     'available_rights' => [
@@ -545,6 +546,79 @@ class ProductTest extends ApiTestCase
                     3
                 ],
                 'key_artwork_id' => 1
+            ]
+        ];
+
+        $response = $this->put('/api/products/1', $data);
+        // dump(($response));
+        // dump(json_decode($response->getContent()));
+        $response->assertStatus(200);
+    }
+
+    public function test_update_product_bundle_rights()
+    {
+        $this->loginCompanyAdmin();
+
+        $data = [
+            'rights_bundles' => [
+                [
+                    'price' => [
+                        'value' => 1000.23,
+                        'currency' => 'EUR'
+                    ],
+                    'rights_information' => [
+                        1,
+                        2
+                    ]
+                ]
+            ]
+        ];
+
+        $response = $this->put('/api/products/1', $data);
+        // dump(($response));
+        // dump(json_decode($response->getContent()));
+        $response->assertStatus(200);
+    }
+
+    public function test_update_product_rights_info()
+    {
+        $this->loginCompanyAdmin();
+
+        $data = [
+            'rights_information' => [
+                [
+                    'id' => 1,
+                    'title' => 'title',
+                    'short_description' => 'short_description',
+                    'long_description' => 'long_description',
+                    'available_from_date' => '2017-02-02',
+                    'expiry_date' => '2030-02-02',
+                    'available_rights' => [
+                        1,
+                        2
+                    ],
+                    'holdbacks' => "nothing's gonna hold us back!",
+                    'territories' => [
+                        "terr 1",
+                        "terr 2"
+                    ]
+                ],
+                [
+                    'title' => 'title',
+                    'short_description' => 'short_description',
+                    'long_description' => 'long_description',
+                    'available_from_date' => '2018-02-02',
+                    'expiry_date' => '2035-02-02',
+                    'available_rights' => [
+                        1,
+                        2
+                    ],
+                    'holdbacks' => "nothing's gonna hold us back!2",
+                    'territories' => [
+                        "terr 12",
+                        "terr 22"
+                    ]
+                ]
             ]
         ];
 

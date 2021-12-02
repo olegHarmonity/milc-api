@@ -37,6 +37,8 @@ class ProductSeeder extends Seeder
         $rightsInformation = RightsInformation::factory()
         ->create();
         
+        $rightsInformation->save();
+        
         $availableFormats = MovieFormat::all();
         $genres = MovieGenre::all();
 
@@ -48,7 +50,7 @@ class ProductSeeder extends Seeder
 
         $firstProduct->promotional_videos()->attach([1]);
 
-        $firstProduct->rights_information()->attach($rightsInformation->id);
+        $firstProduct->rights_information()->attach([$rightsInformation->id]);
 
         $firstProduct->available_formats()->attach([1]);
 
@@ -63,8 +65,10 @@ class ProductSeeder extends Seeder
         $rightsBundle = new RightsBundle();
         
         $rightsBundle->price_id = $price->id;
-
-        $rightsBundle->rights_information()->attach([$rightsInformation->id]);
+        
+        $rightsBundle->save();
+        
+        $rightsBundle->bundle_rights_information()->attach([1]);
         
         $rightsBundle->save();
         
@@ -118,7 +122,9 @@ class ProductSeeder extends Seeder
             
             $rightsBundle->price_id = $price->id;
             
-            $rightsBundle->rights_information()->attach([$rightsInformation->id]);
+            $rightsBundle->save();
+            
+            $rightsBundle->bundle_rights_information()->attach([$rightsInformation->id]);
             
             $rightsBundle->save();
             

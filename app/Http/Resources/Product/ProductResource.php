@@ -29,10 +29,14 @@ class ProductResource extends JsonResource
                 $bundleResourceResponse['price'] = new Resource($price);
             }
             
-            $rightsInformations = $bundleRight->rights_information()->get();
+            $rightsInformationArray = [];
+            $rightsInformations = $bundleRight->bundle_rights_information()->get();
             foreach ($rightsInformations as $rightsInformation) {
-                $bundleResourceResponse['rights_information'][] = new Resource($rightsInformation);
+                $rightsInformationArray[] = new Resource($rightsInformation);
             }
+            
+            
+            $bundleResourceResponse['rights_information'] = $rightsInformationArray;
             
             $product['bundle_rights'][] = $bundleResourceResponse;
         }
