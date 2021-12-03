@@ -10,7 +10,7 @@ class UpdateRigsBundle extends Migration
     public function up()
     {
         Schema::table('rights_bundles', function (Blueprint $table) {
-            $table->foreignId('product_id')->unsigned()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id')->nullable()->unsigned()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
     
