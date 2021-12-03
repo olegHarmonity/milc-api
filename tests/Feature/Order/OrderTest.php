@@ -28,5 +28,17 @@ class OrderTest extends ApiTestCase
     }
     
     
+    
+    public function test_get_order_single(){
+        
+        $this->loginAdmin();
+        
+        $response = $this->get('/api/orders/1');
+        
+        $response->assertStatus(200);
+    }
+    
+    
+    
 }
 

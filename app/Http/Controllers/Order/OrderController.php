@@ -27,7 +27,7 @@ class OrderController extends Controller
         
         $orders = SearchFormatter::getSearchQueries($request, Order::class);
 
-        $orders = $orders->with('price:id,total_id', 'price.total:value,currency', 'available_formats:id,name', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title');
+        $orders = $orders->with('total:value,currency', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title');
 
         $orders = $orders->select([
             'id',
@@ -99,6 +99,8 @@ class OrderController extends Controller
             $order->total_id = $total->id;
             $order->vat_id = $vat->id;
 
+            $order->save();
+            
             return (new NewOrderResource($order))->response()->setStatusCode(201);
         } catch (Throwable $e) {
             DB::rollback();
@@ -106,15 +108,10 @@ class OrderController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Order $order
-     * @return \Illuminate\Http\Response
-     */
     public function show(Order $order)
     {
-        //
+        Gate::authorize('view', $order);
+        return (new NewOrderResource($order));
     }
 
     /**
