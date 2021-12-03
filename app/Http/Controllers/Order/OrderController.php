@@ -110,7 +110,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        Gate::authorize('view', $order);
+        //Gate::authorize('view', $order);
         return (new NewOrderResource($order));
     }
 

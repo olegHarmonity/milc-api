@@ -21,9 +21,10 @@ class OrderTest extends ApiTestCase
     
     public function test_get_orders(){
         
-        $this->loginAdmin();
+        $this->loginCompanyAdmin();
         
         $response = $this->get('/api/orders');
+
         $response->assertStatus(200);
     }
     
