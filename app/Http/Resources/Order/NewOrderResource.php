@@ -13,6 +13,8 @@ class NewOrderResource extends JsonResource
 {
     public function toArray($request)
     {
+        $this->makeVisible(['state']);
+        
         $order = parent::toArray($request);
         if (isset($order[0])) {
             $order = $order[0];

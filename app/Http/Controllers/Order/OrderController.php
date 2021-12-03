@@ -16,6 +16,7 @@ use App\Http\Resources\Resource;
 use App\Models\Money;
 use App\Models\Percentage;
 use App\Http\Resources\Order\NewOrderResource;
+use App\Util\CartStates;
 
 class OrderController extends Controller
 {
@@ -65,7 +66,8 @@ class OrderController extends Controller
             $order->billing_last_name = $organisationOwner->last_name;
             $order->billing_email = $organisationOwner->email;
             $order->billing_address = $organisationOwner->address . ", " . $organisationOwner->postal_code . " " . $organisationOwner->city;
-
+            $order->state = CartStates::$NEW;
+            
             $latestOrder = Order::OrderBy('created_at', 'DESC')->first();
             if ($latestOrder){
                 $order->order_number = '#' . str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
