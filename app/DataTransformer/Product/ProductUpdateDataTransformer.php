@@ -40,8 +40,9 @@ class ProductUpdateDataTransformer
             unset($arrayRequest['promotional_videos']);
         }
 
-        if (isset($arrayRequest['rights_bundles'])) {
-            $rightsBundlesRequest = $arrayRequest['rights_bundles'];
+        if (isset($arrayRequest['bundle_rights'])) {
+            $rightsBundlesRequest = $arrayRequest['bundle_rights'];
+            unset($arrayRequest['bundle_rights']);
         }
 
         if (isset($arrayRequest['production_info'])) {
@@ -212,8 +213,8 @@ class ProductUpdateDataTransformer
 
         $productRequest['marketing_assets_id'] = $marketingAssets->id;
 
-        $rightsInformationArray = [];
         if (isset($rightsInformationRequest)) {
+            $rightsInformationArray = [];
             foreach ($rightsInformationRequest as $rightsInformationRequestItem) {
 
                 if (isset($rightsInformationRequestItem['available_rights'])) {

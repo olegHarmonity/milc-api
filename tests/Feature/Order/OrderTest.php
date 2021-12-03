@@ -15,6 +15,7 @@ class OrderTest extends ApiTestCase
         
         $response = $this->post('/api/orders', $data);
         
+        //dump(json_decode($response->getContent()));
         $response->assertStatus(201);
     }
     
@@ -23,7 +24,6 @@ class OrderTest extends ApiTestCase
         $this->loginAdmin();
         
         $response = $this->get('/api/orders');
-        
         $response->assertStatus(200);
     }
     

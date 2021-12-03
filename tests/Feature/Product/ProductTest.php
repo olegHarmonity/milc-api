@@ -560,7 +560,7 @@ class ProductTest extends ApiTestCase
         $this->loginCompanyAdmin();
 
         $data = [
-            'rights_bundles' => [
+            'bundle_rights' => [
                 [
                     'price' => [
                         'value' => 1000.23,
@@ -578,6 +578,7 @@ class ProductTest extends ApiTestCase
          //dump(($response));
          //dump(json_decode($response->getContent()));
         $response->assertStatus(200);
+        
     }
 
     public function test_update_product_rights_info()
