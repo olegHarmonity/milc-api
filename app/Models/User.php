@@ -108,6 +108,15 @@ class User extends Authenticatable implements JWTSubject
         
         return in_array($this->organisation->organisation_role, CompanyRoles::getSellerRolesArray());
     }
+    
+    public function is_from_buyer_organisation()
+    {
+        if(!$this->organisation){
+            return false;
+        }
+        
+        return in_array($this->organisation->organisation_role, CompanyRoles::getBuyerRolesArray());
+    }
 
     public function isAdmin(): bool
     {

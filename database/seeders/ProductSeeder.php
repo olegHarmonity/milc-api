@@ -66,6 +66,8 @@ class ProductSeeder extends Seeder
         
         $rightsBundle->price_id = $price->id;
         
+        $rightsBundle->product_id = $firstProduct->id;
+        
         $rightsBundle->save();
         
         $rightsBundle->bundle_rights_information()->attach([1]);
@@ -121,6 +123,7 @@ class ProductSeeder extends Seeder
             $rightsBundle = new RightsBundle();
             
             $rightsBundle->price_id = $price->id;
+            $rightsBundle->product_id = $products->id;
             
             $rightsBundle->save();
             

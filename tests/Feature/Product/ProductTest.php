@@ -575,8 +575,8 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->put('/api/products/1', $data);
-        // dump(($response));
-        // dump(json_decode($response->getContent()));
+         //dump(($response));
+         //dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
 
@@ -623,8 +623,8 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->put('/api/products/1', $data);
-        // dump(($response));
-        // dump(json_decode($response->getContent()));
+         //dump(($response));
+         //dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
 

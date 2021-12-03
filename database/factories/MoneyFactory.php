@@ -14,7 +14,7 @@ class MoneyFactory extends Factory
     {
         return [
             'value' => rand(100000, 1000000),
-            'currency' => array_rand(['EUR','GBP','USD'])
+            'currency' => array_rand(['EUR' => 0,'GBP' => 1,'USD' => 2],1)
         ];
     }
 }

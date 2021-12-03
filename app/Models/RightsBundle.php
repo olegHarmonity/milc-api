@@ -10,7 +10,8 @@ class RightsBundle extends Model
     use HasFactory, FormattedTimestamps;
 
     protected $fillable = [
-        'price_id'
+        'price_id',
+        'product_id'
     ];
 
     protected $hidden = [
@@ -25,5 +26,10 @@ class RightsBundle extends Model
     public function bundle_rights_information()
     {
         return $this->belongsToMany(RightsInformation::class, 'bundle_rights_information');
+    }
+    
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'products');
     }
 }
