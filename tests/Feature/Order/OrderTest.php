@@ -7,7 +7,7 @@ class OrderTest extends ApiTestCase
 {
     public function test_post_new_order()
     {
-        $this->loginAdmin();
+        $this->loginCompanyAdmin();
         
         $data = [
             'rights_bundle_id' => 1,
@@ -15,9 +15,16 @@ class OrderTest extends ApiTestCase
         
         $response = $this->post('/api/orders', $data);
         
-         dump(($response));
-         dump(json_decode($response->getContent()));
         $response->assertStatus(201);
+    }
+    
+    public function test_get_orders(){
+        
+        $this->loginAdmin();
+        
+        $response = $this->get('/api/orders');
+        
+        $response->assertStatus(200);
     }
     
     

@@ -15,12 +15,15 @@ use App\Models\RightsBundle;
 use App\Http\Resources\Resource;
 use App\Models\Money;
 use App\Models\Percentage;
+use App\Http\Resources\Order\NewOrderResource;
 
 class OrderController extends Controller
 {
 
     public function index(Request $request)
     {
+        Gate::authorize('viewAny', Order::class);
+        
         $orders = SearchFormatter::getSearchQueries($request, Order::class);
 
         $orders = $orders->with('price:id,total_id', 'price.total:value,currency', 'available_formats:id,name', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title');
@@ -39,7 +42,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        // Gate::authorize('create', Order::class);
+        Gate::authorize('create', Order::class);
         try {
             $rightsBundle = RightsBundle::findOrFail($request->get('rights_bundle_id'));
 
@@ -94,7 +97,7 @@ class OrderController extends Controller
             $order->total_id = $total->id;
             $order->vat_id = $vat->id;
 
-            return (new Resource($order))->response()->setStatusCode(201);
+            return (new NewOrderResource($order))->response()->setStatusCode(201);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
