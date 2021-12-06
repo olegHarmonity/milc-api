@@ -9,5 +9,10 @@ Route::put('/orders/change-currency/{id}', [
     'changeCurrency'
 ])->name('changeCurrency');
 
+Route::put('/orders/update-contract/{id}', [
+    OrderController::class,
+    'updateContractStatus'
+])->name('updateContractStatus');
+
 Route::apiResource('orders', OrderController::class);
 

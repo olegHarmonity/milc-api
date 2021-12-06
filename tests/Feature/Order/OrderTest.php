@@ -31,6 +31,19 @@ class OrderTest extends ApiTestCase
         $response->assertStatus(200);
     }
     
+    public function test_order_change_contract()
+    {
+        $this->loginCompanyAdmin();
+        
+        $data = [
+            'accept_contract' => true,
+        ];
+        
+        $response = $this->put('/api/orders/update-contract/1', $data);
+
+        $response->assertStatus(200);
+    }
+    
     public function test_get_orders(){
         
         $this->loginCompanyAdmin();

@@ -3,7 +3,7 @@
 use App\Models\Order;
 
 return [
-    'graphA' => [
+    'checkout' => [
         'class' => Order::class,
         'graph' => 'checkout',
         'property_path' => 'state',

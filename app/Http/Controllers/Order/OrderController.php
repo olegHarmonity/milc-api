@@ -2,9 +2,11 @@
 namespace App\Http\Controllers\Order;
 
 use App\Helper\SearchFormatter;
+use SM\Factory\FactoryInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\ExchangeOrderCurrencyRequest;
+use App\Http\Requests\Order\UpdateContractStatusRequest;
 use App\Http\Resources\CollectionResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -19,6 +21,12 @@ use App\Helper\CurrencyExchange;
 class OrderController extends Controller
 {
 
+    private FactoryInterface $smFactory;
+    
+    public function __construct(FactoryInterface $smFactory){
+       $this->smFactory = $smFactory;
+    }
+    
     public function index(Request $request)
     {
         Gate::authorize('viewAny', Order::class);
@@ -68,6 +76,28 @@ class OrderController extends Controller
             CurrencyExchange::getExchangedMoney($order->price, $toCurrency);
             CurrencyExchange::getExchangedMoney($order->vat, $toCurrency);
             CurrencyExchange::getExchangedMoney($order->total, $toCurrency);
+            
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+    
+    public function updateContractStatus(UpdateContractStatusRequest $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        Gate::authorize('update', $order);
+        
+        try {
+            $contractAccepted =  $request['accept_contract'];
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+            
+            if($contractAccepted){
+                $orderStateMachine->apply('accept_contract');
+            }else{
+                $orderStateMachine->apply('deny_contract');
+            }
             
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
