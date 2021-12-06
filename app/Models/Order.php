@@ -28,6 +28,7 @@ class Order extends Model
         'organisation_id',
         'buyer_user_id',
         'state',
+        'payment_status',
         'order_number'
     ];
     

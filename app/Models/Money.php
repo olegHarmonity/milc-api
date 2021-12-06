@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use App\Traits\FormattedTimestamps;
@@ -12,31 +11,36 @@ use Database\Factories\MoneyFactory;
 class Money extends Model
 {
     use HasFactory, FormattedTimestamps;
-    
+
     protected $casts = [
-        'value' => IntToFloat::class,
+        'value' => IntToFloat::class
     ];
-    
+
     protected $fillable = [
         'value',
         'currency'
     ];
-    
-    public function calculate_percentage(Percentage $percentage) {
-        
-        $value = round($this->value * ($percentage->value/100),2);
-        
+
+    public function calculate_percentage(Percentage $percentage)
+    {
+        $value = round($this->value * ($percentage->value / 100), 2);
+
         return MoneyFactory::createMoney($value, $this->currency);
     }
-    
-    public function sum_up_money(Money $money) {
-        
-        if($this->currency !== $money->currency){
+
+    public function sum_up_money(Money $money)
+    {
+        if ($this->currency !== $money->currency) {
             throw new BadRequestHttpException("An error occured. Please try again later.");
         }
-        
+
         $value = round($this->value + $money->value, 2);
-        
+
         return MoneyFactory::createMoney($value, $this->currency);
+    }
+
+    public function getIntegerValue()
+    {
+        return (int) round(($this->value * 100), 0);
     }
 }

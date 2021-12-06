@@ -34,15 +34,15 @@ return [
                 'to' => 'contract_denied',
             ],
             'attempt_payment' => [
-                'from' =>  ['contract_accepted'],
+                'from' =>  ['contract_accepted', 'payment_failed'],
                 'to' => 'awaiting_payment',
             ],
             'successful_payment' => [
-                'from' =>  ['awaiting_payment'],
+                'from' =>  ['awaiting_payment', 'payment_failed'],
                 'to' => 'paid',
             ],
             'failed_payment' => [
-                'from' =>  ['awaiting_payment'],
+                'from' =>  ['awaiting_payment', 'payment_failed'],
                 'to' => 'payment_failed',
             ],
             'send_assets' => [

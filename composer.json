@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "sebdesign/laravel-state-machine": "^3.2",
+        "stripe/stripe-php": "^7.104",
         "tymon/jwt-auth": "^1.0.",
         "wildbit/swiftmailer-postmark": "^3.3"
     },

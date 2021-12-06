@@ -22,15 +22,16 @@ class OrderController extends Controller
 {
 
     private FactoryInterface $smFactory;
-    
-    public function __construct(FactoryInterface $smFactory){
-       $this->smFactory = $smFactory;
+
+    public function __construct(FactoryInterface $smFactory)
+    {
+        $this->smFactory = $smFactory;
     }
-    
+
     public function index(Request $request)
     {
         Gate::authorize('viewAny', Order::class);
-        
+
         $orders = SearchFormatter::getSearchQueries($request, Order::class);
 
         $orders = $orders->with('total:value,currency', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title');
@@ -49,33 +50,35 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        Gate::authorize('create', Order::class);
         try {
+            Gate::authorize('create', Order::class);
             $rightsBundle = RightsBundle::findOrFail($request->get('rights_bundle_id'));
             $buyerUser = $this->user();
             $order = OrderFactory::createNewOrder($buyerUser, $rightsBundle);
-            
+
             return (new NewOrderResource($order))->response()->setStatusCode(201);
         } catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
         }
     }
-    
+
     public function changeCurrency(ExchangeOrderCurrencyRequest $request, $id)
     {
-        $order = Order::findOrFail($id);
-        Gate::authorize('update', $order);
-        
         try {
-            $toCurrency =  $request['pay_in_currency'];
-            
+            $order = Order::findOrFail($id);
+            Gate::authorize('update', $order);
+
+            $toCurrency = $request['pay_in_currency'];
+
             $order->pay_in_currency = $toCurrency;
             $order->exchange_rate = CurrencyExchange::getExchangeRate($order->price->currency, $toCurrency);
-            
+
             CurrencyExchange::getExchangedMoney($order->price, $toCurrency);
             CurrencyExchange::getExchangedMoney($order->vat, $toCurrency);
             CurrencyExchange::getExchangedMoney($order->total, $toCurrency);
+
+            $order->save();
             
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
@@ -83,21 +86,23 @@ class OrderController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
     }
-    
+
     public function updateContractStatus(UpdateContractStatusRequest $request, $id)
     {
-        $order = Order::findOrFail($id);
-        Gate::authorize('update', $order);
-        
         try {
-            $contractAccepted =  $request['accept_contract'];
+            $order = Order::findOrFail($id);
+            Gate::authorize('update', $order);
+
+            $contractAccepted = $request['accept_contract'];
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
-            
-            if($contractAccepted){
+
+            if ($contractAccepted) {
                 $orderStateMachine->apply('accept_contract');
-            }else{
+            } else {
                 $orderStateMachine->apply('deny_contract');
             }
+            
+            $order->save();
             
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
