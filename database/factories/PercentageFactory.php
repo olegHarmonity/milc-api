@@ -25,4 +25,12 @@ class PercentageFactory extends Factory
             //
         ];
     }
+    
+    public static function createPercentage(float $value)
+    {
+        $money = new Percentage();
+        $money->value = $value;
+        
+        return $money;
+    }
 }

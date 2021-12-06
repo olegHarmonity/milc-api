@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "amrshawky/laravel-currency": "^4.0",
+        "doctrine/dbal": "^3.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
         "laravel-validation-rules/country-codes": "^3.0",

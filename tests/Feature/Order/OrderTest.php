@@ -14,9 +14,21 @@ class OrderTest extends ApiTestCase
         ];
         
         $response = $this->post('/api/orders', $data);
-        
-        //dump(json_decode($response->getContent()));
+
         $response->assertStatus(201);
+    }
+    
+    public function test_order_change_currency()
+    {
+        $this->loginCompanyAdmin();
+        
+        $data = [
+            'pay_in_currency' => 'GBP',
+        ];
+        
+        $response = $this->put('/api/orders/change-currency/1', $data);
+
+        $response->assertStatus(200);
     }
     
     public function test_get_orders(){
@@ -27,8 +39,6 @@ class OrderTest extends ApiTestCase
 
         $response->assertStatus(200);
     }
-    
-    
     
     public function test_get_order_single(){
         

@@ -6,6 +6,7 @@ use App\Http\Controllers\Media\ImageController;
 use App\Http\Controllers\Media\VideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Core\EmailController;
+use App\Http\Controllers\Core\MoneyController;
 
 
 Route::post('/send-email', [
@@ -17,3 +18,9 @@ Route::apiResource('images', ImageController::class);
 Route::apiResource('videos', VideoController::class);
 Route::apiResource('files', FileController::class);
 Route::apiResource('audios', AudioController::class);
+
+Route::post('/exchange-currency', [
+    MoneyController::class,
+    'exchangeCurrency'
+])->name('exchangeCurrency');
+

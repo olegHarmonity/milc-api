@@ -25,37 +25,44 @@ class Order extends Model
         'billing_email',
         'billing_address',
         'rights_bundle_id',
+        'organisation_id',
+        'buyer_user_id',
         'state',
         'order_number'
     ];
     
     public function price()
     {
-        return $this->belongsTo(Money::class, 'money');
+        return $this->belongsTo(Money::class);
+    }
+    
+    public function vat_percentage()
+    {
+        return $this->belongsTo(Percentage::class);
     }
     
     public function vat()
     {
-        return $this->belongsTo(Percentage::class, 'percentages');
+        return $this->belongsTo(Money::class);
     }
     
     public function total()
     {
-        return $this->belongsTo(Money::class, 'money');
+        return $this->belongsTo(Money::class);
     }
     
     public function rights_bundle()
     {
-        return $this->belongsTo(RightsBundle::class, 'rights_bundles');
+        return $this->belongsTo(RightsBundle::class);
     }
     
     public function organisation()
     {
-        return $this->belongsTo(Organisation::class, 'organisations');
+        return $this->belongsTo(Organisation::class);
     }
     
     public function buyer_user()
     {
-        return $this->belongsTo(User::class, 'users');
+        return $this->belongsTo(User::class);
     }
 }

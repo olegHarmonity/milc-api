@@ -24,6 +24,10 @@ class NewOrderResource extends JsonResource
             unset($order['organisation_id']);
         }
         
+        if (isset($order['organisation'])) {
+            unset($order['organisation']);
+        }
+        
         if (isset($order['buyer_user_id'])) {
             unset($order['buyer_user_id']);
         }
@@ -78,8 +82,14 @@ class NewOrderResource extends JsonResource
             $order['total'] = $totalResponse;
         }
         
+        if(isset($order['vat_percentage_id'])){
+            $vat = Percentage::where('id', $order['vat_percentage_id'])->first();
+            $vatResponse = new Resource($vat);
+            $order['vat_percentage'] = $vatResponse;
+        }
+        
         if(isset($order['vat_id'])){
-            $vat = Percentage::where('id', $order['vat_id'])->first();
+            $vat = Money::where('id', $order['vat_id'])->first();
             $vatResponse = new Resource($vat);
             $order['vat'] = $vatResponse;
         }
