@@ -9,8 +9,6 @@ class UpdateOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign('orders_vat_id_foreign');
-            $table->dropColumn('vat_id');
             $table->foreignId('vat_percentage_id')
                 ->unsigned()
                 ->references('id')
