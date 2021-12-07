@@ -8,6 +8,7 @@ class UpdateOrdersTable extends Migration
 
     public function up()
     {
+        if (!Schema::hasColumn('orders', 'vat_percentage_id')) {
         Schema::table('orders', function (Blueprint $table) {
             $table->foreignId('vat_percentage_id')
                 ->unsigned()
@@ -17,6 +18,9 @@ class UpdateOrdersTable extends Migration
                 ->cascadeOnUpdate();
         });
 
+        }
+        
+        if (!Schema::hasColumn('orders', 'vat_id')) {
         Schema::table('orders', function (Blueprint $table) {
             $table->foreignId('vat_id')
                 ->unsigned()
@@ -25,6 +29,7 @@ class UpdateOrdersTable extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
+        }
     }
 
     public function down()
