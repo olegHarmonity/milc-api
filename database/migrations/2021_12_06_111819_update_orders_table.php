@@ -1,3 +1,4 @@
+
 <?php
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -8,6 +9,7 @@ class UpdateOrdersTable extends Migration
 
     public function up()
     {
+        if (!Schema::hasColumn('orders', 'vat_percentage_id')) {
         Schema::table('orders', function (Blueprint $table) {
             $table->dropForeign('orders_vat_id_foreign');
             $table->dropColumn('vat_id');
@@ -18,6 +20,7 @@ class UpdateOrdersTable extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
+        }
 
         Schema::table('orders', function (Blueprint $table) {
             $table->foreignId('vat_id')
