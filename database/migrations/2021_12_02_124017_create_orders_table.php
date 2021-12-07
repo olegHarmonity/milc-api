@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('price_id')->unsigned()->references('id')->on('money')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('vat_id')->unsigned()->references('id')->on('percentages')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('total_id')->unsigned()->references('id')->on('money')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('rights_bundle_id')->unsigned()->references('id')->on('rights_bundles');
+            $table->foreignId('rights_bundle_id')->unsigned()->references('id')->on('rights_bundles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('organisation_id')->unsigned()->references('id')->on('organisations');
             $table->foreignId('buyer_user_id')->unsigned()->references('id')->on('users');
             
@@ -35,7 +35,6 @@ class CreateOrdersTable extends Migration
             $table->string('billing_address');
             $table->string('pay_in_currency')->nullable();
             $table->float('exchange_rate')->nullable();
-            
             
             $table->string('state')->default(CartStates::$NEW);
             $table->string('order_number');

@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Util\AuthorizationResponses;
 use App\Util\UserRoles;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Http\Client\Response;
+use Illuminate\Auth\Access\Response;
 
 class OrderPolicy
 {
@@ -41,6 +41,10 @@ class OrderPolicy
         }
         
         if (!$user->organisation) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if(!$order->organisation){
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
         
@@ -87,6 +91,11 @@ class OrderPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
         
+        if(!$order->organisation){
+            dump("e");
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
         if($order->organisation->id === $user->organisation->id){
             return true;
         }
@@ -94,7 +103,7 @@ class OrderPolicy
         if($order->rights_bundle->product->organisation->id === $user->organisation->id){
             return true;
         }
-        
+        dump("last");
         return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 

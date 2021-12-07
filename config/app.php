@@ -135,6 +135,8 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    
+    'stripe_key' => env('STRIPE_SECRET'),
 
     'providers' => [
 

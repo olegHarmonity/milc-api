@@ -1,62 +1,65 @@
 <?php
 
+use App\Models\Order;
+
 return [
-    'graphA' => [
-        // class of your domain object
-        'class' => App\User::class,
-
-        // name of the graph (default is "default")
-        'graph' => 'graphA',
-
-        // property of your object holding the actual state (default is "state")
+    'checkout' => [
+        'class' => Order::class,
+        'graph' => 'checkout',
         'property_path' => 'state',
-
         'metadata' => [
-            'title' => 'Graph A',
+            'title' => 'Checkout graph',
         ],
-
-        // list of all possible states
         'states' => [
-            // a state as associative array
-            ['name' => 'new'],
-            // a state as associative array with metadata
-            [
-                'name' => 'pending_review',
-                'metadata' => ['title' => 'Pending Review'],
-            ],
-            // states as string
-            'awaiting_changes',
-            'accepted',
-            'published',
-            'rejected',
+            'new',
+            'contract_accepted',
+            'contract_denied',
+            'awaiting_payment',
+            'paid',
+            'payment_failed',
+            'assets_sent',
+            'assets_received',
+            'complete',
+            'rejected'
         ],
 
         // list of all possible transitions
         'transitions' => [
-            'create' => [
+            'accept_contract' => [
                 'from' => ['new'],
-                'to' => 'pending_review',
+                'to' => 'contract_accepted',
             ],
-            'ask_for_changes' => [
-                'from' =>  ['pending_review', 'accepted'],
-                'to' => 'awaiting_changes',
-                'metadata' => ['title' => 'Ask for changes'],
+            'deny_contract' => [
+                'from' => ['new'],
+                'to' => 'contract_denied',
             ],
-            'cancel_changes' => [
-                'from' => ['awaiting_changes'],
-                'to' => 'pending_review',
+            'attempt_payment' => [
+                'from' =>  ['contract_accepted', 'payment_failed'],
+                'to' => 'awaiting_payment',
             ],
-            'submit_changes' => [
-                'from' => ['awaiting_changes'],
-                'to' =>  'pending_review',
+            'successful_payment' => [
+                'from' =>  ['awaiting_payment', 'payment_failed'],
+                'to' => 'paid',
             ],
-            'approve' => [
-                'from' => ['pending_review', 'rejected'],
-                'to' =>  'accepted',
+            'failed_payment' => [
+                'from' =>  ['awaiting_payment', 'payment_failed'],
+                'to' => 'payment_failed',
             ],
-            'publish' => [
-                'from' => ['accepted'],
-                'to' =>  'published',
+            'send_assets' => [
+                'from' =>  ['paid'],
+                'to' => 'assets_sent',
+            ],
+            'receive_assets' => [
+                'from' =>  ['assets_sent'],
+                'to' => 'assets_received',
+            ],
+            'complete' => [
+                'from' =>  ['assets_received'],
+                'to' => 'complete',
+            ],
+            'reject' => [
+                'from' =>  ['new', 'contract_denied', 'payment_failed'],
+                'to' => 'rejected',
             ],
         ],
 

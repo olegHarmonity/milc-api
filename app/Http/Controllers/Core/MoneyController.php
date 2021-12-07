@@ -1,86 +1,31 @@
 <?php
-
-namespace App\Http\Core\Controllers;
+namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
-use App\Models\Money;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Http\Requests\Core\ExchangeCurrencyRequest;
+use Symfony\Component\HttpFoundation\Response;
+use Throwable;
+use App\Helper\CurrencyExchange;
 
 class MoneyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function exchangeCurrency(ExchangeCurrencyRequest $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Money  $money
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Money $money)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Money  $money
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Money $money)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Money  $money
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Money $money)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Money  $money
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Money $money)
-    {
-        //
+        try {
+            $exchangeRequest = $request->validated();
+            
+            $response = CurrencyExchange::changeCurrency($exchangeRequest['from_currency'], $exchangeRequest['to_currency'], $exchangeRequest['amount']);
+           
+            return response()->json([
+                "status" => Response::HTTP_OK,
+                "data" => $response,
+                "message" => "Successfully fetched currency exchange!"
+            ]);
+        } catch (Throwable $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
     }
 }

@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "amrshawky/laravel-currency": "^4.0",
+        "doctrine/dbal": "^3.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
         "laravel-validation-rules/country-codes": "^3.0",
@@ -14,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "sebdesign/laravel-state-machine": "^3.2",
+        "stripe/stripe-php": "^7.104",
         "tymon/jwt-auth": "^1.0.",
         "wildbit/swiftmailer-postmark": "^3.3"
     },
