@@ -7,6 +7,7 @@ use App\Http\Controllers\Media\VideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Core\EmailController;
 use App\Http\Controllers\Core\MoneyController;
+use App\Http\Controllers\Core\GeneralAdminSettingsController;
 
 
 Route::post('/send-email', [
@@ -23,4 +24,7 @@ Route::post('/exchange-currency', [
     MoneyController::class,
     'exchangeCurrency'
 ])->name('exchangeCurrency');
+
+
+Route::apiResource('admin-settings', GeneralAdminSettingsController::class);
 
