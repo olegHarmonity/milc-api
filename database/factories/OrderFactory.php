@@ -10,22 +10,11 @@ use App\Models\RightsBundle;
 class OrderFactory extends Factory
 {
 
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Order::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
-        return [ //
-        ];
+        return [];
     }
 
     public static function createNewOrder(User $buyerUser, RightsBundle $rightsBundle)
@@ -50,12 +39,11 @@ class OrderFactory extends Factory
         $order->billing_address = $organisationOwner->address . ", " . $organisationOwner->postal_code . " " . $organisationOwner->city;
         $order->state = CartStates::$NEW;
 
-        $latestOrder = Order::OrderBy('created_at', 'DESC')->first();
-        if ($latestOrder) {
-            $order->order_number = '#' . str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
-        } else {
-            $order->order_number = '#' . str_pad(1, 8, "0", STR_PAD_LEFT);
-        }
+        do {
+            $orderNumber = self::generateOrderNumber();
+        } while (Order::where('order_number', 'LIKE', $orderNumber)->first() != null);
+
+        $order->order_number = $orderNumber;
 
         $order->organisation_id = $organisation->id;
         $order->buyer_user_id = $buyerUser->id;
@@ -81,7 +69,29 @@ class OrderFactory extends Factory
         $order->vat_id = $vat->id;
 
         $order->save();
-        
+
         return $order;
+    }
+
+    public static function generateOrderNumber()
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 9; $i ++) {
+
+            if ($i < 4) {
+                $randomString .= rand(0, 9);
+                continue;
+            }
+
+            if ($i === 4) {
+                $randomString .= '-';
+                continue;
+            }
+
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

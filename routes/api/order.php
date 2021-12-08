@@ -3,16 +3,21 @@
 use App\Http\Controllers\Order\OrderController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::put('/orders/change-currency/{id}', [
+Route::put('/checkout/change-currency/{orderNumber}', [
     OrderController::class,
     'changeCurrency'
 ])->name('changeCurrency');
 
-Route::put('/orders/update-contract/{id}', [
+Route::put('/checkout/update-contract/{orderNumber}', [
     OrderController::class,
     'updateContractStatus'
 ])->name('updateContractStatus');
 
-Route::apiResource('orders', OrderController::class);
+Route::get('/checkout/{orderNumber}', [OrderController::class, 'showCheckoutOrder']);
+
+Route::get('/orders/{id}', [OrderController::class, 'show']);
+
+Route::get('/orders', [OrderController::class, 'index']);
+
+Route::post('/orders', [OrderController::class, 'store']);
 
