@@ -92,7 +92,6 @@ class OrderPolicy
         }
         
         if(!$order->organisation){
-            dump("e");
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
         
@@ -103,10 +102,61 @@ class OrderPolicy
         if($order->rights_bundle->product->organisation->id === $user->organisation->id){
             return true;
         }
-        dump("last");
+        
         return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
-
+    
+    
+    public function updateBuyer(User $user, Order $order)
+    {
+        if (! $user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
+            return true;
+        }
+        
+        if (!$user->organisation) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if(!$order->organisation){
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if($order->buyer_user->id === $user->id){
+            return true;
+        }
+        
+        return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+    }
+    
+    public function updateSeller(User $user, Order $order)
+    {
+        if (! $user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->role === UserRoles::$ROLE_ADMIN) {
+            return true;
+        }
+        
+        if (!$user->organisation) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if(!$order->organisation){
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if($order->rights_bundle->product->organisation->id === $user->organisation->id){
+            return true;
+        }
+        
+        return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+    }
+    
     public function delete(User $user, Order $order)
     {
         if (! $user) {

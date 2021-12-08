@@ -16,6 +16,5 @@ class PaymentStatuses
     public static $PAYPAL_APPROVED = 'approved';
     public static $PAYPAL_CREATED = 'created';
     public static $PAYPAL_FAILED = 'failed';
-    
 }
 
