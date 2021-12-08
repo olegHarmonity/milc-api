@@ -16,11 +16,43 @@ class PaymentTest extends ApiTestCase
             "exp_year" => 25
         ];
         
-        $response = $this->put('/api/orders/pay-stripe/1', $data);
+        $response = $this->put('/api/checkout/pay-stripe/123-ABC', $data);
         
-        dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
+    
+    
+    public function test_start_pay_with_paypal()
+    {
+        $this->loginCompanyAdmin();
+        
+        $data =  [];
+        
+        $response = $this->put('/api/checkout/pay-paypal/123-ABD', $data);
+
+        $response->assertStatus(200);
+    }
+    
+    public function test_paypal_success_page()
+    {
+        $this->loginCompanyAdmin();
+        
+        $data =  [];
+        
+        $response = $this->get('/payment-success/123-ABD', $data);
+        $response->assertStatus(302);
+    }
+    
+    public function test_paypal_fail_page()
+    {
+        $this->loginCompanyAdmin();
+        
+        $data =  [];
+        
+        $response = $this->get('/payment-error/123-ABD', $data);
+        $response->assertStatus(302);
+    }
+    
     
 }
 

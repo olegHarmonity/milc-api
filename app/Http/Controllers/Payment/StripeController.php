@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 use Illuminate\Support\Facades\Gate;
 use SM\Factory\FactoryInterface;
+use App\Util\PaymentMethods;
 use App\Util\PaymentStatuses;
 use App\Http\Resources\Order\NewOrderResource;
 
@@ -24,10 +25,10 @@ class StripeController extends Controller
         $this->smFactory = $smFactory;
     }
 
-    public function pay(PayWithStripeRequest $request, $id)
+    public function pay(PayWithStripeRequest $request, $orderNumber)
     {
         try {
-            $order = Order::findOrFail($id);
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
             Gate::authorize('update', $order);
             
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
@@ -35,6 +36,7 @@ class StripeController extends Controller
             Stripe::setApiKey(config('app.stripe_key'));
             
             $orderStateMachine->apply('attempt_payment');
+            $order->payment_method = PaymentMethods::$STRIPE;
             
             $token = Token::create([
                 'card' => [
@@ -51,10 +53,12 @@ class StripeController extends Controller
                 'source' => $token->id,
                 'description' => 'Payment for order '.$order->order_number
             ]);
-
+            
             if (! $charge instanceof Charge) {
                 throw new BadRequestHttpException("Something went wrong. Please try again");
             }
+            
+            $order->transaction_id = $charge->id;
             
             if($charge->status === PaymentStatuses::$STRIPE_SUCCESS){
                 $orderStateMachine->apply('successful_payment');

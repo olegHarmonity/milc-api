@@ -137,6 +137,12 @@ return [
     */
     
     'stripe_key' => env('STRIPE_SECRET'),
+    
+    'paypal_client_id' => env('PAYPAL_CLIENT_ID'),
+    
+    'paypal_client_secret' => env('PAYPAL_CLIENT_SECRET'),
+    
+    'paypal_test_env' => env('PAYPAL_TEST_ENV'),
 
     'providers' => [
 

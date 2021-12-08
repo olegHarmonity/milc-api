@@ -29,7 +29,9 @@ class Order extends Model
         'buyer_user_id',
         'state',
         'payment_status',
-        'order_number'
+        'order_number',
+        'transaction_id',
+        'payment_method'
     ];
     
     public function price()

@@ -72,10 +72,10 @@ class OrderController extends Controller
         }
     }
 
-    public function changeCurrency(ExchangeOrderCurrencyRequest $request, $id)
+    public function changeCurrency(ExchangeOrderCurrencyRequest $request, $orderNumber)
     {
         try {
-            $order = Order::findOrFail($id);
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
             Gate::authorize('update', $order);
 
             $toCurrency = $request['pay_in_currency'];
@@ -96,10 +96,10 @@ class OrderController extends Controller
         }
     }
 
-    public function updateContractStatus(UpdateContractStatusRequest $request, $id)
+    public function updateContractStatus(UpdateContractStatusRequest $request, $orderNumber)
     {
         try {
-            $order = Order::findOrFail($id);
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
             Gate::authorize('update', $order);
 
             $contractAccepted = $request['accept_contract'];
@@ -125,10 +125,13 @@ class OrderController extends Controller
         Gate::authorize('view', $order);
         return (new NewOrderResource($order));
     }
-
-    public function update(Request $request, Order $order)
+    
+    public function showCheckoutOrder(Request $request, $orderNumber)
     {
-        //
+        $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+        
+        Gate::authorize('view', $order);
+        return (new NewOrderResource($order));
     }
 
     public function destroy(Order $order)
