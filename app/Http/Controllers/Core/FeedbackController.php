@@ -17,6 +17,7 @@ class FeedbackController extends Controller
     {
         Gate::authorize('viewAny', Feedback::class);
         $feedback = SearchFormatter::getSearchQueries($request, Feedback::class);
+        $feedback = $feedback->with('user:id,first_name,last_name');
         $feedback = $feedback->paginate($request->input('per_page'));
 
         return CollectionResource::make($feedback);
