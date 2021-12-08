@@ -26,72 +26,26 @@ class PersonPolicy
 
     public function create(User $user)
     {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        if (!$user->organisation()) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        if (!$user->is_from_seller_organisation()) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return $user && $user->isAdmin();
     }
 
     public function update(User $user, Person $person)
     {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        if (!$user->organisation()) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        if (!$user->is_from_seller_organisation()) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return $user && $user->isAdmin();
     }
 
     public function delete(User $user, Person $person)
     {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return $user && $user->isAdmin();
     }
 
     public function restore(User $user, Person $person)
     {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return $user && $user->isAdmin();
     }
 
     public function forceDelete(User $user, Person $person)
     {
-        if (!$user) {
-            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
-        }
-
-        return $user->role === UserRoles::$ROLE_ADMIN
-            ? true
-            : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        return $user && $user->isAdmin();
     }
 }
