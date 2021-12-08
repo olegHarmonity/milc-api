@@ -13,6 +13,46 @@ Route::put('/checkout/update-contract/{orderNumber}', [
     'updateContractStatus'
 ])->name('updateContractStatus');
 
+Route::put('/checkout/mark-assets-sent/{orderNumber}', [
+    OrderController::class,
+    'markAssetsAsSent'
+])->name('markAssetsAsSent');
+
+Route::put('/checkout/mark-assets-received/{orderNumber}', [
+    OrderController::class,
+    'markAssetsAsReceived'
+])->name('markAssetsAsReceived');
+
+Route::put('/checkout/mark-completed/{orderNumber}', [
+    OrderController::class,
+    'markAsCompleted'
+])->name('markAsCompleted');
+
+Route::put('/checkout/mark-rejected/{orderNumber}', [
+    OrderController::class,
+    'markAsRejected'
+])->name('markAsRejected');
+
+Route::put('/checkout/mark-cancelled/{orderNumber}', [
+    OrderController::class,
+    'markAsCancelled'
+])->name('markAsCancelled');
+
+Route::put('/checkout/mark-refunded/{orderNumber}', [
+    OrderController::class,
+    'markAsRefunded'
+])->name('markAsRefunded');
+
+Route::put('/checkout/mark-paid/{orderNumber}', [
+    OrderController::class,
+    'markAsPaid'
+])->name('markAsPaid');
+
+Route::put('/checkout/pay-bank-transfer/{orderNumber}', [
+    OrderController::class,
+    'payViaBankTransfer'
+])->name('payViaBankTransfer');
+
 Route::get('/checkout/{orderNumber}', [OrderController::class, 'showCheckoutOrder']);
 
 Route::get('/orders/{id}', [OrderController::class, 'show']);

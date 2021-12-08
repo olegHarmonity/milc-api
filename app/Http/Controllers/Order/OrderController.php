@@ -17,6 +17,8 @@ use App\Models\RightsBundle;
 use App\Http\Resources\Order\NewOrderResource;
 use Database\Factories\OrderFactory;
 use App\Helper\CurrencyExchange;
+use App\Util\PaymentMethods;
+use App\Util\PaymentStatuses;
 
 class OrderController extends Controller
 {
@@ -30,18 +32,12 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
-         Gate::authorize('viewAny', Order::class);
-        
+        Gate::authorize('viewAny', Order::class);
+
         $orders = SearchFormatter::getSearchQueries($request, Order::class);
-        
-        $orders = $orders->with(
-            'price:id,value,currency',
-            'rights_bundle:id,product_id',
-            'rights_bundle.product:id,title,marketing_assets_id',
-            'rights_bundle.product.marketing_assets:id,key_artwork_id',
-            'rights_bundle.product.marketing_assets.key_artwork:id,image_name,image_url',
-            );
-        
+
+        $orders = $orders->with('price:id,value,currency', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title,marketing_assets_id', 'rights_bundle.product.marketing_assets:id,key_artwork_id', 'rights_bundle.product.marketing_assets.key_artwork:id,image_name,image_url');
+
         $orders = $orders->select([
             'id',
             'order_number',
@@ -49,11 +45,11 @@ class OrderController extends Controller
             'state',
             'created_at',
             'price_id',
-            'rights_bundle_id',
+            'rights_bundle_id'
         ]);
-        
+
         $orders = $orders->paginate($request->input('per_page'));
-        
+
         return CollectionResource::make($orders);
     }
 
@@ -88,7 +84,7 @@ class OrderController extends Controller
             CurrencyExchange::getExchangedMoney($order->total, $toCurrency);
 
             $order->save();
-            
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -110,9 +106,9 @@ class OrderController extends Controller
             } else {
                 $orderStateMachine->apply('deny_contract');
             }
-            
+
             $order->save();
-            
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -120,22 +116,180 @@ class OrderController extends Controller
         }
     }
 
-    public function show(Order $order)
+    public function payViaBankTransfer(Request $request, $orderNumber)
     {
-        Gate::authorize('view', $order);
-        return (new NewOrderResource($order));
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+            Gate::authorize('update', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('attempt_payment');
+            $order->payment_method = PaymentMethods::$BANK_TRANSFER;
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
     }
-    
-    public function showCheckoutOrder(Request $request, $orderNumber)
+
+    public function markAssetsAsSent(Request $request, $orderNumber)
     {
-        $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
-        
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+            Gate::authorize('updateSeller', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('send_assets');
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+
+    public function markAssetsAsReceived(Request $request, $orderNumber)
+    {
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+            Gate::authorize('updateBuyer', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('receive_assets');
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+
+    public function markAsCompleted(Request $request, $orderNumber)
+    {
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+            Gate::authorize('updateSeller', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('complete');
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+
+    public function markAsRejected(Request $request, $orderNumber)
+    {
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+            Gate::authorize('updateSeller', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('reject');
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+
+    public function markAsCancelled(Request $request, $orderNumber)
+    {
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+            Gate::authorize('updateBuyer', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('cancel');
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+
+    public function markAsRefunded(Request $request, $orderNumber)
+    {
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+
+            Gate::authorize('updateSeller', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('refund');
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+
+    public function markAsPaid(Request $request, $orderNumber)
+    {
+        try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+
+            Gate::authorize('updateSeller', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            if ($order->payment_method === PaymentMethods::$BANK_TRANSFER) {
+                $orderStateMachine->apply('successful_payment');
+                $order->payment_status = PaymentStatuses::$SUCCESSFUL;
+                $order->save();
+            } else {
+                throw new BadRequestHttpException("Only bank transfers can be marked as paid");
+            }
+
+            $order->save();
+
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
+    }
+
+    public function show(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+
         Gate::authorize('view', $order);
         return (new NewOrderResource($order));
     }
 
-    public function destroy(Order $order)
+    public function showCheckoutOrder(Request $request, $orderNumber)
     {
-        //
+        $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+
+        Gate::authorize('view', $order);
+        return (new NewOrderResource($order));
     }
 }

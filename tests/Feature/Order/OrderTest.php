@@ -3,6 +3,7 @@ namespace Tests\Feature\Order;
 
 use App\Models\Order;
 use Tests\ApiTestCase;
+use App\Util\CartStates;
 
 class OrderTest extends ApiTestCase
 {
@@ -13,9 +14,9 @@ class OrderTest extends ApiTestCase
         $data = [
             'rights_bundle_id' => 1,
         ];
-        
         $response = $this->post('/api/orders', $data);
-
+        
+        dump($response);
         $response->assertStatus(201);
         
         $order = Order::where('id', '=', 1)->first();
@@ -90,8 +91,60 @@ class OrderTest extends ApiTestCase
         $this->loginAdmin();
         
         $response = $this->get('/api/orders/1');
-        
         $response->assertStatus(200);
+    }
+    
+    
+    public function test_order_positive_flow()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->put('/api/checkout/pay-bank-transfer/123-ABC');
+        $response->assertStatus(200);
+        
+        $response = $this->put('/api/checkout/mark-paid/123-ABC');
+        $response->assertStatus(200);
+        
+        $response = $this->put('/api/checkout/mark-assets-sent/123-ABC');
+        $response->assertStatus(200);
+        
+        $response = $this->put('/api/checkout/mark-assets-received/123-ABC');
+      
+        $response->assertStatus(200);
+        
+        $response = $this->put('/api/checkout/mark-completed/123-ABC');
+        $response->assertStatus(200);
+        
+        $order = Order::where('id', '=', 1)->first();
+        $order->state= CartStates::$CONTRACT_ACCEPTED;
+        $order->save();
+    }
+    
+    
+    public function test_order_negative_flow()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->put('/api/checkout/mark-rejected/123-ABC');
+        $response->assertStatus(200);
+        
+        $order = Order::where('id', '=', 1)->first();
+        $order->state= CartStates::$PAID;
+        $order->save();
+        
+        $response = $this->put('/api/checkout/mark-refunded/123-ABC');
+        $response->assertStatus(200);
+        
+        $order = Order::where('id', '=', 1)->first();
+        $order->state= CartStates::$CONTRACT_ACCEPTED;
+        $order->save();
+        
+        $response = $this->put('/api/checkout/mark-cancelled/123-ABC');
+        $response->assertStatus(200);
+        
+        $order = Order::where('id', '=', 1)->first();
+        $order->state= CartStates::$CONTRACT_ACCEPTED;
+        $order->save();
     }
 }
 
