@@ -18,7 +18,6 @@ class PaymentTest extends ApiTestCase
         
         $response = $this->put('/api/orders/pay-stripe/1', $data);
         
-        dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
     

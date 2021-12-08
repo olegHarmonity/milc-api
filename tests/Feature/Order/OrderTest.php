@@ -49,7 +49,7 @@ class OrderTest extends ApiTestCase
         $this->loginCompanyAdmin();
         
         $response = $this->get('/api/orders');
-
+        
         $response->assertStatus(200);
     }
     

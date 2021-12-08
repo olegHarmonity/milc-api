@@ -8,25 +8,29 @@ class UpdateOrdersTable extends Migration
 
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign('orders_vat_id_foreign');
-            $table->dropColumn('vat_id');
-            $table->foreignId('vat_percentage_id')
-                ->unsigned()
-                ->references('id')
-                ->on('percentages')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-        });
+        if (! Schema::hasColumn('orders', 'vat_percentage_id')) {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->dropForeign('orders_vat_id_foreign');
+                $table->dropColumn('vat_id');
+                $table->foreignId('vat_percentage_id')
+                    ->unsigned()
+                    ->references('id')
+                    ->on('percentages')
+                    ->cascadeOnDelete()
+                    ->cascadeOnUpdate();
+            });
+        }
 
-        Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('vat_id')
-                ->unsigned()
-                ->references('id')
-                ->on('money')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-        });
+        if (! Schema::hasColumn('orders', 'vat_id')) {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->foreignId('vat_id')
+                    ->unsigned()
+                    ->references('id')
+                    ->on('money')
+                    ->cascadeOnDelete()
+                    ->cascadeOnUpdate();
+            });
+        }
     }
 
     public function down()

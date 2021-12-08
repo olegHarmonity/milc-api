@@ -30,6 +30,6 @@ class RightsBundle extends Model
     
     public function product()
     {
-        return $this->belongsTo(Product::class, 'products');
+        return $this->belongsTo(Product::class);
     }
 }

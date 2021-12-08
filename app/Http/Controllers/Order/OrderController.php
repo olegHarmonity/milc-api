@@ -31,20 +31,29 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         Gate::authorize('viewAny', Order::class);
-
+        
         $orders = SearchFormatter::getSearchQueries($request, Order::class);
-
-        $orders = $orders->with('total:value,currency', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title');
-
+        
+        $orders = $orders->with(
+            'price:id,value,currency',
+            'rights_bundle:id,product_id',
+            'rights_bundle.product:id,title,marketing_assets_id',
+            'rights_bundle.product.marketing_assets:id,key_artwork_id',
+            'rights_bundle.product.marketing_assets.key_artwork:id,image_name,image_url',
+            );
+        
         $orders = $orders->select([
             'id',
             'order_number',
+            'organisation_name',
             'state',
-            'created_at'
+            'created_at',
+            'price_id',
+            'rights_bundle_id',
         ]);
-
+        
         $orders = $orders->paginate($request->input('per_page'));
-
+        
         return CollectionResource::make($orders);
     }
 

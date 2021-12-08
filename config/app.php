@@ -165,12 +165,14 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
          */
         
         Sebdesign\SM\ServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         
         /*
          * Application Service Providers...
@@ -240,7 +242,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'StateMachine' => Sebdesign\SM\Facade::class,
-
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
     ],
 
 ];

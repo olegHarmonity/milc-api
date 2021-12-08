@@ -3,7 +3,7 @@ namespace App\Util;
 
 class PaymentStatuses
 {
-    public static $UNPAID = 'upaid';
+    public static $UNPAID = 'unpaid';
     public static $SUCCESSFUL = 'successful';
     public static $FAILED = 'failed';
     public static $PENDING = 'pending';
