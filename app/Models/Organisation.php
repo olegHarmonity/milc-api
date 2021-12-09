@@ -26,7 +26,10 @@ class Organisation extends Model
         'country',
         'city',
         'address',
-        'postal_code'
+        'postal_code',
+        'iban',
+        'swift_bic',
+        'bank_name',
     ];
 
     protected $hidden = [

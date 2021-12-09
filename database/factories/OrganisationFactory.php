@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Factories;
 
 use App\Models\Organisation;
@@ -9,6 +8,7 @@ use App\Util\OrganisationStatuses;
 
 class OrganisationFactory extends Factory
 {
+
     protected $model = Organisation::class;
 
     public function definition()
@@ -26,16 +26,19 @@ class OrganisationFactory extends Factory
                 "facebook" => $this->faker->url(),
                 "twitter" => $this->faker->url(),
                 "linkedin" => $this->faker->url(),
-                "telegram" => $this->faker->url(),
+                "telegram" => $this->faker->url()
             ],
             'date_activated' => $this->faker->dateTime(),
             'status' => OrganisationStatuses::$ACCEPTED,
-            'organisation_type_id' => rand(1,4),
+            'organisation_type_id' => rand(1, 4),
             'logo_id' => 1,
             'country' => $this->faker->countryCode(),
             'city' => $this->faker->city(),
             'address' => $this->faker->address(),
             'postal_code' => $this->faker->postcode(),
+            'iban' => $this->faker->iban(),
+            'swift_bic' => $this->faker->swiftBicNumber(),
+            'bank_name' => $this->faker->city() . ' bank inc.'
         ];
     }
 }

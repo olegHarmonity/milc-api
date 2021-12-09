@@ -16,7 +16,6 @@ class OrderTest extends ApiTestCase
         ];
         $response = $this->post('/api/orders', $data);
         
-        dump($response);
         $response->assertStatus(201);
         
         $order = Order::where('id', '=', 1)->first();

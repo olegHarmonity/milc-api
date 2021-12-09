@@ -21,7 +21,7 @@ class PayPalController extends Controller
     private GatewayInterface $gateway;
 
     private FactoryInterface $smFactory;
-    
+
     private string $webAppUrl;
 
     public function __construct(FactoryInterface $smFactory)
@@ -37,19 +37,18 @@ class PayPalController extends Controller
     public function pay(PayWithPaypalRequest $request, $orderNumber)
     {
         $request->validated();
-
-        $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
-        Gate::authorize('update', $order);
-
-        $orderStateMachine = $this->smFactory->get($order, 'checkout');
-
-        $orderStateMachine->apply('attempt_payment');
-        $order->payment_method = PaymentMethods::$PAYPAL;
-        $order->save();
-
-        $total = $order->total;
-
         try {
+            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+            Gate::authorize('update', $order);
+
+            $orderStateMachine = $this->smFactory->get($order, 'checkout');
+
+            $orderStateMachine->apply('attempt_payment');
+            $order->payment_method = PaymentMethods::$PAYPAL;
+            $order->save();
+
+            $total = $order->total;
+
             $response = $this->gateway->purchase([
                 'amount' => $total->value,
                 'currency' => $total->currency,
@@ -79,7 +78,7 @@ class PayPalController extends Controller
             return $e->getMessage();
         }
 
-        //return (new NewOrderResource($order))->response()->setStatusCode(200);
+        // return (new NewOrderResource($order))->response()->setStatusCode(200);
     }
 
     public function paymentSuccess(Request $request, $orderNumber)
@@ -107,20 +106,19 @@ class PayPalController extends Controller
                     $order->transaction_id = $paypalResponse['id'];
                     $order->save();
                 }
-                return Redirect::to($this->webAppUrl.'app/checkout/success/'.$orderNumber.'?message=Transaction was processed successfully.');
-                
+                return Redirect::to($this->webAppUrl . 'app/checkout/success/' . $orderNumber . '?message=Transaction was processed successfully.');
             } else {
                 $orderStateMachine->apply('failed_payment');
                 $order->payment_status = PaymentStatuses::$FAILED;
                 $order->save();
-                
-                return Redirect::to($this->webAppUrl.'app/checkout/'.$orderNumber.'?message='.$response->getMessage());
+
+                return Redirect::to($this->webAppUrl . 'app/checkout/' . $orderNumber . '?message=' . $response->getMessage());
             }
         } else {
             $orderStateMachine->apply('failed_payment');
             $order->payment_status = PaymentStatuses::$FAILED;
             $order->save();
-            return Redirect::to($this->webAppUrl.'app/checkout/'.$orderNumber.'?message=Transaction is declined');
+            return Redirect::to($this->webAppUrl . 'app/checkout/' . $orderNumber . '?message=Transaction is declined');
         }
     }
 
@@ -133,7 +131,7 @@ class PayPalController extends Controller
         $orderStateMachine->apply('failed_payment');
         $order->payment_status = PaymentStatuses::$CANCELLED;
         $order->save();
-        
-        return Redirect::to($this->webAppUrl.'app/checkout/'.$orderNumber.'?message=User cancelled the payment.');
+
+        return Redirect::to($this->webAppUrl . 'app/checkout/' . $orderNumber . '?message=User cancelled the payment.');
     }
 }

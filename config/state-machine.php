@@ -12,7 +12,6 @@ return [
         ],
         'states' => CartStates::getStates(),
 
-        // list of all possible transitions
         'transitions' => [
             'accept_contract' => [
                 'from' => [
