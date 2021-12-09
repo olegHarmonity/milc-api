@@ -4,25 +4,19 @@ namespace Database\Factories;
 
 use App\Models\VatRule;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Util\VatRuleNames;
 
 class VatRuleFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = VatRule::class;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+    
     public function definition()
     {
         return [
-            //
+            'rule_type' => VatRuleNames::$DOMESTIC,
+            'country' => 'DE',
+            'vat_id' => 1,
+            'organisation_id' => 1
         ];
     }
 }

@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             //RightsInformationSeeder::class,
             //MarketingAssetsSeeder::class,
             ProductSeeder::class,
-            //GeneralAdminSettingsSeeder::class
+            //GeneralAdminSettingsSeeder::class,
+            VatRuleSeeder::class
         ]);
     }
 }
