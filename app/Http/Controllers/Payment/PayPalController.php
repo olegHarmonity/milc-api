@@ -53,12 +53,8 @@ class PayPalController extends Controller
             $response = $this->gateway->purchase([
                 'amount' => $total->value,
                 'currency' => $total->currency,
-                'returnUrl' => url('payment-success', [
-                    'orderNumber' => $orderNumber
-                ]),
-                'cancelUrl' => url('payment-error', [
-                    'orderNumber' => $orderNumber
-                ])
+                'returnUrl' => $this->webAppUrl . 'app/checkout/success/' . $orderNumber ,
+                'cancelUrl' => $this->webAppUrl . 'app/checkout/' . $orderNumber
             ])->send();
 
            
@@ -121,19 +117,19 @@ class PayPalController extends Controller
                     $order->transaction_id = $paypalResponse['id'];
                     $order->save();
                 }
-                return Redirect::to($this->webAppUrl . 'app/checkout/success/' . $orderNumber . '?message=Transaction was processed successfully.');
+                return (new NewOrderResource($order))->response()->setStatusCode(200);
             } else {
                 $orderStateMachine->apply('failed_payment');
                 $order->payment_status = PaymentStatuses::$FAILED;
                 $order->save();
 
-                return Redirect::to($this->webAppUrl . 'app/checkout/' . $orderNumber . '?message=' . $response->getMessage());
+                return (new NewOrderResource($order))->response()->setStatusCode(200);
             }
         } else {
             $orderStateMachine->apply('failed_payment');
             $order->payment_status = PaymentStatuses::$FAILED;
             $order->save();
-            return Redirect::to($this->webAppUrl . 'app/checkout/' . $orderNumber . '?message=Transaction is declined');
+            return (new NewOrderResource($order))->response()->setStatusCode(200);
         }
     }
 
@@ -147,6 +143,6 @@ class PayPalController extends Controller
         $order->payment_status = PaymentStatuses::$CANCELLED;
         $order->save();
 
-        return Redirect::to($this->webAppUrl . 'app/checkout/' . $orderNumber . '?message=User cancelled the payment.');
+        return (new NewOrderResource($order))->response()->setStatusCode(200);
     }
 }

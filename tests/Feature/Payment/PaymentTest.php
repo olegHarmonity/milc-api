@@ -38,7 +38,7 @@ class PaymentTest extends ApiTestCase
         $data =  [];
         
         $response = $this->get('/payment-success/123-ABD', $data);
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
     
     public function test_paypal_fail_page()
@@ -48,7 +48,7 @@ class PaymentTest extends ApiTestCase
         $data =  [];
         
         $response = $this->get('/payment-error/123-ABD', $data);
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
     
     
