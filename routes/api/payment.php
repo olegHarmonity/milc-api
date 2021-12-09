@@ -17,3 +17,6 @@ Route::get('/checkout/pay-paypal/{orderNumber}', [
     'pay'
 ])->name('pay-paypal');
 
+
+Route::get('payment-success/{id}', [PayPalController::class, 'paymentSuccess']);
+Route::get('payment-error/{id}', [PayPalController::class, 'paymentError']);
