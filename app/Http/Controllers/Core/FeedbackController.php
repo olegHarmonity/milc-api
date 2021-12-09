@@ -30,7 +30,6 @@ class FeedbackController extends Controller
         if(auth()->id() != null)
             $data['user_id'] = auth()->id();
             
-        $data['status'] = 'panding';
         $feedback = Feedback::create($data);
 
         return new CollectionResource($feedback);

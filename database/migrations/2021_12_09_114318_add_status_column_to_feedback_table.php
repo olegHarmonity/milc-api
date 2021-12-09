@@ -14,7 +14,7 @@ class AddStatusColumnToFeedbackTable extends Migration
     public function up()
     {
         Schema::table('feedback', function (Blueprint $table) {
-            $table->string('status')->nullable()->after('user_id');
+            $table->string('status')->default('pending')->nullable()->after('user_id');       
             $table->boolean('is_archived')->default(0)->nullable()->after('user_id');
         });
     }
