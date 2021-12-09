@@ -53,7 +53,7 @@ class PayPalController extends Controller
             $response = $this->gateway->purchase([
                 'amount' => $total->value,
                 'currency' => $total->currency,
-                'returnUrl' => $this->webAppUrl . 'app/checkout/success/' . $orderNumber ,
+                'returnUrl' => $this->webAppUrl . 'app/checkout/' . $orderNumber ,
                 'cancelUrl' => $this->webAppUrl . 'app/checkout/' . $orderNumber
             ])->send();
 
