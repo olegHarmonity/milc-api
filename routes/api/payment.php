@@ -12,7 +12,7 @@ Route::put('/checkout/pay-stripe/{orderNumber}', [
 
 
 
-Route::put('/checkout/pay-paypal/{orderNumber}', [
+Route::get('/checkout/pay-paypal/{orderNumber}', [
     PayPalController::class,
     'pay'
 ])->name('pay-paypal');

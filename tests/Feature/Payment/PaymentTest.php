@@ -26,9 +26,7 @@ class PaymentTest extends ApiTestCase
     {
         $this->loginCompanyAdmin();
         
-        $data =  [];
-        
-        $response = $this->put('/api/checkout/pay-paypal/123-ABD', $data);
+        $response = $this->get('/api/checkout/pay-paypal/123-ABD');
 
         $response->assertStatus(200);
     }
