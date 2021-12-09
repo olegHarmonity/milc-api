@@ -61,9 +61,23 @@ class PayPalController extends Controller
                 ])
             ])->send();
 
+           
             if ($response->isRedirect()) {
+                $redirectLink = "";
+                $responseData = $response->getData();
+                
+                if(isset($responseData['links'])){
+                    foreach ($responseData['links'] as $linkInfo){
+                        if($linkInfo['method'] == 'REDIRECT'){
+                            $redirectLink = $linkInfo['href'];
+                        }
+                    }
+                }
+                
+                return response()->json([
+                    'redirect_link' => $redirectLink
+                ]);
 
-                $response->redirect();
             } else {
 
                 $orderStateMachine->apply('failed_payment');

@@ -19,6 +19,10 @@ use App\Util\OrganisationStatuses;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrganisationAcceptedEmail;
 use App\Mail\OrganisationDeclinedEmail;
+use App\Models\Percentage;
+use Database\Factories\PercentageFactory;
+use App\Models\VatRule;
+use Database\Factories\OrganisationFactory;
 
 class OrganisationController extends Controller
 {
@@ -39,14 +43,7 @@ class OrganisationController extends Controller
 
     public function update(UpdateOrganisationRequest $request, Organisation $organisation)
     {
-        $data = $request->validated();
-
-        if ($request->file('logo')) {
-            $image = FileUploader::uploadFile($request, 'image', 'logo');
-            $data['logo_id'] = $image->id;
-        }
-
-        $organisation->update($data);
+        $organisation = OrganisationFactory::updateFromRequest($request, $organisation);
 
         return (new OrganisationResource($organisation))->response()->setStatusCode(Response::HTTP_OK);
     }

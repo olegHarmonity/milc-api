@@ -65,6 +65,11 @@ class Organisation extends Model
     {
         return $this->hasMany(Product::class);
     }
+    
+    public function vat_rules()
+    {
+        return $this->hasMany(VatRule::class);
+    }
 
     public function hasUser(User $user)
     {

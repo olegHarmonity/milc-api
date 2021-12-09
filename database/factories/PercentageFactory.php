@@ -7,30 +7,20 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PercentageFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Percentage::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         return [
-            //
+            'value' => rand(0,25)
         ];
     }
     
     public static function createPercentage(float $value)
     {
-        $money = new Percentage();
-        $money->value = $value;
+        $percentage = new Percentage();
+        $percentage->value = $value;
         
-        return $money;
+        return $percentage;
     }
 }

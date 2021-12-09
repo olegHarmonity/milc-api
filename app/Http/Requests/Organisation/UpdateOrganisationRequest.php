@@ -4,6 +4,7 @@ namespace App\Http\Requests\Organisation;
 
 use App\Util\CompanyRoles;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Util\VatRuleNames;
 
 class UpdateOrganisationRequest extends FormRequest
 {
@@ -67,6 +68,25 @@ class UpdateOrganisationRequest extends FormRequest
             'swift_bic' => [
                 'sometimes',
                 'string',
+                'required',
+            ],
+            'vat_rules' => [
+                'sometimes',
+            ],
+            'vat_rules.*.rule_type' => [
+                'required',
+                'in:' . VatRuleNames::getRules(true)
+            ],
+            'vat_rules.*.country' => [
+                'sometimes',
+                'string',
+                'min:2',
+                'max:2',
+            ],
+            'vat_rules.*.vat' => [
+                'sometimes',
+            ],
+            'vat_rules.*.vat.value' => [
                 'required',
             ],
         ];

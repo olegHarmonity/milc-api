@@ -26,12 +26,12 @@ class PersonPolicy
 
     public function create(User $user)
     {
-        return $user && $user->isAdmin();
+        return $user && ($user->isAdmin() or $user->is_from_seller_organisation());
     }
 
     public function update(User $user, Person $person)
     {
-        return $user && $user->isAdmin();
+        return $user && $user->isAdmin() or $user->is_from_seller_organisation();
     }
 
     public function delete(User $user, Person $person)
