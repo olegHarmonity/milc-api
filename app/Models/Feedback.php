@@ -14,6 +14,8 @@ class Feedback extends Model
         'user_id',
         'type',
         'content',
+        'status',
+        'is_archived',
     ];
 
     public function user()

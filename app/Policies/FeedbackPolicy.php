@@ -14,7 +14,7 @@ class FeedbackPolicy
 
     public function viewAny(User $user)
     {
-        return true;
+        return $user->role === UserRoles::$ROLE_ADMIN ? true : Response::deny(AuthorizationResponses::$NOT_ALLOWED);
     }
 
 
