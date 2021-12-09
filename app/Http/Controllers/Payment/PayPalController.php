@@ -37,12 +37,13 @@ class PayPalController extends Controller
     public function pay(PayWithPaypalRequest $request, $orderNumber)
     {
         $request->validated();
+        
+        $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
+        Gate::authorize('update', $order);
+        
+        $orderStateMachine = $this->smFactory->get($order, 'checkout');
+        
         try {
-            $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
-            Gate::authorize('update', $order);
-
-            $orderStateMachine = $this->smFactory->get($order, 'checkout');
-
             $orderStateMachine->apply('attempt_payment');
             $order->payment_method = PaymentMethods::$PAYPAL;
             $order->save();
