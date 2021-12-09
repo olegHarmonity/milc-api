@@ -54,7 +54,21 @@ class UpdateOrganisationRequest extends FormRequest
             'social_links' => 'sometimes',
             'website_link' => 'sometimes',
             'logo_id' => 'sometimes',
-            'logo' => 'sometimes'
+            'logo' => 'sometimes',
+            'iban' => [
+                'sometimes',
+                'string',
+                'required',
+            ],
+            'bank_name' => [
+                'sometimes',
+                'required'
+            ],
+            'swift_bic' => [
+                'sometimes',
+                'string',
+                'required',
+            ],
         ];
     }
 }
