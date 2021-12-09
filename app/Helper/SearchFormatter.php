@@ -30,9 +30,9 @@ class SearchFormatter
         $startDateSearch = $request->get('start_date');
         $endDateSearch = $request->get('end_date');
         $dateSearch = $request->get('date');
-        
+
         $sort = $request->get('sort') ?? ['created_at' => 'DESC'];
-        
+
         foreach($sort as $parameter => $direction){
             $query = $model::sort($parameter, $direction, $query);
         }
@@ -81,7 +81,7 @@ class SearchFormatter
             $searchTerm = '';
             $attributes = [];
             foreach ($search as $attribute => $term) {
-                if (empty($term)) {
+                if (self::isEmpty($term)) {
                     continue;
                 }
 
@@ -109,7 +109,7 @@ class SearchFormatter
             $searchTerms = [];
             $attributes = [];
             foreach ($search as $attribute => $term) {
-                if (empty($term)) {
+                if (self::isEmpty($term)) {
                     continue;
                 }
 
@@ -156,7 +156,7 @@ class SearchFormatter
         if ($dateSearch) {
 
             foreach ($dateSearch as $attribute => $term) {
-                if (empty($term)) {
+                if (self::isEmpty($term)) {
                     continue;
                 }
 
@@ -169,7 +169,7 @@ class SearchFormatter
         if ($startDateSearch) {
 
             foreach ($startDateSearch as $attribute => $term) {
-                if (empty($term)) {
+                if (self::isEmpty($term)) {
                     continue;
                 }
 
@@ -181,7 +181,7 @@ class SearchFormatter
         if ($endDateSearch) {
 
             foreach ($endDateSearch as $attribute => $term) {
-                if (empty($term)) {
+                if (self::isEmpty($term)) {
                     continue;
                 }
 
@@ -191,5 +191,10 @@ class SearchFormatter
         }
 
         return $model::dateFilter($searchAttribute, $startDate, $endDate, $existinQuery);
+    }
+
+    public static function isEmpty($value)
+    {
+        return empty($value) && $value !== '0' && $value !== 0;
     }
 }
