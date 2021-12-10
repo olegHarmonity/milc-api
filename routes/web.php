@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\User\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Payment\PayPalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +20,4 @@ Route::get('/', function () {
 
 Route::get('auth/reset-password/{email}')
     ->name('password.reset');
-
-Route::get('payment-success/{id}', [PayPalController::class, 'paymentSuccess']);
-Route::get('payment-error/{id}', [PayPalController::class, 'paymentError']);
 

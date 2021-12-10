@@ -9,9 +9,9 @@ class UpdateOrganisation extends Migration
     public function up()
     {
         Schema::table('organisations', function (Blueprint $table) {
-            $table->string('iban');
-            $table->string('swift_bic');
-            $table->string('bank_name');
+            $table->string('iban')->nullable();
+            $table->string('swift_bic')->nullable();
+            $table->string('bank_name')->nullable();
         });
     }
 

@@ -37,12 +37,12 @@ class PayPalController extends Controller
     public function pay(PayWithPaypalRequest $request, $orderNumber)
     {
         $request->validated();
-        
+
         $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
         Gate::authorize('update', $order);
-        
+
         $orderStateMachine = $this->smFactory->get($order, 'checkout');
-        
+
         try {
             $orderStateMachine->apply('attempt_payment');
             $order->payment_method = PaymentMethods::$PAYPAL;
@@ -53,15 +53,15 @@ class PayPalController extends Controller
             $response = $this->gateway->purchase([
                 'amount' => $total->value,
                 'currency' => $total->currency,
-                'returnUrl' => $this->webAppUrl . 'app/checkout/' . $orderNumber ,
-                'cancelUrl' => $this->webAppUrl . 'app/checkout/' . $orderNumber
+                'returnUrl' => $this->webAppUrl . 'app/checkout/' . $orderNumber . '/paypal-callback' ,
+                'cancelUrl' => $this->webAppUrl . 'app/checkout/' . $orderNumber . '/paypal-callback/cancel'
             ])->send();
 
-           
+
             if ($response->isRedirect()) {
                 $redirectLink = "";
                 $responseData = $response->getData();
-                
+
                 if(isset($responseData['links'])){
                     foreach ($responseData['links'] as $linkInfo){
                         if($linkInfo['method'] == 'REDIRECT'){
@@ -69,7 +69,7 @@ class PayPalController extends Controller
                         }
                     }
                 }
-                
+
                 return response()->json([
                     'redirect_link' => $redirectLink
                 ]);
