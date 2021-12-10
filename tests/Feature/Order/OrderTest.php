@@ -25,7 +25,7 @@ class OrderTest extends ApiTestCase
     
     public function test_post_new_order_2()
     {
-        $this->loginCompanyAdmin();
+        $this->loginCompanyAdmin2();
         
         $data = [
             'rights_bundle_id' => 2,
@@ -62,6 +62,8 @@ class OrderTest extends ApiTestCase
         ];
         
         $response = $this->put('/api/checkout/update-contract/123-ABC', $data);
+        
+        $this->loginCompanyAdmin2();
         $response = $this->put('/api/checkout/update-contract/123-ABD', $data);
 
         $response->assertStatus(200);
@@ -73,6 +75,15 @@ class OrderTest extends ApiTestCase
         
         $response = $this->get('/api/orders');
 
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_orders_admin(){
+        
+        $this->loginAdmin();
+        
+        $response = $this->get('/api/orders');
+        
         $response->assertStatus(200);
     }
     

@@ -34,7 +34,13 @@ class OrderController extends Controller
     {
         Gate::authorize('viewAny', Order::class);
 
-        $orders = SearchFormatter::getSearchQueries($request, Order::class);
+        $user = $this->user();
+        $ordersQuery = null;
+        if (! $user->isAdmin()) {
+            $ordersQuery = Order::where('organisation_id', $user->organisation->id);
+        }
+
+        $orders = SearchFormatter::getSearchQueries($request, Order::class, $ordersQuery);
 
         $orders = $orders->with('price:id,value,currency', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title,marketing_assets_id', 'rights_bundle.product.marketing_assets:id,key_artwork_id', 'rights_bundle.product.marketing_assets.key_artwork:id,image_name,image_url');
 

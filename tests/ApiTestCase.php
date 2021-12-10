@@ -18,6 +18,13 @@ class ApiTestCase extends TestCase
         $user = User::where('email', 'company_admin1@milc.com')->first();
         $this->actingAs($user, 'api');
     }
+    
+    public function loginCompanyAdmin2()
+    {
+        $user = User::where('email', 'company_admin2@milc.com')->first();
+        $this->actingAs($user, 'api');
+    }
+    
 
     public function loginUser()
     {
