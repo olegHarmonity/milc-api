@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Util\CartStates;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\RightsBundle;
+use App\Models\Percentage;
+use App\Models\VatRule;
+use App\Util\VatRuleNames;
 
 class OrderFactory extends Factory
 {
@@ -53,7 +56,28 @@ class OrderFactory extends Factory
 
         $price = MoneyFactory::createMoney($priceFromBundle->value, $priceFromBundle->currency);
         $price->save();
-
+        
+        /*
+         * todo: uncomment
+        $seller = $rightsBundle->product->organisation;
+        $buyerCountry = $organisation->country;
+        $vatRules = $seller->vat_rules;
+        $vatPercentValue = null;
+        
+        foreach ($vatRules as $vatRule){
+            if($vatRule->rule_type === VatRuleNames::$INTERNATIONAL_OTHER){
+                $vatPercentValue = $vatRule->vat->value;
+                continue;
+            }
+            
+            if($vatRule->country === $buyerCountry){
+                $vatPercentValue = $vatRule->vat->value;
+                break;
+            }
+        }
+       
+        $vatPercentage = PercentageFactory::createPercentage($vatPercentValue);
+        */
         $vatPercentage = PercentageFactory::createPercentage(20);
         $vatPercentage->save();
 

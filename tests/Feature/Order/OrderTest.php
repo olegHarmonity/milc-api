@@ -92,7 +92,6 @@ class OrderTest extends ApiTestCase
         $this->loginAdmin();
         
         $response = $this->get('/api/checkout/123-ABC');
-        
         $response->assertStatus(200);
     }
     

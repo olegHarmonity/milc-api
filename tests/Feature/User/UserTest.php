@@ -170,7 +170,6 @@ class UserTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/register', $data);
-
         $response->assertStatus(201);
         $data = [
             'email' => $email,

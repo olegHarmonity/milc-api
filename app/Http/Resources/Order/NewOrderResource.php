@@ -48,7 +48,13 @@ class NewOrderResource extends JsonResource
                 $product = Product::where('id', $rightsBundleResponse['product_id'])->first();
                 $productResponse = [];
                 $productResponse['title'] = $product->title;
-                
+                $image = $product->marketing_assets->key_artwork;
+                $productResponse['marketing_assets']['key_artwork']['image']['id'] = $image->id;
+                $productResponse['marketing_assets']['key_artwork']['image']['image_name'] = $image->image_name;
+                $productResponse['marketing_assets']['key_artwork']['image']['image_url'] = $image->image_url;
+                $productResponse['marketing_assets']['key_artwork']['image']['image_name'] = $image->image_name;
+                $productResponse['marketing_assets']['key_artwork']['image']['mime'] = $image->mime;
+
                 $rightsBundleResponse['product'] = $productResponse;
             }
             
