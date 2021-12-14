@@ -116,6 +116,7 @@ class UserController extends Controller
         }
 
         $user->update($data);
+        $user->load('organisation:id,organisation_name');
 
         return response()->json([
             'data' => UserResource::make($user),
