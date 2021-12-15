@@ -93,7 +93,12 @@ class OrderFactory extends Factory
         $order->vat_id = $vat->id;
 
         $order->save();
-
+        
+        $contract = ContractFactory::createFromOrder($order);
+        
+        $order->contract_id = $contract->id;
+        $order->save();
+        
         return $order;
     }
 

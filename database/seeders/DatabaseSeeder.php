@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             //MarketingAssetsSeeder::class,
             ProductSeeder::class,
             //GeneralAdminSettingsSeeder::class,
-            VatRuleSeeder::class
+            VatRuleSeeder::class,
+            ContractSeeder::class
         ]);
     }
 }

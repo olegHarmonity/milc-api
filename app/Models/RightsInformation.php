@@ -23,7 +23,7 @@ class RightsInformation extends Model
         'title',
         'short_description',
         'long_description', 
-    ];
+    ]; 
 
     protected $casts = [
         'available_from_date' => 'datetime:Y-m-d',

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Order\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Order\ContractController;
 
 Route::put('/checkout/change-currency/{orderNumber}', [
     OrderController::class,
@@ -60,4 +61,6 @@ Route::get('/orders/{id}', [OrderController::class, 'show']);
 Route::get('/orders', [OrderController::class, 'index']);
 
 Route::post('/orders', [OrderController::class, 'store']);
+
+Route::get('/checkout/contract/{orderNumber}', [ContractController::class, 'showCheckoutContract']);
 

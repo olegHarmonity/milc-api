@@ -22,7 +22,6 @@ use App\Util\PaymentStatuses;
 
 class OrderController extends Controller
 {
-
     private FactoryInterface $smFactory;
 
     public function __construct(FactoryInterface $smFactory)
@@ -286,6 +285,7 @@ class OrderController extends Controller
     public function show(Request $request, $id)
     {
         $order = Order::findOrFail($id);
+        
         Gate::authorize('view', $order);
         
         return (new NewOrderResource($order));
