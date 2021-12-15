@@ -18,20 +18,16 @@ class MediaHubController extends Controller
     {
         $token = $this->getAuthToken()['access_token'];
 
-        $response = Http::withToken($token)->get('https://milc-int.de/services/assets/api/assets');
-
-        // get tenants
-        // $response = Http::withToken($token)->get('https://milc-int.de/services/assets/api/_search/tenants?query=devla');
+        $response = Http::withToken($token)->get(env('MEDIA_HUB_API').'/assets');
 
         return $response->json();
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
         $token = $this->getAuthToken()['access_token'];
 
-        $response = Http::withToken($token)->get('https://milc-int.de/services/assets/api/_search/items?query=tenant.name:wdw&page=0&size=20&sort=id.keyword,asc');
-       
+        $response = Http::withToken($token)->get(env('MEDIA_HUB_API').'/assets/'. $id);
 
         return $response->json();
     }
@@ -40,22 +36,19 @@ class MediaHubController extends Controller
     {
 
         $data = $request->validated();
-        // $data = [
-        //     "assetId" => "dasdasdasxzcxsdqw",
-        //     "externalReference" => "sdxssdsa",
-        //     "filename" => "dsadad.mp4",
-        //     "metadata" => [
-        //       "name" => "string",
-        //       "type" => "string"
-        //     ],
-        //     "tenantName" => "devla",
-        //     "type" => "video/mp4"
-        // ];
+          
+        $data['tenant'] = [
+            "id" => "61a87c9aa3cb5219570f5e96",
+            "name" => "DEVLA" 
+        ];
+
+        // dd($data);
         
         $token = $this->getAuthToken()['access_token'];
 
-        $response = Http::withToken($token)->post('https://milc-int.de/services/assets/api/s3/multipart',$data);
-       
+        $url = env('MEDIA_HUB_API');
+
+        $response = Http::withToken($token)->post(env('MEDIA_HUB_API').'/assets', $data);
 
         return $response->json();
     }
@@ -65,9 +58,15 @@ class MediaHubController extends Controller
         //
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        //
+
+        dd($id);
+        $token = $this->getAuthToken()['access_token'];
+
+        $response = Http::withToken($token)->delete(env('MEDIA_HUB_API').'/assets/'. $id);
+
+        return $response->json();
     }
 
     public function getAuthToken(){
@@ -80,9 +79,9 @@ class MediaHubController extends Controller
             'client_id' => $client_id,
         ];
 
-        $response = Http::withBasicAuth($client_id ,$secret)->asForm()->post('https://milc-platform.auth.eu-central-1.amazoncognito.com/oauth2/token',$data);
+        $response = Http::withBasicAuth($client_id ,$secret)->asForm()->post(env('MEDIA_HUB_AUTH'),$data);
 
         return $response->json();
-
+        
     }
 }

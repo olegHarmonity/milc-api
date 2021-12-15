@@ -15,24 +15,29 @@ class StoreMediaHubRequest extends FormRequest
     public function rules()
     {
         return [
-            'filename' => [
+            'title' => [
                 'required',
                 // 'string'
             ],
-            'type' => [
-                'required',
-                'string'
+            'tenant' => [
+                // 'required',
+            ], 
+            'description' => [
+                // 'required',
             ],
-            'tenantName' => [
+            'genres' => [
                 'nullable'
             ],  
             'externalReference' => [
                 'nullable'
             ],
-            'assetId' => [
+            'poster' => [
                 'nullable'
             ],  
-            'metadata' => [
+            'posterContentType' => [
+                'nullable'
+            ],
+            'posterUrl' => [
                 'nullable'
             ],
         ];
