@@ -634,6 +634,13 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/persons?search[full_name]=name name');
         $response->assertStatus(200);
     }
+    
+    public function test_get_right_bundle()
+    {
+        $response = $this->get('/api/rights-info/1');
+        $response->assertStatus(200);
+    }
+    
 
     public function test_delete_product()
     {

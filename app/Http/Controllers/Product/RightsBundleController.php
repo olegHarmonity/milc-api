@@ -1,13 +1,14 @@
 <?php
-
-namespace App\Http\Product\Controllers;
+namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Models\RightsBundle;
 use Illuminate\Http\Request;
+use App\Http\Resources\Resource;
 
 class RightsBundleController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +32,7 @@ class RightsBundleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,18 +43,14 @@ class RightsBundleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RightsBundle  $rightsBundle
+     * @param \App\Models\RightsBundle $rightsBundle
      * @return \Illuminate\Http\Response
      */
-    public function show(RightsBundle $rightsBundle)
-    {
-        //
-    }
-
+  
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RightsBundle  $rightsBundle
+     * @param \App\Models\RightsBundle $rightsBundle
      * @return \Illuminate\Http\Response
      */
     public function edit(RightsBundle $rightsBundle)
@@ -64,8 +61,8 @@ class RightsBundleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RightsBundle  $rightsBundle
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\RightsBundle $rightsBundle
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, RightsBundle $rightsBundle)
@@ -76,7 +73,7 @@ class RightsBundleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RightsBundle  $rightsBundle
+     * @param \App\Models\RightsBundle $rightsBundle
      * @return \Illuminate\Http\Response
      */
     public function destroy(RightsBundle $rightsBundle)

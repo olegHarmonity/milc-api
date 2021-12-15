@@ -6,6 +6,8 @@ use App\Http\Controllers\Product\MovieRightController;
 use App\Http\Controllers\Product\PersonController;
 use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Product\RightsBundleController;
+use App\Http\Controllers\Product\RightsInfoController;
 
 Route::put('/products/change-status/{id}', [
     ProductController::class,
@@ -25,3 +27,9 @@ Route::apiResource('movie-formats', MovieFormatController::class);
 Route::apiResource('movie-genres', MovieGenreController::class);
 Route::apiResource('movie-content-types', MovieContentTypeController::class);
 Route::apiResource('persons', PersonController::class);
+Route::apiResource('rights-bundles', RightsBundleController::class);
+
+Route::get('/rights-bundles/{id}', [
+    RightsInfoController::class,
+    'show'
+]);
