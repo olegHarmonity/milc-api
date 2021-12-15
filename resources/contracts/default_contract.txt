@@ -1,0 +1,2715 @@
+**SVOD LICENSE AGREEMENT**
+
+THIS SVOD LICENSE AGREEMENT (together with all exhibits, attachments and schedules hereto, this &quot;Agreement&quot;), dated as of \&lt;%created\_at%\&gt; (&quot;Agreement Date&quot;), is entered into by \&lt;%seller.company\_name%\&gt;, a \&lt;%seller.country%\&gt; corporation (&quot;Licensor&quot;), and \&lt;%buyer.company\_name%\&gt; , a \&lt;%buyer.country%\&gt; limited liability company (&quot;Licensee&quot;). The parties hereto agree as follows:
+
+**PRINCIPAL TERMS AND CONDITIONS**
+
+**(&quot;****Principal Terms****&quot;)**
+
+1.
+
+**DEFINITIONS**.
+
+All capitalized terms used herein and not otherwise defined in this
+
+Agreement shall have the meanings set forth below.
+
+1.1
+
+&quot;Actual Customers&quot; for any month shall be the number of Customers to the
+
+Licensed Service on the first day of such month and the last day of such month divided by two; provided that, if Licensee offers Promotional Offers, calculations of Actual Monthly Fees hereunder shall include only each Customer who (a) has commenced a paid subscription to the Licensed Service, (b) is at least two (2) weeks into their respective Licensee Promotional Offer or
+
+(c) has commenced a Third-Party Promotional Offer. Up to five hundred (500) accounts to the Licensed Service granted to certain employees, consultants, and business partners of Licensee at no charge solely for testing and demonstration purposes, and for internal use by Licensee&#39;s business partners shall not be considered an &quot;Actual Customer&quot; hereunder.
+
+1.2
+
+&quot;Approved Devices&quot; means (a) an individually addressed and addressable IP-
+
+enabled desktop or laptop device with a hard drive, keyboard and monitor, designed for multiple
+
+office and other applications using a silicon chip/microprocessor architecture that runs on one of the following operating systems: Macintosh OS X, Microsoft Windows XP, Microsoft Windows 2000, Microsoft Windows NT, Microsoft Windows Vista, Microsoft Windows 7, Linux, any future versions of the foregoing (unless such future version is specifically disapproved by Licensor) or any other operating system specifically approved, in writing, by Licensor (&quot;PermittedOS&quot;) and (b) the devices listed in Schedule B. The parties acknowledge and agree that, except to the extent a specific model or class of models, as applicable, is listed in Schedule B, game consoles, set-top-boxes, portable media devices (such as the Apple iPod), PDAs and mobile phones shall not be &quot;Approved Devices.&quot; Licensor agrees to work in good faith with Licensee to permit delivery of Included Programs to additional devices (e.g. mobile devices, video game consoles, internet-enabled televisions and set top boxes) subject to approval by Licensor, provided that such approval may only be withheld for bona fide content protection and/or security concerns.
+
+1.3 &quot;Approved Format&quot; means a digital electronic media file compressed and encoded for secure transmission and storage in resolution (a) using AES 128-bit (or other Licensor- approved) protocol and encrypted non-cacheable critical security parameters with the settings/configuration set forth in Schedule D or (b) such other format as Licensor may approve in
+
+writing at Licensor&#39;s sole discretion.
+
+In no event shall an Approved Format allow for the
+
+capturing or storing (other than caching) of any Included Program delivered via streaming.
+
+Without limiting Licensor&#39;s rights in the event of a Security Breach, if the Approved Format is altered by its publisher after the Agreement Date, such as a versioned release of the Approved Format or a change to the Approved Format that threatens or weakens the security systems or
+
+materially alters usage rules supported as of the Agreement Date, it shall be deemed to no longer be an Approved Format hereunder unless approved in writing by Licensor.
+
+1.4 &quot;Authorized Delivery Means&quot; means the Encrypted delivery via streaming of audio-visual content over the public, free to the consumer (other than a common carrier/ISP charge) global network of interconnected networks (including the so-called Internet, Internet2 and World Wide Web) using technology currently known as Internet Protocol (&quot;IP&quot;), whether transmitted over cable, DTH, FTTH, ADSL/DSL, broadband over power lines or other means (&quot;Internet&quot;). For the avoidance of doubt, &quot;Authorized Delivery Means&quot; shall not include delivery over any so-called &quot;walled garden&quot; or closed ADSL/DSL, cable or FTTH service or other
+
+subscriber-based system or service. of Viral Distribution.
+
+&quot;Authorized Delivery Means&quot; does not include any means
+
+1.5 &quot;Authorized Version&quot; for any Included Program means the version made available
+
+by Licensor to Licensee for distribution hereunder.
+
+Unless otherwise mutually agreed,
+
+&quot;Authorized Version&quot; shall in no event include any 3D version of an Included Program.
+
+1.6
+
+&quot;Availability Date&quot; means, with respect to an Included Program, the date on which
+
+such program is first made available to Licensee for exhibition on a SVOD basis hereunder, as specified in Section 4.2 of the Principal Terms.
+
+1.7
+
+&quot;Customer&quot; shall refer to each unique account that is authorized to receive the
+
+Licensed Service.
+
+1.8
+
+&quot;Encrypted&quot; means, with respect to a signal, that both the audio and video
+
+portions of such signal have been changed, altered or encoded to securely and effectively prevent the intelligible reception of such signal without the use of fully authorized decoding equipment to restore both the audio and video signal integrity.
+
+1.9
+
+&quot;High Definition&quot; or &quot;HD&quot; means any resolution that is (a) 1080 vertical lines of
+
+resolution or less (but at least 720 vertical lines of resolution) and (b) 1920 lines of horizontal resolution or less (but at least 1280 lines of horizontal resolution).
+
+1.10
+
+&quot;Hulu-Branded Playback Application&quot; means a Hulu-branded application that (i)
+
+via Authorized Delivery Means, enables Customers to stream and watch Included Programs and other users to stream and watch trailers and Promotional Previews, (ii) is certified by Licensee to,
+
+among other things, provide integrated playback (i.e., without requiring the launch of a new browser window) of digital audio-visual content, and (iii) can be uniquely identified by Licensee and can be revoked by Licensee. Before an application is &quot;certified,&quot; it must pass Licensee&#39;s certification process which requires a developer to submit a candidate application for certification, represent that the application complies with certification guidelines, and subject such application to audit and verification by Licensee. If, at any time, a Hulu-Branded Playback Application is found to be non-compliant with Licensee&#39;s guidelines, that application&#39;s access to the Licensed Service shall be revoked.
+
+1.11
+
+&quot;Included Program&quot; means each Library Film that Licensee is required to license in
+
+accordance with the terms of this Agreement.
+
+1.12
+
+&quot;Library Film&quot; means any feature-length audio-visual program made available by
+
+Licensor during the Avail Term for which Licensor unilaterally controls without restriction all rights, licenses and approvals necessary to grant the rights granted hereunder.
+
+1.13
+
+&quot;License Period&quot; with respect to each Included Program means the period during
+
+which Licensee shall make such program available for exhibition hereunder, as specified in Section
+
+4.3 of the Principal Terms.
+
+1.14
+
+&quot;Licensed Language&quot; for an Included Program means the original language version
+
+dubbed or subtitled in \&lt;%languages%\&gt; (to the extent available).
+
+1.15
+
+&quot;Licensed Service&quot; means the SVOD programming service that in each case is, and
+
+at all times during the Term shall be, Hulu-branded and wholly-owned and operated by Licensee and accessible via (i) the website located at the URL www.hulu.jp or any successor website(s)
+
+pre-approved by Licensor, including any subdomains, (ii) any Hulu-Branded Playback Application on any Approved Device and (iii) by means of embedding in accordance with Section 2.4 of these Principal Terms, any third-party website approved by Licensor and authorized by Hulu to display the Included Programs in connection with the Licensed Service pursuant to a distribution agreement.
+
+1.16
+
+&quot;Personal Use&quot; means the private, non-commercial viewing by one or more
+
+persons on the conventional television set or monitor associated with an Approved Device in non-
+
+public locations and, provided that the consumer&#39;s use of Approved Devices in such locations is personal and non-commercial, in public locations; provided, however, that any such viewing for which a premises access fee or other admission charge is imposed (other than any fee related only to access such non-residential venue for other general purposes) or any such viewing that is on a monitor provided by such non-residential venue (or by a third party under any agreement or arrangement with such non-residential venue) shall not constitute a &quot;Personal Use.&quot;
+
+1.17 &quot;Qualifying Studio&quot; means CBS, Viacom, Sony Pictures Entertainment,
+
+Paramount
+
+Pictures,
+
+Twentieth
+
+Century
+
+Fox, NBCUniversal,
+
+Metro-Goldwyn-Mayer,
+
+DreamWorks SKG, The Walt Disney Company and Warner Bros., and any of their respective affiliates licensing subscription video-on-demand rights in the Territory.
+
+1.18
+
+&quot;Standard Definition&quot; or &quot;SD&quot; means (a) for NTSC, any resolution equal to or less
+
+than 480 lines of vertical resolution (and equal to or less than 720 lines of horizontal resolution) and (b) for PAL, any resolution equal to or less than 576 lines of vertical resolution (and equal to or less than 720 lines of horizontal resolution).
+
+1.19
+
+&quot;Subscription Video-On-Demand&quot; or &quot;SVOD&quot; means the point-to-point delivery
+
+of a single program or programs to a viewer in response to the request of such viewer (a) for
+
+which such viewer is charged a material fixed periodic fee (no more frequently than monthly), and not on a per program(s) or per exhibition(s) basis, which fee is unaffected in any way by the purchase of other programs, products or services; (b) the exhibition start time of which is at a time specified by the viewer in its discretion; and (c) which may be displayed solely on a video monitor associated with the Approved Device that received the program. &quot;SVOD&quot; shall not include, without limitation, transactional video-on-demand, free video-on-demand, pay-per-view, so-called electronic sell through, electronic downloading on a rental basis, manufacture-on- demand or retail location-based download-on-demand (including, without limitation, via kiosks, servers, the Internet and all on-premises and remote delivery), home video, premium pay television, basic television or free broadcast television exhibition. For the avoidance of doubt, clause (a) in the first sentence of this section shall not prohibit Licensee from providing Promotional Previews nor from conducting Promotional Offers.
+
+1.20
+
+1.21
+
+&quot;Territory&quot; means \&lt;%countries%\&gt;.
+
+&quot;Usage Rules&quot; means the content usage rules applicable to Included Programs
+
+available on the Licensed Service, as set forth in the attached Schedule E.
+
+1.22
+
+&quot;VCR Functionality&quot; means the capability of a Customer to perform any or all of
+
+the following functions with respect to the exhibition of an Included Program: stop, start, pause, play, rewind and fast forward. &quot;VCR Functionality&quot; shall not include recording capability.
+
+1.23
+
+&quot;Viral Distribution&quot; means the retransmission and/or redistribution of an Included
+
+Program, either by the Licensee or by the Customer, by any method, including, but not limited to:
+
+(a) peer-to-peer file sharing as such practice is commonly understood in the online context, (b)
+
+digital file copying or retransmission, or (c) burning, downloading or other copying to any removable medium (such as DVD) from the initial delivery by the Licensed Service and distributing copies on any such removable medium. For clarity, distribution to permitted third- party websites as set forth in Section 1.15 of the Principal Terms and embedding as set forth in Section 2.4 of the Principal Terms, shall not constitute Viral Distribution.
+
+2.
+
+**LICENSE**
+
+2.1
+
+Rights Granted. Licensor hereby grants to Licensee, and Licensee hereby accepts,
+
+a limited non-exclusive, non-transferable license to exhibit on the terms and conditions set forth herein each Included Program on an SVOD basis on the Licensed Service during its License Period, in each case solely in the Authorized Version, in the Licensed Language to Customers in
+
+the Territory, delivered by the Authorized Delivery Means in the Approved Format, for reception as a Personal Use on an Approved Device and exhibition on such Approved Device&#39;s associated video monitor, subject at all times to the Usage Rules. Licensee shall have the right to exploit the foregoing rights using VCR Functionality. Other than permitted third-party websites as set forth in Section 1.15 of the Principal Terms and embedding as set forth in Section 2.4 of the Principal Terms, the rights granted herein do not include the right of Licensee to sub-distribute, sublicense, co-brand, syndicate or &quot;white label&quot; or power (_e.g.,_ &quot;Yahoo! Video powered by Hulu&quot;) the Included Programs without Licensor&#39;s prior written approval. Licensor shall not be subject to any holdback at any time with respect to the exploitation of any Included Program in any version, language, territory or medium or by any transmission means, in any format to any device in any venue or in any territory.
+
+2.2
+
+Condition Precedent. Notwithstanding anything to the contrary in this Agreement,
+
+Licensor&#39;s obligation to make available for license Included Programs hereunder shall be subject
+
+to, and expressly conditioned upon, Licensee entering into binding agreements with at least three
+
+(3) other Qualifying Studios for distribution of audio-visual content on an SVOD basis on the Licensed Service.
+
+2.3
+
+High Definition. Licensor authorizes Licensee to exhibit the Included Programs in
+
+High Definition resolution, to the extent available from Licensor in High Definition resolution.
+
+2.4
+
+Embedding. Subject to Licensor&#39;s prior written approval on a title-by-title and
+
+case-by-case basis, Licensee may permit individual Customers, by means of independent action, to
+
+embed Included Programs on Internet sites other than the Licensed Service (by means of an embeddable video player hosted and served by Licensee) for Personal Use of such Included
+
+-4-
+
+Programs in the Territory during the applicable License Period on Approved Devices delivered by Authorized Delivery Means in the Approved Format.
+
+2.5
+
+Programs in
+
+Resolution Conversion. Licensee shall not transmit, exhibit or deliver the Included
+
+an upconverted resolution.
+
+Licensee shall not transmit, exhibit or deliver the
+
+Included Programs in a downconverted resolution, except as necessary for adaptive streaming,
+
+provided that any such downconversion shall maintain the aspect ratio of the applicable materials provided by Licensor.
+
+3.
+
+**TERM**.
+
+3.1
+
+Avail Term. The initial term during which Licensor shall be required to make
+
+programs available for licensing and Licensee shall be required to license programs hereunder
+
+shall commence on the earlier of (a) November 1, 2011 and (b) the initial public launch of the Licensed Service in the Territory (whichever is earlier, the &quot;Launch Date&quot;), and shall terminate after three (3) years (&quot;Initial Avail Term&quot;). Each 12-month period during the Avail Term shall be an &quot;Avail Year&quot;, with the first such Avail Year being &quot;Avail Year 1,&quot; the second, if any, being &quot;Avail Year 2,&quot; and the third, if any, being &quot;Avail Year 3.&quot;
+
+3.2 Term. The &quot;Term&quot; of this Agreement shall commence on the Agreement Date and shall expire on the earlier to occur of (a) the last day of the last License Period to expire hereunder, or (b) the earlier termination of this Agreement in accordance with the terms hereof.
+
+4.
+
+**COMMITMENT; LICENSE PERIOD**.
+
+4.1
+
+Commitment. Subject to Sections 4.4 and 5.2 of the Principal Terms, Licensee
+
+shall license from Licensor as Included Programs hereunder during each Avail Year no less than one hundred fifty (150) Library Films, of which at least three (3) shall be Tier A+ Library Films, at least twenty (20) shall be Tier A Library Films, at least thirty (30) shall be Tier B Library Films and at least forty-five (45) shall be Tier C Library Films. The Included Programs for Avail Year 1
+
+are listed in Schedule C attached hereto. At least three (3) months&#39; prior to the beginning of each of Avail Year 2 and Avail Year 3, Licensor shall provide Licensee with an availability list, from which Licensee shall select the Included Programs for such Avail Year. Each such availability list shall include (a) at least thirty-three percent (33%) of the Included Programs licensed hereunder during the prior Avail Year (b) in each Tier, similar quality in the territory as those listed on Schedule C for Avail Year 1 and (c) at least five (5) Tier A+ Library Films, at least forty (40) Tier A Library Films, at least eighty (80) Tier B Library Films and at least ninety (90) Tier C Library Films. If Licensee fails to timely select the Included Programs required to be licensed under this Section 4.1 within 30 days after receipt of such availability list, Licensor shall have the right to designate such Included Programs.
+
+4.2
+
+Availability Date. The Availability Date for each Included Program shall be the
+
+first day of the applicable Avail Year.
+
+4.3
+
+License Period. The License Period for each Included Program shall commence
+
+on its Availability Date and shall expire on the last day of the applicable Avail Year.
+
+4.4
+
+FVOD by Licensor. If Licensor intends to exploit (directly or through a third
+
+party) any Included Program on a free video-on-demand service on the Internet in the Territory
+
+-5-
+
+during the License Period for such Included Program, Licensor will provide Licensee with at least ninety (90) days written notice, whereupon Licensee will have the option to permanently remove such Included Program from the Licensed Service and receive a pro-rata credit of the applicable Minimum Licensee Fee for such Included Program, to the extent the Actual License Fee for such Included Program as of the date of such removal is less than the Minimum License Fee.
+
+5. **PROMOTIONAL PREVIEWS AND PROMOTIONAL OFFERS.**
+
+5.1
+
+Promotional Previews. Licensee shall have the right to use Promotional Previews
+
+on the Licensed Service in accordance with Schedule A, Section 12.1, subject to any contractual restrictions of which Licensor notifies Licensee. Notwithstanding anything to the contrary herein, in the event that any guild, union, or collective bargaining agreements to which Licensor or its affiliates is or becomes a party requires a maximum duration for video clips that is shorter than the Maximum Preview Duration in order to avoid a residual, reuse or other fee in connection therewith, Licensor shall so notify Licensee in writing and Licensee shall either (i) shorten the duration of each Promotional Preview on the Licensed Service in accordance with the terms of the notice (&quot;Revised Preview Duration&quot;) as soon as reasonably possible, but in any event no later than two business days after receipt of such notice, or (ii) cease using Promotional Previews. In addition to and without limiting any other remedy available to Licensor hereunder, in the event that Licensee exceeds the Maximum Preview Duration or any Revised Preview Duration (in the case of a Revised Preview Duration, after Licensee shortens the duration of such preview in accordance with the preceding sentence), Licensee shall indemnify Licensor for the costs of any residual, reuse or other fee payable by Licensor or its affiliates under the applicable guild, union or collective bargaining agreement(s) as a result thereof. Without limiting the foregoing, Licensor shall have the right to terminate (a) Licensee&#39;s right to use a Promotional Preview for a particular Included Program on a case-by-case basis if Licensor reasonably believes that such Promotional Preview is not appropriate for all audiences or may violate the terms of any of Licensor&#39;s agreements with, or may adversely affect Licensor&#39;s material relations with, any third party and
+
+(b) Licensee&#39;s general right to use Promotional Previews under this Agreement if (i) Licensor
+
+reasonably believes that Promotional Previews may violate the terms of any of Licensor&#39;s agreements with, or may adversely affect Licensor&#39;s material relations with, any guild, union, copyright owners, artists, composers, producers, directors, publishers, licensors or similar third party rights holders and (ii) Licensor withdraws such general right from all Other SVOD Distributors in the Territory. Licensor shall give Licensee written notice of any such termination, in which event Licensee shall cease using the applicable Promotional Preview(s) within two business days after receipt of such notice.
+
+5.1.1 &quot;Other SVOD Distributor&quot; means any distributor other than an affiliate of Licensor that distributes Licensor&#39;s audio-visual content during the Term via the Internet in the Territory for residential Subscription Video-On-Demand exhibition, excluding Subscription Video-On-Demand exhibition that is an enhancement to a linear premium pay television service.
+
+5.1.2 &quot;Promotional Preview&quot; with respect to an Included Program shall mean a video clip commencing at the beginning of such Included Program and running no longer than two (2) consecutive minutes thereafter (&quot;Maximum Preview Duration&quot;), with no additions, edits or any other modifications made thereto.
+
+-6-
+
+5.2
+
+Promotional Offers. Notwithstanding anything to the contrary in the Agreement,
+
+Licensee shall be permitted to make the Licensed Service (only in its entirety, including, without
+
+limitation, Included Programs as well as all other programs available on the Licensed Service, and not Included Programs separate from the rest of the Licensed Service) available for promotional purposes to unsubscribed Customers within the Territory, solely via Authorized Delivery Means to such unsubscribed Customers&#39; Approved Devices and otherwise in accordance with Section 2.1, at no charge to such unsubscribed Customers for a limited trial period not to exceed the following amounts of time without Licensor&#39;s prior written consent (provided that Licensor&#39;s sole remedy in the event it disapproves of a Promotional Offer beyond the following amounts of time and Licensee proceeds with such disapproved Promotional Offer will be the right to terminate this Agreement upon thirty (30) days prior written notice to Licensee, without either party bearing liability to the other under this Section 5.2): (a) one (1) month (&quot;Licensee Promotional Offer&quot;) or
+
+(b) to the extent a third party consumer electronics manufacturer, mobile telephony service provider or other Licensor-approved company (collectively, &quot;Third Party Partners&quot;) unrelated to Licensee fully or partially subsidizes the subscription fee for certain unsubscribed Customers or provides other consideration of reasonably equivalent value, three (3) months solely for such unsubscribed Customers (&quot;Third-Party Promotional Offer&quot; and, together with Licensee Promotional Offers, &quot;Promotional Offers&quot;). In the event that Licensor proceeds with a third-party promotional offer with a third party not approved by Licensor, Licensor shall have the right to terminate this Agreement upon fourteen (14) days prior written notice to Licensee, without either party bearing liability to the other under this Section 5.2 except that Licensee shall pay Licensor an amount equal to the aggregate of the Monthly Minimum Fees for the lesser of six (6) months following such termination of the Agreement and the remainder of the Term. Licensee shall provide Licensor written notice at least fourteen (14) days prior to the commencement of each Third-Party Promotional Offer. For the avoidance of doubt, Third Party Partners shall not bill Customers on behalf of Licensee.
+
+5.2.1 For the avoidance of doubt, except for Licensee&#39;s limited ability to provide unsubscribed Customers (i) trial access to the Licensed Service (including without limitation Included Programs) as part of a Promotional Offer and (ii) limited access to Promotional Previews, all relevant provisions of the Agreement shall remain in full force and effect, including Schedules C and E. Without limiting the foregoing, Licensee shall require unsubscribed Customers to provide valid credit card account information prior to accessing any Included Programs as part of a Promotional Offer, and shall use reasonable efforts to ensure that a Promotional Offer cannot be accessed by a Customer who was previously authorized by Licensee using the same account credentials to participate in a free trial within the preceding twelve (12) months. Licensee shall not include in any promotional materials concerning Promotional Offers any Included Program or Advertising Materials, either in whole or in part, or any logos, trade names, trademarks or service marks concerning Licensor or any Included Program, without Licensor&#39;s prior written consent, such consent not to be unreasonably withheld or delayed.
+
+5.2.2 In the event Licensor reasonably believes that the inclusion of an Included Program in a Promotional Offer could materially jeopardize Licensor&#39;s business relationship with any third party licensee of such Included Program in the Territory, Licensor will have the option (with seven (7) days written notice to Licensee) to remove such Included Program from the Licensed Service. Upon such removal, Licensee shall receive a pro-rata credit of the applicable
+
+-7-
+
+Minimum Licensee Fee for such Included Program, to the extent the Actual License Fee for such Included Program as of the date of such removal is less than the Minimum License Fee. Licensor acknowledges that its rights under this Section 5.2.2 are intended solely as a right to remove individual titles for bona fide business concerns and is not intended as a means for more broadly terminating Licensee&#39;s rights to distribute Included Programs hereunder.
+
+6. **LICENSE FEES; PAYMENT**.
+
+6.1
+
+Licensee shall pay to Licensor a license fee consisting of the &quot;License Fee&quot;, as
+
+determined in accordance with this Article 6. The License Fee specified herein is a net amount unreduced by any tax, levy or charge, the payment of which shall be the responsibility of Licensee.
+
+6.2
+
+For each Included Program, the License Fee for each month during the Term shall
+
+be the greater of (a) the Actual Monthly Fee and (b) the applicable Monthly Minimum Fee, each calculated as set forth below; provided that if an Included Program is not available from Licensor for the entirety of a month, the License Fee for such Included Program for such month shall be prorated for the amount of time during such month that such Included Program is available.
+
+6.2.1 Actual Monthly Fee. For each month of the Term, the &quot;Actual MonthlyFee&quot; for each Included Program with a License Period in such month shall be calculated as the product of the Actual Customers times the applicable amount set forth in the table below (based on the Tier of such Included Program). The subscription fee paid by Customers shall be established by Licensee in its sole discretion.
+
+6.2.2 Monthly Minimum Fee.
+
+For each month of the Term, the &quot;Monthly
+
+Minimum Fee&quot; for each Included Program with a License Period in such month shall be the applicable amount set forth in the table below (based on the Tier of such Included Program) divided by twelve (12).
+
+6.3
+
+with the first Launch Date.
+
+Licensee shall pay the Monthly Minimum Fees on a quarterly basis in advance, such payment for the first quarter of Avail Year 1 to be paid no later than the If the Actual Monthly Fees earned during an Avail Year exceed the amount of the
+
+Monthly Minimum Fees paid with respect to such Avail Year (&quot;Overage&quot;), Licensee shall pay any
+
+-8-
+
+Tier of Included Program
+
+Avail Year 1
+
+Avail Year 2
+
+Avail Year 3
+
+Tier A+ Library Film
+
+JPY 4,000,000
+
+JPY 4,400,000
+
+JPY 4,840,000
+
+Tier A Library Film
+
+JPY 1,232,000
+
+JPY 1,500,000
+
+JPY 1,650,000
+
+Tier B Library Film
+
+JPY 816,000
+
+JPY 1,000,000
+
+JPY 1,100,000
+
+Tier C Library Film
+
+JPY 496,000
+
+JPY 600,000
+
+JPY 660,000
+
+Tier of Included Program
+
+Avail Year 1
+
+Avail Year 2
+
+Avail Year 3
+
+Tier A+ Library Film
+
+JPY 2.50
+
+JPY 2.255
+
+JPY 2.255
+
+Tier A Library Film
+
+JPY 0.77
+
+JPY 0.77
+
+JPY 0.77
+
+Tier B Library Film
+
+JPY 0.51
+
+JPY 0.51
+
+JPY 0.51
+
+Tier C Library Film
+
+JPY 0.31
+
+JPY 0.31
+
+JPY 0.31
+
+such Overage with the next scheduled quarterly payment (and for the last quarter of the Term, no later than one month after the last day of such quarter).
+
+7.
+
+**NOTICES**. All notices shall be sent as set forth in Schedule A, Section 22. If to
+
+Licensee, such notices shall be sent to:
+
+12312 W. Olympic Blvd.
+
+Los Angeles, California 90064
+
+Attention: Senior Vice President of International Attention: General Counsel
+
+Facsimile: (310) 571-4701 Email: legal@hulu.com
+
+8.
+
+**REMAINING TERMS**. The remaining terms and conditions of this Agreement are set
+
+forth in Schedules A through F attached hereto. In the event of a conflict between any of the terms of this Agreement and Schedules A through\_F, this Agreement shall control.
+
+-9-
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the Agreement Date.
+
+**SONY PICTURES ENTERTAINMENT JAPANINC.**
+
+**HULUJAPANLLC**
+
+_/)_
+
+By:
+
+&#39;
+
+-10-
+
+**S**** CHEDULE **** A**
+
+**S**** TANDARD **** T ****ERMS AND**  **C**** ONDITIONS **** F ****OR**  **SVOD L**** ICENSE **** A ****GREEMENT**
+
+The following are the standard terms and conditions governing the license set forth in the SVOD License Agreement to which this Schedule A is attached.
+
+**1. ADDITIONAL DEFINITIONS**.
+
+1.1
+
+&quot;Business Day&quot; shall mean any day other than (i) a Saturday or Sunday or (ii) any day on which
+
+banks in Los Angeles, California are closed or authorized to be closed.
+
+1.2
+
+&quot;DVD&quot; shall mean the standard DVD (digital versatile disk) format commonly used, as of the date of
+
+this Agreement, to distribute pre-recorded motion picture home entertainment products in the retail channel;
+
+_provided, however_, that &quot;DVD&quot; excludes any successors and/or derivatives of the current standard DVD format,
+
+such as audio-only DVDs (_e.g._, DVD Audio, SACD and Mini DVD), high definition DVDs (_e.g._, &quot;Blu-ray,&quot; &quot;HD- DVD&quot; or red-laser technology), limited-play DVDs (_e.g._, Flexplay), ecopies and UMD/PSP.
+
+1.3
+
+&quot;Event of Force Majeure&quot; in respect of a party shall mean any reasonably unforeseeable act, cause,
+
+contingency or circumstance beyond the reasonable control of such party, including, without limitation, any governmental action, nationalization, expropriation, confiscation, seizure, allocation, embargo, prohibition of import or export of goods or products, regulation, order or restriction (whether foreign, federal or state), war (whether or not declared), civil commotion, disobedience or unrest, insurrection, public strike, riot or revolution, fire, flood, drought, other natural calamity, damage or destruction to plant and/or equipment or any other accident, condition, cause, contingency or circumstance (including, without limitation, acts of God within or outside of the United States), but shall not include an inability to pay for whatever reason.
+
+1.4
+
+&quot;Security Breach&quot; shall mean a condition that results or may result in (i) the unauthorized availability
+
+of any Included Program or any other motion picture from the Licensed Service; (ii) the availability of any Included Program on, or means to transfer any Included Program to, devices that are not Approved Devices, or the ability to transcode to formats that are not Approved Formats and/or transmit through delivery means that are not Authorized Delivery Means; or (iii) a circumvention or failure of the Licensee&#39;s secure distribution system, geofiltering technology or physical facilities, which condition(s) may, in the reasonable good faith judgment of Licensor, result in actual, material harm to Licensor.
+
+1.5
+
+&quot;Territorial Breach&quot; shall mean a Security Breach that creates a risk that any of the Included
+
+Programs will be delivered to persons outside the Territory, where such delivery outside the Territory may, in the sole good faith judgment of Licensor, result in actual, material harm to Licensor.
+
+2. **RESTRICTIONS ON LICENSE**.
+
+2.1
+
+Licensee agrees that it is of the essence of this Agreement that, without the specific written consent of
+
+Licensor, or except as otherwise set forth herein: (a) the license granted hereunder may not be assigned, licensed or
+
+sublicensed in whole or in part; (b) no Included Program may be delivered, transmitted, exhibited or otherwise shown to anyone other than for a Personal Use; (c) no Included Program may be delivered, transmitted or exhibited other than as expressly set forth herein; (d) no person or entity shall be authorized or permitted by Licensee to do any of the acts forbidden herein; (e) the Licensed Service shall not be co-branded, sublicensed or sub-distributed and (f) the license hereunder expressly prohibits the storage, recording or so-called secure burn of any Included Program until such time as otherwise agreed in writing between the parties.
+
+2.2
+
+Licensee shall immediately notify Licensor of any unauthorized transmissions or exhibitions of any
+
+Included Program of which it becomes aware.
+
+2.3
+
+Licensee shall be fully responsible for customer support and maintenance of Included Programs
+
+distributed by Licensee during the Term and thereafter.
+
+3. **RESERVATION OF RIGHTS**. All licenses, rights and interest in, to and with respect to the Included Programs, the elements and parts thereof, and the media of exhibition and exploitation thereof, not specifically granted herein to Licensee, including, without limitation, theatrical, non-theatrical, home video (including without
+
+-11-
+
+limitation standard DVD (digital versatile disk), successors and/or derivatives of the current standard DVD format, audio-only DVDs (_e.g._, DVD Audio, SACD, and Mini DVD), high definition DVDs (_e.g._, &quot;Blu-Ray,&quot; &quot;HD-DVD&quot; or red-laser technology), limited-play DVDs (_e.g._, Flexplay), ecopies, and UMD/PSPDVD), pay-per-view, pay television, basic television, free broadcast television, high definition television, video-on demand, and any so-called PVR or &quot;personal video recorder&quot; rights, shall be and are specifically and entirely reserved by and for Licensor. Without limiting the generality of the foregoing, Licensee acknowledges and agrees that (a) Licensee has no right in the Included Programs or the images or sound embodied therein, other than the right to distribute the Included Programs in strict accordance with the terms and conditions set forth in this Agreement; (b) this Agreement does not grant to Licensee or any other person or entity any right, title or interest in or to the copyright or any other intellectual property right in the Included Programs, and nothing contained in this Agreement is intended to convey or will convey to Licensee any ownership or other proprietary interests in the Included Programs; and (c) Licensor retains the right to fully exploit the Included Programs and Licensor&#39;s rights in the Included Program&#39;s without limitation or holdback of any kind, whether or not competitive with Licensee. Licensor reserves the right to approve the technical quality of the Licensed Service and to suspend delivery of the Included Programs if the picture quality of the Licensed Service is unacceptable in the good faith judgment of Licensor; provided, however, that in the event of such suspension, Licensee&#39;s payment obligation with respect to Included Programs shall cease as of the date of suspension and shall resume only when such suspension is lifted by Licensor; and provided, further, that Licensor will not exercise its suspension rights pursuant to this Section 3 if the picture quality of the Licensed Service is comparable to or better than that of the Hulu Plus service provided by Licensee in the United States as of the Agreement Date.
+
+**• TERMS OF SERVICE**. Without limiting any other obligation of Licensee hereunder, prior to making an Included Program available hereunder, Licensee shall (i) provide conspicuous notice of the terms and conditions pursuant to which a Customer may use the Licensed Service and Included Programs, (&quot;Terms of Service&quot; or &quot;TOS&quot;), (ii) procure such Customer&#39;s assent to the TOS and (iii) include provisions in the TOS stating, among other things and without limitation, that: (a) Customer is obtaining a license under copyright to the Included Program, (b) Customer&#39;s use of the Included Program must be in accordance with the Usage Rules and must be for personal, non-commercial use only, (c) except for the rights explicitly granted to Customer, all rights in the Included Program are reserved by Licensee and/or Licensor, and (d) the license terminates upon breach by Customer and upon termination the Included Program(s) will be inaccessible to Customer.
+
+**• PROGRAMMING**.
+
+5.1
+
+Notwithstanding anything contained herein to the contrary, Licensee agrees that (i) no more than
+
+twenty (20%) of the programming available on the Licensed Service shall be Adult Programs during the term
+
+hereof; (ii) no Adult Program shall be exhibited, promoted or listed on the same or previous screen (other than the home page of the Licensed Service, which may contain a textual link with a section of the user interface exhibiting, promoting or listing Adult Programs) as a screen on the Licensed Service on which an Included Program is promoted or listed; and (iii) no Adult Program will be classified within the same genre/category as any Included Program. If Licensee violates the terms of this Section with respect to the Licensed Service, then Licensor shall have the right to cause Licensee to immediately cease exploiting any or all Included Programs. As used herein, &quot;Adult Program&quot; shall mean any motion picture or related promotional content that has either been rated NC-17 (or successor rating, or is unrated and likely would have received an NC-17 rating if it had been submitted to the MPAA for rating), other than a title released by a Qualifying Studio or a title otherwise deemed not to be an Adult Program by Licensor in its sole discretion, or X (or is unrated and likely would have received an X rating if it had been submitted to the MPAA for rating).
+
+5.2
+
+Subject to the restrictions set forth herein, Licensee will have the sole right to determine if, when and
+
+on which Approved Devices and at what resolution (subject to Section 2.5 of the Principal Terms) all or any of the Included Programs are distributed, performed, displayed, transmitted or made transmittable, including the packaging and programming related thereto (e.g., groupings by genre and other categories); provided, however, that in the event Licensor, in its reasonable, good faith discretion, determines that the various genres/categories (_e.g._, drama, comedy, horror, suspense, romance, etc.), in which its programs are classified on the Licensed Service create bona fide brand concerns, Licensee and Licensor will work together in good faith to modify such
+
+genres/categories. Licensee shall use good faith efforts to classify each Included Program within one or more of the available genres/categories in an appropriate manner. Licensor shall have the right at any time to object to a
+
+-12-
+
+classification of an Included Program that is, in the sole and good faith judgment of Licensor, derogatory or inappropriate, and to require Licensee to promptly reclassify such Included Program in the genres/categories designated by Licensor.
+
+5.3
+
+Licensee may elect not to distribute, perform or display any or all of the Included Programs, including
+
+upon determination by Licensee that any of the Included Programs may be the subject of a legal issue or claim or is
+
+otherwise inconsistent with Licensee&#39;s brand, standards, or practices; provided that in no event shall Licensee&#39;s exclusion or withdrawal of Included Programs pursuant to the foregoing sentence reduce or avoid the License Fee attributable to such Include Programs. In the event of a good faith determination by Licensee and Licensor that any Included Program may be the subject of a legal issue or claim, then Licensee shall have the right to terminate the License Period of such Included Program early, in which case the License Fee attributable to such Include Program shall be limited to the portion of the License Period prior to the early termination.
+
+6. **WITHDRAWAL OF PROGRAMS**. Licensor shall have the right to withdraw any Included Program from the Licensed Service (and as soon as practicable after written notice from Licensor, Licensee shall cease to make such program available on the Licensed Service and shall cease to promote such program&#39;s availability on the Licensed Service) if (i) Licensor reasonably believes that it does not have, or no longer has, or there is actual or threatened litigation regarding, the rights necessary to authorize Licensee to distribute Included Programs as provided herein; (ii) Licensor reasonably believes that Licensee&#39;s continued distribution of Included Programs will violate the terms of any of Licensor&#39;s agreements with any applicable copyright owner, artist, composer, producer, director, publisher, distributor or similar third party rights holder; (iii) Licensor reasonably believes that Licensee&#39;s continued distribution of Included Programs may adversely affect Licensor&#39;s material relations with any applicable copyright owner, artist, composer, producer, director, publisher, distributor or similar third party rights holder; (iv) Licensor reasonably believes that such withdrawal is necessary in order to minimize the risk of legal liability; or
+
+(v) upon 30 days&#39; prior written notice, Licensor, or an affiliate of Licensor, elects to theatrically re-release or reissue such Included Program or to make a theatrical or television remake, sequel or prequel of such Included Program. Withdrawal may, as specified by Licensor, apply to all features and functionalities licensed pursuant to this Agreement with respect to the withdrawn Included Program or only to certain portions of such features and functionalities with respect to the withdrawn Included Program. In the event of any withdrawal of an Included Program pursuant to this section before the last day of the License Period for such Included Program, Licensor shall promptly commence a good faith attempt to agree with Licensee as to a substitute program for exhibition pursuant to the terms of this Agreement. Licensee shall have the right to exhibit such substitute program for the remainder of the License Period of the withdrawn Included Program and shall have such rights and obligations with respect to such substitute program as if such substitute program were an Included Program. Licensee&#39;s payment obligations with respect to any withdrawn Included Program shall cease as of the date of withdrawal and shall resume only when a substitute program is made available on the Licensed Service in accordance with the terms and conditions herein; provided that Licensor may determine in its sole discretion whether the License Period of the substitute program shall end at the expiration of the License Period for the withdrawn Included Program or be extended for a length of time corresponding to the period between the withdrawal of the withdrawn Included Program and availability of the substitute program. Licensor acknowledges that its rights under this Article 6 of this Schedule are intended solely as a right to withdraw individual titles and is not intended as a means for more broadly terminating Licensee&#39;s rights to distribute Included Programs hereunder.
+
+7. **PAYMENT**.
+
+7.1
+
+All payments due to Licensor hereunder shall be made in Japanese yen and, unless and until Licensee
+
+is otherwise notified in writing by Licensor, shall be made by wire transfer to Sony Pictures Entertainment (Japan)
+
+Inc., c/o Sumitomo Mitsui Banking Corp., Hamamatsucho Branch, 1: 2-4-1, Hamamatsucho, Minato-Ku, Tokyo 105-6101 Japan, Account Number: 1505860, Swift Number: Swift: SMBCJPJT, Reference: Hulu Japan SVOD.
+
+7.2
+
+As between the parties, Licensee shall be responsible for processing all transactions and the billing and
+
+collection of all monies due from Customers in connection with the exploitation of the Included Programs on the Licensed Service as permitted herein; provided that Licensee may retain third parties to perform the foregoing services. In the event that Licensee retains any such third party, Licensee shall (i) inform such third party of all related obligations, (ii) not authorize any person or entity to do any of the acts forbidden herein and (iii) remain
+
+-13-
+
+solely liable for the performance of all obligations and responsible for all acts and omissions of such third parties. Licensee shall at all times be solely liable for the payment of the license fees due to Licensor hereunder.
+
+7.3 Amounts which become due to Licensor hereunder (including, without limitation, any advances or guarantee payments) shall immediately be due and payable and shall immediately be non-recoupable, non- refundable and not subject to rebate, deduction or offset of any kind. Without prejudice to any other right or remedy available to Licensor, if Licensee fails to pay any license fees or advances or guarantees when due and payable, interest shall accrue on any such overdue amount until such time as the overdue amount is paid in full, at a rate equal to the lesser of one hundred ten percent (110%) of the prime rate announced from time to time in the U.S. edition of the Wall Street Journal (the &quot;Prime Rate&quot;) or the permitted maximum legal rate.
+
+7.4
+
+The parties acknowledge and agree that the provisions of this Article 7 are of the essence. Licensee
+
+covenants and agrees to make all payments to Licensor hereunder in a timely manner.
+
+8. **PHYSICAL MATERIALS AND TAXES**.
+
+8.1
+
+Subject to the Servicing Fee set forth below, Licensor will deliver by each Included Program&#39;s
+
+Availability Date at its expense all Included Programs (each, a &quot;Copy&quot;) and metadata associated with the Included
+
+Programs per the specifications set forth in the content partner guidebook attached hereto as Schedule F (excluding
+
+(i) Section 2.3 insofar as it requires caption or subtitle files in English, (ii) Section 4.2.2, (iii) Section 5, (iv) Section 8.4 and it being agreed that any conflict between the terms of Schedule F and this Agreement, e.g. Section
+
+4.2.3 regarding cards and bugs, to be controlled by this Agreement), it being agreed that any other specifications shall require mutual agreement of the parties. Licensor will deliver each Copy with 1080p masters with Dolby 5.1 audio for all content for which such masters are available, and for any content not produced in 1080p, the highest quality video and audio available to Licensor. Licensor may provide, via metadata, e-commerce promotion, which will appear along with the Included Programs and Advertising Materials, to the extent required by third party obligations (such as guild or union rules). Licensor shall exercise reasonable efforts to deliver all Included Programs free of any: (a) advertising or promotional messaging, including any bumpers, end cards or other messages that promote the Included Programs or Advertising Materials, any other content, Licensor&#39;s website, or any other online property (such as &quot;call outs&quot; to Licensors&#39; or third party websites) and (b) bugs, burn-ins, crawls, or other on-screen identifiers except to the extent included in the original exhibition (if any) of Included Programs. For each Included Program delivered for the Initial Avail Term, the cost of delivery shall be ¥160,000 (&quot;ServicingFee&quot;); provided, however, that the aggregate amount paid by Hulu for Servicing Fees for the first three hundred fifty (350) Included Programs delivered for the Initial Avail Term of the Agreement shall not exceed ¥48,000,000. No Servicing Fee shall be due for an Included Program that Licensee licensed hereunder during a prior Avail Year unless Licensee requests materials for such Included Program. For the avoidance of doubt, the Servicing Fee and any other fee specified herein are exclusive of and unreduced by any tax, levy or charge, the payment of which shall be the responsibility of Licensee.
+
+8.2
+
+If Licensor has available out of stock on-hand a dubbed or subtitled version of an Included Program in
+
+the Licensed Language, Licensor shall, as part of the Servicing Fee for such Included Program, provide such
+
+materials to Licensee. If Licensor is unable to provide all materials for a dubbed or subtitled version of an Included Program licensed hereunder to Licensee out of available stock on hand, Licensor shall have the right to create such dubbed or subtitled version and provide copies of such materials, in each case at Licensee&#39;s sole reasonable cost. If Licensor elects not to create such a version, Licensee may, only with the prior written consent of Licensor, and only in strict accordance with all third party contractual restrictions and Licensor&#39;s technical specifications, prepare dubbed or subtitled versions of such Included Program in the Licensed Language, which versions shall be sufficient to cover Licensor&#39;s worldwide usage of such dubbed or subtitled versions in all media throughout the universe, the costs (including, without limitation, any third party contractual obligations, residuals and other reuse fees) for which shall be the sole responsibility of Licensee; provided, however, that (i) immediately upon Licensee&#39;s completion of the original dubbing or subtitling of an Included Program licensed hereunder, Licensee shall forward to Licensor a copy of such originally dubbed or subtitled version, and (ii) Licensee shall allow Licensor unrestricted access, at no charge to Licensor, to the masters of the dubbed and/or subtitled versions during such Included Program&#39;s License Period. Following the conclusion of the License Period for any Included Program licensed hereunder or any other termination of this Agreement, Licensee shall deliver to Licensor the master and all copies of all dubbed and subtitled versions of such Included Program. In connection with the creation of any dubbed or
+
+-14-
+
+subtitled version, Licensee shall be responsible for obtaining all necessary third party clearances such that any subsequent use of such materials by Licensor or its designee shall be free and clear of any residual or reuse fees. Licensee shall indemnify and hold harmless the Licensor Indemnified Parties from and against any and all claims, actions, causes of action, damages, losses, liabilities, costs and expenses (including fees and disbursements of counsel) arising out of, in connection with or founded upon such dubbing or subtitling. All rights, including copyrights and trademarks, in such dubbed and subtitled versions of the Included Programs licensed hereunder, shall vest in Licensor upon creation thereof, subject only to the rights granted herein to Licensee hereunder during the Term hereof. Licensee acknowledges and agrees that Licensee is not granted and is not acquiring any ownership rights in or of, or interest in, any Copy, Included Program or dubbed or subtitled version of an Included Program by reason of Licensee&#39;s permitted use or manufacture thereof. Licensee will execute, acknowledge and deliver to Licensor any instruments of transfer, conveyance or assignment in or to any dubbed and subtitled versions necessary or desirable to evidence or effectuate Licensor&#39;s ownership thereof and in the event that Licensee fails or refuses to execute, acknowledge or deliver any such instrument or documents then Licensor shall be deemed to be, and Licensee hereby nominates, constitutes and appoints Licensor its true and lawful attorney in fact irrevocably to execute and deliver all such instruments in Licensee&#39;s name or otherwise, it being acknowledged that such power is a power coupled with an interest.
+
+8.3
+
+Within thirty (30) days following (a) the last day of the last License Period, Licensee shall at
+
+Licensor&#39;s request and election either return all Copies to Licensor or erase or degauss all such Copies and supply Licensor with a certification of erasure or degaussing of such Copies.
+
+8.4
+
+In the event the Agreement is terminated for any reason, upon expiration of the Term, upon a
+
+Suspension that has not been terminated pursuant to Section 9.4 of this Schedule, and, with respect to any Included Program, if such Included Program has been withdrawn pursuant to Article 6 of this Schedule, Licensee shall
+
+within thirty (30) days return, destroy, delete or disable, at Licensor&#39;s request and election, all Copies and Advertising Materials in its possession and provide Licensor with a certificate of return or destruction (as applicable), signed by an authorized representative of Licensee.
+
+8.5
+
+Except as set forth in Section 8.6, Licensee shall be solely responsible to determine, collect, bear,
+
+remit, pay, and shall hold Licensor forever harmless from and against, any and all taxes (including interest and
+
+penalties on any such amounts, but excluding Licensor&#39;s corporate income tax), payments or fees that Licensee is required to pay by any governmental taxing authority or otherwise under applicable law or contractually that are now or hereafter imposed, levied or claimed against Licensee based upon Licensee&#39;s licensing, rental, importation, delivery, exhibition, possession, distribution or use hereunder to or by Licensee of the Included Programs or any print, Copy or Advertising Materials of or related to an Included Program, including, without limitation, where such taxes or surcharges are applicable national, regional or local sales, use, value-added, consumption, excise, gross receipts or other similar taxes (&quot;Sales Taxes&quot;). All prices mentioned in this Agreement are exclusive of and Licensee shall pay to Licensor any Sales Taxes that are owed by Licensee solely as a result of entering into this Agreement and which are required to be collected from Licensee by Licensor under applicable law. If applicable, Licensee may provide to Licensor a valid Sales Tax exemption certificate, in which case Licensor shall not collect the taxes covered by such certificate. In each circumstance where Licensee is responsible under applicable Sales Tax laws in the Territory to account for any Sales Taxes due, Licensee shall be solely responsible for complying with such laws.
+
+8.6
+
+All prices and payments stated herein shall be exclusive of and made free and clear of and without
+
+deduction or withholding for or on account of any tax, duty or other charges, of whatever nature imposed by any taxing or governmental authority, unless such deduction or withholding is required by applicable law, in which case Licensee shall: (i) withhold the legally required amount from payment; (ii) remit such amount to the applicable taxing authority; and (iii) within thirty (30) days of payment, deliver to Licensor original documentation or a certified copy evidencing such payment (&quot;Withholding Tax Receipt&quot;). In the event Licensee does not provide a Withholding Tax Receipt in accordance with the preceding sentence, Licensee shall be liable to and shall reimburse Licensor on demand for the withholding taxes deducted from payments. Licensee shall use reasonable efforts to cooperate with Licensor to proceed with requisite procedures required to minimize such taxes to the extent permissible under applicable law. The parties agree that as of the Agreement Date, applicable law in the Territory does not require withholding on payments from Licensee to Licensor. If Licensee&#39;s assignment causes an increased rate of tax withholding or deduction to apply to the payments to Licensor, then the gross amount payable
+
+-15-
+
+by Licensee to Licensor shall be increased so that after such deduction or withholding, the net amount received by Licensor will not be less than Licensor would have received had Licensee not made the assignment.
+
+8.7
+
+Upon the loss, theft or destruction (other than as required hereunder) of any Copy of an Included
+
+Program, Licensee shall promptly furnish Licensor with proof of such a loss, theft or destruction by certification from an authorized person.
+
+8.8
+
+Each Copy of the Included Programs and all Advertising Materials are the property of Licensor,
+
+subject only to the limited right of use expressly authorized herein, and Licensee shall not authorize any lien, charge, pledge, mortgage or encumbrance to attach thereto.
+
+8.9
+
+Other than providing dubbed or subtitled versions pursuant to Section 8.2 of this Schedule, in no
+
+event shall Licensor be required to deliver or make available any Included Program in any language version other than the original language version.
+
+9. **CONTENT PROTECTION &amp; SECURITY.**
+
+9.1
+
+General. Licensee represents and warrants that it has put in place secure and effective, stringent and
+
+robust security systems and technologies to prevent theft, pirating, unauthorized exhibition (including, without
+
+limitation, unauthorized exhibition to non-Customers and exhibition outside the Territory), unauthorized copying or duplication of any video reproduction or compressed digitized copy of any Included Program and that such security systems, procedures and technologies are and shall be no less stringent or robust than those which Licensee employs with respect to films licensed from other licensors or than industry standard. Licensee shall maintain and upgrade such security systems, procedures and technologies (including, without limitation, encryption methods) as Licensor shall determine in its sole reasonable discretion is necessary to prevent theft, pirating, unauthorized exhibition (including, without limitation, exhibition to non-Customers and exhibition outside the Territory), and unauthorized copying or duplication of any video reproduction or compressed digitized copy of any Included Program. Licensee shall comply with all reasonable instructions relating to the foregoing given by Licensor or Licensor&#39;s representative. Licensee shall comply with Licensor&#39;s specifications concerning the storage and management of its digital files and materials for the Included Programs at Licensee&#39;s sole expense, and as such specifications may be updated at any time during the Term. Licensee shall not authorize any use of any video reproduction or compressed digitized copy of any Included Program for any purpose other than as is expressly permitted herein. Licensor or its authorized representative shall have the right, upon reasonable advance written notice, to inspect and review Licensee&#39;s security systems, procedures and technologies at Licensee&#39;s places of business (including off-site facilities, if any) as Licensor deems necessary, provided such inspection is conducted during regular business hours and does not interfere materially with Licensee&#39;s operations.
+
+9.2
+
+Obligation to Monitor for Hacks. Licensee shall take such measures as are reasonably necessary to
+
+determine the existence of Security Breaches or Territorial Breaches and shall promptly notify Licensor if any such occurrences are discovered.
+
+9.3
+
+Suspension Notice. Licensee shall notify Licensor immediately upon learning of the occurrence of
+
+any Security Breach or Territorial Breach, and shall provide Licensor with specific information describing the nature and extent of such occurrence. Licensor shall have the right to suspend the availability (&quot;Suspension&quot;) of its Included Programs on the Licensed Service at any time during the Term in the event of a Security Breach or Territorial Breach by delivering a written notice to the Licensee of such suspension (a &quot;Suspension Notice&quot;). Upon
+
+its receipt of a Suspension Notice, Licensee shall take steps immediately to remove the Included Programs or make the Included Programs inaccessible from the Licensed Service as soon as commercially feasible (but in no event more than three (3) calendar days after receipt of such notice).
+
+9.4
+
+Reinstatement/Termination. If the cause of the Security Breach that gave rise to a Suspension is
+
+corrected, repaired, solved or otherwise addressed in the sole, reasonable judgment of Licensor, the Suspension
+
+shall terminate upon written notice from Licensor and Licensor&#39;s obligation to make its Included Programs available on the Licensed Service shall immediately resume. For clarity, no period of Suspension shall extend the Term in time, and upon a notice that a Suspension has ended, the Term shall end as otherwise provided in the Agreement unless earlier terminated in accordance with another provision of this Agreement. Upon receipt of such written notice, Licensee shall have the right to include the Included Programs on the Licensed Service as soon thereafter as practicable. If more than two (2) Suspensions occur during the Avail Term, or any single Suspension
+
+-16-
+
+lasts for a period of three (3) months or more, Licensor shall have the right, but not the obligation, to terminate this Agreement (&quot;Security Breach Termination&quot;) by providing written notice of such election to the Licensee.
+
+9.5
+
+Content Protection Requirements and Obligations.
+
+Licensee shall at all times utilize content
+
+protection and DRM standards no less stringent or robust than the standards attached hereto as Schedule C and incorporated herein by this reference.
+
+10. **CUTTING, EDITING AND INTERRUPTION**. Licensee shall not make, or authorize any others to make, any modifications, deletions, cuts, alterations or additions in or to any Included Program without the prior written consent of Licensor. For the avoidance of doubt, no panning and scanning (other than shrinking the viewing window during Included Program credits), time compression or similar modifications shall be permitted. Without
+
+limiting the foregoing, Licensee shall not delete the copyright notice or credits from the main or end title of any Included Program or from any other materials supplied by Licensor hereunder. No exhibitions of any Included Program hereunder shall be interrupted for intermission, commercials or any other similar commercial announcements of any kind.
+
+**• MUSIC AND UNDERLYING RIGHTS PAYMENTS**.
+
+• Subject to Section 11.2 below, as between Licensee and Licensor, Licensor shall be responsible for paying: (a) any and all royalties, fees, residuals, contingent compensation and other amounts to performers, directors, writers, producers, or other third parties related to the use or other exploitation of the Included Programs hereunder, (b) all synchronization and master use fees payable to composers, songwriters, authors, music publishers, artists and record labels of compositions and sound recordings embodied in the Included Programs, for the inclusion of such compositions and sound recordings in the Included Programs; and (c) all applicable payments that may be required under any collective bargaining agreements, unions and guilds applicable to Licensor or third parties in connection with the sale, distribution, advertising and other permitted exploitation by Licensee of the Included Programs hereunder.
+
+11.2
+
+As between Licensee and Licensor, Licensee shall be responsible for clearing and making payments
+
+for music rights as necessary with respect to any distribution to the public of the Included Programs by Licensee in
+
+accordance with this Agreement, including all public performance/making available royalties, if any, payable to any organizations that are authorized to collect such royalties on behalf of rights holders in the applicable Territory (&quot;Collecting Societies&quot;) with respect to any musical compositions and/or sound recordings embodied in the Included Programs, where such clearances and payments arise solely from Licensee&#39;s use of the Included Programs and to the extent the rights to collect such royalties are vested in and controlled by any Collecting Societies (&quot;Collectively Administered Author&#39;s Rights Payments&quot;); and Licensor makes no representation or warranty with respect to such Collectively Administered Author&#39;s Rights Payments. Licensor shall timely furnish Licensee with accurate and complete music cue sheets setting forth all necessary information regarding the title, composer, publisher and performing rights society affiliation, length of use and type of use of all such music.
+
+11.3
+
+Intentionally omitted on a non-precedential basis.
+
+**• PLACEMENT, MARKETING AND PROMOTION**.
+
+• Licensee shall have the right to (a) use, display and reproduce Licensor-provided embodiments of Licensor&#39;s logos, trade names, trademarks, and service marks and (b) use or authorize the use of written summaries, extracts, synopses, photographs, trailers or other materials prepared and provided or made available by Licensor or, if not prepared by Licensor, approved in writing in advance by Licensor (&quot;Advertising Materials&quot;), solely for the purpose of advertising, promoting and publicizing the exhibition of the Included Programs on the Licensed Service in the Territory, and the right to advertise, publicize and promote, or authorize the advertising, publicity and promotion of the exhibition of any Included Program on the Licensed Service in the Territory during the time periods specified herein.
+
+12.1.1
+
+Licensee may promote the upcoming exhibition of an Included Program on the Licensed
+
+Service in printed materials distributed directly and solely to Customers not earlier than thirty (30) days prior to
+
+the Availability Date of such Included Program unless otherwise directed by Licensor (and in no event may Licensee promote any title prior to receiving an Availability Notice for such title) and to continue promoting such availability through the last day of such Included Program&#39;s License Period.
+
+-17-
+
+12.1.2
+
+Licensee shall not promote any Included Program after the expiration of the License
+
+Period for such Included Program or after the withdrawal of such Included Program hereunder. In no event may Licensee promote any Included Program prior to receiving an availability list containing such program pursuant to Section 4.1 of the Principal Terms.
+
+12.2
+
+Licensor.
+
+12.3
+
+Licensee shall not promote any Included Program after it is withdrawn from distribution hereunder by
+
+Licensee shall provide to Licensor a copy of any program schedules, guides or other list of programs
+
+available on the Licensed Service made available to Customers and/or potential Customers (including those delivered by electronic means, if any) immediately upon publication or delivery thereof.
+
+12.4
+
+Licensee covenants and warrants that (i) it shall fully comply with any and all instructions furnished
+
+in writing to Licensee with respect to the Advertising Materials used by Licensee in connection with this Article 12
+
+(including size, prominence and position of Advertising Materials); (ii) it shall not modify, edit or make any changes to the Advertising Materials without Licensor&#39;s prior written consent; (iii) names and likenesses of the characters, persons and other entities appearing in or connected with the production of Included Programs (&quot;Names and Likenesses&quot;) shall not be used separate and apart from the Advertising Materials; and (iv) Advertising Materials, Names and Likenesses, Licensor&#39;s name or logo, and Included Programs shall not be used so as to constitute an endorsement or testimonial, express or implied, of any party, product or service, including, without limitation, the Licensed Service, Licensee, or any program service or other service provided by Licensee; nor shall the same be used as part of a commercial tie-in without Licensor&#39;s prior written consent. Any advertising or promotional material created by Licensee that identifies Included Programs or includes Advertising Materials, any promotional contests or giveaways to be conducted by Licensee that identifies Included Programs or includes Advertising Materials and any sponsorship of any Included Program (as distinguished from the standard practice of selling commercial advertising time) shall require the prior written consent of Licensor, not to be unreasonably withheld or delayed, and shall be used only in accordance with Licensor&#39;s instructions.
+
+12.5
+
+The rights granted in this Article 12 shall be subject to, and Licensee shall comply with, any and all
+
+restrictions or regulations of any applicable guild or union and any third party contractual provisions with respect to the advertising and billing of the Included Program provided Licensor advises Licensee of such in writing. In
+
+no event shall Licensee be permitted to use any excerpts from an Included Program other than as provided by Licensor and in no case in excess of two minutes (or such shorter period as Licensor may notify Licensee from time-to-time) in the case of a single continuous sequence, or four minutes in the aggregate from any single Included Program (or such shorter period as Licensor may notify Licensee from time to time).
+
+12.6
+
+Appropriate copyright notices shall at all times accompany all Advertising Materials, subject to the
+
+technical limitations of the Licensed Service applied consistently across all Licensed Service content partners.
+
+12.7
+
+Within thirty (30) calendar days after the last day of the License Period for each Included Program,
+
+Licensee shall destroy (or at Licensor&#39;s request, return to Licensor) all Advertising Materials for such Included Program.
+
+12.8
+
+The Licensed Service shall not include advertising other than sponsorship information included on
+
+the Licensed Service home page (or initial/home screen of each Hulu-Branded Playback Application) in connection with any Third-Party Promotional Offers (but not within Licensee&#39;s video player).
+
+13. **LICENSOR&#39;S REPRESENTATIONS AND WARRANTIES**. Licensor hereby represents and warrants to Licensee that:
+
+13.1
+
+It is a company duly organized under the laws of the state of its organization and has all requisite
+
+corporate power and authority to enter into this Agreement and perform its obligations hereunder.
+
+13.2
+
+The execution and delivery of this Agreement by Licensor has been duly authorized by all necessary
+
+corporate action.
+
+13.3
+
+This Agreement has been duly executed and delivered by, and constitutes a valid and binding
+
+obligation of Licensor, enforceable against such party in accordance with the terms and conditions set forth in this Agreement.
+
+-18-
+
+13.4
+
+Any and all copyrights to each musical composition in the Included Programs and Advertising
+
+Materials are either: (a) controlled by the Japanese Society for Rights of Authors, Composers and Publishers (aka
+
+JASRAC) or other Collecting Societies, if any; (b) owned by or licensed to Licensor so that no additional clearance of, or payment with respect to, such rights is required by Licensee for the exercise of the rights licensed to Licensee hereunder or (iii) in the public domain.
+
+13.5
+
+The execution, delivery and performance of this Agreement shall not result in the breach or non-
+
+performance of any agreements it has with any third party, provided that withdrawal of Included Programs in accordance with Section 6 of this Schedule A shall not constitute a breach of this section.
+
+14. **LICENSEE&#39;S REPRESENTATIONS AND WARRANTIES**. Licensee hereby represents, warrants and covenants to Licensor that:
+
+14.1
+
+It is a company duly organized under the laws of the state of its organization and has all requisite
+
+corporate power and authority to enter into this Agreement and perform its obligations hereunder.
+
+14.2
+
+The execution and delivery of this Agreement by Licensee has been duly authorized by all necessary
+
+corporate action.
+
+14.3
+
+This Agreement has been duly executed and delivered by, and constitutes a valid and binding
+
+obligation of Licensee, enforceable against such party in accordance with the terms and conditions set forth in this Agreement.
+
+14.4
+
+Licensee has obtained and shall maintain all licenses and other approvals necessary to own and
+
+operate the Licensed Service in the Territory and otherwise exploit the rights granted hereunder.
+
+14.5
+
+Service.
+
+Licensee shall comply with all laws and regulations applicable to the operation of the Licensed
+
+15. **INDEMNIFICATION**.
+
+15.1
+
+Licensor shall indemnify and hold harmless Licensee and its representatives (with respect to a party,
+
+its officers, directors, equity owners, employees and other representatives and its parents, subsidiaries and affiliates
+
+and their officers, directors, equity owners, employees and other representatives (collectively, the &quot;Representatives&quot;)) from and against any and all claims, damages, liabilities, costs and expenses, including reasonable counsel fees, arising out of or related to any third party claim resulting from any breach by Licensor of any of its representations, warranties or covenants set forth in this Agreement and claims that any of the Included Programs or Advertising Materials provided by Licensor (excluding any Advertising Materials prepared by Licensee pursuant to Paragraph 12.1) to Licensee, under the law of the Territory, infringes upon any right of any third party (including the trade name, trademark, copyright, music synchronization, literary or dramatic right or
+
+right
+
+of
+
+privacy
+
+of
+
+any
+
+claimant
+
+(not
+
+including
+
+public
+
+performance/making available,
+
+mechanical/reproduction/copying and other rights which are covered under Section 11 of this Schedule)),
+
+constitutes a libel or slander of such claimant or violates any applicable law; _provided that_ Licensee shall promptly notify Licensor of any such claim or litigation of which it becomes aware. Notwithstanding the foregoing, the failure to provide such prompt notice shall diminish Licensor&#39;s indemnification obligations only to the extent Licensor is actually prejudiced by such failure. In addition, Licensor shall not be required to indemnify Licensee or its Representatives for any claims resulting from Licensee exhibiting any Included Programs or using Advertising Materials in a form other than as delivered by Licensor, or due to Licensee&#39;s editing or modification of any Included Programs or Advertising Materials, or due to Licensee&#39;s authorization of a third party to do any of the foregoing.
+
+15.2
+
+Licensee shall indemnify and hold harmless Licensor and its Representatives from and against any
+
+and all claims, damages, liabilities, costs and expenses, including reasonable counsel fees, arising out of or related to any third party claim resulting from (i) the breach by Licensee of any of its representations, warranties or covenants set forth in this Agreement, (ii) the exhibition of any Advertising Materials created by Licensee pursuant
+
+to Paragraph 12.1 (other than material contained in Included Programs or Advertising Materials as delivered by Licensor and exhibited in strict accordance with this Agreement and Licensor&#39;s instructions therefor), in connection with or relating, directly or indirectly, to such Included Programs or (iii) claims that technology owned by Licensee and used in connection with the Licensed Service infringes any right of any third party (including
+
+-19-
+
+without limitation infringement upon or violation of a third party patent, copyright, trade name, trademark, source mark, trade secret of other intellectual property right by the Licensed Service), or violates any applicable law, other than as a result of the exhibition of the Included Programs in strict accordance with the terms of this Agreement; _provided that_ Licensor shall promptly notify Licensee of any such claim or litigation of which it becomes aware. Notwithstanding the foregoing, the failure to provide such prompt notice shall diminish Licensee&#39;s indemnification obligations only to the extent Licensee is actually prejudiced by such failure. In addition, Licensee shall not be required to indemnify Licensor or its Representatives for any claims resulting from Licensee exhibiting any Included Programs or using Advertising Materials in the form as delivered by Licensor and in strict accordance with the terms of this Agreement.
+
+15.3
+
+In any case in which indemnification is sought hereunder:
+
+15.3.1 At the indemnifying party&#39;s option, the indemnifying party may assume the handling,
+
+settlement or defense of any such claim or litigation. If the indemnifying party assumes the handling, settlement or
+
+defense of any such claim or litigation, the party to be indemnified shall cooperate in the defense of such claim or litigation, and the indemnifying party&#39;s obligation with respect to such claim or litigation shall be limited to holding the indemnified party harmless from any final judgment rendered on account of such claim or settlement made or approved by the indemnifying party in connection therewith, and expenses and reasonable attorneys fees of the indemnified party incurred in connection with the defense of such claim or litigation prior to the assumption thereof by the indemnifying party and any reasonable out-of-pocket expenses for performing such acts as the indemnifying party shall request. If the indemnifying party does not assume the handling, settlement or defense of any such claim or litigation, the indemnifying party shall, in addition to holding the indemnified party harmless from the amount of any damages awarded in any final judgment entered on account of such claim, reimburse the indemnified party for reasonable costs and expenses and reasonable attorneys fees of the indemnified party incurred in connection with the defense of any such claim or litigation; and
+
+15.3.2 The party seeking indemnification shall fully cooperate with the reasonable requests of the other party in its participation in, and control of, any compromise, settlement, litigation or other resolution or disposition of any such claim. The indemnifying party shall not consent to the entry of any final judgment in any action without the indemnified party&#39;s prior written approval except, in the case where Licensor is the indemnifying party, where such consent involves the agreement not to further exploit an Included Program.
+
+16. **STATEMENTS; REPORTS**. Within sixty (60) days following the end of each calendar quarter of the Term, Licensee shall provide to Licensor and its designee, if any, a statement in electronic form (&quot;Statement&quot;) detailing the information specified by Licensor from time to time for the Licensed Service, including, without limitation:
+
+(i)
+
+(ii)
+
+(iii)
+
+(iv)
+
+the actual retail price charged for the SVOD Service;
+
+total number of viewings of each Included Program in such month; the Actual Customers for such month;
+
+the total number of programs and Qualifying Studio&#39;s programs available on the Licensed Service;
+
+a calculation of the License Fee for each Included Program for such month;
+
+election and cost, Licensor may appoint a third party designee to receive or access the data this Article 16 for purposes of reorganizing or presenting such data as requested by Licensor
+
+(v)
+
+At Licensor&#39;s referenced in
+
+provided that any such designee agrees to keep such information confidential.
+
+17. **TERMINATION**.
+
+17.1
+
+Without limiting any other provision of this Agreement and subject to Section 17.3 of this Schedule,
+
+upon the occurrence of a Licensee Termination Event (as defined below), Licensor may, in addition to any and all other rights which it may have against Licensee, immediately terminate this Agreement or any license with respect to an Included Program by giving written notice to Licensee and/or, upon the occurrence of a Licensee Termination
+
+Event arising out of Licensee&#39;s breach of Section 2.1, Schedule D or clauses (A)(y) or (B) of the definition of Licensee Event of Default, accelerate the payment of all monies payable under this Agreement such that they are payable immediately and to retain such monies, it being acknowledged that Licensee&#39;s material obligations hereunder include full, non-refundable payment of 100% of the license fees described in this Agreement regardless of any early termination of this Agreement due to a Licensee Termination Event. Whether or not Licensor
+
+-20-
+
+exercises such right of termination, Licensor shall, upon the occurrence of any Licensee Event of Default (as defined below), have no further obligation to deliver Included Programs or Advertising Materials to Licensee and Licensor shall have the right to require Licensee to immediately return all copies of Included Programs and Advertising Materials to Licensor. In addition to any and all other remedies in respect of a Licensee Event of Default which Licensor may have under applicable law, Licensor shall be entitled to recover from Licensee all payments past due from Licensee to Licensor hereunder, together with interest, compounded monthly, at the lesser of (x) 110% of the Prime Rate and (y) the maximum rate permitted by law, plus reasonable attorneys fees, and all costs and expenses, including collection agency fees, incurred by Licensor to enforce the provisions thereof. Furthermore, upon a Licensee Event of Default, Licensor shall have the right to immediately suspend delivery of all Included Programs and materials with respect thereto and/or suspend Licensee&#39;s right to exploit any Included Programs, licensed hereunder, without prejudice to any of its other rights hereunder. As used herein, a &quot;LicenseeEvent of Default&quot;: the occurrence of any of the following: (A) Licensee (x) fails to timely perform or breaches any of its material obligations hereunder or otherwise materially breaches this Agreement, (y) fails to make timely payment of fees under this Agreement or (z) assigns or otherwise transfers this Agreement in violation of this Agreement; or (B) upon (i) Licensee becoming unable to pay its debts; (ii) Licensee becoming insolvent; (iii) a petition under any bankruptcy or analogous act being filed by or against Licensee (which petition, if filed against Licensee, shall not have been dismissed by the relevant authority within thirty (30) days after Licensee&#39;s knowledge thereof, it being agreed that service of process upon Licensee is deemed knowledge as of such date); (iv) Licensee executing an assignment for the benefit of creditors; (v) a receiver being appointed for the assets of Licensee; (vi) Licensee taking advantage of any applicable bankruptcy, insolvency or reorganization or any other like statute; or (vii) the occurrence of any event analogous to the foregoing. As used herein a &quot;LicenseeTermination Event&quot; shall mean (I) the occurrence of a curable Licensee Event of Default described in subclause
+
+(A) above that Licensee has failed to cure within thirty (30) days written notice from Licensor of the occurrence of such default or, if such default is the failure to pay any installment or overage, within five (5) Business Days of notice from Licensor, (II) the occurrence of a non-curable Licensee Event of Default described in subclause (A) above and (III) the occurrence of a Licensee Event of Default described in subclause (B) above.
+
+17.2
+
+Subject to Section 17.3 of this Schedule, in the event Licensor materially defaults in the performance
+
+of any of its material obligations hereunder or Licensor becomes insolvent, or a petition under any bankruptcy act shall be filed by or against Licensor (which petition, if filed against Licensor, shall not have been dismissed within
+
+thirty (30) days thereafter), or Licensor executes an assignment for the benefit of creditors, or a receiver is appointed for the assets of Licensor, or Licensor takes advantage of any applicable insolvency or reorganization or any other like statute (each of the above acts is hereinafter referred to as a &quot;Licensor Event of Default&quot;), and Licensor fails to cure such Licensor Event of Default within thirty (30) days after delivery by Licensee to Licensor of written notice of such Licensor Event of Default, then Licensee may, in addition to any and all other rights which it may have against Licensor, immediately terminate this Agreement by giving written notice to Licensor.
+
+17.3
+
+Notwithstanding anything to the contrary contained in Sections 17.1 or 17.2 hereof, no termination of
+
+this Agreement for any reason shall relieve or discharge, or be deemed or construed as relieving or discharging, any party hereto from any duty, obligation or liability hereunder which was accrued as of the date of such termination (including, without limitation, the obligation to pay any amounts payable hereunder accrued as of such date of termination).
+
+18. Intentionally omitted.
+
+19. **ASSIGNMENT**. Licensee shall not assign, transfer or hypothecate its rights hereunder, in whole or in part, whether voluntarily or by operation of law (including, without limitation, by merger, consolidation or change in control), without Licensor&#39;s prior written approval, which shall not be unreasonably withheld or delayed. Notwithstanding the foregoing, Licensee may assign and transfer this Agreement without consent to any successor to all or substantially all of its assets or business, provided that Licensee shall provide written notice to Licensor of any such change of control and Licensor shall have the right, but not the obligation, to terminate this Agreement upon thirty (30) days written notice to Licensee if the successor-in-interest resulting from such change in control
+
+(i) is a Qualifying Studio, Apple, Google, LG, Microsoft, Nintendo, Panasonic, Samsung or an affiliate of the foregoing, or, in Licensor&#39;s reasonable judgment, any other competitor of Licensor or its affiliates, (ii) is not, in Licensor&#39;s reasonable business judgment, as creditworthy as Licensee or (iii) does not have capitalization or funding at least equal to or greater than that of Licensee immediately prior to the effective date of such change of
+
+-21-
+
+control. In the event of such termination, Licensee shall pay to Licensor an amount equal to the aggregate of the Monthly Minimum Fees for the lesser of six (6) months following such termination and the remainder of the term of the Agreement (the &quot;Accelerated Fee&quot;). In the event that Licensor enters into a similar Internet-delivered SVOD license in the Territory with such successor-in-interest within twenty-four (24) months from the date of such termination, such Accelerated Fee will be credited against any future license fee payments with respect to such license.
+
+**• NON-WAIVER OF BREACH; REMEDIES CUMULATIVE**. A waiver by either party of any of the terms or conditions of this Agreement shall not, in any instance, be deemed or construed to be a waiver of such terms or conditions for the future or of any subsequent breach thereof. No payment or acceptance thereof pursuant to this Agreement shall operate as a waiver of any provision hereof. All remedies, rights, undertakings, obligations and agreements contained in this Agreement shall be cumulative and none of them shall be in limitation of any other remedy, right, undertaking, obligation, or agreement of either party.
+
+**• GOVERNING LAW**. This Agreement shall be interpreted and construed in accordance with the substantive laws (and not the law of conflicts) of the State of California and the United States of America with the same force and effect as if fully executed and to be fully performed therein. All actions or proceedings arising in connection with, touching upon or relating to this Agreement, the breach thereof and/or the scope of the provisions of this Section 21 (a &quot;Proceeding&quot;) shall be submitted to JAMS (&quot;JAMS&quot;) for binding arbitration under its Comprehensive Arbitration Rules and Procedures if the matter in dispute is over $250,000 or under its Streamlined Arbitration Rules and Procedures if the matter in dispute is $250,000 or less (as applicable, the &quot;Rules&quot;) to be held solely in Los Angeles, California, U.S.A., in the English language in accordance with the provisions below.
+
+21.1
+
+Each arbitration shall be conducted by an arbitral tribunal (the &quot;Arbitral Board&quot;) consisting of a
+
+single arbitrator who shall be mutually agreed upon by the parties. If the parties are unable to agree on an
+
+arbitrator, the arbitrator shall be appointed by JAMS. The arbitrator shall be a retired judge with at least ten (10) years experience in commercial matters. The Arbitral Board shall assess the cost, fees and expenses of the arbitration against the losing party, and the prevailing party in any arbitration or legal proceeding relating to this Agreement shall be entitled to all reasonable expenses (including, without limitation, reasonable attorney&#39;s fees). Notwithstanding the foregoing, the Arbitral Board may require that such fees be borne in such other manner as the Arbitral Board determines is required in order for this arbitration clause to be enforceable under applicable law. The parties shall be entitled to conduct discovery in accordance with Section 1283.05 of the California Code of Civil Procedure, provided that (a) the Arbitral Board must authorize all such discovery in advance based on findings that the material sought is relevant to the issues in dispute and that the nature and scope of such discovery is reasonable under the circumstances, and (b) discovery shall be limited to depositions and production of documents unless the Arbitral Board finds that another method of discovery (e.g., interrogatories) is the most reasonable and cost efficient method of obtaining the information sought.
+
+21.2
+
+There shall be a record of the proceedings at the arbitration hearing and the Arbitral Board shall issue
+
+a Statement of Decision setting forth the factual and legal basis for the Arbitral Board&#39;s decision. If neither party gives written notice requesting an appeal within ten (10) business days after the issuance of the Statement of Decision, the Arbitral Board&#39;s decision shall be final and binding as to all matters of substance and procedure, and may be enforced by a petition to the Los Angeles County Superior Court or, in the case of Licensee, such other court having jurisdiction over Licensee, which may be made _ex parte_, for confirmation and enforcement of the award. If either party gives written notice requesting an appeal within ten (10) business days after the issuance of the Statement of Decision, the award of the Arbitral Board shall be appealed to three (3) neutral arbitrators (the **&quot;** Appellate Arbitrators **&quot;** ), each of whom shall have the same qualifications and be selected through the same procedure as the Arbitral Board. The appealing party shall file its appellate brief within thirty (30) days after its written notice requesting the appeal and the other party shall file its brief within thirty (30) days thereafter. The Appellate Arbitrators shall thereupon review the decision of the Arbitral Board applying the same standards of review (and all of the same presumptions) as if the Appellate Arbitrators were a California Court of Appeal reviewing a judgment of the Los Angeles County Superior Court, except that the Appellate Arbitrators shall in all cases issue a final award and shall not remand the matter to the Arbitral Board. The decision of the Appellate Arbitrators shall be final and binding as to all matters of substance and procedure, and may be enforced by a petition to the Los Angeles County Superior Court or, in the case of Licensee, such other court having jurisdiction over Licensee, which may be made ex parte, for confirmation and enforcement of the award. The party appealing
+
+-22-
+
+the decision of the Arbitral Board shall pay all costs and expenses of the appeal, including the fees of the Appellate Arbitrators and the reasonable outside attorneys&#39; fees of the opposing party, unless the decision of the Arbitral Board is reversed, in which event the costs, fees and expenses of the appeal shall be borne as determined by the Appellate Arbitrators.
+
+21.3
+
+Subject to a party&#39;s right to appeal pursuant to the above, neither party shall challenge or resist any
+
+enforcement action taken by the party in whose favor the Arbitral Board, or if appealed, the Appellate Arbitrators,
+
+decided. Each party acknowledges that it is giving up the right to a trial by jury or court. The Arbitral Board shall have the power to enter temporary restraining orders and preliminary and permanent injunctions. Neither party shall be entitled or permitted to commence or maintain any action in a court of law with respect to any matter in dispute until such matter shall have been submitted to arbitration as herein provided and then only for the enforcement of the Arbitral Board&#39;s award; _provided, however_, that prior to the appointment of the Arbitral Board or for remedies beyond the jurisdiction of an arbitrator, at any time, either party may seek _pendente lite_ relief in a court of competent jurisdiction in Los Angeles County, California or, if sought by Licensor, such other court that may have jurisdiction over Licensee, without thereby waiving its right to arbitration of the dispute or controversy under this section. All arbitration proceedings (including proceedings before the Appellate Arbitrators) shall be closed to the public and confidential and all records relating thereto shall be permanently sealed, except as necessary to obtain court confirmation of the arbitration award. Notwithstanding anything to the contrary herein, Licensee hereby irrevocably waives any right or remedy to seek and/or obtain injunctive or other equitable relief or any order with respect to, and/or to enjoin or restrain or otherwise impair in any manner, the production, distribution, exhibition or other exploitation of any motion picture, production or project related to Licensor, its parents, subsidiaries and affiliates, or the use, publication or dissemination of any advertising in connection with such motion picture, production or project. The provisions of this Section 21 shall supersede any inconsistent provisions of any prior agreement between the parties.
+
+22. **NOTICES**. All notices hereunder shall be in writing and shall be sent by certified (return receipt requested) or registered mail, by air courier service, by personal delivery, or by facsimile to the address or fax number of the party for whom it is intended as follows, or to such other address or fax number as any party may hereafter specify in writing:
+
+22.1
+
+If to Licensor, to Sony Pictures Entertainment Inc., 10202 West Washington Boulevard, Culver City,
+
+CA 90232 U.S.A., Attention: General Counsel, Facsimile No.: 1-310-244-0510, with a copy to: Sony Pictures
+
+Entertainment Inc., 10202 West Washington Boulevard, Culver City, CA 90232, U.S.A., Attention: Executive Vice President, Legal Affairs, Fax no.: +1-310-244-2169.
+
+22.2
+
+22.3
+
+If to Licensee, to the address in Section 7 of the Principal Terms.
+
+General. Notice given by personal delivery or facsimile shall be deemed given upon delivery and
+
+notice given by overnight delivery or courier service shall be deemed given the first Business Day following the Business Day of delivery to the overnight delivery service.
+
+**• FORCE MAJEURE**. Neither party shall in any manner whatsoever be liable or otherwise responsible for any delay or default in, or failure of performance resulting from or arising out of or in connection with any Event of Force Majeure, and no such delay, default in, or failure of performance shall constitute a breach by either party hereunder.
+
+**• CONFIDENTIALITY**. Other than as may be required by law, or governmental authority, or to enforce its rights hereunder, and subject to the following sentence, neither party shall, without the express written consent of the other, publicly divulge or announce, or in any manner disclose to any third party, other than its attorneys, advisors, directors, employees, agents, shareholders, accountants, parent entities or auditors, and, in the case of Licensor, its profit participants, or pursuant to Guild obligations (each of whom shall be subject to the confidentiality provision hereof) on a need-to-know basis, any of the specific terms and conditions of this Agreement, including, without limitation, the License Fees payable hereunder. Neither party shall issue any press release regarding the existence of or terms of this Agreement without the prior written consent of the other party, which shall not be unreasonably withheld.
+
+**• AUDIT**. Licensee shall keep and maintain complete and accurate books of account and records at its principal place of business in connection with each of the Included Programs and pertaining to Licensee&#39;s compliance with
+
+-23-
+
+the terms hereof, including, without limitation, copies of the statements referred to in Article 16 of this Schedule. Upon at least thirty (30) days&#39; written notice, and no more than once per calendar year, Licensor shall have the right during business hours to, either directly or through an independent audit firm of national (in the US and/or the Territory) standing unaffiliated with Licensee or Licensor, audit and check, at Licensor&#39;s expense except as provided below, at Licensee&#39;s principal place of business or a mutually-agreeable location designated by Licensee, Licensee&#39;s books and records pertaining to the accuracy of the statements and other financial information delivered to Licensor by Licensee, and the amount of the license fees paid or payable hereunder, concerning the twelve (12) month period preceding Licensor&#39;s notice of audit (including to the extent such notice is delivered after the expiration or termination date of this Agreement but within twelve (12) months of such date). Licensor agrees that the results of any such audit, and all information reviewed in connection therewith, will be deemed to constitute Licensee&#39;s confidential information. The exercise by Licensor of any right to audit or the acceptance by Licensor of any statement or payment, whether or not the subject of an audit, shall not bar Licensor from thereafter asserting a claim for any balance due, and Licensee shall remain fully liable for any balance due under the terms of this Agreement. If an examination establishes an error in Licensee&#39;s computation of license fees due with respect to the Included Programs, Licensee shall immediately pay the amount of underpayment, plus interest thereon from the date such payment was originally due at a rate equal to the lesser of one hundred ten percent (110%) of the Prime Rate and the maximum rate permitted by applicable law. If such error is in excess of five percent (5%) of such license fees due for the period covered by such audit, Licensee shall, in addition to making immediate payment of the additional license fees due plus interest in accordance with the previous sentence, pay to Licensor
+
+• the reasonable, out-of-pocket costs and expenses incurred by Licensor in connection with any such audit, and
+
+• reasonable attorneys fees actually incurred by Licensor in enforcing the collection thereof. In the event that the rate of interest set forth in this Section exceeds the maximum permitted legal interest rate, such rate shall be automatically reduced to the maximum permitted legal interest rate, and all other terms and conditions of this Agreement shall remain in full force and effect.
+
+26. **LIMITATION OF LIABILITY**.
+
+Except with respect to breaches of section 24 (Confidentiality),
+
+indemnification payments owed to third parties, fraud, gross negligence or willful misconduct, neither party shall be liable to the other for indirect, incidental, reliance, punitive, special, consequential or incidental damages.
+
+27. **CAPTIONS/DRAFTING.**
+
+Article, Section or other headings contained in this Agreement are for
+
+convenience only and shall not affect in any way the meaning or interpretation of this Agreement. In interpreting
+
+the terms and conditions of this Agreement, no presumption shall be interpreted for or against a party as a result of the role of such party or such party&#39;s counsel in the drafting of this Agreement.
+
+**• CONFLICTING LAW OR REGULATION.** If any provision in this Agreement is determined by a court or arbitrator of competent jurisdiction to be invalid or unenforceable (for any reason, including, without limitation, in connection with &quot;competition&quot; legislation), such determination shall not affect any other provision, each of which shall be construed and enforced as if such invalid or unenforceable provision were not contained herein.
+
+**• NO THIRD PARTY BENEFICIARIES.** This Agreement is entered into for the express benefit of the parties hereto, their successors and permitted assigns and is not intended, and shall not be deemed, to create in any other natural person, corporation, company, and/or any other entity whatsoever any rights or interest whatsoever, including, without limitation, any right to enforce the terms hereof.
+
+**• ENTIRE UNDERSTANDING**. This Agreement includes the entire understanding of the parties with respect to the subject matter hereof, and all prior agreements (written or oral) with respect to such subject matter have been merged herein. No representations or warranties have been made other than those expressly provided for herein. This Agreement may not be modified, except by a written instrument signed by the parties, and this provision may not be waived except by written instrument signed by the parties.
+
+**• FCPA**. It is the policy of Licensor to comply and require that its licensees comply with the U.S. Foreign Corrupt Practices Act, 15 U.S.C. Section 78dd-1 and 78dd-2, and all other applicable anti-corruption laws (collectively, &quot;FCPA&quot;). Licensee represents, warrants and covenants that: (i) Licensee is aware of the FCPA and will advise all persons and parties supervised by it of the requirements of the FCPA; (ii) Licensee has not and will not, and to its knowledge, no one acting on its behalf has taken or will take any action, directly or indirectly, in violation of the FCPA; (iii) Licensee has not in the last 5 years been accused of taking any action in violation of the FCPA; (iv) Licensee has not and will not cause any party to be in violation of the FCPA; (v) should Licensee learn
+
+-24-
+
+of, or have reason to know of, any request for payment that is inconsistent with the FCPA, Licensee shall immediately notify Licensor; and (vi) Licensee is not a &quot;foreign official&quot; as defined under the U.S. Foreign Corrupt Practices Act, does not represent a foreign official, and will not share any fees or other benefits of this contract with a foreign official. Licensee will indemnify, defend and hold harmless Licensor and its Representatives for any and all liability arising from any violation of the FCPA caused or facilitated by Licensee. In the event Licensor deems that it has reasonable grounds to suspect Licensee has violated the FCPA, Licensor and its Representatives shall have the right to review and audit, at Licensor&#39;s expense, any and all books and financial records of Licensee at any time, and Licensor shall be entitled partially or totally to suspend its performance hereunder until such time it is proven to Licensor&#39;s satisfaction that Licensee has not violated the FCPA. In the event Licensor determines, in its sole discretion (whether through an audit or otherwise), that Licensee has violated the FCPA, either in connection with this Agreement or otherwise, Licensor may terminate this Agreement immediately upon written notice to Licensee. Such suspension or termination of this Agreement shall not subject Licensor to any liability, whether in contract or tort or otherwise, to Licensee or any third party, and Licensor&#39;s rights to indemnification or audit with respect to the FCPA shall survive such suspension or termination of this Agreement.
+
+-25-
+
+**S**** CHEDULE **** B**
+
+**A**** PPROVED **** D ****EVICES**
+
+**Overview**
+
+Hulu Japan will support video distribution beyond the computer screen and onto **living room devices** and **mobile devices**. Living room devices will include Internet enabled televisions, gaming consoles, and other CE hardware, and mobile devices would include the Apple iPad, Apple iPhone / iPod touch, Android phones, and other mobile hardware. This strategy will provide users &quot;three screen&quot; access to Hulu in Japan.
+
+**Target Devices**
+
+The living room and mobile devices being evaluated are listed below.
+
+All the Hulu device applications will be natively developed applications installed locally on the various devices. Access to Hulu videos will be via wi-fi for the living room devices and wi-fi plus 3G when available for the mobile devices.
+
+**User Experience**
+
+In the proposed Hulu device applications (both living room and mobile devices), users will be able to browse the entire Hulu content library. Users can browse Hulu content from the device applications in the following ways:
+
+
+
+A list of featured videos, most popular videos, recently added videos, recently added popular shows, and other predefined categories.
+
+Alphabetical list of titles (both television shows and movie titles). Keyword search for videos and show titles.
+
+
+
+
+
+**Content Protection**
+
+Video playback will be performed on the various Hulu device applications using the native video player component for those devices. For example, the iPad, iPhone, and iTouch mobile device applications will all use the native Apple Media Player framework (MediaPlayer.framework). Similar native video playback components will be used for other mobile devices and living room devices. Using native video player components will allow us to leverage hardware acceleration and other native performance tuning for video playback.
+
+All devices for which Hulu will create device applications will support the following output protection whenever there is output functionality available:
+
+
+
+
+
+Analog output: Macrovision, CGMS-A Digital output: HDCP over HDMI
+
+The content protection strategy for securing video content delivered to each Hulu device applications is defined in two parts:
+
+• Server protection
+
+• Local device application protection
+
+For Server protection, Hulu will deploy the following mechanisms:
+
+-26-
+
+
+
+Expiring authentication tokens will be required for video files, thus restricting access to the physical video file resident on our content delivery network. Users cannot access any device video file on our servers without a valid authentication token. Since these authentication tokens expire, they cannot be cached.
+
+The location to the video file (including the authentication token) will be encrypted on the server using AES (or comparable) encryption. The encrypted video file locations will prevent an unauthorized user from even requesting the video file, as they will not be able to decrypt the location to even issue the request. Also the encryption key will be rotated so that it also cannot be cached.
+
+Requests for video URLs will also require a valid device identifier (i.e. a unique ID for the individual device application). This will allow the server to audit the number of daily requests a specific device application makes and block access to that device identifier if necessary.
+
+During transport, the video file itself will be encrypted using SSL, AES, or comparable encryption to prevent users from monitoring network traffic and saving out readable video content in transit. In addition, the video files may be broken into small segments (5 – 30 seconds in length) such that any compromised video segment would only contain a small portion of the overall video content.
+
+
+
+
+
+
+
+For Local device application protection, Hulu will deploy the following mechanisms:
+
+
+
+All Hulu device applications will be securely distributed onto phones, televisions, and CE devices using AES 128-bit (or comparable) encryption and then stored in secure, protected memory on the devices. This security will prevent each device application from being decompiled, reverse engineered, run in emulation, or used in an unauthorized way. In addition to the server side rotating encryption key, a secondary local encryption key stored in the device application itself will be utilized. This secondary local encryption key can be invalidated on the server to force users to upgrade their device application (in order to get a new valid local encryption key).
+
+All video files will be played back using the native device video playback component. All devices that we are evaluating only cache a small portion of the video file in temporary application memory (and not persistent storage memory). The video file is therefore never stored locally in its entirety and even the small portion that is cached cannot be easily retrieved out of memory since the memory is temporary storage and protected.
+
+
+
+
+
+All communications involving key exchange will be conducted over SSL to secure the data from being monitored in transit and to hide the server end points.
+
+An end-to-end video playback call stack would therefore look as follows (see **Figure 1** ):
+
+1.
+
+The Hulu device applications will first call the Hulu Site webservice via SSL and retrieves an encryption key. This encryption key is then combined with a local encryption key stored securely in the application code.
+
+The user will request to watch a video from within the Hulu device application.
+
+The device application then contacts the Hulu Video Content Management System via SSL to request the URL to the video file and provides the unique device identifier for the current device (either a living room device or a mobile device). If this device has not been blocked due to inappropriate access, the server responds with an encrypted location to the video file.
+
+-27-
+
+2.
+
+3.
+
+4.
+
+The device application then uses the combined server and local encryption keys to decrypt the video file location returned by the video CMS.
+
+The device application then sends the decrypted video file location to the native video playback component on the device and begins streaming the video. At this point, secure video playback begins. The video is encrypted in transport using SSL, AES, or comparable encryption. No significant portion of the video content is cached on the device, and any small cache is only stored in temporary application memory.
+
+5.
+
+**Figure 1. Hulu Device Application Secure Video Playback Call Stack**
+
+**Hulu Rights Management System Principles**
+
+The above content protection scheme is collectively called the Hulu Rights Management (HRM) system and is governed by the following security principles:
+
+1. Secure video delivery
+
+Video content will always be delivered securely from Hulu servers (or the servers of Hulu partners such as Content Delivery Networks) to client devices. Secure delivery of the video is defined as encryption during transport using AES 128-bit (or comparable) encryption, and no exposed media on the server such that streaming source URLs are not exposed to end users and expire within 5 minutes of being accessed.
+
+-28-
+
+No persistent client-side video cache
+
+Video content will never be stored permanently on the device in its entirety. The devices will only temporarily store a limited amount of video content as a buffer to provide for uninterrupted playback of the content, and this buffer will be maintained in protected system memory.
+
+• Video output protection
+
+Video output from devices will be protected using the best available content protection mechanisms on devices to disable copying and unauthorized retransmission. Analog output will be protected by CGMS-A (set to &quot;Copy Never&quot;) or comparable protection. Digital output will be protected by HDCP or comparable protection.
+
+• Secure application runtime environment
+
+All Hulu applications including the video playback components will be securely distributed onto devices using AES 128-bit (or comparable) encryption and then stored in secure, protected
+
+memory on the devices.
+
+This security will prevent each device application from being
+
+decompiled, reverse engineered, run in emulation, or used in any unauthorized way. In addition,
+
+each device will be uniquely identified so that access requests can be audited and disabled per device.
+
+**Launch Plan**
+
+The devices (both mobile devices and living room devices) that will be supported follow:
+
+-29-
+
+**Device**
+
+**Secure Application Storage on Device?**
+
+**Applications are uniquely identified?**
+
+**Applications can be invalidated?**
+
+Sony televisions
+
+Yes
+
+Yes
+
+Yes
+
+Sony Blu-ray players
+
+Yes
+
+Yes
+
+Yes
+
+Panasonic televisions
+
+Yes
+
+Yes
+
+Yes
+
+Panasonic Blu- ray players
+
+Yes
+
+Yes
+
+Yes
+
+Sony PlayStation 3
+
+Yes
+
+Yes
+
+Yes
+
+Microsoft Xbox 360
+
+Yes
+
+Yes
+
+Yes
+
+Apple TV
+
+Yes
+
+Yes
+
+Yes
+
+Apple iPad
+
+Yes
+
+Yes
+
+Yes
+
+Apple iPhone
+
+Yes
+
+Yes
+
+Yes
+
+Apple iTouch
+
+Yes
+
+Yes
+
+Yes
+
+**Android Content Protection**
+
+The Hulu Plus application on the Android platform leverages the existing security mechanisms found in HRM (Hulu Rights Management). HRM content protection on devices can be broken down into two categories (as outlined in the master HRM documentation):
+
+• Server protection
+
+• Local device application protection
+
+**Server Content Protection**
+
+Content will be encrypted using AES- 128 prior to being uploaded to our CDN.
+
+Please refer to the HRM master document for additional details on server content protection.
+
+**Local Device Content Protection**
+
+For local device application protection we will observe the following:
+
+
+
+All Android applications will be securely distributed onto devices using RSA 2048 encryption and then stored in secure, protected memory on device. The Android OS guarantees that application code can only be installed and run from secured memory. Furthermore, any data that is written by an Android application can be &#39;sandboxed&#39; so that only the writing application has access to this data. Though the Android application will not write content to disk/SD card, the further restriction of access to this data increases the difficulty associated with reverse engineering the application.
+
+Application code will be obfuscated prior to deployment to the Android Marketplace. An obfuscator such as ProGuard will be used to eliminate any class or method names, thereby rendering attempts to reverse engineering the application code considerably more difficult. ProGuard also collapses all package hierarchies, further limiting the information that attackers can use to reverse engineer the application.
+
+Application logic continuously monitors the user&#39;s environment and will detect attempts to read device memory. Upon detection, the active monitor will prevent further stream playback.
+
+Android access to server content will be regulated by device specific keys. The use of a device class keys allows for the ability to revoke access to content from a central location without a client update. This level of provisioning is an added failsafe that allows us to ensure only the most current and valid client application has access to server content.
+
+All video files will use the native Android media framework for playback. The native android media player reads data from an in-memory proxy. This proxy will handle requesting the encrypted content, will decrypt the content, store the video block in a memory buffer, thereby avoiding writing data to user-accessible storage. The proxy also has heuristics built-in to limit the amount of data that can be buffered from the server. This buffer throttling allows for a seamless playback experience but at the same time restricts the amount of content on the device to a very small percentage of the whole at any single point in time.
+
+
+
+
+
+
+
+
+
+-30-
+
+
+
+In addition to the server security outlined in the previous section, all communications between the client and server related to file paths or encryption keys will be conducted over SSL to secure the data from being monitored in transit. As an additional level of protection will also encrypt the response containing file paths and encryption keys based on the device key prior to delivery to the device.
+
+**Launch Plan**
+
+The Android devices that will be supported on launch will have the following minimum technical requirements:
+
+
+
+
+
+
+
+
+
+Android 2.2, 2.3, 3.0 and above Snapdragon 1Ghz processor or better 500MB of RAM or higher
+
+Medium or high density display
+
+Below is a content protection summary for the android devices supported at launch:
+
+-31-
+
+**Device**
+
+**Secure Application Storage on Device?**
+
+**Application/Device is uniquely identified?**
+
+**Can be invalidated or blocked server side?**
+
+Sharp
+
+• AQUOS PHONE SH- 12C
+
+• AQUOS PHONE f SH- 13C
+
+• AQUOS PHONE IS12SH
+
+• AQUOS PHONE IS11SH
+
+• INFOBAR A01
+
+• IS05
+
+Yes
+
+Yes
+
+Yes
+
+Samsung
+
+• GALAXY S II SC-02C
+
+• 10.1&quot; LTE Tablet
+
+• Galaxy S SC-02B
+
+Yes
+
+Yes
+
+Yes
+
+Sony Erickson
+
+• Xperia arc SO-01C
+
+• Xperia acr SO-02C
+
+• Xperia acr IS11S
+
+Yes
+
+Yes
+
+Yes
+
+Panasonic
+
+• P-07C
+
+Yes
+
+Yes
+
+Yes
+
+HTC
+
+• Evo
+
+Yes
+
+Yes
+
+Yes
+
+NEC
+
+• MEDIAS N-04C
+
+• MEDIA WP N-06C
+
+Yes
+
+Yes
+
+Yes
+
+LG
+
+• Optimus bright L-07C
+
+Yes
+
+Yes
+
+Yes
+
+Fujitsu
+
+• Regza T-01C
+
+Yes
+
+Yes
+
+Yes
+
+-32-
+
+**Device**
+
+**Content secure during transport (streaming delivery)?**
+
+**Content not permanently saved on device?**
+
+Sharp
+
+• AQUOS PHONE SH- 12C
+
+• AQUOS PHONE f SH- 13C
+
+• AQUOS PHONE IS12SH
+
+• AQUOS PHONE IS11SH
+
+• INFOBAR A01
+
+• IS05
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+Samsung
+
+• GALAXY S II SC-02C
+
+• 10.1&quot; LTE Tablet
+
+• Galaxy S SC-02B
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+Sony Erickson
+
+• Xperia arc SO-01C
+
+• Xperia acr SO-02C
+
+• Xperia acr IS11S
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+Panasonic
+
+• P-07C
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+HTC
+
+• Evo
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+NEC
+
+• MEDIAS N-04C
+
+• MEDIA WP N-06C
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+LG
+
+• Optimus bright L-07C
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+Fujitsu
+
+• Regza T-01C
+
+• Regza Phone IS11T
+
+• F-12C
+
+• LTE Tablet
+
+Yes
+
+(HTTPS + AES 128 Encryption)
+
+Yes
+
+• Regza Phone IS11T
+
+• F-12C
+
+• LTE Tablet
+
+**\* Google representative confirmed that Video Output is OEM specific and disabled for all applications by default. Hulu will ensure that the Hulu Device Application disables all video out from these devices.**
+
+1 HDMI out available but disabled by default.
+
+-33-
+
+**Device**
+
+**Digital Output Protection?**
+
+**Analog Output Protection?**
+
+**Output Protection Enabled by default?**
+
+Sharp
+
+• AQUOS PHONE SH- 12C
+
+• AQUOS PHONE f SH- 13C
+
+• AQUOS PHONE IS12SH
+
+• AQUOS PHONE IS11SH
+
+• INFOBAR A01
+
+• IS05
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+Samsung
+
+• GALAXY S II SC-02C1
+
+• 10.1&quot; LTE Tablet1
+
+• Galaxy S SC-02B
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+Sony Erickson
+
+• Xperia arc SO-01C
+
+• Xperia acr SO-02C
+
+• Xperia acr IS11S
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+Panasonic
+
+• P-07C
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+HTC
+
+• Evo1
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+NEC
+
+• MEDIAS N-04C
+
+• MEDIA WP N-06C
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+LG
+
+• Optimus bright L-07C
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+Fujitsu
+
+• Regza T-01C
+
+• Regza Phone IS11T
+
+• F-12C
+
+• 10.1&quot; Tablet (Android 3.1)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable (no application video
+
+output)
+
+Not Applicable
+
+**S**** CHEDULE **** C**
+
+**A**** VAIL **** Y ****EAR**  **1 I**** NCLUDED **** P ****ROGRAMS**
+
+-34-
+
+**Title**
+
+**Tier**
+
+DA VINCI CODE, THE
+
+A+
+
+GHOSTBUSTERS
+
+A+
+
+MEN IN BLACK (1997)
+
+A+
+
+MEN IN BLACK II
+
+A+
+
+SPIDER-MAN (2002)
+
+A+
+
+SPIDER-MAN 2 (2004)
+
+A+
+
+SPIDER-MAN 3 (2007)
+
+A+
+
+16 BLOCKS
+
+A
+
+AMERICA&#39;S SWEETHEARTS
+
+A
+
+AS GOOD AS IT GETS
+
+A
+
+BAD BOYS (1995)
+
+A
+
+BAD BOYS II
+
+A
+
+BIG CHILL, THE (1983)
+
+A
+
+BIG FISH
+
+A
+
+BLACK HAWK DOWN
+
+A
+
+CHARLIE&#39;S ANGELS (2000)
+
+A
+
+CHARLIE&#39;S ANGELS: FULL THROTTLE
+
+A
+
+CROUCHING TIGER, HIDDEN DRAGON
+
+A
+
+ENOUGH
+
+A
+
+EVOLUTION (2001)
+
+A
+
+EXORCISM OF EMILY ROSE, THE
+
+A
+
+FINDING FORRESTER
+
+A
+
+GHOST RIDER
+
+A
+
+GHOSTBUSTERS II
+
+A
+
+HITCH (2005)
+
+A
+
+HOLLOW MAN
+
+A
+
+HOOK
+
+A
+
+I STILL KNOW WHAT YOU DID LAST SUMMER
+
+A
+
+IDENTITY
+
+A
+
+IRON EAGLE
+
+A
+
+KARATE KID III, THE
+
+A
+
+LAST ACTION HERO
+
+A
+
+LEGEND OF ZORRO, THE (2005)
+
+A
+
+LEGENDS OF THE FALL
+
+A
+
+LITTLE WOMEN (1994)
+
+A
+
+-35-
+
+MASK OF ZORRO, THE
+
+A
+
+Monster House
+
+A
+
+MY BEST FRIEND&#39;S WEDDING
+
+A
+
+MY GIRL
+
+A
+
+ONCE UPON A TIME IN MEXICO
+
+A
+
+OPEN SEASON (2006)
+
+A
+
+PANIC ROOM
+
+A
+
+PATRIOT, THE (2000)
+
+A
+
+PETER PAN (2003)
+
+A
+
+PLACES IN THE HEART
+
+A
+
+PURSUIT OF HAPPYNESS, THE (2006)
+
+A
+
+RESIDENT EVIL: APOCALYPSE
+
+A
+
+ROXANNE
+
+A
+
+S.W.A.T. (2003)
+
+A
+
+SLEEPLESS IN SEATTLE
+
+A
+
+SNATCH (2000)
+
+A
+
+STAND BY ME
+
+A
+
+STEALTH
+
+A
+
+STUART LITTLE
+
+A
+
+STUART LITTLE 2
+
+A
+
+ULTRAVIOLET
+
+A
+
+UNDERWORLD EVOLUTION
+
+A
+
+WOLF
+
+A
+
+XXX
+
+A
+
+50 FIRST DATES
+
+B
+
+ABOUT LAST NIGHT
+
+B
+
+AGE OF INNOCENCE, THE
+
+B
+
+ALL THE PRETTY HORSES
+
+B
+
+ALMOST FAMOUS
+
+B
+
+ANACONDAS: THE HUNT FOR THE BLOOD ORCHID
+
+B
+
+BASIC
+
+B
+
+BLOB, THE (1988)
+
+B
+
+CASUALTIES OF WAR
+
+B
+
+CLOSER
+
+B
+
+COVENANT, THE
+
+B
+
+CRUEL INTENTIONS
+
+B
+
+DEEP END OF THE OCEAN, THE
+
+B
+
+DEVIL IN A BLUE DRESS
+
+B
+
+DEVIL&#39;S REJECTS, THE
+
+B
+
+FLIGHT OF FURY
+
+B
+
+FLY AWAY HOME
+
+B
+
+-36-
+
+FOG OF WAR, THE
+
+B
+
+FORCE 10 FROM NAVARONE
+
+B
+
+GATTACA
+
+B
+
+GLITTER
+
+B
+
+HALF PAST DEAD
+
+B
+
+I SPY
+
+B
+
+INTO THE SUN
+
+B
+
+IT COULD HAPPEN TO YOU
+
+B
+
+KNIGHT&#39;S TALE, A
+
+B
+
+LES MISERABLES
+
+B
+
+LOOK WHO&#39;S TALKING NOW
+
+B
+
+LORDS OF DOGTOWN
+
+B
+
+MORTAL THOUGHTS
+
+B
+
+NATIONAL SECURITY
+
+B
+
+NO MERCY
+
+B
+
+ONE, THE
+
+B
+
+PEGGY SUE GOT MARRIED
+
+B
+
+POETIC JUSTICE
+
+B
+
+PRODUCERS, THE
+
+B
+
+PUNCH-DRUNK LOVE
+
+B
+
+RADIO
+
+B
+
+RANDOM HEARTS
+
+B
+
+ROAD HOME, THE (2000)
+
+B
+
+Shadow Man
+
+B
+
+SPANGLISH
+
+B
+
+STARSHIP TROOPERS 2: HERO OF THE FEDERATION
+
+B
+
+STRIKING DISTANCE
+
+B
+
+SWEETEST THING, THE
+
+B
+
+WHITE NIGHTS
+
+B
+
+7 SECONDS
+
+C
+
+ALAMO BAY
+
+C
+
+ALL I WANT
+
+C
+
+ART HEIST
+
+C
+
+ASSIGNMENT, THE (1997)
+
+C
+
+BEDFORD INCIDENT, THE
+
+C
+
+BIG GIRLS DON&#39;T CRY
+
+C
+
+BIG SHOT&#39;S FUNERAL
+
+C
+
+BOBBY JONES: STROKE OF GENIUS
+
+C
+
+BORDERLINE (2002)
+
+C
+
+COLOR OF LOVE：JACEYS STORY
+
+C
+
+CONNORS&#39; WAR
+
+C
+
+-37-
+
+CONTRACTOR, THE
+
+C
+
+CRUEL INTENTIONS 3
+
+C
+
+DETONATOR, THE
+
+C
+
+FORTRESS 2: RE-ENTRY
+
+C
+
+GENGHIS KHAN
+
+C
+
+GOOD DAY FOR A HANGING
+
+C
+
+HANOVER STREET
+
+C
+
+HELLCATS OF THE NAVY
+
+C
+
+HOLLOW MAN 2
+
+C
+
+IN COLD BLOOD
+
+C
+
+INVESTIGATION OF A CITIZEN ABOVE SUSPICION
+
+C
+
+JUBAL
+
+C
+
+LAST SUPPER, THE
+
+C
+
+LIFE WITHOUT DICK
+
+C
+
+MAJOR DUNDEE
+
+C
+
+MAN WHO WOULD BE KING, THE
+
+C
+
+MARKSMAN, THE
+
+C
+
+MOUNTAIN PATROL
+
+C
+
+PASSIONADA
+
+C
+
+POPULATION 436
+
+C
+
+PRIVATE RESORT
+
+C
+
+SAHARA
+
+C
+
+SAVING FACE
+
+C
+
+SHACKLES
+
+C
+
+SNIPER 2
+
+C
+
+SNIPER 3
+
+C
+
+SO CLOSE
+
+C
+
+STEPMOM
+
+C
+
+STILL CRAZY
+
+C
+
+SWEPT AWAY (2002)
+
+C
+
+TEN WANTED MEN
+
+C
+
+TEXICAN, THE
+
+C
+
+TIME CODE 2000
+
+C
+
+**S**** CHEDULE **** D**
+
+**H**** ULU **** C ****ONTENT**  **P**** ROTECTION **** T ****ECHNOLOGIES AND**  **P**** ROCESSES**
+
+**I. Core Content Protection Guiding Principles**
+
+Hulu employs robust, industry-accepted content security and protection technologies for streaming online video, governed by the following principles:
+
+• Secure video delivery
+
+• Secure video on clients
+
+• Protection against hacking
+
+• Maintenance of content integrity
+
+• Geofiltering
+
+• Network service protection
+
+• Ongoing maintenance
+
+Hulu at all times ensures a primary technical contact is available for questions and comments. The primary technical contact is currently: Richard Tom, richard@hulu.com, (310) 571-4802.
+
+**II. Secure Video Delivery**
+
+_A. General_
+
+1. Video content is securely delivered from Hulu servers (or the servers of Hulu partners such as Content Delivery Networks) to clients, including via:
+
+a.
+
+cryptographic algorithms during transport for encryption, decryption, signatures, hashing, random number generation and key generation utilizing cryptographic protocols and algorithms
+
+use of AES 128-bit (or comparable) protocol
+
+encrypted transmission of critical security parameters (&quot;CSPs&quot;) such as keys, tokens, passwords and other information critical to cryptographic strength
+
+expiring CSPs so they cannot be cached
+
+no exposed media on the server, i.e. streaming source URLs are not exposed to end users and expire shortly after being accessed
+
+b.
+
+c.
+
+d.
+
+e.
+
+• Video content and CSPs are never transmitted to unauthenticated clients
+
+• Streaming source URLs are short-lived and individualized
+
+_B. Flash Streaming_
+
+Video content is streamed to PCs using Adobe Flash Media Server 3.5, which offers the following content protection features:
+
+• Unique transfer protocol: video content is wrapped inside an unpublished, proprietary Adobe protocol called RTMP (or Real Time Messaging Protocol), minimizing the ability of unauthorized programs to capture video content
+
+• No exposed media on server: content delivered by Flash Media Server is not exposed to HTTP, FTP, or other transfer mechanisms, so media cannot be copied directly from server
+
+-38-
+
+Referrer URL checks: the video player requesting the content must reside on Hulu.com or an approved domain
+
+• Encrypted streams: streaming via a 128-bit encrypted version of RTMP called RTMPE
+
+_C. HTTP Live Streaming_
+
+The following content protection features are offered when streaming video content using HTTP Live Streaming:
+
+1.
+
+Video content streaming is encrypted using AES 128 encryption, i.e. the METHOD for EXT- XKEY is &#39;AES-128&#39;
+
+The m3u8 manifest file is only delivered to requesting, authenticated clients
+
+The content encryption key is delivered via SSL, i.e. the URI for EXT-X-KEY is a https URL The content encryption key is stored securely within the application using obfuscation
+
+The URL from which the m3u8 manifest file is requested is short-lived and unique to each requesting client
+
+2.
+
+3.
+
+4.
+
+5.
+
+_D. Streaming over SSL_
+
+The following content protection features are offered when streaming video content over SSL:
+
+1.
+
+Video content streaming is encrypted using AES 128 encryption or SSL cipher of similar strength and industry acceptance
+
+The content encryption key is delivered encrypted
+
+The content encryption key is stored securely within the application using obfuscation
+
+2.
+
+3.
+
+**III. Secure Video on Clients**
+
+_A. General_
+
+1. Video content
+
+a.
+
+b.
+
+c.
+
+Video content cannot be recorded, copied, stored, re-broadcast or retransmitted by clients Video content is never stored permanently at a client in its entirety
+
+Video content is decrypted into buffer memory temporarily and only in limited portions for the purpose of decoding and rendering uninterrupted playback of content
+
+Buffered memory is maintained in secure system memory
+
+Recording of video content onto recordable or removable media is prohibited
+
+d.
+
+e.
+
+2. CSPs
+
+a.
+
+Server-side CSPs are always encrypted, stored in secure locations and rotated so they cannot be cached
+
+3. Client authentication
+
+a.
+
+Unique CSPs are associated with each client, preventing unauthenticated clients from requesting video files
+
+Valid device identifiers are required, allowing audits on the number of video file requests made from a specific device
+
+Ability to revoke client and device access to video content, including via class-level device parameters providing server-side ability to revoke access from entire classes of devices
+
+-39-
+
+b.
+
+c.
+
+_B. PC Video Protection_
+
+Video content is protected on PCs using Adobe Flash Media Server 3.5, which offers the following content protection features:
+
+• No client cache: video content delivered through Flash Media Server is not stored locally on client computers in their web browser cache
+
+• SWF Verification: verifies the client Flash file (i.e. SWF File) before allowing this file to connect to the Flash server and receive streaming content
+
+Digital Outputs
+
+1.
+
+With respect to Standard Definition content, Licensee will use commercially reasonable efforts to implement the following or alternative output protections, or work with the Approved Secure Streaming Provider to implement the following or alternative output protections, after Licensee&#39;s DRM Technology provider makes such features commercially available to Licensee for the DRM Technology being utilized by Licensee. The parties will cooperate in good faith to ensure that such implementation maintains the quality of the user experience. If the output protections are not implemented by Licensee or the Approved Secure Streaming Provider after Licensee&#39;s DRM Technology provider makes them available to Licensee, Licensor will have the right to suspend Licensee&#39;s right to use the Included Programs in the Licensed Service until the output protections are implemented.
+
+With respect to High Definition content, Licensee will unconditionally comply with all the digital output protection requirements below.
+
+a. An Approved Device that outputs decrypted protected content provided pursuant to the Agreement using HDCP shall:
+
+2.
+
+i.
+
+Verify that the HDCP Source Function is fully engaged and able to deliver the protected content in a protected form, which means:
+
+• HDCP encryption is operational on such output,
+
+• There is no HDCP Display Device or Repeater on such output whose Key Selection Vector is in such System Renewability Message at such a time as mechanisms to support SRM&#39;s are available.
+
+3.
+
+Exception for Standard Definition, Uncompressed Digital Outputs on Windows-based PCs, Macsrunning OS X (or higher), Linux-based PCs: HDCP must be enabled on all uncompressed digital
+
+outputs (e.g., HDMI, Display Port), unless the customer&#39;s system cannot support HDCP (e.g., the content would not be viewable on such customer&#39;s system if HDCP were to be applied).
+
+_C. Connected Device, Mobile and Tablet Video Protection_
+
+1. Secure video output protection
+
+a.
+
+Video output is protected using content protection mechanisms on devices to disable copying and unauthorized retransmission
+
+Analog output is protected by CGMS-A content protection (set to &quot;Copy Never&quot;) or comparable protection
+
+Digital output is protected by HDCP or comparable protection (e.g. Digital Transmission Copy Protection)
+
+b.
+
+c.
+
+• Secure application runtime environment
+
+• All applications, including video playback components, are securely distributed to devices using AES 128-bit (or comparable) encryption and stored in secure, protected memory on devices
+
+-40-
+
+b. Encryption and security prevents applications from being decompiled, reverse engineered, run in emulation or used in any unauthorized manner
+
+• Local encryption CSPs
+
+• In addition to server-side rotating CSPs, a secondary local encryption key is stored in device applications that can be invalidated on the server to force end users to upgrade their application and obtain a new, valid local encryption key
+
+• Resident device operating systems
+
+• Content is displayed on clients using APIs provided by resident device operating systems to the greatest possible extent
+
+• Applications follow all relevant resident device operating system best practices, specifications and guidelines to ensure security and robustness to the greatest possible extent
+
+**IV. Protection Against Hacking**
+
+1. Content protection technologies employ industry-standard tamper-resistant technology such as:
+
+a.
+
+Code and data obfuscation: the executable binary dynamically encrypts and decrypts itself in memory so that the algorithm is not unnecessarily exposed to disassembly or reverse engineering
+
+Anti-debugging detection: applications are actively monitored for external debugging tools attempting to access application memory
+
+Red herring code: the security modules use extra software routines that mimic security modules but do not have access to CSPs
+
+b.
+
+c.
+
+2. Security-critical data is cryptographically protected against tampering, forging and spoofing
+
+3. Secure internal data channels are used to prevent interception of data transmitted between system processes
+
+**V. Maintenance of Content Integrity**
+
+• Content protection technology maintains the integrity of all video content and detects modification and tampering of content from its originally encrypted form
+
+• Embedded information
+
+• Content protection technology does not remove or interfere with embedded watermarks in video content
+
+• Video content delivery systems pass through embedded copy control information without intentional alteration, modification or degradation (other than in the ordinary course of distribution)
+
+**VI. Geofiltering**
+
+• Only clients with IPs originating from authorized geographic territories may access video content
+
+• Video content stored on content delivery networks (e.g. Akamai, Level, Limelight) is filtered based on IP address and secure CSPs using industry-standard geofiltering technology, including:
+
+• look-up tables
+
+• screening for web proxy and anonymizing services
+
+• roaming prevention (in the case of mobile delivery)
+
+-41-
+
+**VII. Network Service Protection**
+
+• All licensed content is protected at operations sites and facilities, including operational controls and procedures for the reception, preparation, management, storage and return of video content
+
+• Access to content in unprotected formats is limited to authorized personnel, and auditable records of actual access is maintained
+
+• All facilities that process and store content are reasonably available for audits
+
+**VIII. Ongoing Maintenance**
+
+1.
+
+2.
+
+3.
+
+Content protection technology is promptly and securely updated in the event of a security breach Content protection technology is renewable and securely and remotely updateable
+
+Hulu uses commercially reasonable efforts to keep its content security and protection technology systems up to date to reflect security enhancements available in the marketplace and accepted as industry practice
+
+-42-
+
+**S**** CHEDULE **** E**
+
+**SVOD U**** SAGE **** R ****ULES**
+
+1.
+
+These rules apply to the reception of SVOD content on Personal Computers or other IP connected Approved Devices.
+
+Except for Promotional Previews, users must have an active Account (an &quot;Account&quot;) prior to accessing Included Programs. All Accounts must be protected via account credentials consisting of at least a userid and password.
+
+All content delivered to Approved Devices shall be streamed only and shall not be downloaded (save for a temporary buffer required to overcomes variations in stream bandwidth) nor transferrable between devices.
+
+At any one time, no more than 3 (three) of the registered Approved Devices can be simultaneously used to receive content.
+
+All Accounts must have purchasing power such that access to the Account credentials (username and password) is sufficient to enable purchases to be made and charged to the Customer who is the Account owner.
+
+Licensee will establish commercially reasonable procedures in accordance with prevailing industry standards to provide for appropriate action to be undertaken, in Licensee&#39;s good faith discretion, with respect to any Customer who violates the Terms of Service. Licensee shall use commercially reasonable efforts to ensure that playback licenses for a single Account are only delivered to the relevant Account holder, which may include members of a single household.
+
+Licensee will use appropriate anti-fraud heuristics to prevent unauthorized access of Accounts. As part of this effort, Licensee will monitor operational statistics from the back end (for example, number of streams per Customer in a given period, diversity of stream session locations in a given period, amount and location of concurrent sessions, etc.) to evaluate potential fraud.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+-43-
+
+**S**** CHEDULE **** F**
+
+**H**** ULU **** C ****ONTENT**  **P**** ARTNER **** G ****UIDEBOOK**
+
+-44-

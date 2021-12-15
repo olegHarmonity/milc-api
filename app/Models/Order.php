@@ -68,4 +68,9 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
 }

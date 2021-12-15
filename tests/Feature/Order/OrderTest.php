@@ -4,6 +4,7 @@ namespace Tests\Feature\Order;
 use App\Models\Order;
 use Tests\ApiTestCase;
 use App\Util\CartStates;
+use App\Models\Contract;
 
 class OrderTest extends ApiTestCase
 {
@@ -92,6 +93,15 @@ class OrderTest extends ApiTestCase
         $this->loginAdmin();
         
         $response = $this->get('/api/checkout/123-ABC');
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_contract_single(){
+        
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/checkout/contract/123-ABC');
+
         $response->assertStatus(200);
     }
     
