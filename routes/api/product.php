@@ -27,9 +27,11 @@ Route::apiResource('movie-formats', MovieFormatController::class);
 Route::apiResource('movie-genres', MovieGenreController::class);
 Route::apiResource('movie-content-types', MovieContentTypeController::class);
 Route::apiResource('persons', PersonController::class);
-Route::apiResource('rights-bundles', RightsBundleController::class);
 
 Route::get('/rights-bundles/{id}', [
     RightsInfoController::class,
     'show'
 ]);
+
+
+Route::apiResource('rights-bundles', RightsBundleController::class);
