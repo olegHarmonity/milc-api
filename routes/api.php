@@ -8,3 +8,4 @@ require_once "api/core.php";
 require_once "api/order.php";
 require_once "api/payment.php";
 require_once "api/media_hub.php";
+require_once "api/chat.php";

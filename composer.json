@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "league/omnipay": "^3.2",
         "omnipay/paypal": "^3.0",
+        "musonza/chat": "^4.6",
         "sebdesign/laravel-state-machine": "^3.2",
         "stripe/stripe-php": "^7.104",
         "tymon/jwt-auth": "^1.0.",
