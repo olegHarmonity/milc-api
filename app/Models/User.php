@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\UserActivity;
+use Musonza\Chat\Traits\Messageable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, FormattedTimestamps;
+    use HasApiTokens, HasFactory, Notifiable, FormattedTimestamps, Messageable;
 
     /**
      * The attributes that are mass assignable.

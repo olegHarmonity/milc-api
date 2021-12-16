@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\FormattedTimestamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Musonza\Chat\Traits\Messageable;
 
 class Organisation extends Model
 {
-    use HasFactory, FormattedTimestamps;
+    use HasFactory, FormattedTimestamps, Messageable;
 
     protected $fillable = [
         'email',
