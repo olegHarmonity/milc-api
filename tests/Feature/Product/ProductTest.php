@@ -637,7 +637,7 @@ class ProductTest extends ApiTestCase
     
     public function test_get_right_bundle()
     {
-        $response = $this->get('/api/rights-info/1');
+        $response = $this->get('/api/rights-info/3');
         $response->assertStatus(200);
     }
     

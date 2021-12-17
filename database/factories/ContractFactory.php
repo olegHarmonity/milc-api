@@ -17,6 +17,7 @@ class ContractFactory extends Factory
     {
         return [
             'contract_text' => File::get(Storage::disk('local')->path('contracts/default_contract.md')),
+            'contract_text_part_2' => File::get(Storage::disk('local')->path('contracts/default_contract_part_2.md')),
             'is_default' => true,
         ];
     }
@@ -32,9 +33,13 @@ class ContractFactory extends Factory
         $contract->buyer_id = $order->buyer_user->organisation->id;
         $contract->rights_bundle_id = $order->rights_bundle_id;
         $contract->contract_text = "";
+        $contract->contract_text_part_2 = "";
+        $contract->contract_appendix = "";
         $contract->save();
         
         $contract->contract_text = ContractVariableFiller::handleVariablePopulation($defaultContract->contract_text, $contract);
+        
+        $contract->contract_text_part_2 = ContractVariableFiller::handleVariablePopulation($defaultContract->contract_text, $contract);
         
         $contract->save();
         
