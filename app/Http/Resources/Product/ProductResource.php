@@ -35,7 +35,6 @@ class ProductResource extends JsonResource
                 $rightsInformationArray[] = new Resource($rightsInformation);
             }
             
-            
             $bundleResourceResponse['rights_information'] = $rightsInformationArray;
             
             $product['bundle_rights'][] = $bundleResourceResponse;

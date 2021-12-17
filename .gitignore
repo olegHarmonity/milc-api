@@ -24,3 +24,5 @@ yarn-error.log
 .buildpath
 .project
 .settings/*
+!storage/app/contracts/default_contract.md
+!storage/app/contracts/default_contract_part_2.md

@@ -16,7 +16,6 @@ class OrderTest extends ApiTestCase
             'rights_bundle_id' => 1,
         ];
         $response = $this->post('/api/orders', $data);
-        
         $response->assertStatus(201);
         
         $order = Order::where('id', '=', 1)->first();
@@ -101,7 +100,6 @@ class OrderTest extends ApiTestCase
         $this->loginCompanyAdmin();
         
         $response = $this->get('/api/checkout/contract/123-ABC');
-       
         $response->assertStatus(200);
     }
     
