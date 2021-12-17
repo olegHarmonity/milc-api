@@ -39,7 +39,7 @@ class ContractFactory extends Factory
         
         $contract->contract_text = ContractVariableFiller::handleVariablePopulation($defaultContract->contract_text, $contract);
         
-        $contract->contract_text_part_2 = ContractVariableFiller::handleVariablePopulation($defaultContract->contract_text, $contract);
+        $contract->contract_text_part_2 = ContractVariableFiller::handleVariablePopulation($defaultContract->contract_text_part_2, $contract);
         
         $contract->save();
         
