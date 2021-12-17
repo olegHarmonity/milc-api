@@ -22,9 +22,26 @@ class ConversationController extends Controller
         $data = Chat::conversations()
             ->setParticipant(auth()->user()->organisation)
             ->limit(1000)
-            ->get();
+            ->get()
+            ->map(function ($item) {
 
-        return response()->json($data->values());
+                $participants = $item->conversation->getParticipants();
+                if ($participants) {
+                    $aryParticipants = [];
+                    foreach ($participants as $user) {
+                       $aryParticipants[] = [
+                           'id' => $user->id,
+                           'name' => $user->organisation_name,
+                           'logo' => $user->logo->image_url, 
+                       ];
+                    }
+                }
+                $item->chat_users = $aryParticipants;
+                
+                return $this->conversationMapper($item);
+            });
+
+        return response()->json($data);
     }
 
     public function show($id)
@@ -64,6 +81,7 @@ class ConversationController extends Controller
         }
         $buyer  = auth()->user()->organisation;
 
+
         if($buyer && $seller){
             $participants = [$buyer, $seller];
 
@@ -76,15 +94,16 @@ class ConversationController extends Controller
                 $conversation->data['created_by'] = $buyer->id;
             }
 
-            $conversationData = Chat::conversations()->getById($conversation->id);
-            $conversationData->participants = $conversationData->getParticipants();
+            if ($request->filled('message')) {
+                $message[] = Chat::message($request->get('message'))
+                    ->from($buyer)
+                    ->to($conversation)
+                    ->send();
+            }
 
-            $conversation = Chat::conversation($conversationData)
-                ->setParticipant(auth()->user())
-                ->limit(300)
-                ->setPaginationParams(['sorting' => 'desc'])
-                ->getMessages()
-                ->items();
+            $conversationData = Chat::conversations()->getById($conversation->id);
+
+            $conversationData->participants = $conversationData->getParticipants();
 
             return response()->json(
                 [
@@ -123,5 +142,53 @@ class ConversationController extends Controller
             ->delete();
 
         return $this->returnResponse([], 200,  __('resources.deleted'));
+    }
+
+    
+    private function conversationMapper($item, $isConversation = false)
+    {
+        $conversation = $isConversation ? $item : $item->conversation;
+
+        $users = $conversation
+            ->getParticipants();
+
+        $filtered = $users->filter(function ($item) {
+            if ($item && isset($item['id']))
+                return $item['id'] !== auth()->user()->id;
+            else return false;
+        });
+
+
+        $names =
+            $filtered
+            ->pluck('name')
+            ->toArray();
+
+        $ids = $filtered
+            ->pluck('id')
+            ->toArray();
+
+        $item['is_group'] = count($names) > 1;
+
+        $names = implode(', ', $names);
+
+        $item['names'] = $names;
+        $item['ids'] = $ids;
+
+
+        if (isset($conversation['data']['name'])) {
+            $item['name'] = $conversation['data']['name'];
+        } else {
+            $item['name'] = $names;
+        }
+
+
+        $item['unread_messages'] = Chat::conversation($conversation)
+            ->setParticipant(auth()->user())
+            ->unreadCount();
+
+        unset($item['participants']);
+
+        return $item;
     }
 }
