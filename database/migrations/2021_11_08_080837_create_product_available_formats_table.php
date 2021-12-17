@@ -12,15 +12,10 @@ class CreateProductAvailableFormatsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('product_id')->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('movie_format_id')->nullable()->references('id')->on('videos');
+            $table->foreignId('movie_format_id')->nullable()->references('id')->on('movie_formats');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('product_available_formats');
