@@ -91,17 +91,15 @@ class ConversationController extends Controller
                 $conversation = $conversationExists; 
             } else {
                 $conversation = Chat::createConversation($participants)->makePrivate()->makeDirect();
-                $conversation->data['created_by'] = $buyer->id;
-            }
-
-            if ($request->filled('message')) {
-                $message[] = Chat::message($request->get('message'))
-                    ->from($buyer)
-                    ->to($conversation)
-                    ->send();
             }
 
             $conversationData = Chat::conversations()->getById($conversation->id);
+            if ($request->filled('message')) {
+                $message[] = Chat::message($request->get('message'))
+                    ->from($buyer)
+                    ->to($conversationData)
+                    ->send();
+            }
 
             $conversationData->participants = $conversationData->getParticipants();
 
