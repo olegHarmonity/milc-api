@@ -7,9 +7,22 @@ use Locale;
 class ContractVariableFiller
 {
 
-    public static function handleVariablePopulation(string $contractText, Contract $contract)
+    public static function handleVariablePopulation(string $contractText, Contract $contract, $is_empty = false)
     {
         $seller = $contract->seller()->first();
+        
+        if($is_empty){
+            $variables = [
+                'seller.company_name' => $seller->organisation_name,
+                'seller.country' => Locale::getDisplayRegion('-' . $seller->country, 'en'),
+                'seller.post_code' => $seller->postal_code,
+                'seller.address' => $seller->address,
+                'seller.email' => $seller->email
+            ];
+            
+            return self::fillVariables($variables, $contractText);
+        }
+        
         $buyer = $contract->buyer()->first();
         $rightsBundle = $contract->rights_bundle()->first();
         $product = $rightsBundle->product()->first();

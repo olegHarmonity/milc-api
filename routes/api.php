@@ -9,3 +9,4 @@ require_once "api/order.php";
 require_once "api/payment.php";
 require_once "api/media_hub.php";
 require_once "api/chat.php";
+require_once "api/contract.php";

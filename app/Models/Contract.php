@@ -12,6 +12,8 @@ class Contract extends Model
     
     protected $fillable = [
         'contract_text',
+        'contract_text_part_2',
+        'contract_appendix',
         'is_default',
         'accepted_at',
     ];
