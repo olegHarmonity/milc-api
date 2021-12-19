@@ -94,11 +94,6 @@ class OrderFactory extends Factory
 
         $order->save();
         
-        $contract = ContractFactory::createFromOrder($order);
-        
-        $order->contract_id = $contract->id;
-        $order->save();
-        
         return $order;
     }
 

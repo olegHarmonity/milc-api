@@ -31,6 +31,10 @@ use App\Policies\UserPolicy;
 use App\Policies\VideoPolicy;
 use App\Policies\FeedbackPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\Order;
+use App\Policies\OrderPolicy;
+use App\Models\Contract;
+use App\Policies\ContractPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -49,6 +53,8 @@ class AuthServiceProvider extends ServiceProvider
         MovieRight::class => MovieRightPolicy::class,
         Person::class => PersonPolicy::class,
         Feedback::class => FeedbackPolicy::class,
+        Order::class => OrderPolicy::class,
+        Contract::class => ContractPolicy::class,
     ];
 
     public function boot()
