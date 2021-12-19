@@ -174,7 +174,7 @@ class UserController extends Controller
 
         if (!$this->user()->isAdmin()) {
             $users->where('organisation_id', $this->user()->organisation_id);
-            $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status', 'image_id']);
+            $users->select(['id', 'first_name', 'last_name', 'email', 'phone_number', 'status', 'image_id', 'created_at']);
         } else {
             $users = $users->with('organisation:id,organisation_name');
             $users->select(['id', 'first_name', 'last_name', 'email', 'status', 'image_id', 'organisation_id']);
