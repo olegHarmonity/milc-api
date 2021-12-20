@@ -71,7 +71,8 @@ class ContractFactory extends Factory
         $defaultContract = Contract::where('is_default', true)->first();
 
         $contract = new Contract();
-
+        
+        $contract->is_default = true;
         $contract->seller_id = $organisationId;
         $contract->contract_text = "";
         $contract->contract_text_part_2 = "";

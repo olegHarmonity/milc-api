@@ -6,7 +6,6 @@ use Locale;
 
 class ContractVariableFiller
 {
-
     public static function handleVariablePopulation(string $contractText, Contract $contract, $is_empty = false)
     {
         $seller = $contract->seller()->first();

@@ -33,7 +33,7 @@ class ContractController extends Controller
         
         $contracts = SearchFormatter::getSearchQueries($request, Contract::class, $contractsQuery);
         
-        $contracts = $contracts->with('seller:id,organisation_name', 'buyer:id,organisation_name', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title');
+        $contracts = $contracts->with('seller:id,organisation_name', 'buyer:id,organisation_name', 'rights_bundle:id,product_id', 'rights_bundle.product:id,title', 'order:id,order_number');
         
         $contracts = $contracts->select([
             'id',
@@ -42,6 +42,7 @@ class ContractController extends Controller
             'buyer_id',
             'seller_id',
             'rights_bundle_id',
+            'order_id',
         ]);
         
         $contracts = $contracts->paginate($request->input('per_page'));
@@ -80,7 +81,12 @@ class ContractController extends Controller
     public function showAdminDefaultContract(Request $request)
     {
         try {
-            $defaultContract = Contract::where('is_default', '=', true)->first();
+            $defaultContract = Contract::where([
+                ['seller_id', '=', null],
+                ['buyer_id', '=', null],
+                ['order_id', '=', null],
+                ['is_default', '=', true]
+            ])->first();
             
             Gate::authorize('viewAdminDefault', $defaultContract);
             
@@ -103,6 +109,7 @@ class ContractController extends Controller
                 ['seller_id', '=', $user->organisation_id],
                 ['buyer_id', '=', null],
                 ['order_id', '=', null],
+                ['is_default', '=', true]
             ])->first();
             
             if(!$defaultContract){
@@ -122,7 +129,12 @@ class ContractController extends Controller
     {
         try {
             
-            $defaultContract = Contract::where('is_default', '=', true)->first();
+            $defaultContract = Contract::where([
+                ['seller_id', '=', null],
+                ['buyer_id', '=', null],
+                ['order_id', '=', null],
+                ['is_default', '=', true]
+            ])->first();
             
             Gate::authorize('viewAdminDefault', $defaultContract);
             
@@ -151,6 +163,7 @@ class ContractController extends Controller
                 ['seller_id', '=', $user->organisation_id],
                 ['buyer_id', '=', null],
                 ['order_id', '=', null],
+                ['is_default', '=', true]
             ])->first();
             
             if(!$defaultContract){
