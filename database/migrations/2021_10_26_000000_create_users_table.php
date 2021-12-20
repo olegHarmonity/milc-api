@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('password');
-            $table->string('status')->default(UserStatuses::$ACTIVE);
+            $table->string('status')->default(UserStatuses::$INACTIVE);
             $table->rememberToken();
             $table->timestamps();
         });
