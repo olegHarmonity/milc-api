@@ -46,6 +46,7 @@ class OrderController extends Controller
         $orders = $orders->select([
             'id',
             'order_number',
+            'organisation_id',
             'organisation_name',
             'state',
             'created_at',
@@ -295,9 +296,9 @@ class OrderController extends Controller
     public function show(Request $request, $id)
     {
         $order = Order::findOrFail($id);
-        
+
         Gate::authorize('view', $order);
-        
+
         return (new NewOrderResource($order));
     }
 
@@ -306,7 +307,7 @@ class OrderController extends Controller
         $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
 
         Gate::authorize('view', $order);
-        
+
         return (new NewOrderResource($order));
     }
 }
