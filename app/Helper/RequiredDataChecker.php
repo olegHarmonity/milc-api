@@ -26,13 +26,13 @@ class RequiredDataChecker
                 $message = $message . " and banking";
             }
         }
-        
+
         if ($message) {
             $message = $message . " section under your organisation settings.";
         }
-        
+
         return [
-            'success' => $canAddProduct,
+            'result' => $canAddProduct,
             'message' => $message
         ];
     }
@@ -45,12 +45,12 @@ class RequiredDataChecker
         $organisation = $user->organisation;
         $organisationOwner = $organisation->organisation_owner()->first();
 
-        if (! $organisation->email or 
-            ! $organisation->phone_number or 
-            ! $organisation->address or 
-            ! $organisation->postal_code or 
-            ! $organisation->city or 
-            ! $organisation->country or 
+        if (! $organisation->email or
+            ! $organisation->phone_number or
+            ! $organisation->address or
+            ! $organisation->postal_code or
+            ! $organisation->city or
+            ! $organisation->country or
             ! $organisation->registration_number) {
             $canBuyProduct = false;
             $message = "Please fill in the address";
@@ -68,7 +68,7 @@ class RequiredDataChecker
         if ($message) {
             $message = $message . " section under your organisation settings";
         }
-        
+
         if (! $organisationOwner->address or ! $organisationOwner->postal_code or ! $organisationOwner->city) {
             $canBuyProduct = false;
             if (! $message) {
@@ -80,9 +80,9 @@ class RequiredDataChecker
 
         if ($message) {
             $message = $message . ".";
-        } 
+        }
         return [
-            'success' => $canBuyProduct,
+            'result' => $canBuyProduct,
             'message' => $message
         ];
     }
