@@ -5,7 +5,12 @@ namespace App\Http\Controllers\MediaHubApi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Helper\SearchFormatter;
 use App\Http\Requests\MediaHub\StoreMediaHubRequest;
+use App\Http\Requests\MediaHub\StoreMediaHubFileRequest;
+use App\Http\Requests\MediaHub\UpdateMediaHubRequest;
+use App\Http\Resources\CollectionResource;
+use App\Models\MediaHubAssets;
 
 class MediaHubController extends Controller
 {
@@ -14,59 +19,56 @@ class MediaHubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $token = $this->getAuthToken()['access_token'];
+        // Gate::authorize('viewAny', MediaHubAssets::class);
+        $mediaHubAssets = SearchFormatter::getSearchQueries($request, MediaHubAssets::class);
+        $mediaHubAssets = $mediaHubAssets->paginate($request->input('per_page'));
 
-        $response = Http::withToken($token)->get(env('MEDIA_HUB_API').'/assets');
+        return CollectionResource::make($mediaHubAssets);
 
         return $response->json();
     }
 
     public function show($id)
     {
-        $token = $this->getAuthToken()['access_token'];
 
-        $response = Http::withToken($token)->get(env('MEDIA_HUB_API').'/assets/'. $id);
+        $mediaHubAssets = MediaHubAssets::findOrFail($id);
 
-        return $response->json();
+        return new CollectionResource($mediaHubAssets);
+
     }
 
     public function store(StoreMediaHubRequest $request)
     {
 
-        $data = $request->validated();
-          
-        $data['tenant'] = [
-            "id" => "61a87c9aa3cb5219570f5e96",
-            "name" => "DEVLA" 
-        ];
+        $mediaHubAssets = MediaHubAssets::create($request->validated());
 
-        // dd($data);
-        
-        $token = $this->getAuthToken()['access_token'];
-
-        $url = env('MEDIA_HUB_API');
-
-        $response = Http::withToken($token)->post(env('MEDIA_HUB_API').'/assets', $data);
-
-        return $response->json();
+        return new CollectionResource($mediaHubAssets);
     }
 
-    public function update(Request $request)
+    public function update(UpdateMediaHubRequest $request, $id)
     {
-        //
+        $mediaHubAssets = MediaHubAssets::findOrFail($id);
+
+        $mediaHubAssets->update();
+
+        return new CollectionResource($mediaHubAssets);
+    
     }
 
     public function destroy($id)
     {
 
-        dd($id);
-        $token = $this->getAuthToken()['access_token'];
+        // Gate::authorize('delete', $feedback); 
+        $mediaHubAssets = MediaHubAssets::findOrFail($id);
 
-        $response = Http::withToken($token)->delete(env('MEDIA_HUB_API').'/assets/'. $id);
+        $mediaHubAssets->delete();
 
-        return $response->json();
+        return response()->json([
+            'message' => 'Asset deleted!'
+        ]);
+        
     }
 
     public function getAuthToken(){
@@ -84,4 +86,5 @@ class MediaHubController extends Controller
         return $response->json();
         
     }
+    
 }
