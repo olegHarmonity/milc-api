@@ -2,11 +2,14 @@
 
 namespace App\Http\Requests\MediaHub;
 
-use App\Util\UserRoles;
+use App\Models\User;
+use App\Util\UserStatuses;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
-class StoreMediaHubRequest extends FormRequest
+class UpdateMediaHubRequest extends FormRequest
 {
+
     public function authorize()
     {
         return true;
@@ -16,13 +19,13 @@ class StoreMediaHubRequest extends FormRequest
     {
         return [
             'asset_type' => [
-                'required',
+                'nullable',
             ],  
             'product_id' => [
-                'required',
+                'nullable',
             ],  
-            'external_reference' => [
-                'required',
+            'externalReference' => [
+                'nullable',
             ],
         ];
     }

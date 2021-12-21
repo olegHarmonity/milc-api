@@ -5,7 +5,12 @@ namespace App\Http\Controllers\MediaHubApi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Helper\SearchFormatter;
 use App\Http\Requests\MediaHub\StoreMediaHubRequest;
+use App\Http\Requests\MediaHub\StoreMediaHubFileRequest;
+use App\Http\Requests\MediaHub\UpdateMediaHubRequest;
+use App\Http\Resources\CollectionResource;
+use App\Models\MediaHubAssets;
 
 class MediaHubController extends Controller
 {
@@ -14,60 +19,56 @@ class MediaHubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $token = $this->getAuthToken()['access_token'];
+        // Gate::authorize('viewAny', MediaHubAssets::class);
+        $mediaHubAssets = SearchFormatter::getSearchQueries($request, MediaHubAssets::class);
+        $mediaHubAssets = $mediaHubAssets->paginate($request->input('per_page'));
 
-        $response = Http::withToken($token)->get('https://milc-int.de/services/assets/api/assets');
-
-        // get tenants
-        // $response = Http::withToken($token)->get('https://milc-int.de/services/assets/api/_search/tenants?query=devla');
+        return CollectionResource::make($mediaHubAssets);
 
         return $response->json();
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
-        $token = $this->getAuthToken()['access_token'];
 
-        $response = Http::withToken($token)->get('https://milc-int.de/services/assets/api/_search/items?query=tenant.name:wdw&page=0&size=20&sort=id.keyword,asc');
-       
+        $mediaHubAssets = MediaHubAssets::findOrFail($id);
 
-        return $response->json();
+        return new CollectionResource($mediaHubAssets);
+
     }
 
     public function store(StoreMediaHubRequest $request)
     {
 
-        $data = $request->validated();
-        // $data = [
-        //     "assetId" => "dasdasdasxzcxsdqw",
-        //     "externalReference" => "sdxssdsa",
-        //     "filename" => "dsadad.mp4",
-        //     "metadata" => [
-        //       "name" => "string",
-        //       "type" => "string"
-        //     ],
-        //     "tenantName" => "devla",
-        //     "type" => "video/mp4"
-        // ];
+        $mediaHubAssets = MediaHubAssets::create($request->validated());
+
+        return new CollectionResource($mediaHubAssets);
+    }
+
+    public function update(UpdateMediaHubRequest $request, $id)
+    {
+        $mediaHubAssets = MediaHubAssets::findOrFail($id);
+
+        $mediaHubAssets->update();
+
+        return new CollectionResource($mediaHubAssets);
+    
+    }
+
+    public function destroy($id)
+    {
+
+        // Gate::authorize('delete', $feedback); 
+        $mediaHubAssets = MediaHubAssets::findOrFail($id);
+
+        $mediaHubAssets->delete();
+
+        return response()->json([
+            'message' => 'Asset deleted!'
+        ]);
         
-        $token = $this->getAuthToken()['access_token'];
-
-        $response = Http::withToken($token)->post('https://milc-int.de/services/assets/api/s3/multipart',$data);
-       
-
-        return $response->json();
-    }
-
-    public function update(Request $request)
-    {
-        //
-    }
-
-    public function destroy(Request $request)
-    {
-        //
     }
 
     public function getAuthToken(){
@@ -80,9 +81,10 @@ class MediaHubController extends Controller
             'client_id' => $client_id,
         ];
 
-        $response = Http::withBasicAuth($client_id ,$secret)->asForm()->post('https://milc-platform.auth.eu-central-1.amazoncognito.com/oauth2/token',$data);
+        $response = Http::withBasicAuth($client_id ,$secret)->asForm()->post(env('MEDIA_HUB_AUTH'),$data);
 
         return $response->json();
-
+        
     }
+    
 }
