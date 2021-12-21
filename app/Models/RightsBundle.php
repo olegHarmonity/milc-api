@@ -32,4 +32,9 @@ class RightsBundle extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    
+    public function seller_id()
+    {
+        return $this->product->organisation_id;
+    }
 }

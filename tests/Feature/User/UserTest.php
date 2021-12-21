@@ -9,6 +9,38 @@ use App\Util\UserRoles;
 class UserTest extends ApiTestCase
 {
     
+    public function test_can_add_product()
+    {
+        $this->loginCompanyAdmin5();
+        
+        $response = $this->get('/api/can-add-product');
+        $response->assertStatus(200);
+    }
+    
+    public function test_can_buy_product()
+    {
+        $this->loginCompanyAdmin5();
+        
+        $response = $this->get('/api/can-buy-product');
+        $response->assertStatus(200);
+    }
+    public function test_can_add_product_success()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/can-add-product');
+        $response->assertStatus(200);
+    }
+    
+    public function test_can_buy_product_success()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/can-buy-product');
+        
+        $response->assertStatus(200);
+    }
+    
     public function test_save_product()
     {
         $this->loginUser();

@@ -24,12 +24,12 @@ class Contract extends Model
     
     public function seller()
     {
-        return $this->belongsTo(Organisation::class);
+        return $this->belongsTo(Organisation::class, 'seller_id',);
     }
     
     public function buyer()
     {
-        return $this->belongsTo(Organisation::class);
+        return $this->belongsTo(Organisation::class, 'buyer_id');
     }
     
     public function rights_bundle()

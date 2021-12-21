@@ -102,6 +102,12 @@ class OrderTest extends ApiTestCase
         $response = $this->get('/api/checkout/contract/123-ABC');
 
         $response->assertStatus(200);
+        
+        
+        
+        $this->loginCompanyAdmin2();
+        
+        $response = $this->get('/api/checkout/contract/123-ABD');
     }
     
     public function test_get_order_single(){
@@ -110,6 +116,7 @@ class OrderTest extends ApiTestCase
         
         $response = $this->get('/api/orders/1');
         $response->assertStatus(200);
+        $this->loginAdmin();
     }
     
     

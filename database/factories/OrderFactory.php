@@ -56,9 +56,7 @@ class OrderFactory extends Factory
 
         $price = MoneyFactory::createMoney($priceFromBundle->value, $priceFromBundle->currency);
         $price->save();
-        
-        /*
-         * todo: uncomment
+ 
         $seller = $rightsBundle->product->organisation;
         $buyerCountry = $organisation->country;
         $vatRules = $seller->vat_rules;
@@ -77,8 +75,6 @@ class OrderFactory extends Factory
         }
        
         $vatPercentage = PercentageFactory::createPercentage($vatPercentValue);
-        */
-        $vatPercentage = PercentageFactory::createPercentage(20);
         $vatPercentage->save();
 
         $vat = $price->calculate_percentage($vatPercentage);
