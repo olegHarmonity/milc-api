@@ -108,6 +108,8 @@ class OrderController extends Controller
 
             if ($contractAccepted) {
                 $orderStateMachine->apply('accept_contract');
+                $order->contract_accepted_at = new \DateTime();
+                $order->contract_accepted = true;
             } else {
                 $orderStateMachine->apply('deny_contract');
             }
@@ -131,6 +133,7 @@ class OrderController extends Controller
 
             $orderStateMachine->apply('attempt_payment');
             $order->payment_method = PaymentMethods::$BANK_TRANSFER;
+            $order->payment_started_at = new \DateTime();
 
             $order->save();
 
@@ -150,6 +153,7 @@ class OrderController extends Controller
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
 
             $orderStateMachine->apply('send_assets');
+            $order->assets_sent_at = new \DateTime();
 
             $order->save();
 
@@ -169,6 +173,7 @@ class OrderController extends Controller
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
 
             $orderStateMachine->apply('receive_assets');
+            $order->assets_received_at = new \DateTime();
 
             $order->save();
 
@@ -188,6 +193,7 @@ class OrderController extends Controller
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
 
             $orderStateMachine->apply('complete');
+            $order->completed_at = new \DateTime();
 
             $order->save();
 
@@ -207,6 +213,7 @@ class OrderController extends Controller
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
 
             $orderStateMachine->apply('reject');
+            $order->rejected_at = new \DateTime();
 
             $order->save();
 
@@ -226,6 +233,7 @@ class OrderController extends Controller
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
 
             $orderStateMachine->apply('cancel');
+            $order->cancelled_at = new \DateTime();
 
             $order->save();
 
@@ -246,6 +254,7 @@ class OrderController extends Controller
             $orderStateMachine = $this->smFactory->get($order, 'checkout');
 
             $orderStateMachine->apply('refund');
+            $order->refunded_at = new \DateTime();
 
             $order->save();
 
@@ -268,6 +277,7 @@ class OrderController extends Controller
             if ($order->payment_method === PaymentMethods::$BANK_TRANSFER) {
                 $orderStateMachine->apply('successful_payment');
                 $order->payment_status = PaymentStatuses::$SUCCESSFUL;
+                $order->paid_at = new \DateTime();
                 $order->save();
             } else {
                 throw new BadRequestHttpException("Only bank transfers can be marked as paid");

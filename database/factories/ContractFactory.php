@@ -47,10 +47,10 @@ class ContractFactory extends Factory
         }
 
         $contract = new Contract();
-
+        
         $contract->order_id = $order->id;
-        $contract->seller_id = $order->organisation->id;
-        $contract->buyer_id = $order->buyer_user->organisation->id;
+        $contract->seller_id = $order->rights_bundle->seller_id();
+        $contract->buyer_id = auth()->user()->organisation->id;
         $contract->rights_bundle_id = $order->rights_bundle_id;
         $contract->contract_text = "";
         $contract->contract_text_part_2 = "";

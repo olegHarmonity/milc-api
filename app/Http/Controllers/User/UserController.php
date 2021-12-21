@@ -29,6 +29,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 use App\Mail\VerifyAccountEmail;
+use Database\Factories\ProductFactory;
+use App\Helper\RequiredDataChecker;
 
 class UserController extends Controller
 {
@@ -40,6 +42,27 @@ class UserController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_OK);
     }
+    
+    public function canAddProduct(Request $request)
+    {
+        $user = auth()->user();
+        Gate::authorize('addProduct', $user);
+       
+        $response = RequiredDataChecker::checkIfCanAddProduct($user);
+        
+        return response()->json($response, 200);
+    }
+    
+    public function canBuyProduct(Request $request)
+    {
+        $user = auth()->user();
+        Gate::authorize('buyProduct', $user);
+        
+        $response = RequiredDataChecker::checkIfCanBuyProduct($user);
+        
+        return response()->json($response, 200);
+    }
+    
 
     public function emailExists(EmailExistsRequest $request)
     {

@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Factories;
 
 use App\Models\Image;
@@ -7,23 +6,25 @@ use App\Models\MarketingAssets;
 use App\Models\Product;
 use App\Models\ProductionInfo;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 class ProductFactory extends Factory
 {
+
     protected $model = Product::class;
 
     public function definition()
-    { 
+    {
         $productionInfo = ProductionInfo::factory()->create()->id;
-        
+
         $marketingAssets = MarketingAssets::factory()->create();
-        
+
         $images = Image::all();
-        
-            $marketingAssets->production_images()->attach(
-                $images->random(rand(1, 3))->pluck('id')->toArray()
-                );
-        
+
+        $marketingAssets->production_images()->attach($images->random(rand(1, 3))
+            ->pluck('id')
+            ->toArray());
+
         return [
             'organisation_id' => $this->faker->numberBetween(1, 5),
             'production_info_id' => $productionInfo,
@@ -39,25 +40,34 @@ class ProductFactory extends Factory
             'keywords' => [
                 $this->faker->word(),
                 $this->faker->word(),
-                $this->faker->word(),
+                $this->faker->word()
             ],
             'original_language' => $this->faker->languageCode(),
             'dubbing_languages' => [
                 $this->faker->languageCode(),
-                $this->faker->languageCode(),
+                $this->faker->languageCode()
             ],
             'subtitle_languages' => [
                 $this->faker->languageCode(),
                 $this->faker->languageCode(),
-                $this->faker->languageCode(),
+                $this->faker->languageCode()
             ],
             'links' => [
                 "website" => $this->faker->url(),
                 "facebook" => $this->faker->url(),
                 "twitter" => $this->faker->url(),
-                "linkedin" => $this->faker->url(),
+                "linkedin" => $this->faker->url()
             ],
-            'allow_requests' => $this->faker->boolean(),
+            'allow_requests' => $this->faker->boolean()
         ];
+    }
+
+    public static function createEmpty(User $user)
+    {
+        $product = new Product();
+        $product->organisation_id = $user->organisation->id;
+        $product->title = "";
+        $product->save();
+        return $product;
     }
 }

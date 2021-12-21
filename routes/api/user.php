@@ -59,6 +59,15 @@ Route::get('/users/user-activities/{userId}', [
     UserActivityController::class,
     'getUserActivitiesByUser'
 ]);
-    
+
+Route::get('/can-add-product', [
+    UserController::class,
+    'canAddProduct'
+]);
+
+Route::get('/can-buy-product', [
+    UserController::class,
+    'canBuyProduct'
+]);
 
 Route::apiResource('user-activities', UserActivityController::class);

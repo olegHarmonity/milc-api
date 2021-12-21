@@ -11,7 +11,7 @@ class VatRuleSeeder extends Seeder
     public function run()
     {
         $ruleTypes = VatRuleNames::getRules();
-        for ($i = 1; $i <= 5; $i ++) {
+        for ($i = 1; $i <= 4; $i ++) {
             for ($j = 0; $j < 3; $j ++) {
                 $vat = Percentage::factory()->create();
                 VatRule::factory()->create([

@@ -55,6 +55,7 @@ class ContractTest extends ApiTestCase
         $this->loginAdmin();
         
         $response = $this->get('/api/contracts');
+        
         $response->assertStatus(200);
     }
     
@@ -63,7 +64,6 @@ class ContractTest extends ApiTestCase
         $this->loginCompanyAdmin();
         
         $response = $this->get('/api/contracts');
-
         $response->assertStatus(200);
     }
     
@@ -73,8 +73,6 @@ class ContractTest extends ApiTestCase
         $this->loginAdmin();
         
         $response = $this->get('/api/contracts/1');
-        
-        dump(json_decode($response->getContent()));die();
         $response->assertStatus(200);
     }
     
