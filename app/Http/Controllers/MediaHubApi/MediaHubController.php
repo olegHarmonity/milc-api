@@ -95,19 +95,25 @@ class MediaHubController extends Controller
 
         $organisation = auth()->user()->organisation;
         $token =  $this->getAuthToken()['access_token'];
-        $response = Http::withToken($token)->get(env('MEDIA_HUB_AUTH'). 'api/tenants/' . $organisation->external_reference);
-
-        if(!$response->successful()){
-          
-            $response = Http::withToken($token)->post(env('MEDIA_HUB_AUTH'). 'api/tenants/' , ['name' => $organisation->organisation_name]);
+        $blnCheck = false;
+        
+        if($organisation->external_reference){
+            $response = Http::withToken($token)->get(env('MEDIA_HUB_API').'/tenants/'. $organisation->external_reference);
+        } else {
+            $blnCheck = true;
+        }
+ 
+        if($blnCheck){
+            $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/tenants' , ['name' => $organisation->organisation_name]);
+           
             if($response->successful()){
-                $organisation->update([
-                    'external_reference' => $response->json()['id'],
-                ]);
+                // dd($response->json());
+                    $organisation->external_reference = $response->json()['id'];
+                    $organisation->save();
             } else {
                 return $response->json();
             }
-        } else {
+        } else {            
             return $response->json();
         }
 
@@ -116,30 +122,37 @@ class MediaHubController extends Controller
     public function CheckOrCreateProduct($id) {
         $product = Product::findOrFail($id);
         $token =  $this->getAuthToken()['access_token'];
-        $response = Http::withToken($token)->get(env('MEDIA_HUB_AUTH'). 'api/assets/' . $product->external_reference);
+        $blnCheck = false;
+        
+        if($product->external_reference){
+            $response = Http::withToken($token)->get(env('MEDIA_HUB_API'). '/assets/' . $product->external_reference);
+        } else {
+            $blnCheck = true;
+        }
 
-        $data = [
-            "description" => $product->synopsis,
-            "externalReference" => $product->id,
-            "genres" => [
-                $product->genres
-            ],
-            // "poster" => "string",
-            // "posterContentType" => "string",
-            // "posterUrl" => "string",
-            "tenant" => [
-              "id" => $product->organisation->external_reference,
-              "name" => $product->organisation->organisation_name,
-            ],
-            "title" => $product->title,
-        ];
+        if($blnCheck){
+         
+            $data = [
+                "description" => $product->synopsis,
+                "externalReference" => $product->id,
+                // "genres" => [
+                //     $product->genres
+                // ],
+                // "poster" => "string",
+                // "posterContentType" => "string",
+                // "posterUrl" => "string",
+                "tenant" => [
+                "id" => $product->organisation->external_reference,
+                "name" => $product->organisation->organisation_name,
+                ],
+                "title" => $product->title,
+            ];
+            
+            $response = Http::withToken($token)->post(env('MEDIA_HUB_API'). '/assets/' , $data);
 
-        if(!$response->successful()){
-            $response = Http::withToken($token)->post(env('MEDIA_HUB_AUTH'). 'api/assets/' , $data);
             if($response->successful()){
-                $product->update([
-                    'external_reference' => $response->json()['id'],
-                ]);
+                $product->external_reference = $response->json()['id'];
+                $product->save();
             } else {
                 return $response->json();
             }
