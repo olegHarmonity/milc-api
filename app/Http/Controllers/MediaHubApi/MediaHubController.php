@@ -11,6 +11,8 @@ use App\Http\Requests\MediaHub\StoreMediaHubFileRequest;
 use App\Http\Requests\MediaHub\UpdateMediaHubRequest;
 use App\Http\Resources\CollectionResource;
 use App\Models\MediaHubAssets;
+use App\Models\Product;
+// use App\Models\Organisation;
 
 class MediaHubController extends Controller
 {
@@ -41,6 +43,8 @@ class MediaHubController extends Controller
 
     public function store(StoreMediaHubRequest $request)
     {
+        $this->CheckOrCreateOrganisation();
+        $this->CheckOrCreateProduct($request->product_id);
 
         $mediaHubAssets = MediaHubAssets::create($request->validated());
 
@@ -85,6 +89,61 @@ class MediaHubController extends Controller
 
         return $response->json();
         
+    }
+
+    public function CheckOrCreateOrganisation() {
+
+        $organisation = auth()->user()->organisation;
+        $token =  $this->getAuthToken()['access_token'];
+        $response = Http::withToken($token)->get(env('MEDIA_HUB_AUTH'). 'api/tenants/' . $organisation->external_reference);
+
+        if(!$response->successful()){
+          
+            $response = Http::withToken($token)->post(env('MEDIA_HUB_AUTH'). 'api/tenants/' , ['name' => $organisation->organisation_name]);
+            if($response->successful()){
+                $organisation->update([
+                    'external_reference' => $response->json()['id'],
+                ]);
+            } else {
+                return $response->json();
+            }
+        } else {
+            return $response->json();
+        }
+
+    }
+
+    public function CheckOrCreateProduct($id) {
+        $product = Product::findOrFail($id);
+        $token =  $this->getAuthToken()['access_token'];
+        $response = Http::withToken($token)->get(env('MEDIA_HUB_AUTH'). 'api/assets/' . $product->external_reference);
+
+        $data = [
+            "description" => $product->synopsis,
+            "externalReference" => $product->id,
+            "genres" => [
+                $product->genres
+            ],
+            // "poster" => "string",
+            // "posterContentType" => "string",
+            // "posterUrl" => "string",
+            "tenant" => [
+              "id" => $product->organisation->external_reference,
+              "name" => $product->organisation->organisation_name,
+            ],
+            "title" => $product->title,
+        ];
+
+        if(!$response->successful()){
+            $response = Http::withToken($token)->post(env('MEDIA_HUB_AUTH'). 'api/assets/' , $data);
+            if($response->successful()){
+                $product->update([
+                    'external_reference' => $response->json()['id'],
+                ]);
+            } else {
+                return $response->json();
+            }
+        }
     }
     
 }
