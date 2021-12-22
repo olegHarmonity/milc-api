@@ -31,6 +31,7 @@ class Organisation extends Model
         'iban',
         'swift_bic',
         'bank_name',
+        'external_reference',
     ];
 
     protected $hidden = [
