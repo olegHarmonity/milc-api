@@ -99,6 +99,10 @@ class MediaHubController extends Controller
         
         if($organisation->external_reference){
             $response = Http::withToken($token)->get(env('MEDIA_HUB_API').'/tenants/'. $organisation->external_reference);
+
+            if($response->status() == 404){
+                $blnCheck = true;
+            }
         } else {
             $blnCheck = true;
         }
@@ -107,7 +111,6 @@ class MediaHubController extends Controller
             $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/tenants' , ['name' => $organisation->organisation_name]);
            
             if($response->successful()){
-                // dd($response->json());
                     $organisation->external_reference = $response->json()['id'];
                     $organisation->save();
             } else {
@@ -123,33 +126,38 @@ class MediaHubController extends Controller
         $product = Product::findOrFail($id);
         $token =  $this->getAuthToken()['access_token'];
         $blnCheck = false;
-        
+    
         if($product->external_reference){
             $response = Http::withToken($token)->get(env('MEDIA_HUB_API'). '/assets/' . $product->external_reference);
+
+            if($response->status() == 404){
+                $blnCheck = true;
+            }
+
         } else {
             $blnCheck = true;
         }
 
         if($blnCheck){
-         
+       
+            $aryGenres = [];
+            foreach($product->genres as $genres){
+                $aryGenres[] = $genres->name;
+            }
+
             $data = [
                 "description" => $product->synopsis,
                 "externalReference" => $product->id,
-                // "genres" => [
-                //     $product->genres
-                // ],
-                // "poster" => "string",
-                // "posterContentType" => "string",
-                // "posterUrl" => "string",
+                "genres" => $aryGenres,
                 "tenant" => [
-                "id" => $product->organisation->external_reference,
-                "name" => $product->organisation->organisation_name,
+                    "id" => $product->organisation->external_reference,
+                    "name" => $product->organisation->organisation_name,
                 ],
                 "title" => $product->title,
             ];
-            
+   
             $response = Http::withToken($token)->post(env('MEDIA_HUB_API'). '/assets/' , $data);
-
+   
             if($response->successful()){
                 $product->external_reference = $response->json()['id'];
                 $product->save();
