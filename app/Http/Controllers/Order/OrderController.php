@@ -12,6 +12,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 use Throwable;
 use App\Models\RightsBundle;
 use App\Http\Resources\Order\NewOrderResource;
@@ -19,6 +20,17 @@ use Database\Factories\OrderFactory;
 use App\Helper\CurrencyExchange;
 use App\Util\PaymentMethods;
 use App\Util\PaymentStatuses;
+use App\Mail\ContractAcceptedBuyerEmail;
+use App\Mail\ContractAcceptedSellerEmail;
+use App\Models\GeneralAdminSettings;
+use App\Mail\BankTransferInitEmail;
+use App\Mail\AssetsSentEmail;
+use App\Mail\AssetsReceivedEmail;
+use App\Mail\OrderCompleteEmail;
+use App\Mail\OrderRejectedEmail;
+use App\Mail\OrderCancelledEmail;
+use App\Mail\OrderRefundedEmail;
+use App\Mail\OrderPaidEmail;
 
 class OrderController extends Controller
 {
@@ -110,6 +122,9 @@ class OrderController extends Controller
                 $orderStateMachine->apply('accept_contract');
                 $order->contract_accepted_at = new \DateTime();
                 $order->contract_accepted = true;
+                Mail::to($order->delivery_email)->send(new ContractAcceptedBuyerEmail($order->organisation_name, $order->order_number));
+                Mail::to($order->organisation->email)->send(new ContractAcceptedSellerEmail($order->organisation->organisation_name, $order->order_number));
+                
             } else {
                 $orderStateMachine->apply('deny_contract');
             }
@@ -136,7 +151,9 @@ class OrderController extends Controller
             $order->payment_started_at = new \DateTime();
 
             $order->save();
-
+            
+            $bankInfo = GeneralAdminSettings::all()->first();
+            Mail::to($order->delivery_email)->send(new BankTransferInitEmail($order->organisation_name,$order->order_number, $bankInfo->iban, $bankInfo->swift_bic, $bankInfo->bank_name));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -156,7 +173,8 @@ class OrderController extends Controller
             $order->assets_sent_at = new \DateTime();
 
             $order->save();
-
+            Mail::to($order->delivery_email)->send(new AssetsSentEmail($order->organisation_name, $order->order_number));
+            
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -176,7 +194,8 @@ class OrderController extends Controller
             $order->assets_received_at = new \DateTime();
 
             $order->save();
-
+            
+            Mail::to($order->organisation->email)->send(new AssetsReceivedEmail($order->organisation->organisation_name, $order->order_number));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -196,7 +215,8 @@ class OrderController extends Controller
             $order->completed_at = new \DateTime();
 
             $order->save();
-
+            
+            Mail::to($order->delivery_email)->send(new OrderCompleteEmail($order->organisation_name, $order->order_number));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -216,7 +236,8 @@ class OrderController extends Controller
             $order->rejected_at = new \DateTime();
 
             $order->save();
-
+            
+            Mail::to($order->delivery_email)->send(new OrderRejectedEmail($order->organisation_name, $order->order_number));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -236,7 +257,8 @@ class OrderController extends Controller
             $order->cancelled_at = new \DateTime();
 
             $order->save();
-
+            
+            Mail::to($order->delivery_email)->send(new OrderCancelledEmail($order->organisation_name, $order->order_number));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -257,7 +279,8 @@ class OrderController extends Controller
             $order->refunded_at = new \DateTime();
 
             $order->save();
-
+            
+            Mail::to($order->delivery_email)->send(new OrderRefundedEmail($order->organisation_name, $order->order_number));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -279,6 +302,7 @@ class OrderController extends Controller
                 $order->payment_status = PaymentStatuses::$SUCCESSFUL;
                 $order->paid_at = new \DateTime();
                 $order->save();
+                Mail::to($order->delivery_email)->send(new OrderPaidEmail($order->organisation_name, $order->order_number));
             } else {
                 throw new BadRequestHttpException("Only bank transfers can be marked as paid");
             }

@@ -29,7 +29,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 use App\Mail\VerifyAccountEmail;
-use Database\Factories\ProductFactory;
 use App\Helper\RequiredDataChecker;
 
 class UserController extends Controller
