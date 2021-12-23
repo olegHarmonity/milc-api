@@ -37,4 +37,9 @@ class RightsBundle extends Model
     {
         return $this->product->organisation_id;
     }
+    
+    public function seller()
+    {
+        return $this->product->organisation;
+    }
 }

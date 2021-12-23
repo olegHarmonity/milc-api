@@ -32,6 +32,7 @@ use App\Mail\OrderCancelledEmail;
 use App\Mail\OrderRefundedEmail;
 use App\Mail\OrderPaidEmail;
 
+
 class OrderController extends Controller
 {
     private FactoryInterface $smFactory;
@@ -122,8 +123,12 @@ class OrderController extends Controller
                 $orderStateMachine->apply('accept_contract');
                 $order->contract_accepted_at = new \DateTime();
                 $order->contract_accepted = true;
-                Mail::to($order->delivery_email)->send(new ContractAcceptedBuyerEmail($order->organisation_name, $order->order_number));
-                Mail::to($order->organisation->email)->send(new ContractAcceptedSellerEmail($order->organisation->organisation_name, $order->order_number));
+                
+                $contract = $order->contract;
+                
+                Mail::to($contract->buyer->email)->send(new ContractAcceptedBuyerEmail($contract->buyer->organisation_name, $order->order_number, $contract));
+                
+                Mail::to($contract->seller->email)->send(new ContractAcceptedSellerEmail($contract->seller->organisation_name, $order->order_number, $contract));
                 
             } else {
                 $orderStateMachine->apply('deny_contract');
@@ -195,7 +200,8 @@ class OrderController extends Controller
 
             $order->save();
             
-            Mail::to($order->organisation->email)->send(new AssetsReceivedEmail($order->organisation->organisation_name, $order->order_number));
+            $seller = $order->rights_bundle->seller();
+            Mail::to($seller->email)->send(new AssetsReceivedEmail($seller->organisation_name, $order->order_number));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
