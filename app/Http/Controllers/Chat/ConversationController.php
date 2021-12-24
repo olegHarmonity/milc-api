@@ -119,6 +119,26 @@ class ConversationController extends Controller
         $lastMessage = $conversation->last_message;
         $user = auth()->user();
 
+        // dd($user->organisation);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $path = Storage::disk('public')->put('attachments/chat', $file);
+
+            $message[] = Chat::message(json_encode([
+                'path' => $path,
+                'url' => asset('storage/' . $path),
+                'name' =>  $request->file('file')->getClientOriginalName(),
+                'extension' => $request->file('file')->extension(),
+                'size' => Storage::disk('public')->size($path),
+            ]))
+                ->type('upload')
+                ->from($user->organisation)
+                ->to($conversation)
+                ->send();
+        }
+
         if ($request->filled('message')) {
             $message[] = Chat::message($request->get('message'))
                 ->from($user->organisation)
