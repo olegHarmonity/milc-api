@@ -171,12 +171,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
         
         Sebdesign\SM\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         
         /*
          * Application Service Providers...
@@ -191,6 +191,7 @@ return [
         App\Providers\ExactSearchProvider::class,
         App\Providers\DateFilterProvider::class,
         App\Providers\SortProvider::class,
+        
 
     ],
 
@@ -246,7 +247,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'StateMachine' => Sebdesign\SM\Facade::class,
-        'Markdown' => Illuminate\Mail\Markdown::class
+        'Markdown' => Illuminate\Mail\Markdown::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

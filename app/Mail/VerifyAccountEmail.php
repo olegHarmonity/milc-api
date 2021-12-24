@@ -27,9 +27,11 @@ class VerifyAccountEmail extends Mailable
         $webAppUrl = rtrim(config('app.web_url'), '/');
         $verificationUrl = $webAppUrl.'/auth/verify-email/'.$this->verificationCode;
 
-        return $this->markdown('mail.verify')
+        $message = "Thank you for creating an account with MILC Platform. Don't forget to complete your registration!";
+        $message1 = "Please click on the link below or copy it into the address bar of your browser to confirm your email address: <a href=\"$verificationUrl\">Confirm my email address</a>";
+        return $this->markdown('mail.default')
             ->subject($this->subject)
-            ->with(['verificationUrl' => $verificationUrl, 'name' => $this->name ]);
+            ->with(['message' => $message, 'message1' => $message1, 'name' => $this->name ]);
     }
 }
 

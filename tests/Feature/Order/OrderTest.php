@@ -40,6 +40,19 @@ class OrderTest extends ApiTestCase
         $order->save();
     }
     
+    public function test_get_contract_single(){
+        
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/checkout/contract/123-ABC');
+        
+        $response->assertStatus(200);
+        
+        $this->loginCompanyAdmin2();
+        
+        $response = $this->get('/api/checkout/contract/123-ABD');
+    }
+    
     public function test_order_change_currency()
     {
         $this->loginCompanyAdmin();
@@ -62,7 +75,7 @@ class OrderTest extends ApiTestCase
         ];
         
         $response = $this->put('/api/checkout/update-contract/123-ABC', $data);
-        
+
         $this->loginCompanyAdmin2();
         $response = $this->put('/api/checkout/update-contract/123-ABD', $data);
 
@@ -95,20 +108,6 @@ class OrderTest extends ApiTestCase
         $response->assertStatus(200);
     }
     
-    public function test_get_contract_single(){
-        
-        $this->loginCompanyAdmin();
-        
-        $response = $this->get('/api/checkout/contract/123-ABC');
-
-        $response->assertStatus(200);
-        
-        
-        
-        $this->loginCompanyAdmin2();
-        
-        $response = $this->get('/api/checkout/contract/123-ABD');
-    }
     
     public function test_get_order_single(){
         

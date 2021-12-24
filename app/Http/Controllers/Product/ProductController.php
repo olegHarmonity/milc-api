@@ -10,6 +10,7 @@ use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\Product\ProductResource;
+use App\Http\Resources\Product\ProductCustomBundlesResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -91,6 +92,17 @@ class ProductController extends Controller
 
         return new ProductResource($product);
     }
+    
+    public function showCustomBundles(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        Gate::authorize('showCustom', $product);
+        
+        $product->load('organisation:id,organisation_name');
+        
+        return new ProductCustomBundlesResource($product);
+    }
+    
 
     public function store(CreateProductRequest $request)
     {

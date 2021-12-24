@@ -77,6 +77,24 @@ class ProductSeeder extends Seeder
         $firstProduct->rights_bundles()->attach([$rightsBundle->id]);
         
         $firstProduct->save();
+        
+        $customRightsBundle = new RightsBundle();
+        
+        $customRightsBundle->price_id = $price->id;
+        
+        $customRightsBundle->buyer_id = 1;
+        
+        $customRightsBundle->product_id = $firstProduct->id;
+        
+        $customRightsBundle->save();
+        
+        $customRightsBundle->bundle_rights_information()->attach([1]);
+        
+        $customRightsBundle->save();
+        
+        $firstProduct->rights_bundles()->attach([$customRightsBundle->id]);
+        
+        $firstProduct->save();
 
         Product::where('id', '!=', 1)->each(function ($products) use (
             $dubFiles,

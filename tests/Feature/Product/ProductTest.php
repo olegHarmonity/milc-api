@@ -120,7 +120,13 @@ class ProductTest extends ApiTestCase
     public function test_get_product()
     {
         $response = $this->get('/api/products/1');
-        // dump(json_decode($response->getContent()));
+        $response->assertStatus(200);
+    }
+    
+    public function test_get_product_custom_bundles()
+    {
+        $this->loginCompanyAdmin();
+        $response = $this->get('/api/products/custom-bundles/1');
         $response->assertStatus(200);
     }
 

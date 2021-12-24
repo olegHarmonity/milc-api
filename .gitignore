@@ -26,3 +26,9 @@ yarn-error.log
 .settings/*
 !storage/app/contracts/default_contract.md
 !storage/app/contracts/default_contract_part_2.md
+
+!/storage/app/public/app_images/.gitkeep
+!/storage/app/public/app_images/facebook.png
+!/storage/app/public/app_images/milc.png
+!/storage/app/public/app_images/twitter.png
+!/storage/app/public/app_images/youtube.png

@@ -20,6 +20,11 @@ Route::get('/products/by-category/{categoryId}', [
     'getProductsByCategory'
 ])->name('getProductsByCategory');
 
+Route::get('/products/custom-bundles/{id}', [
+    ProductController::class,
+    'showCustomBundles'
+])->name('showCustomBundles');
+
 Route::apiResource('products', ProductController::class);
 Route::apiResource('movie-rights', MovieRightController::class);
 Route::apiResource('movie-formats', MovieFormatController::class);

@@ -11,7 +11,8 @@ class RightsBundle extends Model
 
     protected $fillable = [
         'price_id',
-        'product_id'
+        'product_id',
+        'buyer_id'
     ];
 
     protected $hidden = [
@@ -28,6 +29,11 @@ class RightsBundle extends Model
         return $this->belongsToMany(RightsInformation::class, 'bundle_rights_information');
     }
     
+    public function buyer()
+    {
+        return $this->belongsTo(Organisation::class);
+    }
+    
     public function product()
     {
         return $this->belongsTo(Product::class);
@@ -36,5 +42,10 @@ class RightsBundle extends Model
     public function seller_id()
     {
         return $this->product->organisation_id;
+    }
+    
+    public function seller()
+    {
+        return $this->product->organisation;
     }
 }

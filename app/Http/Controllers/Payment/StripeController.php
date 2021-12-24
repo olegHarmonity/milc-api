@@ -10,10 +10,12 @@ use Stripe\Token;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Throwable;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 use SM\Factory\FactoryInterface;
 use App\Util\PaymentMethods;
 use App\Util\PaymentStatuses;
 use App\Http\Resources\Order\NewOrderResource;
+use App\Mail\OrderPaidEmail;
 
 class StripeController extends Controller
 {
@@ -63,6 +65,7 @@ class StripeController extends Controller
             if($charge->status === PaymentStatuses::$STRIPE_SUCCESS){
                 $orderStateMachine->apply('successful_payment');
                 $order->payment_status = PaymentStatuses::$SUCCESSFUL;
+                Mail::to($order->delivery_email)->send(new OrderPaidEmail($order->organisation_name, $order->order_number));
             }
             
             if($charge->status === PaymentStatuses::$STRIPE_FAILED){

@@ -21,7 +21,30 @@ class ProductPolicy
     {
         return true;
     }
-
+    
+    
+    public function showCustom(User $user, Product $product)
+    {
+        if (! $user) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if ($user->isAdmin()) {
+            return true;
+        }
+        
+        if (! $user->organisation) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        if (! $user->is_from_buyer_organisation()) {
+            return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
+        }
+        
+        return true;
+    }
+    
+    
     public function create(User $user)
     {
         if (! $user) {

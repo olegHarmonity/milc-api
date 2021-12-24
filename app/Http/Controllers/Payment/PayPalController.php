@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Util\PaymentStatuses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 use Omnipay\Omnipay;
 use Throwable;
 use SM\Factory\FactoryInterface;
@@ -14,6 +15,7 @@ use Omnipay\Common\GatewayInterface;
 use App\Http\Resources\Order\NewOrderResource;
 use App\Util\PaymentMethods;
 use Illuminate\Support\Facades\Redirect;
+use App\Mail\OrderPaidEmail;
 
 class PayPalController extends Controller
 {
@@ -116,6 +118,8 @@ class PayPalController extends Controller
                     $order->payment_status = PaymentStatuses::$SUCCESSFUL;
                     $order->transaction_id = $paypalResponse['id'];
                     $order->save();
+                    
+                    Mail::to($order->delivery_email)->send(new OrderPaidEmail($order->organisation_name, $order->order_number));
                 }
                 return (new NewOrderResource($order))->response()->setStatusCode(200);
             } else {
