@@ -171,9 +171,10 @@ class MediaHubController extends Controller
     public function startUpload(StartMediaHubFileRequest $request){
 
         $this->CheckOrCreateOrganisation();
-        $this->CheckOrCreateProduct($request->product_id);
-        
+        $this->CheckOrCreateProduct($request->externalReference);
+     
         $data = $request->validated();
+        $data['tenantName'] = auth()->user()->organisation->organisation_name;
         $token =  $this->getAuthToken()['access_token'];
         $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/s3/multipart',$data);
         

@@ -21,16 +21,10 @@ class StartMediaHubFileRequest extends FormRequest
             'type' => [
                 'required',
             ],  
-            'tenantName' => [
-                'required',
-            ], 
             'externalReference' => [
                 'required',
             ],
             'assetId' => [
-                'required',
-            ],
-            'product_id' => [
                 'required',
             ],
         ];
