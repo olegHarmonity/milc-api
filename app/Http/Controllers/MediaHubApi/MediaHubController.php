@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use App\Helper\SearchFormatter;
 use App\Http\Requests\MediaHub\StoreMediaHubRequest;
 use App\Http\Requests\MediaHub\StoreMediaHubFileRequest;
+use App\Http\Requests\MediaHub\StartMediaHubFileRequest;
 use App\Http\Requests\MediaHub\UpdateMediaHubRequest;
 use App\Http\Resources\CollectionResource;
 use App\Models\MediaHubAssets;
@@ -165,6 +166,20 @@ class MediaHubController extends Controller
                 return $response->json();
             }
         }
+    }
+
+    public function startUpload(StartMediaHubFileRequest $request){
+
+        $this->CheckOrCreateOrganisation();
+        $this->CheckOrCreateProduct($request->product_id);
+        
+        $data = $request->validated();
+        $token =  $this->getAuthToken()['access_token'];
+        $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/s3/multipart',$data);
+        
+
+        return $response->json();
+
     }
     
 }
