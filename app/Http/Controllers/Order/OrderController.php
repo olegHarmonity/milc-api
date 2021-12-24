@@ -75,8 +75,10 @@ class OrderController extends Controller
     {
         try {
             Gate::authorize('create', Order::class);
+            
             $rightsBundle = RightsBundle::findOrFail($request->get('rights_bundle_id'));
             $buyerUser = $this->user();
+            
             $order = OrderFactory::createNewOrder($buyerUser, $rightsBundle);
 
             return (new NewOrderResource($order))->response()->setStatusCode(201);

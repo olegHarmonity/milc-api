@@ -131,6 +131,9 @@ class UpdateProductRequest extends FormRequest
             'rights_bundles' => [
                 'sometimes',
             ],
+            'rights_bundles.buyer_id' => [
+                'sometimes',
+            ],
             'rights_bundles.*.price' => [
                 'sometimes',
                 'required'
