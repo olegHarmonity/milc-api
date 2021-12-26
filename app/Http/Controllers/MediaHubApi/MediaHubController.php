@@ -39,7 +39,6 @@ class MediaHubController extends Controller
         $mediaHubAssets = MediaHubAssets::findOrFail($id);
 
         return new CollectionResource($mediaHubAssets);
-
     }
 
     public function store(StoreMediaHubRequest $request)
@@ -59,7 +58,6 @@ class MediaHubController extends Controller
         $mediaHubAssets->update();
 
         return new CollectionResource($mediaHubAssets);
-    
     }
 
     public function destroy($id)
@@ -73,11 +71,11 @@ class MediaHubController extends Controller
         return response()->json([
             'message' => 'Asset deleted!'
         ]);
-        
     }
 
-    public function getAuthToken(){
-       
+    public function getAuthToken()
+    {
+
         $client_id = env('CLIENT_ID');
         $secret = env('CLIENT_SCRET');
 
@@ -86,63 +84,62 @@ class MediaHubController extends Controller
             'client_id' => $client_id,
         ];
 
-        $response = Http::withBasicAuth($client_id ,$secret)->asForm()->post(env('MEDIA_HUB_AUTH'),$data);
+        $response = Http::withBasicAuth($client_id, $secret)->asForm()->post(env('MEDIA_HUB_AUTH'), $data);
 
         return $response->json();
-        
     }
 
-    public function CheckOrCreateOrganisation() {
+    public function CheckOrCreateOrganisation()
+    {
 
         $organisation = auth()->user()->organisation;
         $token =  $this->getAuthToken()['access_token'];
         $blnCheck = false;
-        
-        if($organisation->external_reference){
-            $response = Http::withToken($token)->get(env('MEDIA_HUB_API').'/tenants/'. $organisation->external_reference);
 
-            if($response->status() == 404){
+        if ($organisation->external_reference) {
+            $response = Http::withToken($token)->get(env('MEDIA_HUB_API') . '/tenants/' . $organisation->external_reference);
+
+            if ($response->status() == 404) {
                 $blnCheck = true;
             }
         } else {
             $blnCheck = true;
         }
- 
-        if($blnCheck){
-            $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/tenants' , ['name' => $organisation->organisation_name]);
-           
-            if($response->successful()){
-                    $organisation->external_reference = $response->json()['id'];
-                    $organisation->save();
+
+        if ($blnCheck) {
+            $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/tenants', ['name' => $organisation->organisation_name]);
+
+            if ($response->successful()) {
+                $organisation->external_reference = $response->json()['id'];
+                $organisation->save();
             } else {
                 return $response->json();
             }
-        } else {            
+        } else {
             return $response->json();
         }
-
     }
 
-    public function CheckOrCreateProduct($id) {
+    public function CheckOrCreateProduct($id)
+    {
         $product = Product::findOrFail($id);
         $token =  $this->getAuthToken()['access_token'];
         $blnCheck = false;
-    
-        if($product->external_reference){
-            $response = Http::withToken($token)->get(env('MEDIA_HUB_API'). '/assets/' . $product->external_reference);
 
-            if($response->status() == 404){
+        if ($product->external_reference) {
+            $response = Http::withToken($token)->get(env('MEDIA_HUB_API') . '/assets/' . $product->external_reference);
+
+            if ($response->status() == 404) {
                 $blnCheck = true;
             }
-
         } else {
             $blnCheck = true;
         }
 
-        if($blnCheck){
-       
+        if ($blnCheck) {
+
             $aryGenres = [];
-            foreach($product->genres as $genres){
+            foreach ($product->genres as $genres) {
                 $aryGenres[] = $genres->name;
             }
 
@@ -156,10 +153,10 @@ class MediaHubController extends Controller
                 ],
                 "title" => $product->title,
             ];
-   
-            $response = Http::withToken($token)->post(env('MEDIA_HUB_API'). '/assets/' , $data);
-   
-            if($response->successful()){
+
+            $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/assets/', $data);
+
+            if ($response->successful()) {
                 $product->external_reference = $response->json()['id'];
                 $product->save();
             } else {
@@ -168,19 +165,74 @@ class MediaHubController extends Controller
         }
     }
 
-    public function startUpload(StartMediaHubFileRequest $request){
-
+    public function createMultipartUpload(StartMediaHubFileRequest $request)
+    {
         $this->CheckOrCreateOrganisation();
         $this->CheckOrCreateProduct($request->externalReference);
-     
+
+        $token =  $this->getAuthToken()['access_token'];
+        $url = env('MEDIA_HUB_API') . '/s3/multipart';
+
         $data = $request->validated();
         $data['tenantName'] = auth()->user()->organisation->organisation_name;
-        $token =  $this->getAuthToken()['access_token'];
-        $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/s3/multipart',$data);
-        
 
-        return $response->json();
+        $response = Http::withToken($token)->post($url, $data);
 
+        return response()->json($response->json(), $response->status());
     }
-    
+
+    public function listParts(Request $request, string $uploadId)
+    {
+        $token =  $this->getAuthToken()['access_token'];
+        $url = env('MEDIA_HUB_API') . "/s3/multipart/$uploadId";
+
+        $data = [
+            'key' => $request->input('key'),
+        ];
+
+        $response = Http::withToken($token)->get($url, $data);
+
+        return response()->json($response->json(), $response->status());
+    }
+
+    public function prepareUploadParts(Request $request, string $uploadId)
+    {
+        $token =  $this->getAuthToken()['access_token'];
+        $url = env('MEDIA_HUB_API') . "/s3/multipart/$uploadId/batch";
+
+        $data = [
+            'key' => $request->input('key'),
+            'partNumbers' => $request->input('partNumbers')
+        ];
+
+        $response = Http::withToken($token)->get($url, $data);
+
+        return response()->json($response->json(), $response->status());
+    }
+
+    public function completeMultipartUpload(Request $request, string $uploadId)
+    {
+        $token =  $this->getAuthToken()['access_token'];
+        $key = $request->input('key');
+        $url = env('MEDIA_HUB_API') . "/s3/multipart/$uploadId/complete?key=$key";
+
+        $data = [
+            'parts' => $request->input('parts')
+        ];
+
+        $response = Http::withToken($token)->post($url, $data);
+
+        return response()->json($response->json(), $response->status());
+    }
+
+    public function abortMultipartUpload(Request $request, string $uploadId)
+    {
+        $token =  $this->getAuthToken()['access_token'];
+        $key = $request->input('key');
+        $url = env('MEDIA_HUB_API') . "/s3/multipart/$uploadId?key=$key";
+
+        $response = Http::withToken($token)->delete($url);
+
+        return response()->json($response->json(), $response->status());
+    }
 }
