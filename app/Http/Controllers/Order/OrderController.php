@@ -225,7 +225,7 @@ class OrderController extends Controller
 
             $order->save();
             
-            Mail::to($order->delivery_email)->send(new OrderCompleteEmail($order->organisation_name, $order->order_number));
+            Mail::to($order->delivery_email)->send(new OrderCompleteEmail($order->organisation_name, $order->order_number, $order));
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
