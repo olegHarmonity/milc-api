@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Mail\VerifyAccountEmail;
 use App\Models\UserActivity;
 use App\Util\UserActivities;
+use App\Util\UserStatuses;
+use App\Util\OrganisationStatuses;
 
 class AuthController extends Controller
 {
@@ -29,8 +31,45 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
-        // $credentials['is_verified'] = 1;
+        
+        $user = User::where('email', $credentials['email'])->first();
+        
+        if(!$user){
+            return response()->json([
+                'success' => false,
+                'error' => 'invalid_credentials'
+            ], 401);
+        }
+        
+        if(!$user->is_verified){
+            return response()->json([
+                'success' => false,
+                'error' => 'not_verified'
+            ], 401);
+        }
+        
+        if($user->status !== UserStatuses::$ACTIVE){
+            return response()->json([
+                'success' => false,
+                'error' => 'user_inactive'
+            ], 401);
+        }
+        
+        if($user->organisation){
+            if($user->organisation->status === OrganisationStatuses::$PENDING){
+                return response()->json([
+                    'success' => false,
+                    'error' => 'organisation_pending'
+                ], 401);
+            }
+            
+            if($user->organisation->status === OrganisationStatuses::$DECLINED){
+                return response()->json([
+                    'success' => false,
+                    'error' => 'organisation_declined'
+                ], 401);
+            }
+        }
 
         try {
             if (! $token = auth()->attempt($credentials)) {

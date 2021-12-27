@@ -13,12 +13,22 @@ class AuthTest extends ApiTestCase
             'email' => 'admin@milc.com',
             'password' => 'password'
         ];
-
         $response = $this->post('/api/auth/login', $data);
-
+        
         $response
             ->assertStatus(200)
             ->assertJson(fn(AssertableJson $json) => $json->has('access_token')->etc());
+    }
+    
+    public function test_login_no_credentials()
+    {
+        $data = [
+            'email' => 'admewewin@milc.com',
+            'password' => 'password'
+        ];
+        
+        $response = $this->post('/api/auth/login', $data);       $response
+        ->assertStatus(401);
     }
 
     public function test_refresh_token()

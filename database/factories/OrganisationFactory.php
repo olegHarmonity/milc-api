@@ -42,7 +42,8 @@ class OrganisationFactory extends Factory
             'postal_code' => $this->faker->postcode(),
             'iban' => $this->faker->iban(),
             'swift_bic' => $this->faker->swiftBicNumber(),
-            'bank_name' => $this->faker->city() . ' bank inc.'
+            'bank_name' => $this->faker->city() . ' bank inc.',
+            'status' => OrganisationStatuses::$ACCEPTED
         ];
     }
     
