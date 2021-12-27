@@ -165,6 +165,22 @@ class MediaHubController extends Controller
         }
     }
 
+    //-------------------------------------------------------------------------------
+    // Items ------------------------------------------------------------------------
+
+    public function getItemsForAsset(string $assetId)
+    {
+        $token =  $this->getAuthToken()['access_token'];
+        $url = env('MEDIA_HUB_API') . "/assets/$assetId/items";
+
+        $response = Http::withToken($token)->get($url);
+
+        return response()->json($response->json(), $response->status());
+    }
+
+    //-------------------------------------------------------------------------------
+    // File upload ------------------------------------------------------------------
+
     public function createMultipartUpload(StartMediaHubFileRequest $request)
     {
         $this->CheckOrCreateOrganisation();
