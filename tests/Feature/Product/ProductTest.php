@@ -28,6 +28,12 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/products/by-category/1');
         $response->assertStatus(200);
     }
+    
+    public function test_get_products_by_category_all()
+    {
+        $response = $this->get('/api/products/by-category/all');
+        $response->assertStatus(200);
+    }
 
     public function test_get_movie_genres()
     {

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Product;
 
 use App\DataTransformer\Product\ProductStoreDataTransformer;
@@ -53,9 +52,18 @@ class ProductController extends Controller
 
     public function getProductsByCategory(Request $request, $categoryId)
     {
-        $productsQuery = Product::whereHas('genres', function ($q) use ($categoryId) {
-            $q->where('movie_genres.id', $categoryId);
-        });
+        $all = false;
+
+        if ($categoryId == 'all') {
+            $all = true;
+        }
+
+        $productsQuery = null;
+        if (!$all) {
+            $productsQuery = Product::whereHas('genres', function ($q) use ($categoryId) {
+                $q->where('movie_genres.id', $categoryId);
+            });
+        }
 
         $products = SearchFormatter::getSearchQueries($request, Product::class, $productsQuery);
 
@@ -77,7 +85,7 @@ class ProductController extends Controller
             'is_saved'
         ]);
 
-        if (!SearchFormatter::requestHasSearchParameters($request)) {
+        if (! SearchFormatter::requestHasSearchParameters($request) and ! $all) {
             $movieGenre = MovieGenre::findOrFail($categoryId);
             $movieGenre->number_of_clicks += 1;
             $movieGenre->save();
@@ -92,17 +100,16 @@ class ProductController extends Controller
 
         return new ProductResource($product);
     }
-    
+
     public function showCustomBundles(Request $request, $id)
     {
         $product = Product::findOrFail($id);
         Gate::authorize('showCustom', $product);
-        
+
         $product->load('organisation:id,organisation_name');
-        
+
         return new ProductCustomBundlesResource($product);
     }
-    
 
     public function store(CreateProductRequest $request)
     {
