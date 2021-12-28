@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             //GeneralAdminSettingsSeeder::class,
             VatRuleSeeder::class,
-            ContractSeeder::class
+            ContractSeeder::class,
+            NotificationSeeder::class
         ]);
     }
 }

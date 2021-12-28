@@ -20,11 +20,13 @@
         "musonza/chat": "^4.6",
         "omnipay/paypal": "^3.0",
         "sebdesign/laravel-state-machine": "^3.2",
+        "spatie/laravel-db-snapshots": "^1.7",
         "stripe/stripe-php": "^7.104",
         "tymon/jwt-auth": "^1.0.",
         "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {
+        "brianium/paratest": "^6.4",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",

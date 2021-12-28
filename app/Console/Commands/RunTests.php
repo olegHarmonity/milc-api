@@ -1,58 +1,59 @@
 <?php
-
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Process\InputStream;
+use Symfony\Component\Console\Input\ArrayInput;
 
 class RunTests extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'run:tests {dbName?}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
+    protected $signature = 'run:tests {--filter=}  {--env=}';
+
     protected $description = 'Command for running php tests with database setup';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
     }
-
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
+    
     public function handle()
     {
+        $updateDatabase = $this->option('env');
+        $filter = $this->option('filter');
+
         $this->info("\nCreating database...\n");
 
         $this->call('db:create');
 
-        $this->info("\nInstalling migrations...\n");
+        if (! empty($updateDatabase)) {
 
-    //    $this->call('migrate:install');
+            $this->info("\nDeleting database dump...\n");
 
-        $this->info("\nRunning migrations...\n");
+            $this->call('snapshot:delete', [
+                'name' => 'test-db-dump'
+            ]);
 
-        $this->call('migrate:fresh');
+            $this->info("\nRunning migrations...\n");
 
-        $this->info("\nRunning seeders...\n");
+            $this->call('migrate:fresh');
 
-        $this->call('db:seed');
+            $this->info("\nRunning seeders...\n");
+
+            $this->call('db:seed');
+
+            $this->info("\nDumping database...\n");
+
+            $this->call('snapshot:create', [
+                'name' => 'test-db-dump',
+                '--compress' => true
+            ]);
+        } else {
+            $this->call('snapshot:load', [
+                'name' => 'test-db-dump'
+            ]);
+        }
 
         $this->info("\nClearing cache...\n");
 
@@ -61,8 +62,10 @@ class RunTests extends Command
         $this->call('route:cache');
 
         $this->info("\nRunning tests...\n");
-
-        $this->call('test');
+        
+        $this->call('test', [
+            '--filter' => $filter,
+        ]);
 
         return 0;
     }

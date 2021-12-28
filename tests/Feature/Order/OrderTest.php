@@ -137,7 +137,6 @@ class OrderTest extends ApiTestCase
         $response->assertStatus(200);
         
         $response = $this->put('/api/checkout/mark-completed/123-ABC');
-        dump($response);die();
         $response->assertStatus(200);
         
         $order = Order::where('id', '=', 1)->first();
