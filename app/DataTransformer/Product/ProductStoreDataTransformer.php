@@ -52,10 +52,12 @@ class ProductStoreDataTransformer
             $directorsRequest = $productionInfoRequest['directors'];
             unset($productionInfoRequest['directors']);
         }
+        
         if (isset($productionInfoRequest['producers'])) {
             $producersRequest = $productionInfoRequest['producers'];
             unset($productionInfoRequest['producers']);
         }
+        
         if (isset($productionInfoRequest['writers'])) {
             $writersRequest = $productionInfoRequest['writers'];
             unset($productionInfoRequest['writers']);

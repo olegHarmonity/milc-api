@@ -9,6 +9,7 @@ use App\Http\Controllers\Core\EmailController;
 use App\Http\Controllers\Core\MoneyController;
 use App\Http\Controllers\Core\FeedbackController;
 use App\Http\Controllers\Core\GeneralAdminSettingsController;
+use App\Http\Controllers\Core\NotificationController;
 
 
 Route::post('/send-email', [
@@ -29,4 +30,17 @@ Route::post('/exchange-currency', [
 
 
 Route::apiResource('admin-settings', GeneralAdminSettingsController::class);
+
+Route::get('/notifications/has-unread', [
+    NotificationController::class,
+    'hasUnreadNotifications'
+])->name('hasUnreadNotifications');
+
+Route::apiResource('notifications', NotificationController::class);
+
+Route::put('/notifications/mark-as-read/{id}', [
+    NotificationController::class,
+    'markAsRead'
+])->name('markAsRead');
+
 
