@@ -16,3 +16,4 @@ Route::delete('/s3/multipart/{uploadId}', [MediaHubController::class, 'abortMult
 
 // Items
 Route::get('/assets/{assetId}/items', [MediaHubController::class, 'getItemsForAsset']);
+Route::delete('/items/{itemId}', [MediaHubController::class, 'deleteItem']);

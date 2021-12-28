@@ -29,8 +29,6 @@ class MediaHubController extends Controller
         $mediaHubAssets = $mediaHubAssets->paginate($request->input('per_page'));
 
         return CollectionResource::make($mediaHubAssets);
-
-        return $response->json();
     }
 
     public function show($id)
@@ -174,6 +172,16 @@ class MediaHubController extends Controller
         $url = env('MEDIA_HUB_API') . "/assets/$assetId/items";
 
         $response = Http::withToken($token)->get($url);
+
+        return response()->json($response->json(), $response->status());
+    }
+
+    public function deleteItem(string $itemId)
+    {
+        $token =  $this->getAuthToken()['access_token'];
+        $url = env('MEDIA_HUB_API') . "/items/$itemId";
+
+        $response = Http::withToken($token)->delete($url);
 
         return response()->json($response->json(), $response->status());
     }
