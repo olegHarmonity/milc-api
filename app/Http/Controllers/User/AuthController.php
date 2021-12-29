@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
@@ -31,51 +32,21 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        
+
         $user = User::where('email', $credentials['email'])->first();
-        
-        if(!$user){
+
+        if (!$user) {
             return response()->json([
                 'success' => false,
                 'error' => 'invalid_credentials'
             ], 401);
         }
-        
-        if(!$user->is_verified){
-            return response()->json([
-                'success' => false,
-                'error' => 'not_verified'
-            ], 401);
-        }
-        
-        if($user->status !== UserStatuses::$ACTIVE){
-            return response()->json([
-                'success' => false,
-                'error' => 'user_inactive'
-            ], 401);
-        }
-        
-        if($user->organisation){
-            if($user->organisation->status === OrganisationStatuses::$PENDING){
-                return response()->json([
-                    'success' => false,
-                    'error' => 'organisation_pending'
-                ], 401);
-            }
-            
-            if($user->organisation->status === OrganisationStatuses::$DECLINED){
-                return response()->json([
-                    'success' => false,
-                    'error' => 'organisation_declined'
-                ], 401);
-            }
-        }
 
         try {
-            if (! $token = auth()->attempt($credentials)) {
+            if (!$token = auth()->attempt($credentials)) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'We cant find an account with these credentials. Please make sure you entered the right information and you have verified your email address.'
+                    'error' => 'invalid_credentials'
                 ], 401);
             }
         } catch (JWTException $e) {
@@ -84,11 +55,41 @@ class AuthController extends Controller
                 'error' => 'Failed to login, please try again.'
             ], 401);
         }
-        
-        DB::beginTransaction();
+
+        if (!$user->is_verified) {
+            return response()->json([
+                'success' => false,
+                'error' => 'not_verified'
+            ], 401);
+        }
+
+        if ($user->status !== UserStatuses::$ACTIVE) {
+            return response()->json([
+                'success' => false,
+                'error' => 'user_inactive'
+            ], 401);
+        }
+
+        if ($user->organisation) {
+            if ($user->organisation->status === OrganisationStatuses::$PENDING) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'organisation_pending'
+                ], 401);
+            }
+
+            if ($user->organisation->status === OrganisationStatuses::$DECLINED) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'organisation_declined'
+                ], 401);
+            }
+        }
+
+        // DB::beginTransaction();
         DB::table('user_activities')->insert(['user_id' => auth()->user()->id, 'activity' => UserActivities::$LOGIN, 'created_at' => new \DateTime()]);
-        DB::commit();
-        
+        // DB::commit();
+
         return $this->respondWithToken($token);
     }
 
@@ -110,7 +111,7 @@ class AuthController extends Controller
     {
         $check = DB::table('user_verifications')->where('token', $verificationCode)->first();
 
-        if (! is_null($check)) {
+        if (!is_null($check)) {
             $user = User::find($check->user_id);
 
             if ($user->is_verified == 1) {
@@ -151,13 +152,13 @@ class AuthController extends Controller
         }
 
         $existingVerification = DB::table('user_verifications')->where('user_id', $user->id)->first();
-        
-        if(isset($existingVerification->id)){
+
+        if (isset($existingVerification->id)) {
             DB::table('user_verifications')->delete($existingVerification->id);
         }
 
         $verificationCode = str_random(30);
-        
+
         DB::table('user_verifications')->insert([
             'user_id' => $user->id,
             'token' => $verificationCode
