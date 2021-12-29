@@ -293,4 +293,13 @@ class UserTest extends ApiTestCase
         $response->assertStatus(200);
     }
     
+    public function test_delete_user()
+    {
+        $this->loginAdmin();
+        
+        $response = $this->delete('/api/users/11');
+        
+        $response->assertStatus(200);
+    }
+    
 }
