@@ -31,10 +31,12 @@ use App\Mail\OrderRejectedEmail;
 use App\Mail\OrderCancelledEmail;
 use App\Mail\OrderRefundedEmail;
 use App\Mail\OrderPaidEmail;
-
+use Database\Factories\NotificationFactory;
+use App\Util\NotificationCategories;
 
 class OrderController extends Controller
 {
+
     private FactoryInterface $smFactory;
 
     public function __construct(FactoryInterface $smFactory)
@@ -76,10 +78,10 @@ class OrderController extends Controller
     {
         try {
             Gate::authorize('create', Order::class);
-            
+
             $rightsBundle = RightsBundle::findOrFail($request->get('rights_bundle_id'));
             $buyerUser = $this->user();
-            
+
             $order = OrderFactory::createNewOrder($buyerUser, $rightsBundle);
 
             return (new NewOrderResource($order))->response()->setStatusCode(201);
@@ -126,13 +128,14 @@ class OrderController extends Controller
                 $orderStateMachine->apply('accept_contract');
                 $order->contract_accepted_at = new \DateTime();
                 $order->contract_accepted = true;
-                
+
                 $contract = $order->contract;
-                
+
                 Mail::to($contract->buyer->email)->send(new ContractAcceptedBuyerEmail($contract->buyer->organisation_name, $order->order_number, $contract));
-                
+
                 Mail::to($contract->seller->email)->send(new ContractAcceptedSellerEmail($contract->seller->organisation_name, $order->order_number, $contract));
-                
+
+                NotificationFactory::createNotification("Order contract accpeted", "The contract for your order no. " . $orderNumber . " has been accepted. To view or download it, go to your order view page.", NotificationCategories::$ORDER, $contract->buyer->id);
             } else {
                 $orderStateMachine->apply('deny_contract');
             }
@@ -159,9 +162,14 @@ class OrderController extends Controller
             $order->payment_started_at = new \DateTime();
 
             $order->save();
-            
+
             $bankInfo = GeneralAdminSettings::all()->first();
-            Mail::to($order->delivery_email)->send(new BankTransferInitEmail($order->organisation_name,$order->order_number, $bankInfo->iban, $bankInfo->swift_bic, $bankInfo->bank_name));
+            
+            if ($bankInfo) {
+                Mail::to($order->delivery_email)->send(new BankTransferInitEmail($order->organisation_name, $order->order_number, $bankInfo->iban, $bankInfo->swift_bic, $bankInfo->bank_name));
+                NotificationFactory::createNotification("Order payment started", "The payment for your order no. " . $orderNumber . " has been initiated. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+            }
+            
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -182,7 +190,8 @@ class OrderController extends Controller
 
             $order->save();
             Mail::to($order->delivery_email)->send(new AssetsSentEmail($order->organisation_name, $order->order_number));
-            
+            NotificationFactory::createNotification("Assets sent for order", "Assets for your order no. " . $orderNumber . " have been marked as sent. To view or download them, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -202,9 +211,11 @@ class OrderController extends Controller
             $order->assets_received_at = new \DateTime();
 
             $order->save();
-            
+
             $seller = $order->rights_bundle->seller();
             Mail::to($seller->email)->send(new AssetsReceivedEmail($seller->organisation_name, $order->order_number));
+            NotificationFactory::createNotification("Order paid", "Your order no. " . $orderNumber . " has been marked as paid. To view the order, go to your order view page.", NotificationCategories::$ORDER, $seller->id);
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -224,8 +235,10 @@ class OrderController extends Controller
             $order->completed_at = new \DateTime();
 
             $order->save();
-            
+
             Mail::to($order->delivery_email)->send(new OrderCompleteEmail($order->organisation_name, $order->order_number, $order));
+            NotificationFactory::createNotification("Order complete", "Your order no. " . $orderNumber . " has been marked as completed. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -245,8 +258,10 @@ class OrderController extends Controller
             $order->rejected_at = new \DateTime();
 
             $order->save();
-            
+
             Mail::to($order->delivery_email)->send(new OrderRejectedEmail($order->organisation_name, $order->order_number));
+            NotificationFactory::createNotification("Order rejected", "Your order no. " . $orderNumber . " has been marked as rejected. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -266,8 +281,10 @@ class OrderController extends Controller
             $order->cancelled_at = new \DateTime();
 
             $order->save();
-            
+
             Mail::to($order->delivery_email)->send(new OrderCancelledEmail($order->organisation_name, $order->order_number));
+            NotificationFactory::createNotification("Order cnacelled", "Your order no. " . $orderNumber . " has been marked as cancelled. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -288,8 +305,10 @@ class OrderController extends Controller
             $order->refunded_at = new \DateTime();
 
             $order->save();
-            
+
             Mail::to($order->delivery_email)->send(new OrderRefundedEmail($order->organisation_name, $order->order_number));
+            NotificationFactory::createNotification("Order refunded", "Your order no. " . $orderNumber . " has been marked as refunded. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -312,6 +331,7 @@ class OrderController extends Controller
                 $order->paid_at = new \DateTime();
                 $order->save();
                 Mail::to($order->delivery_email)->send(new OrderPaidEmail($order->organisation_name, $order->order_number));
+                NotificationFactory::createNotification("Order paid", "Your order no. " . $orderNumber . " has been marked as paid. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
             } else {
                 throw new BadRequestHttpException("Only bank transfers can be marked as paid");
             }

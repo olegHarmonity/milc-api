@@ -5,8 +5,6 @@ use Tests\ApiTestCase;
 
 class ConversationTest extends ApiTestCase
 {
-    
-    
     public function test_post_conversation()
     {
         $this->loginCompanyAdmin();
