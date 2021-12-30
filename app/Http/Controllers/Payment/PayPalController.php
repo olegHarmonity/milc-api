@@ -16,6 +16,8 @@ use App\Http\Resources\Order\NewOrderResource;
 use App\Util\PaymentMethods;
 use Illuminate\Support\Facades\Redirect;
 use App\Mail\OrderPaidEmail;
+use Database\Factories\NotificationFactory;
+use App\Util\NotificationCategories;
 
 class PayPalController extends Controller
 {
@@ -120,6 +122,8 @@ class PayPalController extends Controller
                     $order->save();
                     
                     Mail::to($order->delivery_email)->send(new OrderPaidEmail($order->organisation_name, $order->order_number));
+                    NotificationFactory::createNotification("Order paid", "Your order no. " . $order->order_number . " has been marked as paid. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+                    
                 }
                 return (new NewOrderResource($order))->response()->setStatusCode(200);
             } else {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Order\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Order\ContractController;
+use App\Http\Controllers\Order\DownloadPdfController;
 
 Route::put('/checkout/change-currency/{orderNumber}', [
     OrderController::class,
@@ -61,5 +62,10 @@ Route::get('/orders/{id}', [OrderController::class, 'show']);
 Route::get('/orders', [OrderController::class, 'index']);
 
 Route::post('/orders', [OrderController::class, 'store']);
+
+Route::get('/download-order-pdf/{orderNumber}',[DownloadPdfController::class, 'downloadOrderPDF']);
+
+Route::get('/download-contract-pdf/{orderNumber}',[DownloadPdfController::class, 'downloadContractPDF']);
+
 
 

@@ -126,6 +126,7 @@ class ProductTest extends ApiTestCase
     public function test_get_product()
     {
         $response = $this->get('/api/products/1');
+
         $response->assertStatus(200);
     }
     
@@ -644,6 +645,13 @@ class ProductTest extends ApiTestCase
     public function test_get_persons()
     {
         $response = $this->get('/api/persons?search[full_name]=name name');
+        $response->assertStatus(200);
+    }
+    
+    public function test_delete_person()
+    {
+        $this->loginAdmin();
+        $response = $this->delete('/api/persons/1');
         $response->assertStatus(200);
     }
     

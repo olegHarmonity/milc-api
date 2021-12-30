@@ -12,7 +12,7 @@ class CreateProductionInfoDirectorsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('production_info_id')->nullable()->references('id')->on('production_infos')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('person_id')->nullable()->references('id')->on('people');
+            $table->foreignId('person_id')->nullable()->references('id')->on('people')->onDelete('set null');
         });
     }
 

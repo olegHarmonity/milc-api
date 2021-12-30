@@ -12,10 +12,12 @@ use Throwable;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use SM\Factory\FactoryInterface;
+use App\Util\NotificationCategories;
 use App\Util\PaymentMethods;
 use App\Util\PaymentStatuses;
 use App\Http\Resources\Order\NewOrderResource;
 use App\Mail\OrderPaidEmail;
+use Database\Factories\NotificationFactory;
 
 class StripeController extends Controller
 {
@@ -66,6 +68,8 @@ class StripeController extends Controller
                 $orderStateMachine->apply('successful_payment');
                 $order->payment_status = PaymentStatuses::$SUCCESSFUL;
                 Mail::to($order->delivery_email)->send(new OrderPaidEmail($order->organisation_name, $order->order_number));
+                NotificationFactory::createNotification("Order paid", "Your order no. " . $order->order_number . " has been marked as paid. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+                
             }
             
             if($charge->status === PaymentStatuses::$STRIPE_FAILED){

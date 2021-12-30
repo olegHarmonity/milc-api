@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Resources\Product;
 
 use App\Http\Resources\Resource;
@@ -13,36 +12,44 @@ use App\Models\Money;
 
 class ProductResource extends JsonResource
 {
+
     public function toArray($request)
     {
+        $user = auth()->user();
         $product = parent::toArray($request);
         $productFromDb = Product::findOrFail($product['id']);
 
         $bundleRights = $productFromDb->rights_bundles()->get();
         foreach ($bundleRights as $bundleRight) {
-            
-            if($bundleRight->buyer_id !== null){
+
+            if (! $user) {
                 continue;
             }
             
+            if (! $user->isAdmin()) {
+                if ($bundleRight->buyer_id !== null && $bundleRight->buyer_id !== $user->organisation_id) {
+                    continue;
+                }
+            }
+
             $bundleResourceResponse = new Resource($bundleRight);
-            
+
             if (isset($bundleResourceResponse['price_id'])) {
                 $price = Money::where('id', $bundleResourceResponse['price_id'])->first();
                 $bundleResourceResponse['price'] = new Resource($price);
             }
-            
+
             $rightsInformationArray = [];
             $rightsInformations = $bundleRight->bundle_rights_information()->get();
             foreach ($rightsInformations as $rightsInformation) {
                 $rightsInformationArray[] = new Resource($rightsInformation);
             }
-            
+
             $bundleResourceResponse['rights_information'] = $rightsInformationArray;
-            
+
             $product['bundle_rights'][] = $bundleResourceResponse;
         }
-        
+
         $rightsInformations = $productFromDb->available_formats()->get();
         foreach ($rightsInformations as $availableFormat) {
             $product['available_formats'][] = new Resource($availableFormat);
@@ -71,7 +78,8 @@ class ProductResource extends JsonResource
         $rightsInformation = $productFromDb->rights_information()->get();
         foreach ($rightsInformation as $rightsInformationItem) {
 
-            $rightsInformationResource = new Resource($rightsInformationItem);;
+            $rightsInformationResource = new Resource($rightsInformationItem);
+            ;
 
             $availableRights = $rightsInformationItem->available_rights()->get();
             $availableRightsArray = [];
@@ -154,8 +162,7 @@ class ProductResource extends JsonResource
             $price = Video::where('id', $product['trailer_id'])->first();
             $product['trailer'] = new Resource($price);
         }
-       
-        
+
         return $product;
     }
 }

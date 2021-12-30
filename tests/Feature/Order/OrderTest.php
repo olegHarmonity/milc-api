@@ -53,6 +53,24 @@ class OrderTest extends ApiTestCase
         $response = $this->get('/api/checkout/contract/123-ABD');
     }
     
+    public function test_download_order(){
+        
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/download-order-pdf/123-ABC');
+
+        $response->assertStatus(200);
+    }
+    
+    public function test_download_contract(){
+        
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/download-contract-pdf/123-ABC');
+        
+        $response->assertStatus(200);
+    }
+    
     public function test_order_change_currency()
     {
         $this->loginCompanyAdmin();
@@ -169,6 +187,15 @@ class OrderTest extends ApiTestCase
         $order = Order::where('id', '=', 1)->first();
         $order->state= CartStates::$CONTRACT_ACCEPTED;
         $order->save();
+    }
+    
+    public function test_get_notifications_org_admin()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/notifications?exact_search[category]=order');
+
+        $response->assertStatus(200);
     }
 }
 

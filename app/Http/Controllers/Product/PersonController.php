@@ -76,4 +76,15 @@ class PersonController extends Controller
         
         return $person;
     }
+    
+    public function destroy(Person $person)
+    {
+        Gate::authorize('delete', $person);
+        
+        $person->delete();
+        
+        return response()->json([
+            'message' => 'Person deleted!'
+        ]);
+    }
 }
