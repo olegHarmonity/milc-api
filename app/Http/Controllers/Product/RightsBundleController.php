@@ -2,9 +2,18 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\RightsBundle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\Product\CreateRightsBundleRequest;
 use App\Http\Resources\Resource;
+use App\DataTransformer\Product\CreateRightsBundlesDataTransformer;
+use App\Http\Resources\Product\ProductResource;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class RightsBundleController extends Controller
 {
@@ -29,15 +38,23 @@ class RightsBundleController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(CreateRightsBundleRequest $request)
     {
-        //
+        try {
+            
+            $arrayRequest = $request->validated();
+
+            $product = Product::findOrFail($arrayRequest['product_id']);
+
+            Gate::authorize('update', $product);
+
+            $product = CreateRightsBundlesDataTransformer::transformData($arrayRequest, $product);
+
+            return (new ProductResource($product))->response()->setStatusCode(Response::HTTP_CREATED);
+        } catch (Throwable $e) {
+            DB::rollback();
+            throw new BadRequestHttpException($e->getMessage());
+        }
     }
 
     /**
@@ -46,7 +63,7 @@ class RightsBundleController extends Controller
      * @param \App\Models\RightsBundle $rightsBundle
      * @return \Illuminate\Http\Response
      */
-  
+
     /**
      * Show the form for editing the specified resource.
      *
