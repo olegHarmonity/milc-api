@@ -22,13 +22,15 @@ class ProductResource extends JsonResource
         $bundleRights = $productFromDb->rights_bundles()->get();
         foreach ($bundleRights as $bundleRight) {
 
-            if (! $user) {
-                continue;
-            }
-            
-            if (! $user->isAdmin()) {
-                if ($bundleRight->buyer_id !== null && $bundleRight->buyer_id !== $user->organisation_id) {
+            if ($bundleRight->buyer_id !== null) {
+                if (! $user) {
                     continue;
+                }
+
+                if (! $user->isAdmin()) {
+                    if ($bundleRight->buyer_id !== $user->organisation_id && $product->organisation_id !== $user->organisation_id) {
+                        continue;
+                    }
                 }
             }
 
