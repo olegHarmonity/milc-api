@@ -28,7 +28,7 @@ class ProductResource extends JsonResource
                 }
 
                 if (! $user->isAdmin()) {
-                    if ($bundleRight->buyer_id !== $user->organisation_id && $product->organisation_id !== $user->organisation_id) {
+                    if ($bundleRight->buyer_id !== $user->organisation_id && $productFromDb->organisation_id !== $user->organisation_id) {
                         continue;
                     }
                 }
