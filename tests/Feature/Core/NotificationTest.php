@@ -50,6 +50,14 @@ class NotificationTest extends ApiTestCase
         $response->assertStatus(200);
     }
     
+    public function test_mark_all_as_read_org_admin()
+    {
+        $this->loginCompanyAdmin();
+        
+        $response = $this->get('/api/notifications/mark-all-as-read');
+        $response->assertStatus(200);
+    }
+    
     public function test_get_notifications_admin()
     {
         $this->loginAdmin();

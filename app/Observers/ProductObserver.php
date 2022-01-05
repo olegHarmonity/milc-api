@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Observers;
 
 use App\Models\Product;
@@ -7,47 +6,53 @@ use Illuminate\Support\Facades\Http;
 
 class ProductObserver
 {
+
     /**
      * Handle the Product "created" event.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return void
      */
     public function created(Product $product)
     {
+        $token = $this->getAuthToken();
+        
+        if (! $token) {
+            return;
+        }
+        
+        $token = $token['access_token'];
+        $this->CheckOrCreateOrganisation();
+        $aryGenres = [];
+        foreach ($product->genres as $genres) {
+            $aryGenres[] = $genres->name;
+        }
 
-            $token =  $this->getAuthToken()['access_token'];
-            $this->CheckOrCreateOrganisation();
-            $aryGenres = [];
-            foreach ($product->genres as $genres) {
-                $aryGenres[] = $genres->name;
-            }
+        $data = [
+            "description" => $product->synopsis,
+            "externalReference" => $product->id,
+            "genres" => $aryGenres,
+            "tenant" => [
+                "id" => $product->organisation->external_reference,
+                "name" => $product->organisation->organisation_name
+            ],
+            "title" => $product->title
+        ];
 
-            $data = [
-                "description" => $product->synopsis,
-                "externalReference" => $product->id,
-                "genres" => $aryGenres,
-                "tenant" => [
-                    "id" => $product->organisation->external_reference,
-                    "name" => $product->organisation->organisation_name,
-                ],
-                "title" => $product->title,
-            ];
+        $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/assets/', $data);
 
-            $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/assets/', $data);
-
-            if ($response->successful()) {
-                $product->external_reference = $response->json()['id'];
-                $product->save();
-            } else {
-                return $response->json();
-            }
+        if ($response->successful()) {
+            $product->external_reference = $response->json()['id'];
+            $product->save();
+        } else {
+            return $response->json();
+        }
     }
 
     /**
      * Handle the Product "updated" event.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return void
      */
     public function updated(Product $product)
@@ -57,9 +62,10 @@ class ProductObserver
 
     public function CheckOrCreateOrganisation()
     {
-
         $organisation = auth()->user()->organisation;
-        $token =  $this->getAuthToken()['access_token'];
+        $token = $this->getAuthToken();
+
+        $token = $token['access_token'];
         $blnCheck = false;
 
         if ($organisation->external_reference) {
@@ -73,7 +79,9 @@ class ProductObserver
         }
 
         if ($blnCheck) {
-            $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/tenants', ['name' => $organisation->organisation_name]);
+            $response = Http::withToken($token)->post(env('MEDIA_HUB_API') . '/tenants', [
+                'name' => $organisation->organisation_name
+            ]);
 
             if ($response->successful()) {
                 $organisation->external_reference = $response->json()['id'];
@@ -88,17 +96,19 @@ class ProductObserver
 
     public function getAuthToken()
     {
-
         $client_id = env('CLIENT_ID');
         $secret = env('CLIENT_SCRET');
 
         $data = [
             'grant_type' => 'client_credentials',
-            'client_id' => $client_id,
+            'client_id' => $client_id
         ];
 
-        $response = Http::withBasicAuth($client_id, $secret)->asForm()->post(env('MEDIA_HUB_AUTH'), $data);
-
-        return $response->json();
+        if ($client_id) {
+            $response = Http::withBasicAuth($client_id, $secret)->asForm()->post(env('MEDIA_HUB_AUTH'), $data);
+            return $response->json();
+        }
+        
+        return null;
     }
 }

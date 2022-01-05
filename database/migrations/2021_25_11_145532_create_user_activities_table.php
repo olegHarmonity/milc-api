@@ -13,7 +13,7 @@ class CreateUserActivitiesTable extends Migration
         Schema::create('user_activities', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId( 'user_id' )->nullable()->constrained('users');
+            $table->foreignId( 'user_id' )->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('activity')->default(UserActivities::$LOGIN);
         });
     }
