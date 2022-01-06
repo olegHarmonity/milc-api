@@ -15,7 +15,7 @@ class ProductObserver
      */
     public function created(Product $product)
     {
-
+        if(auth()->user()){
             $token =  $this->getAuthToken()['access_token'];
             $this->CheckOrCreateOrganisation();
             $aryGenres = [];
@@ -42,6 +42,8 @@ class ProductObserver
             } else {
                 return $response->json();
             }
+        }
+        
     }
 
     /**

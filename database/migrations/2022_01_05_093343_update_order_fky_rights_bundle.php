@@ -8,8 +8,7 @@ class UpdateOrderFkyRightsBundle extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('rights_bundle_id')->change()->nullable()->unsigned();
-            $table->foreignId('rights_bundle_id')->change()->nullOnDelete();
+            $table->foreignId('rights_bundle_id')->change()->nullable()->nullOnDelete();
         });
     }
 
