@@ -84,29 +84,13 @@ class NotificationController extends Controller
 
         $user = $this->user();
 
-        $notifications = Notification::where('organisation_id', $user->organisation_id)->get();
-        foreach ($notifications as $notification) {
-            $notification->is_read = true;
-            $notification->save();
+        if ($user->isAdmin()) {
+            $affected = Notification::where('is_for_admin', 1)->update(['is_read' => 1]);
+        } else {
+            $affected = Notification::where('organisation_id', $user->organisation_id)->update(['is_read' => 1]);
         }
-        
-        $notificationsResponse = Notification::where('organisation_id', $user->organisation_id);
-        
-        $notificationsResponse = $notificationsResponse->select([
-            'id',
-            'title',
-            'message',
-            'is_read',
-            'organisation_id',
-            'sender_id',
-            'is_for_admin',
-            'category',
-            'created_at'
-        ]);
-        
-        $notificationsResponse = $notificationsResponse->paginate($request->input('per_page'));
 
-        return CollectionResource::make($notificationsResponse);
+        return response()->json(['affected' => $affected ]);
     }
 
     public function hasUnreadNotifications(Request $request)
