@@ -122,15 +122,6 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function resend()
-    {
-        $user = auth()->user();
-        $user->generateTwoFactorCode();
-        $user->notify(new TwoFactorCode());
-
-        return redirect()->back()->withMessage('The two factor code has been sent again');
-    }
-
     public function logout()
     {
         auth()->logout();
