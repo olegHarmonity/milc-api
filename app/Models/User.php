@@ -40,6 +40,8 @@ class User extends Authenticatable implements JWTSubject
         'role',
         'image_id',
         'is_verified',
+        'two_factor_code',
+        'two_factor_expires_at',
     ];
 
     /**
@@ -128,5 +130,22 @@ class User extends Authenticatable implements JWTSubject
     {
         $result = $this->role == UserRoles::$ROLE_COMPANY_ADMIN;
         return $orAdmin ? ($result || $this->isAdmin()) : $result;
+    }
+
+    public function generateTwoFactorCode()
+    {
+        $this->timestamps = false;
+        $this->two_factor_code = rand(100000, 999999);
+        $this->two_factor_expires_at = now()->addMinutes(10);
+        $this->save();
+        return $this->two_factor_code;
+    }
+
+    public function resetTwoFactorCode()
+    {
+        $this->timestamps = false;
+        $this->two_factor_code = null;
+        $this->two_factor_expires_at = null;
+        $this->save();
     }
 }

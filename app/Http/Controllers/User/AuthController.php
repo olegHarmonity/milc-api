@@ -10,6 +10,7 @@ use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Request;
 use App\Mail\VerifyAccountEmail;
+use App\Mail\LoginVerifyCodeEmail;
 use App\Models\UserActivity;
 use App\Util\UserActivities;
 use App\Util\UserStatuses;
@@ -23,6 +24,7 @@ class AuthController extends Controller
         $this->middleware('auth:api', [
             'except' => [
                 'login',
+                'loginVerify',
                 'verifyUser',
                 'resendVerificationEmail'
             ]
@@ -90,7 +92,43 @@ class AuthController extends Controller
         DB::table('user_activities')->insert(['user_id' => auth()->user()->id, 'activity' => UserActivities::$LOGIN, 'created_at' => new \DateTime()]);
         // DB::commit();
 
+        Mail::to($user->email)->send(new LoginVerifyCodeEmail($user->generateTwoFactorCode(), $user->first_name));
+
+        return $this->returnResponse([], 200, __('auth.login_code.sent'));
+
+        // return $this->respondWithToken($token);
+    }
+
+    /**
+     * @param LoginRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
+    public function loginVerify(Request $request)
+    {
+
+        $token = auth()->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+            'two_factor_code' => $request->code,
+        ]);
+
+        if (!$token) {
+            return $this->returnResponse([], 401, __('auth.invalid_code'));
+        }
+
+        $user = auth()->user();
+        $user->resetTwoFactorCode();
+
         return $this->respondWithToken($token);
+    }
+
+    public function resend()
+    {
+        $user = auth()->user();
+        $user->generateTwoFactorCode();
+        $user->notify(new TwoFactorCode());
+
+        return redirect()->back()->withMessage('The two factor code has been sent again');
     }
 
     public function logout()
