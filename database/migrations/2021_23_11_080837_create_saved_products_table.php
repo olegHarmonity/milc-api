@@ -11,7 +11,7 @@ class CreateSavedProductsTable extends Migration
         Schema::create('saved_products', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('product_id')->nullable()->references('id')->on('products');
+            $table->foreignId('product_id')->nullable()->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')->nullable()->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

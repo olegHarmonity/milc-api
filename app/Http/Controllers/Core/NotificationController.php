@@ -38,7 +38,8 @@ class NotificationController extends Controller
             'organisation_id',
             'sender_id',
             'is_for_admin',
-            'category'
+            'category',
+            'created_at'
         ]);
 
         $notification = $notifications->paginate($request->input('per_page'));
@@ -77,6 +78,37 @@ class NotificationController extends Controller
         return new Resource($notification);
     }
 
+    public function markAllAsRead(Request $request)
+    {
+        Gate::authorize('viewAny', Notification::class);
+
+        $user = $this->user();
+
+        $notifications = Notification::where('organisation_id', $user->organisation_id)->get();
+        foreach ($notifications as $notification) {
+            $notification->is_read = true;
+            $notification->save();
+        }
+        
+        $notificationsResponse = Notification::where('organisation_id', $user->organisation_id);
+        
+        $notificationsResponse = $notificationsResponse->select([
+            'id',
+            'title',
+            'message',
+            'is_read',
+            'organisation_id',
+            'sender_id',
+            'is_for_admin',
+            'category',
+            'created_at'
+        ]);
+        
+        $notificationsResponse = $notificationsResponse->paginate($request->input('per_page'));
+
+        return CollectionResource::make($notificationsResponse);
+    }
+
     public function hasUnreadNotifications(Request $request)
     {
         $user = $this->user();
@@ -111,7 +143,7 @@ class NotificationController extends Controller
 
         return response()->json([
             'success' => true,
-            'has_notifications' => (int)$notifications > 0,
+            'has_notifications' => (int) $notifications > 0,
             'notifications_count' => $notifications
         ], 200);
     }
