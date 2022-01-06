@@ -20,10 +20,6 @@ class NewOrderResource extends JsonResource
             $order = $order[0];
         }
 
-        if (isset($order['organisation_id'])) {
-            unset($order['organisation_id']);
-        }
-
         if (isset($order['organisation'])) {
             unset($order['organisation']);
         }
