@@ -135,7 +135,7 @@ class OrderController extends Controller
 
                 Mail::to($contract->seller->email)->send(new ContractAcceptedSellerEmail($contract->seller->organisation_name, $order->order_number, $contract));
 
-                NotificationFactory::createNotification("Order contract accpeted", "The contract for your order no. " . $orderNumber . " has been accepted. To view or download it, go to your order view page.", NotificationCategories::$ORDER, $contract->buyer->id);
+                NotificationFactory::createNotification("Order contract accepted", "The contract for your order no. " . $orderNumber . " has been accepted. To view or download it, go to your order view page.", NotificationCategories::$ORDER, $contract->buyer->id);
             } else {
                 $orderStateMachine->apply('deny_contract');
             }
@@ -164,12 +164,12 @@ class OrderController extends Controller
             $order->save();
 
             $bankInfo = GeneralAdminSettings::all()->first();
-            
+
             if ($bankInfo) {
                 Mail::to($order->delivery_email)->send(new BankTransferInitEmail($order->organisation_name, $order->order_number, $bankInfo->iban, $bankInfo->swift_bic, $bankInfo->bank_name));
                 NotificationFactory::createNotification("Order payment started", "The payment for your order no. " . $orderNumber . " has been initiated. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
             }
-            
+
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
             DB::rollback();
@@ -283,7 +283,7 @@ class OrderController extends Controller
             $order->save();
 
             Mail::to($order->delivery_email)->send(new OrderCancelledEmail($order->organisation_name, $order->order_number));
-            NotificationFactory::createNotification("Order cnacelled", "Your order no. " . $orderNumber . " has been marked as cancelled. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+            NotificationFactory::createNotification("Order cancelled", "Your order no. " . $orderNumber . " has been marked as cancelled. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
 
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {
