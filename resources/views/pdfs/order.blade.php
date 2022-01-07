@@ -96,39 +96,39 @@
       <span class="description">{{ $order->rights_bundle->product->runtime }} seconds</span>
     </div>
   </div>
-  
+
   <div class="info-box rights">
     <h3>Rights information</h3>
-    
+
     @foreach ($order->rights_bundle->bundle_rights_information as $rightsInfo)
 		<div>
 	      <span class="title">Title</span>
 	      <span class="description">{{$rightsInfo->title}}</span>
 	    </div>
-	    
+
 	    <div>
 	      <span class="title">Available from date</span>
 	      <span class="description">{{ $rightsInfo->available_from_date }}</span>
 	    </div>
-	    
+
     	<div>
 	      <span class="title">Expiry date</span>
 	      <span class="description">{{ $rightsInfo->expiry_date }}</span>
 	    </div>
-	
+
 	    <h4>Available rights</h4>
 	   	<div>
 	      <span class="title">Rights</span>
 	      	<span class="description">
 		    	@foreach ($rightsInfo->available_rights as  $availRights)
-		    		{{$availRights.name}}
+		    		{{$availRights->name}}
 		    		 @if( !$loop->last)
 		        	,
 		        	@endif
 		    	@endforeach
 	    	</span>
 	   	 </div>
-	   	 
+
 	   	 <div>
 	      <span class="title">Territories</span>
 	      	<span class="description">
@@ -142,15 +142,15 @@
 		    	@endforeach
 	    	</span>
 	   	</div>
-	   	
+
 	   	 <div>
      		<span class="title">Description</span>
      		<span class="description">{{$rightsInfo->long_description}}</span>
 	   	</div>
 	@endforeach
-    
+
   </div>
-  
+
   <div class="bill-payment-info">
     <div class="info-box-second">
       <h3>Billing information</h3>
@@ -173,7 +173,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="info-box-second right">
       <h3>Payment information</h3>
       <div class="info-wrap">
@@ -200,7 +200,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="info-box">
     <h3>Seller information</h3>
     <div>
@@ -228,7 +228,7 @@
       <span class="description">{{$order->seller->organisation_registration_number }}</span>
     </div>
   </div>
-	
+
   <div class="info-box">
     <h3>Buyer information</h3>
     <div>

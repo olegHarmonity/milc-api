@@ -31,7 +31,7 @@ class SearchFormatter
         $endDateSearch = $request->get('end_date');
         $dateSearch = $request->get('date');
 
-        $sort = $request->get('sort') ?? ['created_at' => 'DESC'];
+        $sort = $request->get('sort') ?? ['id' => 'DESC'];
 
         foreach($sort as $parameter => $direction){
             $query = $model::sort($parameter, $direction, $query);
