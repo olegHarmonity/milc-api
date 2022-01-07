@@ -11,6 +11,9 @@ Route::group([
     Route::post('/login', [AuthController::class, 'login'])
         ->name('login');
 
+    Route::post('/login-verify', [AuthController::class, 'loginVerify'])
+        ->name('login_verify');
+
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 

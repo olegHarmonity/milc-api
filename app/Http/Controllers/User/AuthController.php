@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\TwoFactorAuthenticationRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -10,6 +11,7 @@ use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Request;
 use App\Mail\VerifyAccountEmail;
+use App\Mail\LoginVerifyCodeEmail;
 use App\Models\UserActivity;
 use App\Util\UserActivities;
 use App\Util\UserStatuses;
@@ -23,6 +25,7 @@ class AuthController extends Controller
         $this->middleware('auth:api', [
             'except' => [
                 'login',
+                'loginVerify',
                 'verifyUser',
                 'resendVerificationEmail'
             ]
@@ -89,6 +92,48 @@ class AuthController extends Controller
         // DB::beginTransaction();
         DB::table('user_activities')->insert(['user_id' => auth()->user()->id, 'activity' => UserActivities::$LOGIN, 'created_at' => new \DateTime()]);
         // DB::commit();
+
+        Mail::to($user->email)->send(new LoginVerifyCodeEmail($user->generateTwoFactorCode(), $user->first_name));
+
+        return $this->returnResponse([], 200, __('auth.login_code.sent'));
+
+        // return $this->respondWithToken($token);
+    }
+
+    /**
+     * @param LoginRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
+    public function loginVerify(TwoFactorAuthenticationRequest $request)
+    {
+
+        $token = auth()->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+            'two_factor_code' => $request->code,
+        ]);
+
+        if (!$token) {
+            return $this->returnResponse([], 401, __('auth.invalid_code'));
+        }
+
+        $user = auth()->user();
+
+        $date_now = time(); //current timestamp
+        $date_convert = strtotime($user->two_factor_expires_at);
+        $blnDate = true;
+
+        if ($date_now > $date_convert) {
+            $blnDate = true;
+        } else {
+            $blnDate = false;
+        }
+
+        if($blnDate){
+            return $this->returnResponse([], 401, __('auth.invalid_code'));
+        }
+
+        $user->resetTwoFactorCode();
 
         return $this->respondWithToken($token);
     }
