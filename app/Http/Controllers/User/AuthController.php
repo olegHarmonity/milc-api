@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\TwoFactorAuthenticationRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -103,7 +104,7 @@ class AuthController extends Controller
      * @param LoginRequest $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function loginVerify(Request $request)
+    public function loginVerify(TwoFactorAuthenticationRequest $request)
     {
 
         $token = auth()->attempt([
@@ -117,6 +118,21 @@ class AuthController extends Controller
         }
 
         $user = auth()->user();
+
+        $date_now = time(); //current timestamp
+        $date_convert = strtotime($user->two_factor_expires_at);
+        $blnDate = true;
+
+        if ($date_now > $date_convert) {
+            $blnDate = true;
+        } else {
+            $blnDate = false;
+        }
+
+        if($blnDate){
+            return $this->returnResponse([], 401, __('auth.invalid_code'));
+        }
+
         $user->resetTwoFactorCode();
 
         return $this->respondWithToken($token);
