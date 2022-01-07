@@ -51,7 +51,9 @@ class OrderController extends Controller
         $user = $this->user();
         $ordersQuery = null;
         if (! $user->isAdmin()) {
-            $ordersQuery = Order::where('organisation_id', $user->organisation->id);
+            $ordersQuery = Order::where(function ($q) use ($user) {
+                $q->where('organisation_id', $user->organisation->id)->orWhere('seller_id', $user->organisation->id);
+            });
         }
 
         $orders = SearchFormatter::getSearchQueries($request, Order::class, $ordersQuery);
@@ -62,6 +64,7 @@ class OrderController extends Controller
             'id',
             'order_number',
             'organisation_id',
+            'seller_id',
             'organisation_name',
             'state',
             'created_at',
@@ -212,7 +215,7 @@ class OrderController extends Controller
 
             $order->save();
 
-            $seller = $order->rights_bundle->seller();
+            $seller = $order->seller;
             Mail::to($seller->email)->send(new AssetsReceivedEmail($seller->organisation_name, $order->order_number));
             NotificationFactory::createNotification("Order paid", "Your order no. " . $orderNumber . " has been marked as paid. To view the order, go to your order view page.", NotificationCategories::$ORDER, $seller->id);
 
@@ -283,7 +286,7 @@ class OrderController extends Controller
             $order->save();
 
             Mail::to($order->delivery_email)->send(new OrderCancelledEmail($order->organisation_name, $order->order_number));
-            NotificationFactory::createNotification("Order cnacelled", "Your order no. " . $orderNumber . " has been marked as cancelled. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
+            NotificationFactory::createNotification("Order cancelled", "Your order no. " . $orderNumber . " has been marked as cancelled. To view the order, go to your order view page.", NotificationCategories::$ORDER, $order->buyer_user->organisation->id);
 
             return (new NewOrderResource($order))->response()->setStatusCode(200);
         } catch (Throwable $e) {

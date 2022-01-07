@@ -205,27 +205,27 @@
     <h3>Seller information</h3>
     <div>
       <span class="title">Contact email</span>
-      <span class="description">{{ $order->rights_bundle->seller()->email }}</span>
+      <span class="description">{{ $order->seller->email }}</span>
     </div>
     <div>
       <span class="title">Organisation name</span>
-      <span class="description">{{ $order->rights_bundle->seller()->organisation_name }}</span>
+      <span class="description">{{ $order->seller->organisation_name }}</span>
     </div>
     <div>
       <span class="title">Organisation type</span>
-      <span class="description">{{ $order->rights_bundle->seller()->organisation_type->name }}</span>
+      <span class="description">{{ $order->seller->organisation_type->name }}</span>
     </div>
     <div>
       <span class="title">Organisation phone</span>
-      <span class="description">{{ $order->rights_bundle->seller()->organisation_phone }}</span>
+      <span class="description">{{ $order->seller->organisation_phone }}</span>
     </div>
     <div>
       <span class="title">Organisation address</span>
-      <span class="description">{{ $order->rights_bundle->seller()->organisation_address }}</span>
+      <span class="description">{{ $order->seller->organisation_address }}</span>
     </div>
     <div>
       <span class="title">Registration number</span>
-      <span class="description">{{$order->rights_bundle->seller()->organisation_registration_number }}</span>
+      <span class="description">{{$order->seller->organisation_registration_number }}</span>
     </div>
   </div>
 	

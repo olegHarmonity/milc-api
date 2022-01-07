@@ -25,7 +25,7 @@ class ContractFactory extends Factory
     public static function createFromOrder(Order $order)
     {
         
-        $sellerId = $order->rights_bundle->seller_id();
+        $sellerId = $order->seller_id;
         $defaultContract = Contract::where([
             [
                 'seller_id',

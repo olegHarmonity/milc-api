@@ -58,6 +58,7 @@ class OrderFactory extends Factory
         $price->save();
  
         $seller = $rightsBundle->product->organisation;
+        $order->seller_id = $seller->id;
         $buyerCountry = $organisation->country;
         $vatRules = $seller->vat_rules;
         $vatPercentValue = null;

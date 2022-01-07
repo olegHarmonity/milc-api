@@ -23,6 +23,7 @@ class Order extends Model
         'billing_email',
         'billing_address',
         'rights_bundle_id',
+        'seller_id',
         'organisation_id',
         'buyer_user_id',
         'state',
@@ -92,5 +93,10 @@ class Order extends Model
     public function contract()
     {
         return $this->belongsTo(Contract::class);
+    }
+    
+    public function seller()
+    {
+        return $this->belongsTo(Organisation::class);
     }
 }

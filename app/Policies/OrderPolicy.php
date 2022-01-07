@@ -52,7 +52,7 @@ class OrderPolicy
             return true;
         }
         
-        if($order->rights_bundle->product->organisation->id === $user->organisation->id){
+        if($order->seller_id === $user->organisation->id){
             return true;
         }
         
@@ -99,7 +99,7 @@ class OrderPolicy
             return true;
         }
         
-        if($order->rights_bundle->product->organisation->id === $user->organisation->id){
+        if($order->seller_id === $user->organisation->id){
             return true;
         }
         
@@ -150,7 +150,7 @@ class OrderPolicy
             return Response::deny(AuthorizationResponses::$NOT_ALLOWED);
         }
         
-        if($order->rights_bundle->product->organisation->id === $user->organisation->id){
+        if($order->seller_id === $user->organisation->id){
             return true;
         }
         

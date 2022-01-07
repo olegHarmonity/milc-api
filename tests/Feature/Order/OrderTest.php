@@ -151,7 +151,6 @@ class OrderTest extends ApiTestCase
         $response->assertStatus(200);
         
         $response = $this->put('/api/checkout/mark-assets-received/123-ABC');
-      
         $response->assertStatus(200);
         
         $response = $this->put('/api/checkout/mark-completed/123-ABC');
