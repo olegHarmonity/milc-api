@@ -42,6 +42,10 @@ class OrganisationObserver
      */
     public function updated(Organisation $organisation)
     {
+        if(!isset($user)){
+            return;
+        }
+        
         if ($user->isDirty('organisation_name')) {
             
             $token = $this->getAuthToken();

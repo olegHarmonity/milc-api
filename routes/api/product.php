@@ -33,10 +33,6 @@ Route::apiResource('movie-genres', MovieGenreController::class);
 Route::apiResource('movie-content-types', MovieContentTypeController::class);
 Route::apiResource('persons', PersonController::class);
 
-Route::get('/rights-info/{id}', [
-    RightsInfoController::class,
-    'show'
-]);
-
+Route::apiResource('rights-info', RightsInfoController::class);
 
 Route::apiResource('rights-bundles', RightsBundleController::class);

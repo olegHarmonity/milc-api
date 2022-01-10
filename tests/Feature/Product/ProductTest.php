@@ -28,7 +28,7 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/products/by-category/1');
         $response->assertStatus(200);
     }
-    
+
     public function test_get_products_by_category_all()
     {
         $response = $this->get('/api/products/by-category/all');
@@ -128,7 +128,7 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/products/1');
         $response->assertStatus(200);
     }
-    
+
     public function test_get_product_custom_bundles()
     {
         $this->loginCompanyAdmin();
@@ -587,10 +587,9 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->put('/api/products/1', $data);
-         //dump(($response));
-         //dump(json_decode($response->getContent()));
+        // dump(($response));
+        // dump(json_decode($response->getContent()));
         $response->assertStatus(200);
-        
     }
 
     public function test_update_product_rights_info()
@@ -636,8 +635,8 @@ class ProductTest extends ApiTestCase
         ];
 
         $response = $this->put('/api/products/1', $data);
-         //dump(($response));
-         //dump(json_decode($response->getContent()));
+        // dump(($response));
+        // dump(json_decode($response->getContent()));
         $response->assertStatus(200);
     }
 
@@ -646,20 +645,45 @@ class ProductTest extends ApiTestCase
         $response = $this->get('/api/persons?search[full_name]=name name');
         $response->assertStatus(200);
     }
-    
+
     public function test_delete_person()
     {
         $this->loginAdmin();
         $response = $this->delete('/api/persons/1');
         $response->assertStatus(200);
     }
-    
+
     public function test_get_right_bundle()
     {
         $response = $this->get('/api/rights-info/3');
         $response->assertStatus(200);
     }
-    
+
+    public function test_post_right_bundle()
+    {
+        $this->loginCompanyAdmin();
+
+        $data = [
+            'product_id' => 1,
+            'title' => 'test title',
+            'short_description' => 'short_description',
+            'long_description' => 'long_description',
+            'available_from_date' => '2017-02-02',
+            'expiry_date' => '2030-02-02',
+            'available_rights' => [
+                1,
+                2
+            ],
+            'holdbacks' => "this is a test",
+            'territories' => [
+                "terr 1",
+                "terr 2"
+            ]
+        ];
+
+        $response = $this->post('/api/rights-info', $data);
+        $response->assertStatus(201);
+    }
 
     public function test_delete_product()
     {

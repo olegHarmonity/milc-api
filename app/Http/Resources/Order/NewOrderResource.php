@@ -2,7 +2,6 @@
 namespace App\Http\Resources\Order;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Organisation;
 use App\Models\RightsBundle;
 use App\Http\Resources\Resource;
 use App\Models\Product;
