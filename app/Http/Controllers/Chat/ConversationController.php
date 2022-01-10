@@ -32,7 +32,7 @@ class ConversationController extends Controller
                     $aryParticipants[] = [
                         'id' => $user->id,
                         'name' => $user->organisation_name,
-                        'logo' => $user->logo->image_url
+                        'logo' => optional($user->logo)->image_url
                     ];
                 }
             }
