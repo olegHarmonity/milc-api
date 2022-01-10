@@ -24,6 +24,7 @@ class RightsBundlesTest extends ApiTestCase
         ];
 
         $response = $this->post('/api/rights-bundles', $data);
+
         $response->assertStatus(201);
     }
 }
