@@ -18,6 +18,7 @@ class RightsInformation extends Model
         'available_from_date',
         'expiry_date',
         'available_rights',
+        'product_id',
         'holdbacks',
         'territories',
         'title',
