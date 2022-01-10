@@ -3,6 +3,7 @@ namespace App\Observers;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Http;
+use Log;
 
 class ProductObserver
 {
@@ -57,7 +58,61 @@ class ProductObserver
      */
     public function updated(Product $product)
     {
-        //
+        $data = [];
+    
+        if ($product->isDirty('synopsis')) {
+            $data['description'] = $product->synopsis;
+        }
+        if ($product->isDirty('title')) {
+            $data['title'] = $product->title;
+        }
+        if ($product->isDirty('genres')) {
+            $aryGenres = [];
+            foreach ($product->genres as $genres) {
+                $aryGenres[] =  $aryGenres;
+            }
+            $data['genres'] = $product->synopsis;
+        }
+
+        if($data){
+            $token = $this->getAuthToken();
+        
+            if (! $token) {
+                return;
+            }
+            
+            $token = $token['access_token'];
+            $response = Http::withToken($token)->patch(env('MEDIA_HUB_API') . '/assets/' . $product->external_reference, $data);
+        }
+    }
+
+    /**
+     * Handle the Product "delete" event.
+     *
+     * @param \App\Models\Product $product
+     * @return void
+     */
+    public function deleting(Product $product)
+    {
+        $assetId = $product->external_reference;
+        if($assetId){
+            $token = $this->getAuthToken();
+            $token = $token['access_token'];
+
+            $token =  $this->getAuthToken()['access_token'];
+            $url = env('MEDIA_HUB_API') . "/assets/$assetId/items";
+    
+            $response = Http::withToken($token)->get($url);
+
+            if($response->successful()){
+                $items = $response->json();
+                foreach($items as $item){
+                    $response = Http::withToken($token)->delete(env('MEDIA_HUB_API') . '/items/'. $item['id']);
+                }
+            }
+
+            $response = Http::withToken($token)->delete(env('MEDIA_HUB_API') . '/assets/'. $assetId);
+        } 
     }
 
     public function CheckOrCreateOrganisation()
@@ -111,4 +166,7 @@ class ProductObserver
         
         return null;
     }
+
+       
+    
 }

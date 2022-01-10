@@ -42,7 +42,31 @@ class OrganisationObserver
      */
     public function updated(Organisation $organisation)
     {
-        //
+        if ($user->isDirty('organisation_name')) {
+            
+            $token = $this->getAuthToken();
+            if (! $token) {
+                return;
+            }
+            $token = $token['access_token'];
+
+            $response = Http::withToken($token)->patch(env('MEDIA_HUB_API') . '/tenants', [
+                'name' => $organisation->organisation_name
+            ]);
+        }
+    }
+
+        /**
+     * Handle the Product "delete" event.
+     *
+     * @param \App\Models\Product $product
+     * @return void
+     */
+    public function deleting(Organisation $organisation)
+    {
+        $token = $this->getAuthToken();
+        $token = $token['access_token'];
+        $response = Http::withToken($token)->delete(env('MEDIA_HUB_API') . '/tenants/'. $organisation->external_reference);
     }
 
     public function getAuthToken()
