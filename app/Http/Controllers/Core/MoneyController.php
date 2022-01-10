@@ -16,7 +16,6 @@ class MoneyController extends Controller
     {
         try {
             $exchangeRequest = $request->validated();
-            
             $response = CurrencyExchange::changeCurrency($exchangeRequest['from_currency'], $exchangeRequest['to_currency'], $exchangeRequest['amount']);
            
             return response()->json([

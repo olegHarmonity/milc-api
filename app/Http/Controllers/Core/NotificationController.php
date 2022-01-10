@@ -39,7 +39,8 @@ class NotificationController extends Controller
             'sender_id',
             'is_for_admin',
             'category',
-            'created_at'
+            'created_at',
+            'updated_at'
         ]);
 
         $notification = $notifications->paginate($request->input('per_page'));

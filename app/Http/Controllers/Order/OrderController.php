@@ -96,7 +96,7 @@ class OrderController extends Controller
 
     public function changeCurrency(ExchangeOrderCurrencyRequest $request, $orderNumber)
     {
-        try {
+      //  try {
             $order = Order::where('order_number', 'LIKE', $orderNumber)->first();
             Gate::authorize('update', $order);
 
@@ -112,10 +112,10 @@ class OrderController extends Controller
             $order->save();
 
             return (new NewOrderResource($order))->response()->setStatusCode(200);
-        } catch (Throwable $e) {
+        /*} catch (Throwable $e) {
             DB::rollback();
             throw new BadRequestHttpException($e->getMessage());
-        }
+        }*/
     }
 
     public function updateContractStatus(UpdateContractStatusRequest $request, $orderNumber)
