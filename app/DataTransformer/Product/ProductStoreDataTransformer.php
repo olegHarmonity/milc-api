@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProductStoreDataTransformer
 {
-
     public static function transformData($arrayRequest, Organisation $organisation)
     {
         DB::beginTransaction();

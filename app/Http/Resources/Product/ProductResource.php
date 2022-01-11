@@ -9,6 +9,7 @@ use App\Models\ProductionInfo;
 use App\Models\Video;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Money;
+use App\Http\Resources\ImageResource;
 
 class ProductResource extends JsonResource
 {
@@ -141,13 +142,16 @@ class ProductResource extends JsonResource
             $marketingAssetsResource = new Resource($marketingAssets);
 
             $productionImages = $marketingAssets->production_images;
+            $productionImagesArray = [];
+            
             foreach ($productionImages as $productionImage) {
-                $marketingAssetsResource['production_images'][$productionImage->id] = new Resource($productionImage);
+                 $productionImagesArray[] = new ImageResource($productionImage);
             }
-
+            
+            $marketingAssetsResource['production_images'] = $productionImagesArray;
             $marketingAssetsResource['key_artwork'] = new Resource($marketingAssets->key_artwork);
 
-            $product['marketing_assets'] = new Resource($marketingAssets);
+            $product['marketing_assets'] = $marketingAssetsResource;
         }
 
         if (isset($product['movie_id'])) {
