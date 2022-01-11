@@ -15,7 +15,6 @@ class MoneyTest extends ApiTestCase
         ];
         
         $response = $this->post('/api/exchange-currency', $data);
-        
         $response->assertStatus(200);
     }
 }

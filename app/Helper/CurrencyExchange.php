@@ -25,12 +25,10 @@ class CurrencyExchange
     public static function getExchangeRate($fromCurrency, $toCurrency)
     {
         $exchnageRate = Currency::rates()->latest()
-            ->symbols([
-            $toCurrency
-        ])
+            ->symbols([$toCurrency])
             ->base($fromCurrency)
             ->get();
-
+      
         if (! isset($exchnageRate[$toCurrency])) {
             throw new BadRequestHttpException("Something went wrong. Please try again!");
         }
@@ -45,20 +43,20 @@ class CurrencyExchange
             ->amount($amount)
             ->round(2)
             ->get();
-
+            
         if (! isset($conversionAmount)) {
             throw new BadRequestHttpException("Something went wrong. Please try again!");
         }
 
         return $conversionAmount;
     }
-    
-    public static function getExchangedMoney(Money $money, $toCurrency) {
-        
+
+    public static function getExchangedMoney(Money $money, $toCurrency)
+    {
         $money->value = CurrencyExchange::getExchangeAmount($money->currency, $toCurrency, $money->value);
         $money->currency = $toCurrency;
         $money->save();
-        
+
         return $money;
     }
 }

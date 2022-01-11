@@ -4,8 +4,6 @@ namespace App\DataTransformer\Product;
 use App\Models\Product;
 use App\Models\RightsInformation;
 use Illuminate\Support\Facades\DB;
-use App\Util\NotificationCategories;
-use Database\Factories\NotificationFactory;
 
 class CreateRightsInfoDataTransformer
 {

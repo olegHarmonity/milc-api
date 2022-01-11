@@ -80,7 +80,6 @@ class OrderTest extends ApiTestCase
         ];
         
         $response = $this->put('/api/checkout/change-currency/123-ABC', $data);
-
         $response->assertStatus(200);
     }
     
@@ -193,7 +192,7 @@ class OrderTest extends ApiTestCase
         $this->loginCompanyAdmin();
         
         $response = $this->get('/api/notifications?exact_search[category]=order');
-
+        
         $response->assertStatus(200);
     }
 }

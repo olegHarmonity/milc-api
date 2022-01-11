@@ -3,8 +3,6 @@ namespace Tests\Feature\Product;
 
 use Tests\ApiTestCase;
 use Illuminate\Http\UploadedFile;
-use App\Helper\SearchFormatter;
-use phpDocumentor\Reflection\Types\This;
 
 class ProductTest extends ApiTestCase
 {
